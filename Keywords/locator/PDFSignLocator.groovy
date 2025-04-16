@@ -1,0 +1,94 @@
+package locator
+
+import com.kms.katalon.core.testobject.TestObject
+
+import entities.LocatorType
+import internal.GlobalVariable
+
+public class PDFSignLocator extends TestObjectFactory{
+	TestObject acceptErrorButton, errorMessagePopup, relatedTxt, actionBtn, getOpinionAction, saveFormAction, assignerEmailSearch, loadingMask,
+	sendFormAction, assignerItem, mainFile, subFile, assignerTxt, opinionNoteTxt, submitDatePickerBtn, backBtn, priorityItem,
+	submitFormBtn, descriptionTxt, priorityValue, titleTxt, doneBtn, relatedEmailSearch, doneTime, relatedMemberItem, iosOpenDatePicker, listUserLoadingMask, priorityTitle, emptyListCC
+
+	PDFSignLocator () {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":
+				acceptErrorButton = createTestObject(LocatorType.XPATH, "//android.widget.FrameLayout[@resource-id='com.hdbank.ipaper:id/action_bar_root']//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/btn_ok']")
+				errorMessagePopup = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_mes")
+				relatedTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_text_cc")
+				actionBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/fab")
+				getOpinionAction = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/fab3")
+				saveFormAction = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/fab1")
+				assignerEmailSearch = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_search_email")
+				loadingMask = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/loading_image")
+				sendFormAction = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/fab2")
+			//				assignerItem = createTestObject(LocatorType.XPATH, "")
+				mainFile = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_main_file_click")
+				subFile = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/view_attach_file_click")
+				assignerTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_text_assign")
+				opinionNoteTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/edit_note")
+				submitDatePickerBtn = createTestObject(LocatorType.ID, "android:id/button1")
+				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
+			//				priorityItem = createTestObject(LocatorType.XPATH, "")
+				submitFormBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok_user")
+				descriptionTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_note")
+				priorityValue = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_priority")
+				titleTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/edit_tv_title")
+				doneBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_menu")
+				relatedEmailSearch = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_search_email")
+				doneTime = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_due_date")
+			//				relatedMemberItem = createTestObject(LocatorType.XPATH, "")
+				break
+			case "iOS":
+				actionBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_floating_action']")
+				getOpinionAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Lấy ý kiến']//parent::XCUIElementTypeOther")
+			//				relatedMemberItem = createTestObject(LocatorType.XPATH, "")
+				assignerEmailSearch = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField")
+				iosOpenDatePicker = createTestObject(LocatorType.XPATH, "//XCUIElementTypeDatePicker")
+				relatedTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cc']")
+			//				assignerItem = createTestObject(LocatorType.XPATH, "")
+				listUserLoadingMask = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='footer_bar']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeOther")
+				saveFormAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_save']")
+				assignerTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Email']//parent::XCUIElementTypeCell")
+				mainFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Tải lên tài liệu PDF']//ancestor::XCUIElementTypeCell")
+				sendFormAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi duyệt']/parent::*")
+				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Xong']")
+				opinionNoteTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ý kiến']//parent::XCUIElementTypeOther//XCUIElementTypeTextView")
+				subFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Tải lên file đính kèm liên quan']")
+				descriptionTxt = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeStaticText[@name='Mô tả:'])[1]//following-sibling::XCUIElementTypeTextView")
+			//				priorityItem = createTestObject(LocatorType.XPATH, "")
+				submitFormBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Gửi']")
+				doneBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Xong']")
+				priorityTitle = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeStaticText[@name='Ưu tiên:'])[2]")
+				titleTxt = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeTable//XCUIElementTypeTextView)[1]")
+				doneTime = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeStaticText[@name='Ngày hoàn thiện'])[2]//following-sibling::XCUIElementTypeButton")
+				priorityValue = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeButton[@name='ic edit pen'])[1]/preceding-sibling::*[1]")
+				emptyListCC = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable[@name='Empty list']")
+				relatedEmailSearch = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField")
+
+				break
+		}
+	}
+
+	TestObject assignerItem (String userEmail) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android": return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_email' and contains(@text, '${userEmail}')]", [('userEmail') : userEmail])
+			case "iOS": return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@label, '${userEmail}')]/parent::*", [('userEmail') : userEmail])
+		}
+	}
+
+	TestObject priorityItem (String priority) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android": return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='${priority}']", [('priority') : priority])
+			case "iOS": return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ưu tiên']/parent::XCUIElementTypeOther//XCUIElementTypeStaticText[@name='${priority}']//following-sibling::*[1]", [('priority') : priority])
+			println " c"
+			}
+	}
+
+	TestObject relatedMemberItem (String userEmail) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_email' and contains(@text, '${userEmail}')]", [('userEmail') : userEmail])
+			case "iOS": return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@label, '${userEmail}')]/parent::*", [('userEmail') : userEmail])
+		}
+	}
+}

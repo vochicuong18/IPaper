@@ -2,15 +2,11 @@ package screens
 
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
-import com.kms.katalon.core.testobject.TestObject
-
 import base.BaseKeyword
 import internal.GlobalVariable
+import locator.PDFSignLocator
 import utilities.CalendarUtilities
-public class PDFSignScreen extends BaseKeyword{
-	TestObject doneTime, submitDatePickerBtn, mailFile, subFile, titleTxt, priorityValue, descriptionTxt, assignerTxt, assignerEmailSearch,
-	relatedTxt, relatedEmailSearch, actionBtn, getOpinionAction, saveFormAction, sendFormAction, backBtn, opinionNoteTxt, submitFormBtn, iosOpenDatePicker,
-	submitSelectedFile
+public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	public enum Priority {
 		KHAN_CAP, CAO, BINH_THUONG
@@ -25,39 +21,14 @@ public class PDFSignScreen extends BaseKeyword{
 		}
 	}
 
-	public PDFSignScreen() {
-		String platformPath = "Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/"
-		doneTime = findTestObject("${platformPath}doneTime")
-		submitDatePickerBtn = findTestObject("${platformPath}submitDatePickerBtn")
-		mailFile = findTestObject("${platformPath}mainFile")
-		subFile = findTestObject("${platformPath}subFile")
-		titleTxt = findTestObject("${platformPath}titleTxt")
-		priorityValue = findTestObject("${platformPath}priorityValue")
-		descriptionTxt = findTestObject("${platformPath}descriptionTxt")
-		assignerTxt = findTestObject("${platformPath}assignerTxt")
-		assignerEmailSearch = findTestObject("${platformPath}assignerEmailSearch")
-		relatedTxt = findTestObject("${platformPath}relatedTxt")
-		relatedEmailSearch = findTestObject("${platformPath}relatedEmailSearch")
-		actionBtn = findTestObject("${platformPath}actionBtn")
-		getOpinionAction = findTestObject("${platformPath}getOpinionAction")
-		saveFormAction = findTestObject("${platformPath}saveFormAction")
-		sendFormAction = findTestObject("${platformPath}sendFormAction")
-		backBtn = findTestObject("${platformPath}backBtn")
-		opinionNoteTxt = findTestObject("${platformPath}opinionNoteTxt")
-		submitFormBtn = findTestObject("${platformPath}submitFormBtn")
-		iosOpenDatePicker = findTestObject("${platformPath}iosOpenDatePicker")
-		submitSelectedFile = findTestObject("${platformPath}submitSelectedFile")
-	}
-
 	def fillInTitle(String title) {
 		inputText(titleTxt, title)
 	}
 
 	def selectPriority (Priority priority) {
-		swipe('down')
-		def priorityItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/priorityItem", [('priority') : priority.toString()])
+		swipe('down', 0.1)
 		clickToElement(priorityValue)
-		clickToElement(priorityItem)
+		clickToElement(priorityItem(priority.toString()))
 	}
 
 	def selectTime (String date) {
@@ -68,38 +39,44 @@ public class PDFSignScreen extends BaseKeyword{
 	}
 
 	def fillInDescription(String decs) {
+		swipe("down")
 		inputText(descriptionTxt, decs)
 	}
 
 	def selectAssigner(String email) {
-		def assignerItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/assignerItem", [('email') : email])
 		swipe('down')
 		clickToElement(assignerTxt)
 		inputText(assignerEmailSearch, email)
 		enterText(assignerEmailSearch)
-		clickToElement(assignerItem)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		clickToElement(assignerItem(email))
 
 		if (GlobalVariable.PLATFORM == "iOS") {
-			clickToElement(backBtn) // click to "Xong"
+			clickToElement(doneBtn) // click to "Xong"
 		}
 	}
 
 	def openMainFileBrowser() {
 		swipe('down')
-		clickToElement(mailFile)
+		clickToElement(mainFile)
 	}
 
 	def openSubFileBrowser() {
+		swipeToElement(subFile, "down")
 		clickToElement(subFile)
 	}
 
 	def selectRelatedMember(String email) {
-		def relatedMemberItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/relatedMemberItem", [('email') : email])
 		clickToElement(relatedTxt)
 		inputText(relatedEmailSearch, email)
 		enterText(relatedEmailSearch)
-		clickToElement(relatedMemberItem)
-		clickToElement(backBtn)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		clickToElement(relatedMemberItem(email))
+		clickToElement(doneBtn)
 	}
 
 	def saveRequest() {
@@ -132,13 +109,24 @@ public class PDFSignScreen extends BaseKeyword{
 		inputText(opinionNoteTxt, guest)
 	}
 
+	def submitErrorPopup() {
+		clickToElement(acceptErrorButton)
+	}
+
 	def submitRequest() {
 		clickToElement(submitFormBtn)
+		if (GlobalVariable.PLATFORM == "Android") {
+			waitForNotPresentOf(loadingMask)
+		}
 	}
 
 	def submitDate() {
 		if (GlobalVariable.PLATFORM == "Android") {
 			clickToElement(submitDatePickerBtn)
 		}
+	}
+
+	String getErrorMessage() {
+		return getText(errorMessage)
 	}
 }

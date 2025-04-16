@@ -20,4 +20,4 @@ public class Capabilities {
 		]
 	]
 }
-
+//			udid             : "00008110-000659C02107801E",

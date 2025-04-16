@@ -2,9 +2,14 @@ package utilities
 
 import com.kms.katalon.core.util.KeywordUtil
 
+import java.util.logging.Logger
+
+import com.kms.katalon.core.logging.KeywordLogger;
 
 
 public class Utilities {
+	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class);
+	
 	def getOS() {
 		def osName = System.getProperty("os.name").toLowerCase()
 		if (osName.contains("win")) {
@@ -18,15 +23,23 @@ public class Utilities {
 		}
 	}
 
-	def static log(String text) {
+	def static logInfo(String text) {
 		KeywordUtil.logInfo(text)
 	}
+	
+	def static logPass(String text) {
+		logger.logPassed(text)
+	}
+	
+	def static logFailed(String text) {
+		logger.logFailed(text)}
+	
 
 	def runCommand(String command) {
-		log(command)
+		logInfo(command)
 
 		def process
-		log(getOS())
+		logInfo(getOS())
 		if (getOS() == 'Windows') {
 			process = ["cmd", "/c", command].execute()
 		}
@@ -45,7 +58,7 @@ public class Utilities {
 		}
 
 		process.waitFor() // Wait for the process to finish
-		log("Output: ${output.toString()}")
+		logInfo("Output: ${output.toString()}")
 		return output.toString()
 	}
 }

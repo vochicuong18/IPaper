@@ -1,9 +1,30 @@
 {
-  "user": {
-    "name": "name",
+  "userA3NV": {
+    "name": "HD999997 NGUYỄN VĂN A3 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
     "userName": "a3nv",
     "password": "Hdb@nk@3!",
     "email": "test0003@hdbank.com.vn",
     "phoneNumber": "0981023699"
+  },
+  "userA4NV": {
+    "name": "HD999996 NGUYỄN VĂN A4 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
+    "userName": "a4nv",
+    "password": "Hdb@nk@3!",
+    "email": "test0004@hdbank.com.vn",
+    "phoneNumber": "0981023699"
+  },
+  "userA5NV": {
+    "name": "HD999996 NGUYỄN VĂN A5 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
+    "userName": "a5nv",
+    "password": "Hdb@nk@3!",
+    "email": "test0005@hdbank.com.vn",
+    "phoneNumber": "0981023699"
+  },
+  "user1": {
+    "name": "Auto Test User 1",
+    "userName": "auto1",
+    "password": "Auto@12345",
+    "email": "autotest1@gmail.com",
+    "phoneNumber": ""
   }
 }

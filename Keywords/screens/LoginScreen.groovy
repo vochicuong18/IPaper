@@ -1,36 +1,39 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import base.BaseKeyword
+import entities.User
 import internal.GlobalVariable
+import locator.LoginLocator
 
-public class LoginScreen extends BaseKeyword{
-
-	def login(String userName, String password) {
+public class LoginScreen extends LoginLocator implements BaseKeyword {
+	def login(User user) {
 		if (isGuest()) {
-			fillInUserName(userName)
-			fillInPassword(password)
+			fillInUserName(user.getUserName())
+			fillInPassword(user.getPassword())
 			clickOnLogin()
 		}
 	}
 
 	def fillInUserName(String userName) {
-		waitForVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/userNameTxt"))
-		inputText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/userNameTxt"), userName)
+		waitForVisibilityOf(userNameTxt)
+		inputText(userNameTxt, userName)
 	}
 
 	def fillInPassword(String password) {
-		inputText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/passwordTxt"), password)
+		inputText(passwordTxt, password)
 	}
 
 	def clickOnLogin() {
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/title")) // hidden keyboard
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/loginButton"))
-		waitForNotPresentOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/loadingMask"))
+		clickToElement(title)
+		clickToElement(loginButton)
+		waitForNotPresentOf(loadingMask)
 	}
 
 	boolean isGuest() {
-		return isDisplayed(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/userNameTxt"))
+		return isDisplayed(userNameTxt)
+	}
+
+	boolean isUpdated() {
+		return isDisplayed(ignoreUpdate, 3)
 	}
 }

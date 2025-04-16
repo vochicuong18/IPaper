@@ -34,14 +34,14 @@ public class Driver {
 				.withArgument({ "--base-path" }, APPIUM_BASE_PATH)
 				.withEnvironment(["JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"])
 		service = AppiumDriverLocalService.buildService(buildService);
-		Utilities.log("Appium will be started...")
+		Utilities.logInfo("Appium will be started...")
 		service.start()
 	}
 
 	@Keyword
 	def stopAppium() {
 		if(isAppiumRunning()) {
-			Utilities.log("Appium will be stopped...")
+			Utilities.logInfo("Appium will be stopped...")
 			service.stop()
 		}
 	}
@@ -49,8 +49,7 @@ public class Driver {
 	@Keyword
 	def isAppiumRunning() {
 		boolean status = service != null && service.isRunning()
-		Utilities.log("Appium running: ${status.toString()}")
-		println("------------ ${status}")
+		Utilities.logInfo("Appium running: ${status.toString()}")
 		return status
 	}
 
@@ -68,13 +67,12 @@ public class Driver {
 	@Keyword
 	def openApp() {
 		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
-		Mobile.startApplication(appPath, false)
-		//		Mobile.startExistingApplication(appPath)
+		GlobalVariable.PLATFORM == 'Android' ? Mobile.startApplication(appPath, false) : Mobile.startExistingApplication(appPath)
 	}
 
 	@Keyword
 	def closeApp() {
-		//		Mobile.closeApplication()
+		Mobile.closeApplication()
 	}
 
 	@Keyword
@@ -87,11 +85,13 @@ public class Driver {
 			cap.setCapability("appium:deviceName", platformCaps.deviceName)
 			cap.setCapability("appium:automationName", platformCaps.automationName)
 			cap.setCapability("appium:noReset", platformCaps.noReset)
+			cap.setCapability("appium:waitForIdleTimeout", platformCaps.waitForIdleTimeout)
 			return new AndroidDriver(appiumServerURL, cap)
 		}
 		else if (GlobalVariable.PLATFORM == 'iOS') {
 			cap.setCapability("platformName", platformCaps.platformName)
 			cap.setCapability("appium:platformVersion", platformCaps.platformVersion)
+			cap.setCapability("appium:deviceName", platformCaps.deviceName)
 			cap.setCapability("appium:udid", platformCaps.udid)
 			cap.setCapability("appium:automationName", platformCaps.automationName)
 			cap.setCapability("appium:noReset", platformCaps.noReset)

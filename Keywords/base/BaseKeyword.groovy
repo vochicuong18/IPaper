@@ -1,7 +1,4 @@
 package base
-
-import static org.junit.Assert.assertTrue
-
 import java.time.Duration
 
 import org.openqa.selenium.By
@@ -14,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testobject.MobileTestObject
 import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.TestObjectProperty
 
 import internal.GlobalVariable
 import io.appium.java_client.AppiumDriver
@@ -24,21 +21,18 @@ import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
 import utilities.Utilities
 
-public class BaseKeyword {
+trait BaseKeyword {
 	AppiumDriver driver
 	final int TIMEOUT = 30
-
-	BaseKeyword() {
-	}
 
 	def hideKeyboard() {
 		Mobile.hideKeyboard()
 	}
 
-	def getLocator(TestObject element) {
-		MobileTestObject mObj = (MobileTestObject) element
-		return mObj.getMobileLocator()
-	}
+	//	def getLocator(TestObject element) {
+	//		MobileTestObject mbTestObject = (MobileTestObject) element
+	//		return mbTestObject.getMobileLocator()
+	//	}
 
 	def getValueAttributeOf(TestObject to, attribute) {
 		return Mobile.getAttribute(to, attribute, TIMEOUT)
@@ -53,11 +47,10 @@ public class BaseKeyword {
 		Mobile.tap(element, TIMEOUT)
 		Mobile.clearText(element, TIMEOUT)
 		Mobile.sendKeys(element, text)
-		Utilities.log("Entered ${text} into ${getLocator(element)}")
 	}
 
 	def enterText(TestObject to) {
-		if (GlobalVariable.PLATFORM=="Android") {
+		if (GlobalVariable.PLATFORM == "Android") {
 			AndroidDriver driver = MobileDriverFactory.getDriver()
 			driver.pressKey(new KeyEvent(AndroidKey.ENTER))
 		} else Mobile.sendKeys(to, Keys.chord(Keys.RETURN))
@@ -70,55 +63,107 @@ public class BaseKeyword {
 	}
 
 	def swipe(String direction) {
-		int height  = Mobile.getDeviceHeight()
-		int weight = Mobile.getDeviceWidth()
-		int startX = weight/2
-		int startY = height/2
-		int endX = weight/2
-		int endY = height/2
-		if (direction == 'down') {
-			Mobile.swipe(startX, startY, endX, endY - 200)
-		}
-		else if (direction == 'up') {
-			Mobile.swipe(1050, 400, 1050, 1200)
-		}
+		int height = Mobile.getDeviceHeight()
+		int width = Mobile.getDeviceWidth()
+		int startX = width / 2
+		int startY = height / 2
+		int distance = (height * 0.2) as int
+		int endY = direction == 'down' ? startY - distance : startY + distance
+		Mobile.swipe(startX, startY, startX, endY)
+	}
+
+	def swipe(String direction, double distancePercent) {
+		int height = Mobile.getDeviceHeight()
+		int width = Mobile.getDeviceWidth()
+		int startX = width / 2
+		int startY = height / 2
+		int distance = (height * distancePercent) as int
+		int endY = direction == 'down' ? startY - distance : startY + distance
+		Mobile.swipe(startX, startY, startX, endY)
 	}
 
 	def horizontalSwipeFromElement(TestObject to, String direction) {
-		int xPosition = Mobile.getElementLeftPosition(to, 10) + 400
-		int yPosition = Mobile.getElementTopPosition(to, 10) + 200
-
-		if (direction == "right") {
-			Mobile.swipe(xPosition, yPosition, xPosition + 300, yPosition)
-		}
-
-		else if (direction == "left") {
-			Mobile.swipe(xPosition, yPosition, xPosition - 300, yPosition)
-		}
+		int screenWidth = Mobile.getDeviceWidth()
+		int screenHeight = Mobile.getDeviceHeight()
+		int elementX = Mobile.getElementLeftPosition(to, 10)
+		int elementY = Mobile.getElementTopPosition(to, 10)
+		int screenCenterX = screenWidth / 2
+		int elementCenterX = elementX + 100
+		int elementCenterY = elementY + 50
+		int deltaX = screenCenterX - elementCenterX
+		int swipeDistance = (int)(screenWidth * 0.5)
+		int startX = elementCenterX
+		int endX = (direction == "right") ? startX + swipeDistance : startX - swipeDistance
+		Utilities.logInfo("Swiping ${direction} from $startX to $endX at y = $elementCenterY")
+		Mobile.swipe(startX, elementCenterY, endX, elementCenterY)
 	}
 
-
 	def swipeToElement(TestObject element, String direction) {
-		int MAX_ATTEMPTS = 5
+		int MAX_ATTEMPTS = 10
 		int attempts = 0
-		while (attempts < MAX_ATTEMPTS && isDisplayed(element)) {
-			Utilities.log("Swipe ${direction} to find ${getLocator(element)}")
+		int screenHeight = Mobile.getDeviceHeight()
+		double thresholdPercent = 0.1
+		int centerY = screenHeight / 2
+		int thresholdPx = (int)(screenHeight * thresholdPercent)
+		while (attempts < MAX_ATTEMPTS && !isDisplayed(element)) {
 			swipe(direction)
 			attempts++
 		}
-		assertTrue(isDisplayed(element))
+		attempts = 0
+		while (attempts < MAX_ATTEMPTS) {
+			int elementTop = Mobile.getElementTopPosition(element, TIMEOUT)
+			int elementHeight = Mobile.getElementHeight(element, TIMEOUT)
+			int elementCenterY = elementTop + (elementHeight / 2)
+			if (Math.abs(elementCenterY - centerY) <= thresholdPx) {
+				break
+			}
+			swipe(direction)
+			attempts++
+		}
 	}
 
+	def swipeToBottom() {
+		int screenHeight = Mobile.getDeviceHeight()
+		int screenWidth = Mobile.getDeviceWidth()
+		int startX = screenWidth / 2
+		int startY = (int)(screenHeight * 0.8)
+		int endY = (int)(screenHeight * 0.2)
+		Mobile.swipe(startX, startY, startX, endY)
+	}
+
+	def scrollToAnchor(TestObject item, TestObject anchor) {
+		int itemTop = Mobile.getElementTopPosition(item, 5)
+		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
+		int offset = itemTop - anchorBottom
+		if (offset > 0) {
+			int centerX = Mobile.getDeviceWidth() / 2
+			int deviceHeight = Mobile.getDeviceHeight()
+			int stepSize = (int)(deviceHeight * 0.09)
+			int totalSteps = Math.ceil(offset / stepSize)
+
+			for (int i = 0; i < totalSteps; i++) {
+				int currentStartY = itemTop - (i * stepSize)
+				int currentEndY = currentStartY - stepSize
+
+				if (currentEndY < anchorBottom) {
+					currentEndY = anchorBottom
+				}
+				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
+			}
+		}
+	}
 
 	boolean isDisplayed(TestObject element) {
-		boolean status = Mobile.verifyElementVisible(element, 1, FailureHandling.OPTIONAL)
-		Utilities.log("Verify ${getLocator(element)} is displayed: ${status}")
+		isDisplayed(element, 1)
+	}
+
+	boolean isDisplayed(TestObject element, int timeout) {
+		boolean status = Mobile.verifyElementVisible(element, timeout, FailureHandling.OPTIONAL)
 		return status
 	}
 
 	boolean isExisted(TestObject element) {
 		boolean status = Mobile.verifyElementExist(element, 1, FailureHandling.OPTIONAL)
-		Utilities.log("Verify ${getLocator(element)} is existed: ${status}")
 		return status
 	}
 
@@ -130,6 +175,7 @@ public class BaseKeyword {
 	 */
 
 	def waitForPresentOf(TestObject testObject) {
+		WebDriver driver = MobileDriverFactory.getDriver()
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until { driver.findElements(convertToBy(testObject)).size() > 0 }
 	}
@@ -147,6 +193,14 @@ public class BaseKeyword {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until { driver.findElements(convertToBy(testObject)).size() == 0 }
 	}
+
+	def waitForNotPresentOf(By by) {
+		WebDriver driver = MobileDriverFactory.getDriver()
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120))
+		wait.until {driver.findElements(by).size() == 0}
+	}
+
 
 	def waitForVisibilityOf(TestObject testObject) {
 		WebElement element = convertTestObjectToWebElement(testObject)
@@ -169,16 +223,24 @@ public class BaseKeyword {
 		return driver.findElement(convertToBy(testObject))
 	}
 
-	By convertToBy(TestObject testObject) {
-		MobileTestObject mobileObject = (MobileTestObject) testObject
-		String method = mobileObject.getMobileLocatorStrategy().toString()
-		String locator = mobileObject.getMobileLocator()
+	By convertToBy(TestObject to) {
+		List<TestObjectProperty> properties = to.getProperties()
+
+		if (properties == null || properties.isEmpty()) {
+			throw new IllegalArgumentException("TestObject has no properties defined")
+		}
+		TestObjectProperty prop = properties.get(0)
+		String method = prop.getName().toUpperCase()
+		String locator = prop.getValue()
 
 		switch (method) {
 			case "XPATH": return By.xpath(locator)
 			case "CSS": return By.cssSelector(locator)
-			case "ID": return By.id(locator)
-			default: throw new IllegalArgumentException("Not supported locator type: " + method)
+			case "RESOURCE-ID": return By.id(locator)
+			case "NAME": return By.name(locator)
+			case "CLASS_NAME": return By.className(locator)
+			default:
+				throw new IllegalArgumentException("Unsupported locator strategy: " + method)
 		}
 	}
 }

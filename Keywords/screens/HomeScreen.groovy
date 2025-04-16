@@ -1,54 +1,80 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
-import base.BaseApp
+import base.BaseKeyword
 import internal.GlobalVariable
-
-public class HomeScreen extends BaseApp {
+import locator.HomeScreenLocator
+public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 
 	def goToProfileInfo() {
-		waitForVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/avatar"))
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/avatar"))
+		waitForVisibilityOf(avatar)
+		clickToElement(avatar)
+	}
+
+	def goToIncomingDocument() {
+		if(!isInComingDocumentScreen()) {
+			expandMenu()
+			clickToElement(inComingDocument)
+		}
+	}
+
+	def goToOutComingDocument() {
+		if (!isOutComingDocumentScreen()) {
+			expandMenu()
+			clickToElement(outComingDocument)
+		}
+	}
+
+	def goToRelatedDocument() {
+		expandMenu()
+		clickToElement(outComingDocument)
 	}
 
 	def logout() {
 		expandMenu()
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/logoutButton"))
-		waitForVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/LoginScreen/title"))
+		clickToElement(logoutButton)
+		waitForNotPresentOf(loadingMask)
 	}
 
 	def expandMenu() {
-		//		waitLoadingMask()
 		if(GlobalVariable.PLATFORM == "iOS") {
-			if (!isDisplayed(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/closeTabBtn"))) {
-				//				waitForVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/menuIcon"))
-				clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/menuIcon"))
+			if (!isDisplayed(closeTabBtn)) {
+				clickToElement(menuIcon)
 			}
 		}
 
 		else  {
-			if (!isDisplayed(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/menuTab"))) {
-				waitForVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/menuIcon"))
-				clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/menuIcon"))
+			if (!isDisplayed(menuTab)) {
+				waitForVisibilityOf(menuIcon)
+				clickToElement(menuIcon)
 			}
 		}
 	}
 
+	// TAB MENU
+
 	def openRequestList() {
 		expandMenu()
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/createRequestItems"))
+		clickToElement(createRequestItems)
 	}
 
 	def createRequest(String requestName) {
-		def item = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/requestItem", [('requestName') : requestName])
+		def item = requestItem(requestName)
 		waitForVisibilityOf(item)
 		Thread.sleep(300)
 		clickToElement(item)
 	}
 
+	//--------------------------
+
 	def waitLoadingMask() {
-		//ios //XCUIElementTypeImage[@name="placeholder_loading_list_doc"]
-		waitForInVisibilityOf(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/HomeScreen/loadingMask"))
+		waitForInVisibilityOf(loadingMask)
 	}
+
+	boolean isInComingDocumentScreen() {
+		getText(screenTitle) == "Hồ sơ đến"
+	}
+	boolean isOutComingDocumentScreen() {
+		return getText(screenTitle)== "Hồ sơ đi"
+	}
+	boolean isRelatedDocumentScreen() {}
 }

@@ -25,13 +25,48 @@ public class DataTest {
 	}
 
 
-	static User getUserTest() {
-		jsonData = user.getJSONObject("user")
+	static User getUserA3NVTest() {
+		jsonData = user.getJSONObject("userA3NV")
 		return User.builder()
-            .userName(jsonData.getString("userName"))
-            .password(jsonData.getString("password"))
-            .email(jsonData.getString("email"))
-            .phoneNumber(jsonData.getString("phoneNumber"))
-            .build()
+				.name(jsonData.getString("name"))
+				.userName(jsonData.getString("userName"))
+				.password(jsonData.getString("password"))
+				.email(jsonData.getString("email"))
+				.phoneNumber(jsonData.getString("phoneNumber"))
+				.build()
+	}
+
+	static User getUserA4NVTest() {
+		jsonData = user.getJSONObject("userA4NV")
+		return User.builder()
+				.name(jsonData.getString("name"))
+				.userName(jsonData.getString("userName"))
+				.password(jsonData.getString("password"))
+				.email(jsonData.getString("email"))
+				.phoneNumber(jsonData.getString("phoneNumber"))
+				.build()
+	}
+
+
+	static User getUserA5NVTest() {
+		jsonData = user.getJSONObject("userA5NV")
+		return User.builder()
+				.name(jsonData.getString("name"))
+				.userName(jsonData.getString("userName"))
+				.password(jsonData.getString("password"))
+				.email(jsonData.getString("email"))
+				.phoneNumber(jsonData.getString("phoneNumber"))
+				.build()
+	}
+
+	static User getUserTest1() {
+		jsonData = user.getJSONObject("user1")
+		return User.builder()
+				.userName(jsonData.getString("userName"))
+				.name(jsonData.getString("name"))
+				.password(jsonData.getString("password"))
+				.email(jsonData.getString("email"))
+				.phoneNumber(jsonData.getString("phoneNumber"))
+				.build()
 	}
 }
