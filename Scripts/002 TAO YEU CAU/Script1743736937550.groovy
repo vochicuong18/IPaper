@@ -1,7 +1,6 @@
 import java.text.SimpleDateFormat
 
 import ipaper.IPaper
-import screens.PDFSignScreen
 import utilities.DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
@@ -18,17 +17,7 @@ def userA4NV = DataTest.getUserA4NVTest() // assigner
 
 def userA5NV = DataTest.getUserA5NVTest() // CC
 
-def dataDocument = [
-	title         : documentTitle,
-	mainFileName  : "dummy.pdf",
-	subFileName   : "dummy.pdf",
-	priority      : PDFSignScreen.Priority.CAO,
-	time          : "01/5/2025",
-	description   : "Cuong description",
-	assigner      : "test0004@hdbank.com.vn",
-	cc 			  : "test0005@hdbank.com.vn",
-	opinion       : "Cho ý kiến",
-]
+def document = DataTest.createDocumentTest(userA4NV, userA5NV, "dummy.pdf", "dummy.pdf")
 
 //create document
 
@@ -38,29 +27,29 @@ IPaper.homeScreen.openRequestList()
 
 IPaper.homeScreen.createRequest(REQUEST_NAME)
 
-IPaper.pdfSignScreen.fillInTitle(dataDocument.title)
+IPaper.pdfSignScreen.fillInTitle(document.title)
 
-IPaper.pdfSignScreen.selectPriority(dataDocument.priority)
+IPaper.pdfSignScreen.selectPriority(document.priority)
 
-IPaper.pdfSignScreen.selectTime(dataDocument.time)
+IPaper.pdfSignScreen.selectTime(document.time)
 
-IPaper.pdfSignScreen.fillInDescription(dataDocument.description)
+IPaper.pdfSignScreen.fillInDescription(document.description)
 
-IPaper.pdfSignScreen.selectAssigner(dataDocument.assigner)
+IPaper.pdfSignScreen.selectAssigner(document.assigner)
 
 IPaper.pdfSignScreen.openMainFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.mainFileName)
+IPaper.fileBrowserScreen.attachFile(document.mainFileName)
 
 IPaper.pdfSignScreen.openSubFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.subFileName)
+IPaper.fileBrowserScreen.attachFile(document.subFileName)
 
-IPaper.pdfSignScreen.selectRelatedMember(dataDocument.cc)
+IPaper.pdfSignScreen.selectRelatedMember(document.cc)
 
 IPaper.pdfSignScreen.sendRequest()
 
-IPaper.pdfSignScreen.fillInOpinion(dataDocument.opinion)
+IPaper.pdfSignScreen.fillInOpinion(document.opinion)
 
 IPaper.pdfSignScreen.submitRequest()
 
@@ -78,17 +67,17 @@ IPaper.documentInformationScreen.checkStatus(STATUS)
 
 IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document.time)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document.priority)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document.description)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.checkAssigner(document.assigner)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document.mainFileName)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document.subFileName)
 
 IPaper.documentInformationScreen.backToHome()
 
@@ -110,17 +99,17 @@ IPaper.documentInformationScreen.checkStatus(STATUS)
 
 IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document.time)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document.priority)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document.description)
 
 IPaper.documentInformationScreen.checkAssigner(userA3NV.getEmail())
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document.mainFileName)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document.subFileName)
 
 IPaper.documentInformationScreen.backToHome()
 
@@ -144,23 +133,21 @@ IPaper.documentInformationScreen.checkStatus(STATUS)
 
 IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document.time)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document.priority)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document.description)
 
 IPaper.documentInformationScreen.checkAssigner(userA4NV.getEmail())
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document.mainFileName)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document.subFileName)
 
 IPaper.documentInformationScreen.checkUserCannotEditDocument()
 
 IPaper.documentInformationScreen.backToHome()
-
-
 
 
 

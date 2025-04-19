@@ -16,13 +16,12 @@ class TestListener {
 			CustomKeywords.'drivers.Driver.startAppium'()
 
 		Driver.driver = Driver.driver ?: CustomKeywords.'drivers.Driver.initMobileDriver'()
-		CustomKeywords.'drivers.Driver.openApp'()
+		//		CustomKeywords.'drivers.Driver.openApp'()
 	}
 
 	@BeforeTestCase
 	def beforeTest(TestCaseContext testCaseContext) {
 		DataTest.init()
-		
 		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'())
 			CustomKeywords.'drivers.Driver.startAppium'()
 
@@ -33,9 +32,11 @@ class TestListener {
 
 	@AfterTestCase
 	def afterTest(TestCaseContext testCaseContext) {
+		Mobile.takeScreenshot("ErrorScreen/${testCaseContext.getTestCaseId()}.png")
+		
 		if (testCaseContext.getTestCaseId() != 'Test Cases') {
 			if (testCaseContext.getTestCaseStatus() != 'PASSED') {
-				Mobile.takeScreenshot("ErrorScreen/${testCaseContext.getTestCaseId()}.png")
+//				Mobile.takeScreenshot("ErrorScreen/${testCaseContext.getTestCaseId()}.png")
 			}
 		}
 		CustomKeywords.'drivers.Driver.closeApp'()
@@ -44,7 +45,7 @@ class TestListener {
 
 	@AfterTestSuite
 	def afterSuite(TestSuiteContext testSuiteContext) {
-		CustomKeywords.'drivers.Driver.closeApp'()
+		//		CustomKeywords.'drivers.Driver.closeApp'()
 		if (testSuiteContext.getTestSuiteId() != 'Test Suites/Test') {
 			CustomKeywords.'drivers.Driver.stopAppium'()
 		}

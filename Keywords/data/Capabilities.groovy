@@ -4,18 +4,19 @@ public class Capabilities {
 	public static final CAP = [
 		iOS: [
 			platformName     : "iOS",
-			platformVersion  : "18.0",
+			platformVersion  : "18.4",
 			deviceName       : "iPhone 13 Pro Max",
 			udid             : "00008110-000C10543443801E",
 			automationName   : "XCUITEST",
-			noReset          : true
+			noReset          : true,
+			fullReset		 : false
 		],
 		Android: [
 			platformName         : "Android",
 			deviceName           : "03163f360404",
 			automationName       : "UiAutomator2",
 			noReset              : true,
-			waitForIdleTimeout   : 0,
+			waitForIdleTimeout   : 3000,
 			serverStartTimeout   : 0
 		]
 	]

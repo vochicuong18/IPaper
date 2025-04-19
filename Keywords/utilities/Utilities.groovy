@@ -1,14 +1,18 @@
 package utilities
 
+import com.kms.katalon.core.logging.KeywordLogger;
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.util.KeywordUtil
 
-import java.util.logging.Logger
-
-import com.kms.katalon.core.logging.KeywordLogger;
+import internal.GlobalVariable
 
 
 public class Utilities {
 	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class);
+
+	def static openOutlookApp() {
+		Mobile.startExistingApplication(GlobalVariable.PLATFORM == 'Android' ? "com.microsoft.office.outlook" : "com.microsoft.outlook")
+	}
 	
 	def getOS() {
 		def osName = System.getProperty("os.name").toLowerCase()
@@ -26,14 +30,15 @@ public class Utilities {
 	def static logInfo(String text) {
 		KeywordUtil.logInfo(text)
 	}
-	
+
 	def static logPass(String text) {
 		logger.logPassed(text)
 	}
-	
+
 	def static logFailed(String text) {
-		logger.logFailed(text)}
-	
+		logger.logFailed(text)
+	}
+
 
 	def runCommand(String command) {
 		logInfo(command)

@@ -19,9 +19,26 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		}
 	}
 
+	def checkDocumentInformation(String documentTitle, User sender, String status, String createDate,
+			String finishDate, PDFSignScreen.Priority priority,
+			String description, String assigner,
+			String mainFileName, String subFileName) {
+		checkDocumentTitle(documentTitle)
+		checkSender(sender.getName())
+		checkStatus(status)
+		checkCreateDate(createDate)
+		checkFinishDate(finishDate)
+		checkPriority(priority)
+		checkDescription(description)
+		checkAssigner(assigner)
+		checkPresentFileName(mainFileName)
+		checkAttachFileName(subFileName)
+	}
+
 
 	def checkDocumentTitle(String data) {
-		waitForVisibilityOf(documentActionBtn)
+		waitForPresentOf(requestType)
+		waitForVisibilityOf(requestType)
 		AssertUtilities.checkEquals(getText(documentTitle), data)
 	}
 
@@ -29,8 +46,8 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		AssertUtilities.checkEquals(getText(senderName), data)
 	}
 
-	def isSenderDisplayed() {
-		AssertUtilities.assertTrue(!isDisplayed(senderName), "Check sender not displayed after reject")
+	def isAssignerDisplayed() {
+		AssertUtilities.assertTrue(!isDisplayed(assigner), "Check sender not displayed after reject")
 	}
 
 	def checkStatus(String data) {
@@ -66,8 +83,11 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		AssertUtilities.checkContains(getText(assigner), data)
 	}
 
-	def checkPresentFileName(String data) {
-		data.replace(".pdf", "")
+	//only check file name
+
+	def checkPresentFileName(String file) {
+		String gui = getText(mainFile).split('_')[0]
+		String data = file.split('.pdf')[0]
 		swipe('down')
 		AssertUtilities.checkContains(getText(mainFile), data)
 	}
@@ -75,7 +95,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	def checkAttachFileName(String data) {
 		data.replace(".pdf", "")
 		swipe('down')
-		AssertUtilities.checkContains(getText(subFile), data)
+		AssertUtilities.checkContains(data, getText(subFile))
 	}
 
 	def checkUserCannotEditDocument() {
@@ -155,5 +175,42 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		clickToElement(rejectDocument)
 		inputText(getOpinionTxt, comment)
 		clickToElement(submitApproveBtn)
+	}
+
+	// Comment
+
+	def getComment() {
+		clickToElement(documentActionBtn)
+		clickToElement(getComment)
+		clickToElement(submitApproveBtn)
+	}
+
+	def getComment(String comment) {
+		clickToElement(documentActionBtn)
+		clickToElement(getComment)
+		inputText(getOpinionTxt, comment)
+		clickToElement(submitApproveBtn)
+	}
+
+	def clickOnGetComment() {
+		clickToElement(documentActionBtn)
+		clickToElement(getComment)
+	}
+
+	def fillInComment(String comment) {
+		inputText(getOpinionTxt, comment)
+	}
+
+	def submitAction() {
+		clickToElement(submitApproveBtn)
+	}
+
+	boolean isPopupRequireCommentDisplayed () {
+		boolean status = isDisplayed(warningPopup)
+		AssertUtilities.assertTrue(status)
+	}
+
+	def ignoreWarningPopup () {
+		clickToElement(ignoreBtn)
 	}
 }

@@ -22,3 +22,5 @@ build
 /.classpath
 .svn/
 .cache/
+.DS_Store
+ErrorScreen

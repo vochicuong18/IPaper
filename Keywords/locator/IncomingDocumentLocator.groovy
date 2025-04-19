@@ -86,6 +86,17 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Từ chối']", [('documentTitle'): documentTitle])
 		}
 	}
+	
+	TestObject sendCommentBtn(documentTitle) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.TextView[@text='Gửi ý kiến']//parent::android.widget.LinearLayout",
+					[('documentTitle'): documentTitle])
+			case "iOS":
+				return createTestObject(LocatorType.XPATH, "", 
+					[('documentTitle'): documentTitle])
+		}
+	}
 
 	TestObject documentTitle (String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {

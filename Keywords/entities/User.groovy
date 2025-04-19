@@ -55,7 +55,7 @@ class User {
 			this.name = name
 			return this
 		}
-		
+
 		Builder userName(String userName) {
 			this.userName = userName
 			return this

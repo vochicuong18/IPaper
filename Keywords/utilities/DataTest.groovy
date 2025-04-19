@@ -1,16 +1,18 @@
 package utilities
 
-import javax.persistence.metamodel.StaticMetamodel
-
-import org.json.JSONObject
-import org.apache.commons.io.FileUtils;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat
 
+import org.apache.commons.io.FileUtils;
+import org.json.JSONObject
+
+import entities.Document
 import entities.User
+import screens.PDFSignScreen
 
 public class DataTest {
 	static File file
-	static JSONObject jsonData, user
+	static JSONObject jsonData, user, document
 
 	public static final APP = [
 		Android: "/Users/cuongvo/hdb_katalon/ipaper.apk",
@@ -21,9 +23,70 @@ public class DataTest {
 		file = new File(System.getProperty("user.dir") + "/user.json")
 		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		user = new JSONObject(content)
-		println "a"
+
+		file = new File(System.getProperty("user.dir") + "/document.json")
+		String documentData = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		document = new JSONObject(documentData)
 	}
 
+	static Document getDocumentTest() {
+		Calendar calendar = Calendar.getInstance()
+		calendar.add(Calendar.DATE, 1)
+		String tomorrow = new SimpleDateFormat("d/M/yyyy").format(calendar.getTime())
+		def priorities = [
+			PDFSignScreen.Priority.KHAN_CAP,
+			PDFSignScreen.Priority.CAO,
+			PDFSignScreen.Priority.BINH_THUONG
+		]
+
+		def randomPriority = priorities[new Random().nextInt(priorities.size())]
+		jsonData = document.getJSONObject("document")
+
+		return Document.builder()
+				.title("Trình ký + ${System.currentTimeMillis()}")
+				.mainFileName(jsonData.getString("mainFile"))
+				.subFileName(jsonData.getString("subfile"))
+				.priority(randomPriority)
+				.time(tomorrow)
+				.description("Mobile automation test description")
+				.assigner(jsonData.getString("assigner"))
+				.cc(jsonData.getString("cc"))
+				.opinion("Mobile automation test comment")
+				.build()
+	}
+
+	/**
+	 * @param assigner
+	 * @param cc (optional).
+	 * @param mainFile 
+	 * @param subFileName (optional).
+	 *
+	 * @return Document The created Document object.
+	 */
+	static Document createDocumentTest(User assigner, User cc = null, String mainFile, String subFileName = null) {
+		Calendar calendar = Calendar.getInstance()
+		calendar.add(Calendar.DATE, 1)
+		String tomorrow = new SimpleDateFormat("d/M/yyyy").format(calendar.getTime())
+
+		def priorities = [
+			PDFSignScreen.Priority.KHAN_CAP,
+			PDFSignScreen.Priority.CAO,
+			PDFSignScreen.Priority.BINH_THUONG
+		]
+		def randomPriority = priorities[new Random().nextInt(priorities.size())]
+
+		return Document.builder()
+				.title("Trình ký ${System.currentTimeMillis()}")
+				.mainFileName(mainFile)
+				.subFileName(subFileName)
+				.priority(randomPriority)
+				.time(tomorrow)
+				.description("Mobile automation test description")
+				.assigner(assigner.getEmail())
+				.cc(cc?.getEmail())
+				.opinion("Mobile automation test comment")
+				.build()
+	}
 
 	static User getUserA3NVTest() {
 		jsonData = user.getJSONObject("userA3NV")

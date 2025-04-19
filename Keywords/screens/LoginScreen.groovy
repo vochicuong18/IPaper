@@ -2,7 +2,7 @@ package screens
 
 import base.BaseKeyword
 import entities.User
-import internal.GlobalVariable
+import io.qameta.allure.Step
 import locator.LoginLocator
 
 public class LoginScreen extends LoginLocator implements BaseKeyword {
@@ -13,6 +13,7 @@ public class LoginScreen extends LoginLocator implements BaseKeyword {
 			clickOnLogin()
 		}
 	}
+
 
 	def fillInUserName(String userName) {
 		waitForVisibilityOf(userNameTxt)

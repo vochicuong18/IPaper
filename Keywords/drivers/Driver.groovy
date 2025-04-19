@@ -68,6 +68,7 @@ public class Driver {
 	def openApp() {
 		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
 		GlobalVariable.PLATFORM == 'Android' ? Mobile.startApplication(appPath, false) : Mobile.startExistingApplication(appPath)
+		Mobile.delay(1)
 	}
 
 	@Keyword
@@ -85,6 +86,7 @@ public class Driver {
 			cap.setCapability("appium:deviceName", platformCaps.deviceName)
 			cap.setCapability("appium:automationName", platformCaps.automationName)
 			cap.setCapability("appium:noReset", platformCaps.noReset)
+			cap.setCapability("appium:fullReset", platformCaps.fullReset)
 			cap.setCapability("appium:waitForIdleTimeout", platformCaps.waitForIdleTimeout)
 			return new AndroidDriver(appiumServerURL, cap)
 		}

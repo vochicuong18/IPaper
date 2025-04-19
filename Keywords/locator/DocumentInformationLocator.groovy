@@ -8,9 +8,9 @@ import internal.GlobalVariable
 
 public class DocumentInformationLocator extends TestObjectFactory {
 
-	TestObject assigner, subFile, backBtn, createDate, description, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
+	TestObject assigner, subFile, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
-	ccOnPopupTxt, rejectDocument
+	ccOnPopupTxt, rejectDocument, getComment, warningPopup, ignoreBtn
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -37,6 +37,10 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				fillterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				ccOnPopupTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/et_auto_cc")
 				rejectDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Từ chối']/following-sibling::android.widget.ImageButton[1]")
+				getComment = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Gửi ý kiến']/following-sibling::android.widget.ImageButton[1]")
+				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
+				warningPopup = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Cảnh báo' and @resource-id='com.hdbank.ipaper:id/tv_title_mes']")
+				ignoreBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok")
 				break
 			case "iOS":
 				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
@@ -63,6 +67,10 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				fillterBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic filter']")
 				ccOnPopupTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTextField[@value='Cc']")
 				rejectDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_reject']/parent::XCUIElementTypeOther")
+				getComment = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi ý kiến']/parent::XCUIElementTypeOther")
+				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText")
+				warningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cảnh báo']")
+				ignoreBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
 				break
 		}
 	}

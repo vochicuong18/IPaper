@@ -7,7 +7,7 @@ import internal.GlobalVariable
 
 public class HomeScreenLocator extends TestObjectFactory {
 	TestObject avatar, createRequestItems, inComingDocument, loadingMask, logoutButton, menuIcon, menuTab, outComingDocument, requestItem, screenTitle,
-	closeMenuTab, closeTabBtn
+	closeMenuTab, closeTabBtn, setting
 
 	TestObject requestItem(String requestName) {
 		switch (GlobalVariable.PLATFORM) {
@@ -34,8 +34,7 @@ public class HomeScreenLocator extends TestObjectFactory {
 				menuIcon = createTestObject(LocatorType.XPATH, "//android.widget.RelativeLayout[@resource-id='com.hdbank.ipaper:id/layout_home_bar']")
 				menuTab = createTestObject(LocatorType.XPATH, "//android.widget.FrameLayout[@resource-id='com.hdbank.ipaper:id/navigation_view']")
 				screenTitle = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_title")
-
-
+				setting = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Cài đặt']")
 				break
 			case "iOS":
 				avatar = createTestObject(LocatorType.XPATH, "")
@@ -50,6 +49,7 @@ public class HomeScreenLocator extends TestObjectFactory {
 				screenTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 				closeMenuTab = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='clearX']")
 				closeTabBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='clearX']")
+				setting = createTestObject(LocatorType.XPATH, "")
 				break
 		}
 	}

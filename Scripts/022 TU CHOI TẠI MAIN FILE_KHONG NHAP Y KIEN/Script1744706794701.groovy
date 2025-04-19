@@ -105,7 +105,7 @@ IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
 
 IPaper.documentInformationScreen.checkDescription(dataDocument.description)
 
-IPaper.documentInformationScreen.isSenderDisplayed()
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
 

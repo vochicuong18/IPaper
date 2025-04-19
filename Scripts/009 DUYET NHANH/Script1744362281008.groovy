@@ -1,3 +1,5 @@
+import static screens.IncomingDocumentScreen.ActionType.QUICK_APPROVE
+
 import java.text.SimpleDateFormat
 
 import ipaper.IPaper
@@ -6,6 +8,7 @@ import utilities.DataTest
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
 String WAIT_PROCESS_STATUS = 'Đang đợi xử lý'
+
 String APPROVE_STATUS = 'Đã duyệt'
 
 String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
@@ -96,7 +99,7 @@ IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.quickApprove(documentTitle)
+IPaper.inComingDocument.performAction(documentTitle, QUICK_APPROVE)
 
 //Assigner check document after approve
 

@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat
 import ipaper.IPaper
 import screens.PDFSignScreen
 import utilities.DataTest
+
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
 String WAIT_PROCESS_STATUS = 'Đang đợi xử lý'
@@ -101,7 +102,7 @@ IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.quickApproveWithCondition(documentTitle)
+IPaper.inComingDocument.performAction(documentTitle, APPROVE_WITH_CONDITION, COMMENT)
 
 //Assigner check document after approve
 

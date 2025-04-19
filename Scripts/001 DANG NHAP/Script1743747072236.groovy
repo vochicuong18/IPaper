@@ -1,6 +1,7 @@
+import io.qameta.allure.Allure
+import io.qameta.allure.Allure.ThrowableRunnable
 import ipaper.IPaper
-import utilities.DataTest
-
+import utilities.DataTest as DataTest
 def user = DataTest.getUserTest1()
 
 IPaper.loginScreen.login(user)
@@ -14,4 +15,3 @@ IPaper.profileScreen.checkUserEmail(user.email)
 IPaper.profileScreen.checkUserName(user.userName)
 
 IPaper.profileScreen.checkName(user.name)
-

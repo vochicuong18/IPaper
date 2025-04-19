@@ -1,7 +1,5 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import java.text.SimpleDateFormat
 
 import org.openqa.selenium.By
@@ -19,6 +17,13 @@ import utilities.Utilities
 
 public class IncomingDocumentScreen extends IncomingDocumentLocator implements BaseKeyword {
 	TestObject documentItem
+
+	enum ActionType {
+		QUICK_APPROVE,
+		APPROVE_WITH_CONDITION,
+		REJECT,
+		SEND_COMMENT
+	}
 
 	def viewInformationDocument (String documentTitle) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
@@ -56,50 +61,44 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	boolean isUniqueDocument (String documetName) {
 	}
 
-	def quickApprove(String documentTitle) {
+	def performAction(String documentTitle, ActionType action, String comment = null) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(documentTitle)
 		}
-		clickToElement(quickApproveBtn(documentTitle))
-		Thread.sleep(3000)
-	}
 
-	def quickApproveWithCondition(documentTitle) {
-		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
-		}
-		clickToElement(approveWithCondition(documentTitle))
-		clickOnSendOpinionApprove()
-		Thread.sleep(3000)
-	}
+		switch (action) {
+			case ActionType.QUICK_APPROVE:
+				clickToElement(quickApproveBtn(documentTitle))
+				waitForNotPresentOf(quickApproveBtn(documentTitle))
+				break
 
-	def quickApproveWithCondition(documentTitle, comment) {
-		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
-		}
-		clickToElement(approveWithCondition(documentTitle))
-		fillOpinion(comment)
-		clickOnSendOpinionApprove()
-		Thread.sleep(3000)
-	}
+			case ActionType.APPROVE_WITH_CONDITION:
+				clickToElement(approveWithCondition(documentTitle))
+				if (comment != null) {
+					fillOpinion(comment)
+				}
+				clickOnSendOpinionApprove()
+				waitForNotPresentOf(approveWithCondition(documentTitle))
+				break
 
-	def quickReject(String documentTitle, comment) {
-		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
-		}
-		clickToElement(quickRejectBtn(documentTitle))
-		fillOpinion(comment)
-		clickOnSendOpinionApprove()
-		Thread.sleep(3000)
-	}
+			case ActionType.REJECT:
+				clickToElement(quickRejectBtn(documentTitle))
+				if (comment != null) {
+					fillOpinion(comment)
+				}
+				clickOnSendOpinionApprove()
+				waitForNotPresentOf(quickRejectBtn(documentTitle))
+				break
 
-	def quickReject(String documentTitle) {
-		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
+			case ActionType.SEND_COMMENT:
+				clickToElement(sendCommentBtn(documentTitle))
+				if (comment != null) {
+					fillOpinion(comment)
+				}
+				clickOnSendOpinionApprove()
+				waitForNotPresentOf(sendCommentBtn(documentTitle))
+				break
 		}
-		clickToElement(quickRejectBtn(documentTitle))
-		clickOnSendOpinionApprove()
-		Thread.sleep(3000)
 	}
 
 	def searchDocument(String documentTitle) {
@@ -149,6 +148,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				Utilities.logInfo("Time is correctly")
 			}
 		} else {
+			getAllItemDataIOS ()
 			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
 		}
 	}
@@ -168,45 +168,10 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 
 	def getAllItemDataIOS() {
 		List<Map<String, String>> itemList = []
-		int screenHeight = Mobile.getDeviceHeight()
-		int screenWidth = Mobile.getDeviceWidth()
-		int startX = (screenWidth / 2).toInteger()
-		int startY = (screenHeight * 3 / 4).toInteger()
-		int endX = startX
-		int endY = (screenHeight / 4).toInteger()
-		int maxItems = 20
-		int currentCount = 0
-
-
-		while (currentCount < maxItems) {
-			//			List<WebElement> cells = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeTable/XCUIElementTypeAny"))
-			//			currentCount = cells.size()
-			Utilities.logInfo("---------cells: ${currentCount}")
-			if (currentCount < maxItems) {
-				List<WebElement> cells = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeTable/XCUIElementTypeCell"))
-				currentCount = cells.size()
-				println "------------------------currentCount: ${currentCount} - MaxItem ${maxItems}"
-				Mobile.swipe(startX, startY, endX, endY)
-				Utilities.logInfo("--------- swiped")
-			}
-		}
-
-		Utilities.logInfo("---------maxItems: ${maxItems}")
-
-		for (int i = 1; i <= maxItems; i++) {
-			String titleXpath = "//XCUIElementTypeTable//XCUIElementTypeAny[$i]//XCUIElementTypeStaticText[1]"
-			String timeXpath = "//XCUIElementTypeTable//XCUIElementTypeAny[$i]//XCUIElementTypeStaticText[3]"
-
-			Utilities.logInfo("---------titleXpath: ${titleXpath}")
-			Utilities.logInfo("---------timeXpath: ${timeXpath}")
-
-			try {
-				String title = Mobile.getText(titleXpath, 5)
-				String time = Mobile.getText(timeXpath, 5)
-				itemList.add([title: title, time: time])
-			} catch (Exception e) {
-				println " "
-			}
+		List<WebElement> titles = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'Trình ký')"))
+		Utilities.logInfo(titles.size())
+		for(WebElement title : titles) {
+			Utilities.logInfo(title.getText())
 		}
 		return itemList
 	}

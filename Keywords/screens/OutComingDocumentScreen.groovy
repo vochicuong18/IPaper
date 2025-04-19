@@ -1,10 +1,13 @@
 package screens
 
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import java.text.SimpleDateFormat
 
+import org.openqa.selenium.By
+import org.openqa.selenium.WebElement
+
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
@@ -44,43 +47,46 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 	}
 
 	boolean checkItemInDocument () {
-		List<Map<String, String>> data = getAllItemData()
-		Set<String> seenTitles = new HashSet<>()
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
+		if (GlobalVariable.PLATFORM == 'Android') {
 
-		boolean isTitleUnique = true
-		boolean isTimeSorted = true
+			List<Map<String, String>> data = getAllItemData()
+			Set<String> seenTitles = new HashSet<>()
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
 
-		Date prevTime = null
-		for (int i = 0; i < data.size(); i++) {
-			String title = data[i].title
-			String timeStr = data[i].time
+			boolean isTitleUnique = true
+			boolean isTimeSorted = true
 
-			if (seenTitles.contains(title)) {
-				Utilities.logInfo("Title is duplicated -  index $i: '$title'")
-				isTitleUnique = false
-			} else {
-				seenTitles.add(title)
+			Date prevTime = null
+			for (int i = 0; i < data.size(); i++) {
+				String title = data[i].title
+				String timeStr = data[i].time
+
+				if (seenTitles.contains(title)) {
+					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
+					isTitleUnique = false
+				} else {
+					seenTitles.add(title)
+				}
+
+				if (timeStr == "-") continue
+
+					Date currentTime = sdf.parse(timeStr)
+				if (prevTime != null && prevTime.before(currentTime)) {
+					Utilities.logInfo("Time is wrong -  index $i")
+					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
+					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
+					isTimeSorted = false
+				}
+				prevTime = currentTime
 			}
 
-			if (timeStr == "-") continue
-
-				Date currentTime = sdf.parse(timeStr)
-			if (prevTime != null && prevTime.before(currentTime)) {
-				Utilities.logInfo("Time is wrong -  index $i")
-				Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
-				Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
-				isTimeSorted = false
+			if (isTitleUnique) {
+				Utilities.logInfo("Title is not duplicated")
 			}
-			prevTime = currentTime
-		}
-
-		if (isTitleUnique) {
-			Utilities.logInfo("Title is not duplicated")
-		}
-		if (isTimeSorted) {
-			Utilities.logInfo("Time is correctly")
-		}
+			if (isTimeSorted) {
+				Utilities.logInfo("Time is correctly")
+			}
+		} else getAllItemDataIOS()
 	}
 
 
@@ -91,9 +97,24 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		for (int i = 0; i <= 10; i ++) {
 			String title = getText(firstDocumentTitle)
 			String time = getText(firstDocumentDate)
-			scrollToAnchor(documentItem(2), headerBar)
+			scrollToAnchor(secondItem, headerBar)
 			itemList.add([title: title, time: time])
 			Utilities.logInfo(itemList.toString())
+		}
+		return itemList
+	}
+
+	def getAllItemDataIOS() {
+		List<Map<String, String>> itemList = []
+		Mobile.delay(10)
+		List<WebElement> titles = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'Trình ký')]"))
+		println "--------------------------------------------"
+		
+		println "------------------- ${titles.size()} -------------------------"
+		println "--------------------------------------------"
+		println "--------------------------------------------"
+		for(WebElement title : titles) {
+			Utilities.logInfo(title.getText())
 		}
 		return itemList
 	}

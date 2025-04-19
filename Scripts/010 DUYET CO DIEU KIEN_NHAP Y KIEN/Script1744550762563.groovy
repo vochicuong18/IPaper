@@ -1,3 +1,5 @@
+import static screens.IncomingDocumentScreen.ActionType.APPROVE_WITH_CONDITION
+
 import java.text.SimpleDateFormat
 
 import ipaper.IPaper
@@ -27,7 +29,6 @@ def dataDocument = [
 	time          : "01/5/2025",
 	description   : "Cuong description",
 	assigner      : "test0004@hdbank.com.vn",
-	cc 			  : "test0005@hdbank.com.vn",
 	opinion       : "Cho ý kiến",
 ]
 
@@ -56,8 +57,6 @@ IPaper.fileBrowserScreen.attachFile(dataDocument.mainFileName)
 IPaper.pdfSignScreen.openSubFileBrowser()
 
 IPaper.fileBrowserScreen.attachFile(dataDocument.subFileName)
-
-IPaper.pdfSignScreen.selectRelatedMember(dataDocument.cc)
 
 IPaper.pdfSignScreen.sendRequest()
 
@@ -101,7 +100,7 @@ IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.quickApproveWithCondition(documentTitle, QUICK_APPROVE_OPINION)
+IPaper.inComingDocument.performAction(documentTitle, APPROVE_WITH_CONDITION, QUICK_APPROVE_OPINION)
 
 //Assigner check document after approve
 
@@ -113,7 +112,7 @@ IPaper.outComingDocument.viewInformationDocument(documentTitle)
 
 IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
 
-IPaper.documentInformationScreen.checkSender(userCreateDocs.getName())
+IPaper.documentInformationScreen.checkSender(assigner.getName())
 
 IPaper.documentInformationScreen.checkStatus(APPROVE_STATUS)
 
@@ -131,7 +130,7 @@ IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
 
 IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
 
-IPaper.documentInformationScreen.checkComment(QUICK_APPROVE_OPINION)
+IPaper.documentInformationScreen.checkComment(assigner, QUICK_APPROVE_OPINION)
 
 IPaper.documentInformationScreen.backToHome()
 

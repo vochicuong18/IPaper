@@ -14,7 +14,7 @@ class LoginLocator extends TestObjectFactory {
 				passwordTxt = createTestObject(LocatorType.XPATH, "//android.widget.EditText[@resource-id='com.hdbank.ipaper:id/edit_text_pw']")
 				ignoreUpdate = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Bỏ qua']")
 				loginButton = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_sign_in")
-				title = createTestObject(LocatorType.XPATH, "//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/img_logo_app']/android.widget.ImageView")
+				title = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_logo")
 				loadingMask = createTestObject(LocatorType.XPATH, "//android.widget.ImageView[@resource-id='com.hdbank.ipaper:id/loading_image']")
 				break
 

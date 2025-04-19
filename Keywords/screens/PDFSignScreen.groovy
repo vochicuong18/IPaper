@@ -26,7 +26,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	}
 
 	def selectPriority (Priority priority) {
-		swipe('down', 0.1)
+		swipeToElement(priorityValue)
 		clickToElement(priorityValue)
 		clickToElement(priorityItem(priority.toString()))
 	}
@@ -39,12 +39,12 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	}
 
 	def fillInDescription(String decs) {
-		swipe("down")
+		swipeToElement(descriptionTxt)
 		inputText(descriptionTxt, decs)
 	}
 
 	def selectAssigner(String email) {
-		swipe('down')
+		swipeToElement(assignerTxt)
 		clickToElement(assignerTxt)
 		inputText(assignerEmailSearch, email)
 		enterText(assignerEmailSearch)
@@ -59,12 +59,12 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	}
 
 	def openMainFileBrowser() {
-		swipe('down')
+		swipeToElement(mainFile)
 		clickToElement(mainFile)
 	}
 
 	def openSubFileBrowser() {
-		swipeToElement(subFile, "down")
+		swipeToElement(subFile)
 		clickToElement(subFile)
 	}
 
@@ -117,6 +117,8 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		clickToElement(submitFormBtn)
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForNotPresentOf(loadingMask)
+		} else {
+			waitForAttributeValueOf(screenTitle, "name", "Tạo yêu cầu theo mẫu")
 		}
 	}
 

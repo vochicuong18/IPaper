@@ -8,11 +8,13 @@ import internal.GlobalVariable
 
 public class OutComingDocumentLocator extends TestObjectFactory{
 	TestObject approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
-	firstDocumentTitle, headerBar, opinionTxt, quickApprove, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument
+	firstDocumentTitle, headerBar, opinionTxt, quickApprove, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, secondItem
 
 	OutComingDocumentLocator() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
+				secondItem = createTestObject(LocatorType.XPATH, "(//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf']//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[2]")
+
 				fillterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				firstDocumentDate = createTestObject(LocatorType.XPATH, "(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[1]//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_date_approve']")
 				firstDocumentTitle = createTestObject(LocatorType.XPATH, "(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[1]//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']")

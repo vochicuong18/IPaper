@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuiteEntity>
    <description></description>
-   <name>CheckUserInfor</name>
+   <name>Demo</name>
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
@@ -12,7 +12,7 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>30055584-e4a7-460e-8f61-f830fcd8b9a8</testSuiteGuid>
    <testCaseLink>
-      <guid>adbec266-be7d-49ac-85af-0f760c996cf7</guid>
+      <guid>5213326f-40c3-4bfe-a6c0-b00d8aca6a9c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/001 DANG NHAP</testCaseId>

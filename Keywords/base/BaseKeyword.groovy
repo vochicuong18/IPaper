@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
+import com.kms.katalon.core.exception.StepFailedException
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
-import com.kms.katalon.core.model.FailureHandling
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.testobject.TestObjectProperty
 
@@ -19,7 +19,6 @@ import io.appium.java_client.AppiumDriver
 import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.android.nativekey.AndroidKey
 import io.appium.java_client.android.nativekey.KeyEvent
-import utilities.Utilities
 
 trait BaseKeyword {
 	AppiumDriver driver
@@ -29,12 +28,7 @@ trait BaseKeyword {
 		Mobile.hideKeyboard()
 	}
 
-	//	def getLocator(TestObject element) {
-	//		MobileTestObject mbTestObject = (MobileTestObject) element
-	//		return mbTestObject.getMobileLocator()
-	//	}
-
-	def getValueAttributeOf(TestObject to, attribute) {
+	boolean getValueAttributeOf(TestObject to, attribute) {
 		return Mobile.getAttribute(to, attribute, TIMEOUT)
 	}
 
@@ -60,6 +54,11 @@ trait BaseKeyword {
 	def clickToElement(TestObject element) {
 		Mobile.delay(0.1)
 		Mobile.tap(element, TIMEOUT)
+	}
+
+	def tapAtPosition(int x, int y) {
+		Mobile.delay(0.1)
+		Mobile.tapAtPosition(x, y)
 	}
 
 	def swipe(String direction) {
@@ -94,33 +93,24 @@ trait BaseKeyword {
 		int swipeDistance = (int)(screenWidth * 0.5)
 		int startX = elementCenterX
 		int endX = (direction == "right") ? startX + swipeDistance : startX - swipeDistance
-		Utilities.logInfo("Swiping ${direction} from $startX to $endX at y = $elementCenterY")
 		Mobile.swipe(startX, elementCenterY, endX, elementCenterY)
 	}
 
-	def swipeToElement(TestObject element, String direction) {
+	def swipeToElement(TestObject element) {
 		int MAX_ATTEMPTS = 10
 		int attempts = 0
-		int screenHeight = Mobile.getDeviceHeight()
-		double thresholdPercent = 0.1
-		int centerY = screenHeight / 2
-		int thresholdPx = (int)(screenHeight * thresholdPercent)
+
 		while (attempts < MAX_ATTEMPTS && !isDisplayed(element)) {
-			swipe(direction)
+			swipe("down")
 			attempts++
 		}
-		attempts = 0
-		while (attempts < MAX_ATTEMPTS) {
-			int elementTop = Mobile.getElementTopPosition(element, TIMEOUT)
-			int elementHeight = Mobile.getElementHeight(element, TIMEOUT)
-			int elementCenterY = elementTop + (elementHeight / 2)
-			if (Math.abs(elementCenterY - centerY) <= thresholdPx) {
-				break
-			}
-			swipe(direction)
-			attempts++
+
+		if (!isDisplayed(element)) {
+			throw new StepFailedException("Element not found after $MAX_ATTEMPTS swipes")
 		}
 	}
+
+
 
 	def swipeToBottom() {
 		int screenHeight = Mobile.getDeviceHeight()
@@ -149,6 +139,7 @@ trait BaseKeyword {
 					currentEndY = anchorBottom
 				}
 				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
+				Mobile.delay(0.5)
 			}
 		}
 	}
@@ -157,14 +148,27 @@ trait BaseKeyword {
 		isDisplayed(element, 1)
 	}
 
-	boolean isDisplayed(TestObject element, int timeout) {
-		boolean status = Mobile.verifyElementVisible(element, timeout, FailureHandling.OPTIONAL)
-		return status
+	boolean isDisplayed(TestObject to, int timeout) {
+		WebDriver driver = MobileDriverFactory.getDriver()
+		Duration defaultTimeout = driver.manage().timeouts().getImplicitWaitTimeout()
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
+		def elements = driver.findElements(convertToBy(to))
+		for (def element in elements) {
+			if (element.isDisplayed()) {
+				return true
+			}
+		}
+		driver.manage().timeouts().implicitlyWait(defaultTimeout)
+
+		return false
+		//		return WebUiCommonHelper.findWebElement(element, timeout).isDisplayed()
+		//		boolean status = Mobile.verifyElementVisible(element, timeout, FailureHandling.CONTINUE_ON_FAILURE)
+		//		return status
 	}
 
 	boolean isExisted(TestObject element) {
-		boolean status = Mobile.verifyElementExist(element, 1, FailureHandling.OPTIONAL)
-		return status
+		//		boolean status = Mobile.verifyElementExist(element, 1, FailureHandling.CONTINUE_ON_FAILURE)
+		//		return status
 	}
 
 	/**
@@ -197,7 +201,7 @@ trait BaseKeyword {
 	def waitForNotPresentOf(By by) {
 		WebDriver driver = MobileDriverFactory.getDriver()
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120))
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until {driver.findElements(by).size() == 0}
 	}
 
@@ -211,6 +215,21 @@ trait BaseKeyword {
 		WebElement element = convertTestObjectToWebElement(testObject)
 		return waitForCondition(testObject) { ExpectedConditions.invisibilityOf(element) }
 	}
+
+	def waitForAttributeValueOf(TestObject testObject, String attributeName, String expectedValue, int timeout = TIMEOUT) {
+		WebDriver driver = MobileDriverFactory.getDriver()
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout))
+		By locator = convertToBy(testObject)
+
+		wait.until {
+			List<WebElement> elements = driver.findElements(locator)
+			if (elements.isEmpty()) return false
+
+			String actualValue = elements[0].getAttribute(attributeName)
+			return actualValue == expectedValue
+		}
+	}
+
 
 	def waitForCondition(TestObject testObject, Closure<Boolean> condition) {
 		WebDriver driver = MobileDriverFactory.getDriver()

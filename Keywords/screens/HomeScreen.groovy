@@ -29,6 +29,11 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		clickToElement(outComingDocument)
 	}
 
+	def goToSetting() {
+		expandMenu()
+		clickToElement(setting)
+	}
+
 	def logout() {
 		expandMenu()
 		clickToElement(logoutButton)
