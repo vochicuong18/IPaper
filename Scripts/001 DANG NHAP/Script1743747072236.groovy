@@ -2,7 +2,7 @@ import io.qameta.allure.Allure
 import io.qameta.allure.Allure.ThrowableRunnable
 import ipaper.IPaper
 import utilities.DataTest as DataTest
-def user = DataTest.getUserTest1()
+def user = DataTest.getUserTest('auto1')
 
 IPaper.loginScreen.login(user)
 

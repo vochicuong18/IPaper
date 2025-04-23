@@ -3,127 +3,150 @@ package entities
 import screens.PDFSignScreen
 
 class Document {
-    String title
-    String mainFileName
-    String subFileName
-    PDFSignScreen.Priority priority
-    String time
-    String description
-    String assigner
-    String cc
-    String opinion
+	String title
+	DocumentStatus status
+	String mainFileName
+	String subFileName
+	PDFSignScreen.Priority priority
+	String time
+	String description
+	User sender
+	User assigner
+	User cc
+	String comment
 
-    private Document() {}
+	private Document() {}
 
-    String getTitle() {
-        return title
-    }
+	String getTitle() {
+		return title
+	}
 
-    String getMainFileName() {
-        return mainFileName
-    }
+	DocumentStatus getStatus() {
+		return status
+	}
 
-    String getSubFileName() {
-        return subFileName
-    }
+	String getMainFileName() {
+		return mainFileName
+	}
 
-    PDFSignScreen.Priority getPriority() {
-        return priority
-    }
+	String getSubFileName() {
+		return subFileName
+	}
 
-    String getTime() {
-        return time
-    }
+	PDFSignScreen.Priority getPriority() {
+		return priority
+	}
 
-    String getDescription() {
-        return description
-    }
+	String getTime() {
+		return time
+	}
 
-    String getAssigner() {
-        return assigner
-    }
+	String getDescription() {
+		return description
+	}
 
-    String getCc() {
-        return cc
-    }
+	User getSender() {
+		return sender
+	}
 
-    String getOpinion() {
-        return opinion
-    }
+	User getAssigner() {
+		return assigner
+	}
 
-    static class Builder {
-        private String title
-        private String mainFileName
-        private String subFileName
-        private PDFSignScreen.Priority priority
-        private String time
-        private String description
-        private String assigner
-        private String cc
-        private String opinion
+	User getCc() {
+		return cc
+	}
 
-        Builder title(String title) {
-            this.title = title
-            return this
-        }
+	String getComment() {
+		return comment
+	}
 
-        Builder mainFileName(String mainFileName) {
-            this.mainFileName = mainFileName
-            return this
-        }
+	static class Builder {
+		private String title
+		private DocumentStatus status
+		private String mainFileName
+		private String subFileName
+		private PDFSignScreen.Priority priority
+		private String time
+		private String description
+		private User sender
+		private User assigner
+		private User cc
+		private String comment
 
-        Builder subFileName(String subFileName) {
-            this.subFileName = subFileName
-            return this
-        }
+		Builder title(String title) {
+			this.title = title
+			return this
+		}
 
-        Builder priority(PDFSignScreen.Priority priority) {
-            this.priority = priority
-            return this
-        }
+		Builder status(DocumentStatus status) {
+			this.status = status
+			return this
+		}
 
-        Builder time(String time) {
-            this.time = time
-            return this
-        }
+		Builder mainFileName(String mainFileName) {
+			this.mainFileName = mainFileName
+			return this
+		}
 
-        Builder description(String description) {
-            this.description = description
-            return this
-        }
+		Builder subFileName(String subFileName) {
+			this.subFileName = subFileName
+			return this
+		}
 
-        Builder assigner(String assigner) {
-            this.assigner = assigner
-            return this
-        }
+		Builder priority(PDFSignScreen.Priority priority) {
+			this.priority = priority
+			return this
+		}
 
-        Builder cc(String cc) {
-            this.cc = cc
-            return this
-        }
+		Builder time(String time) {
+			this.time = time
+			return this
+		}
 
-        Builder opinion(String opinion) {
-            this.opinion = opinion
-            return this
-        }
+		Builder description(String description) {
+			this.description = description
+			return this
+		}
 
-        Document build() {
-            Document document = new Document()
-            document.title = this.title
-            document.mainFileName = this.mainFileName
-            document.subFileName = this.subFileName
-            document.priority = this.priority
-            document.time = this.time
-            document.description = this.description
-            document.assigner = this.assigner
-            document.cc = this.cc
-            document.opinion = this.opinion
-            return document
-        }
-    }
+		Builder sender(User sender) {
+			this.sender = sender
+			return this
+		}
 
-    static Builder builder() {
-        return new Builder()
-    }
-} 
+		Builder assigner(User assigner) {
+			this.assigner = assigner
+			return this
+		}
 
+		Builder cc(User cc) {
+			this.cc = cc
+			return this
+		}
+
+		Builder comment(String comment) {
+			this.comment = comment
+			return this
+		}
+
+		Document build() {
+			Document document = new Document()
+			document.title = this.title
+			document.status = this.status
+			document.mainFileName = this.mainFileName
+			document.subFileName = this.subFileName
+			document.priority = this.priority
+			document.time = this.time
+			document.description = this.description
+			document.sender = this.sender
+			document.assigner = this.assigner
+			document.cc = this.cc
+			document.comment = this.comment
+			return document
+		}
+	}
+
+	static Builder builder() {
+		return new Builder()
+	}
+}

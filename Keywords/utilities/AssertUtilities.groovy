@@ -22,7 +22,7 @@ class AssertUtilities {
 	static void assertFalse(boolean condition, String message = "Expected false condition") {
 		logResult(!condition, message)
 	}
-	
+
 	private static void logResult(boolean passed, String message) {
 		if (passed) {
 			logger.logPassed(message)

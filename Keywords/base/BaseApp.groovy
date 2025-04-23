@@ -1,7 +1,11 @@
 package base
 
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import static com.kms.katalon.core.testobject.ConditionType.EQUALS
 
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.testobject.TestObject
+
+import entities.LocatorType
 import internal.GlobalVariable
 
 public class BaseApp implements BaseKeyword {
@@ -17,5 +21,15 @@ public class BaseApp implements BaseKeyword {
 			int y = (int)(height * 0.5)
 			Mobile.swipe(startX, y, endX, y)
 		}
+	}
+
+	def waitAppLauch () {
+		TestObject logo = new TestObject()
+		if (GlobalVariable.PLATFORM == "Android") {
+			logo.addProperty(LocatorType.ID.toString(), EQUALS, "com.hdbank.ipaper:id/img_logo")
+		} else {
+			logo.addProperty(LocatorType.XPATH.toString(), EQUALS, "//XCUIElementTypeToolbar[@name='Toolbar']")
+		}
+		waitForPresentOf(logo)
 	}
 }

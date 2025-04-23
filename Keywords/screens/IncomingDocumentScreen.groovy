@@ -8,8 +8,11 @@ import org.openqa.selenium.WebElement
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
+import entities.Document
+import entities.DocumentStatus
 import internal.GlobalVariable
 import locator.IncomingDocumentLocator
 import utilities.Utilities
@@ -25,19 +28,19 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 		SEND_COMMENT
 	}
 
-	def viewInformationDocument (String documentTitle) {
+	def viewInformationDocument (Document doc) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
+			searchDocument(doc.getTitle())
 		}
-		horizontalSwipeFromElement(documentItem(documentTitle), "right")
+		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
 
-	def viewMainFile(String title) {
+	def viewMainFile(Document doc) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(title)
+			searchDocument(doc.getTitle())
 		}
-		waitForPresentOf(documentItem(title))
-		clickToElement(documentTitle(title))
+		waitForPresentOf(documentItem(doc.getTitle()))
+		clickToElement(documentItem(doc.getTitle()))
 	}
 
 	def goToRelatedDocument() {
@@ -61,42 +64,45 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	boolean isUniqueDocument (String documetName) {
 	}
 
-	def performAction(String documentTitle, ActionType action, String comment = null) {
+	def performAction(Document document, ActionType action, String comment = null) {
+		String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
 		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
+			searchDocument(document.getTitle())
 		}
 
 		switch (action) {
 			case ActionType.QUICK_APPROVE:
-				clickToElement(quickApproveBtn(documentTitle))
-				waitForNotPresentOf(quickApproveBtn(documentTitle))
+				clickToElement(quickApproveBtn(document.getTitle()))
+				waitForNotPresentOf(quickApproveBtn(document.getTitle()))
+				document.setStatus(DocumentStatus.APPROVED)
+				document.setTime(TO_DAY)
 				break
 
 			case ActionType.APPROVE_WITH_CONDITION:
-				clickToElement(approveWithCondition(documentTitle))
-				if (comment != null) {
-					fillOpinion(comment)
-				}
+				clickToElement(approveWithCondition(document.getTitle()))
+				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
-				waitForNotPresentOf(approveWithCondition(documentTitle))
+				waitForNotPresentOf(approveWithCondition(document.getTitle()))
+				document.setStatus(DocumentStatus.APPROVED)
+				document.setTime(TO_DAY)
 				break
 
 			case ActionType.REJECT:
-				clickToElement(quickRejectBtn(documentTitle))
-				if (comment != null) {
-					fillOpinion(comment)
-				}
+				clickToElement(quickRejectBtn(document.getTitle()))
+				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
-				waitForNotPresentOf(quickRejectBtn(documentTitle))
+				waitForNotPresentOf(quickRejectBtn(document.getTitle()))
+				document.setStatus(DocumentStatus.REJECT)
+				document.setTime(TO_DAY)
 				break
 
 			case ActionType.SEND_COMMENT:
-				clickToElement(sendCommentBtn(documentTitle))
-				if (comment != null) {
-					fillOpinion(comment)
-				}
+				clickToElement(sendCommentBtn(document.getTitle()))
+				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
-				waitForNotPresentOf(sendCommentBtn(documentTitle))
+				waitForNotPresentOf(sendCommentBtn(document.getTitle()))
+				document.setStatus(DocumentStatus.COMMENTED)
+				document.setTime(TO_DAY)
 				break
 		}
 	}
@@ -156,8 +162,9 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 
 	List<Map<String, String>> getAllItemDataAndroid() {
 		List<Map<String, String>> itemList = []
-		for (int i = 0; i <= 10; i ++) {
-			String title = getText(firstDocumentTitle)
+		for (int i = 0; i <= 1; i ++) {
+			if(!isDisplayed(firstDocumentTitle)) break
+				String title = getText(firstDocumentTitle)
 			String time = getText(firstDocumentDate)
 			scrollToAnchor(secondItem, headerBar)
 			itemList.add([title: title, time: time])
@@ -174,5 +181,21 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 			Utilities.logInfo(title.getText())
 		}
 		return itemList
+	}
+
+	def waitForDocument(Document document, int timeoutInSeconds = 300) {
+		String title = document.getTitle()
+		long endTime = System.currentTimeMillis() + timeoutInSeconds * 1000
+		while (System.currentTimeMillis() < endTime) {
+			GlobalVariable.PLATFORM == 'iOS' ? searchDocument(title) : swipe('up', 0.5) //how to document show
+			
+			if (isDisplayed(documentItem(title))) {
+				long elapsed = (System.currentTimeMillis() + timeoutInSeconds * 1000 - endTime) / 1000
+				KeywordUtil.logInfo("✅ Found '${title}' in ${timeoutInSeconds - (endTime - System.currentTimeMillis()) / 1000} seconds.")
+				return
+			}
+			Mobile.delay(15)
+		}
+		KeywordUtil.markFailedAndStop("❌ '${title}' not found within ${timeoutInSeconds} seconds.")
 	}
 }

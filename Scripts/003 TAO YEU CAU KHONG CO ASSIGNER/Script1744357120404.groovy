@@ -1,8 +1,7 @@
 import java.text.SimpleDateFormat
 
 import ipaper.IPaper
-import screens.PDFSignScreen
-import utilities.AssertUtilities
+import screens.PDFSignScreen.PerformAction
 import utilities.DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
@@ -15,61 +14,45 @@ String ERROR_MESSAGE = "Vui lòng nhập Email người nhận"
 
 String documentTitle = 'Trình ký ' + System.currentTimeMillis()
 
-def userA3NV = DataTest.getUserA3NVTest() // user create document
+def auto5 = DataTest.getUserTest("auto5")
 
-def userA4NV = DataTest.getUserA4NVTest() // assigner
+def auto6 = DataTest.getUserTest("auto6")
 
-def userA5NV = DataTest.getUserA5NVTest() // CC
+def auto7 = DataTest.getUserTest("auto7")s
 
-def dataDocument = [
-	title         : documentTitle,
-	mainFileName  : "dummy.pdf",
-	subFileName   : "dummy.pdf",
-	priority      : PDFSignScreen.Priority.CAO,
-	time          : "01/5/2025",
-	description   : "Cuong description",
-	assigner      : "test0004@hdbank.com.vn",
-	cc 			  : "test0005@hdbank.com.vn",
-	opinion       : "Cho ý kiến",
-]
+def document = DataTest.createDocumentTest(auto5, auto6, auto7, 'dummy.pdf', 'dummy.pdf')
 
 //create document
 
-IPaper.loginScreen.login(userA3NV)
+IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.openRequestList()
 
 IPaper.homeScreen.createRequest(REQUEST_NAME)
 
-IPaper.pdfSignScreen.fillInTitle(dataDocument.title)
+IPaper.pdfSignScreen.fillInTitle(document.title)
 
-IPaper.pdfSignScreen.selectPriority(dataDocument.priority)
+IPaper.pdfSignScreen.selectPriority(document.priority)
 
-IPaper.pdfSignScreen.selectTime(dataDocument.time)
+IPaper.pdfSignScreen.selectTime(document.time)
 
-IPaper.pdfSignScreen.fillInDescription(dataDocument.description)
+IPaper.pdfSignScreen.fillInDescription(document.description)
+
+IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
 
 IPaper.pdfSignScreen.openMainFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.mainFileName)
+IPaper.fileBrowserScreen.attachFile(document.mainFileName)
 
 IPaper.pdfSignScreen.openSubFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.subFileName)
+IPaper.fileBrowserScreen.attachFile(document.subFileName)
 
-IPaper.pdfSignScreen.sendRequest()
+IPaper.pdfSignScreen.selectRelatedMember(document.getCc().getEmail())
 
-AssertUtilities.checkEquals(IPaper.pdfSignScreen.getErrorMessage(), ERROR_MESSAGE)
+IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 
-IPaper.pdfSignScreen.submitErrorPopup()
-
-IPaper.pdfSignScreen.selectAssigner(dataDocument.assigner)
-
-IPaper.pdfSignScreen.selectAssigner(dataDocument.assigner)
-
-IPaper.pdfSignScreen.sendRequest()
-
-IPaper.pdfSignScreen.fillInOpinion(dataDocument.opinion)
+IPaper.pdfSignScreen.fillInOpinion(document.getComment())
 
 IPaper.pdfSignScreen.submitRequest()
 

@@ -5,6 +5,7 @@ import org.openqa.selenium.remote.DesiredCapabilities
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
+import base.BaseApp
 import data.Capabilities
 import internal.GlobalVariable
 import io.appium.java_client.AppiumDriver
@@ -15,7 +16,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder
 import utilities.DataTest
 import utilities.Utilities
 
-public class Driver {
+public class Driver extends BaseApp{
 
 	private static final String APPIUM_IP_ADDRESS = "127.0.0.1"
 	private static final int APPIUM_PORT = 4723
@@ -67,8 +68,8 @@ public class Driver {
 	@Keyword
 	def openApp() {
 		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
-		GlobalVariable.PLATFORM == 'Android' ? Mobile.startApplication(appPath, false) : Mobile.startExistingApplication(appPath)
-		Mobile.delay(1)
+		Mobile.startExistingApplication(appPath)
+		waitAppLauch()
 	}
 
 	@Keyword
@@ -97,6 +98,13 @@ public class Driver {
 			cap.setCapability("appium:udid", platformCaps.udid)
 			cap.setCapability("appium:automationName", platformCaps.automationName)
 			cap.setCapability("appium:noReset", platformCaps.noReset)
+			cap.setCapability("appium:fullReset", platformCaps.fullReset)
+			
+			cap.setCapability("appium:waitForQuiescence", false)
+			cap.setCapability("appium:reduceMotion", true)
+			cap.setCapability("appium:animationCoolOffTimeout", 0)
+			cap.setCapability("appium:customSnapshotTimeout", 2)
+
 			return new IOSDriver(appiumServerURL, cap)
 		}
 	}

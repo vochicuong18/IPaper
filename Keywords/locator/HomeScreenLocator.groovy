@@ -49,7 +49,7 @@ public class HomeScreenLocator extends TestObjectFactory {
 				screenTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 				closeMenuTab = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='clearX']")
 				closeTabBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='clearX']")
-				setting = createTestObject(LocatorType.XPATH, "")
+				setting = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cài đặt']")
 				break
 		}
 	}

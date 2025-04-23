@@ -4,27 +4,83 @@
     "userName": "a3nv",
     "password": "Hdb@nk@3!",
     "email": "test0003@hdbank.com.vn",
-    "phoneNumber": "0981023699"
+    "emailPassword": "HDBank123!@#"
+  },
+  "a1nv": {
+    "name": "HD999997 NGUYỄN VĂN A1 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
+    "userName": "a1nv",
+    "password": "Hdb@nk@3!",
+    "email": "test0001@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
   },
   "userA4NV": {
     "name": "HD999996 NGUYỄN VĂN A4 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
     "userName": "a4nv",
     "password": "Hdb@nk@3!",
     "email": "test0004@hdbank.com.vn",
-    "phoneNumber": "0981023699"
+    "emailPassword": "HDBank123!@#"
   },
   "userA5NV": {
     "name": "HD999995 NGUYỄN VĂN A5 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
     "userName": "a5nv",
     "password": "Hdb@nk@3!",
     "email": "test0005@hdbank.com.vn",
-    "phoneNumber": "0981023699"
+    "emailPassword": "HDBank123!@#"
   },
-  "user1": {
-    "name": "Auto Test User 1",
+  "auto1": {
+    "name": "Auto Test User 1 - Chuyên viên",
     "userName": "auto1",
     "password": "Auto@12345",
-    "email": "autotest1@gmail.com",
-    "phoneNumber": ""
+    "email": "auto1@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto2": {
+    "name": "Auto Test User 2 - Chuyên viên",
+    "userName": "auto2",
+    "password": "Auto@12345",
+    "email": "auto2@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto3": {
+    "name": "Auto Test User 3 - Chuyên viên",
+    "userName": "auto3",
+    "password": "Auto@12345",
+    "email": "auto3@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto4": {
+    "name": "Auto Test User 4 - Chuyên viên",
+    "userName": "auto4",
+    "password": "Auto@12345",
+    "email": "auto4@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto5": {
+    "name": "Auto Test User 5 - Chuyên viên",
+    "userName": "auto5",
+    "password": "Auto@12345",
+    "email": "auto5@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto6": {
+    "name": "Auto Test User 6 - Chuyên viên",
+    "userName": "auto6",
+    "password": "Auto@12345",
+    "email": "auto6@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto7": {
+    "name": "Auto Test User 7 - Chuyên viên",
+    "userName": "auto7",
+    "password": "Auto@12345",
+    "email": "auto7@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
+  },
+  "auto8": {
+    "name": "Auto Test User 8 - Chuyên viên",
+    "userName": "auto8",
+    "password": "Auto@12345",
+    "email": "auto8@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#"
   }
 }

@@ -7,6 +7,7 @@ import screens.IncomingDocumentScreen
 import screens.LoginScreen
 import screens.OutComingDocumentScreen
 import screens.OutLook_HomeScreen
+import screens.OutLook_MailScreen
 import screens.PDFSignScreen
 import screens.ProfileScreen
 import screens.RelatedDocumentScreen
@@ -25,7 +26,5 @@ public class IPaper {
 	public static DocumentInformationScreen documentInformationScreen = new DocumentInformationScreen()
 	public static SettingScreen settingScreen = new SettingScreen()
 	public static OutLook_HomeScreen outlook_homeScreen = new OutLook_HomeScreen()
-	
-	
-	
+	public static OutLook_MailScreen outlook_mailScreen = new OutLook_MailScreen()
 }

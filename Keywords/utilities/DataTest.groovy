@@ -15,7 +15,7 @@ public class DataTest {
 	static JSONObject jsonData, user, document
 
 	public static final APP = [
-		Android: "/Users/cuongvo/hdb_katalon/ipaper.apk",
+		Android: "com.hdbank.ipaper",
 		iOS    : "com.hdbank.ipaper"
 	]
 
@@ -51,19 +51,20 @@ public class DataTest {
 				.description("Mobile automation test description")
 				.assigner(jsonData.getString("assigner"))
 				.cc(jsonData.getString("cc"))
-				.opinion("Mobile automation test comment")
+				.comment("Mobile automation test comment")
 				.build()
 	}
 
-	/**
-	 * @param assigner
+	/**	 
+	 * @param sender (require)
+	 * @param assigner (require)
 	 * @param cc (optional).
-	 * @param mainFile 
+	 * @param mainFile (require)
 	 * @param subFileName (optional).
 	 *
 	 * @return Document The created Document object.
 	 */
-	static Document createDocumentTest(User assigner, User cc = null, String mainFile, String subFileName = null) {
+	static Document createDocumentTest(User sender, User assigner, User cc = null, String mainFile, String subFileName = null) {
 		Calendar calendar = Calendar.getInstance()
 		calendar.add(Calendar.DATE, 1)
 		String tomorrow = new SimpleDateFormat("d/M/yyyy").format(calendar.getTime())
@@ -77,14 +78,15 @@ public class DataTest {
 
 		return Document.builder()
 				.title("Trình ký ${System.currentTimeMillis()}")
+				.sender(sender)
 				.mainFileName(mainFile)
 				.subFileName(subFileName)
 				.priority(randomPriority)
 				.time(tomorrow)
 				.description("Mobile automation test description")
-				.assigner(assigner.getEmail())
-				.cc(cc?.getEmail())
-				.opinion("Mobile automation test comment")
+				.assigner(assigner)
+				.cc(cc)
+				.comment("Mobile automation test comment")
 				.build()
 	}
 
@@ -95,7 +97,6 @@ public class DataTest {
 				.userName(jsonData.getString("userName"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
-				.phoneNumber(jsonData.getString("phoneNumber"))
 				.build()
 	}
 
@@ -106,7 +107,6 @@ public class DataTest {
 				.userName(jsonData.getString("userName"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
-				.phoneNumber(jsonData.getString("phoneNumber"))
 				.build()
 	}
 
@@ -118,7 +118,6 @@ public class DataTest {
 				.userName(jsonData.getString("userName"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
-				.phoneNumber(jsonData.getString("phoneNumber"))
 				.build()
 	}
 
@@ -129,7 +128,16 @@ public class DataTest {
 				.name(jsonData.getString("name"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
-				.phoneNumber(jsonData.getString("phoneNumber"))
+				.build()
+	}
+
+	static User getUserTest(String autoUser) {
+		jsonData = user.getJSONObject(autoUser)
+		return User.builder()
+				.userName(jsonData.getString("userName"))
+				.name(jsonData.getString("name"))
+				.password(jsonData.getString("password"))
+				.email(jsonData.getString("email"))
 				.build()
 	}
 }

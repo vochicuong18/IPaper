@@ -4,17 +4,29 @@ import com.kms.katalon.core.logging.KeywordLogger;
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.util.KeywordUtil
 
+import base.BaseApp
 import internal.GlobalVariable
 
 
-public class Utilities {
+public class Utilities extends BaseApp{
 	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class);
 
 	def static openOutlookApp() {
-		Mobile.startExistingApplication(GlobalVariable.PLATFORM == 'Android' ? "com.microsoft.office.outlook" : "com.microsoft.outlook")
+		Mobile.startExistingApplication(GlobalVariable.PLATFORM == 'Android' ? "com.microsoft.office.outlook" : "com.microsoft.Office.Outlook")
 	}
-	
-	def getOS() {
+
+	def static openIPaperApp() {
+		Utilities utility = new Utilities()
+		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
+		Mobile.startExistingApplication(appPath)
+		utility.waitAppLauch()
+	}
+
+	def static closeCurentApp() {
+		Mobile.closeApplication()
+	}
+
+	def static getOS() {
 		def osName = System.getProperty("os.name").toLowerCase()
 		if (osName.contains("win")) {
 			return "Windows"
@@ -40,7 +52,7 @@ public class Utilities {
 	}
 
 
-	def runCommand(String command) {
+	def static runCommand(String command) {
 		logInfo(command)
 
 		def process

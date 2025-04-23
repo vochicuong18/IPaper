@@ -3,17 +3,23 @@ package data
 public class Capabilities {
 	public static final CAP = [
 		iOS: [
-			platformName     : "iOS",
-			platformVersion  : "18.4",
-			deviceName       : "iPhone 13 Pro Max",
-			udid             : "00008110-000C10543443801E",
-			automationName   : "XCUITEST",
-			noReset          : true,
-			fullReset		 : false
+			platformName                       : "iOS",
+			platformVersion                    : "18.4",
+			deviceName                         : "iPhone 13 Pro Max",
+			udid                               : "00008110-000C10543443801E",
+			automationName                     : "XCUITest",
+			noReset                            : true,
+			fullReset			                : false,
+			// 
+			"appium:waitForQuiescence"        : false,
+			"appium:reduceMotion"             : true,
+			"appium:animationCoolOffTimeout"  : 0,
+			"appium:customSnapshotTimeout"    : 2,
 		],
+
 		Android: [
 			platformName         : "Android",
-			deviceName           : "03163f360404",
+			deviceName           : "af0c5cf7",
 			automationName       : "UiAutomator2",
 			noReset              : true,
 			waitForIdleTimeout   : 3000,

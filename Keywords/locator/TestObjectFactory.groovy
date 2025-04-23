@@ -20,16 +20,16 @@ public class TestObjectFactory {
 		to.addProperty(type.toString(), ConditionType.EQUALS, locator)
 		return to
 	}
-	
+
 	List<TestObject> createTestObjects(LocatorType type, String locatorTemplate, Map<String, Object> params = [:]) {
 		if (params && !params.isEmpty()) {
 			locatorTemplate = replaceParams(locatorTemplate, params)
 		}
-	
+
 		AppiumDriver driver = MobileDriverFactory.getDriver()
 		List<WebElement> elements
 		List<TestObject> testObjects = []
-	
+
 		switch (type) {
 			case LocatorType.XPATH:
 				elements = driver.findElements(By.xpath(locatorTemplate))
@@ -40,8 +40,8 @@ public class TestObjectFactory {
 			default:
 				throw new IllegalArgumentException("Unsupported locator type: " + type)
 		}
-	
-		
+
+
 		// Create TestObjects for each element found
 		for (int i = 1; i <= elements.size(); i++) {
 			String indexedLocator = locatorTemplate + "[$i]"
@@ -49,7 +49,7 @@ public class TestObjectFactory {
 			testObject.addProperty(type.toString(), ConditionType.EQUALS, indexedLocator)
 			testObjects.add(testObject)
 		}
-	
+
 		return testObjects
 	}
 

@@ -1,16 +1,27 @@
 package screens
 
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-
 import base.BaseKeyword
+import internal.GlobalVariable
 import locator.SettingLocator
 
 public class SettingScreen extends SettingLocator implements BaseKeyword {
-	def enableApproveByEmail(boolean status) {
-		if(getValueAttributeOf(approveByEmailSwitch, "checked") != status ) {
+	def enableApproveByEmail(boolean expectedStatus) {
+		boolean currentStatus
+
+		if (GlobalVariable.PLATFORM == 'Android') {
+			currentStatus = getValueAttributeOf(approveByEmailSwitch, "checked")
+		} else {
+			String expectedName = expectedStatus ? "setting_check_ic" : "setting_off"
+			currentStatus = getValueAttributeOf(approveByEmaiSwitchStatus, "name") == expectedName
+		}
+
+		if (currentStatus != expectedStatus) {
 			clickToElement(approveByEmailSwitch)
 		}
+	}
+	
+	def enablReceivedNotification () {
+		
 	}
 
 	def backToHome () {

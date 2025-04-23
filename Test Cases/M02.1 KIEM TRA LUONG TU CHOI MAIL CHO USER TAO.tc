@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M02.1 KIEM TRA LUONG TU CHOI MAIL CHO USER TAO</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>648a4199-bc65-4e1c-9b3b-1f0705b82f99</testCaseGuid>
+</TestCaseEntity>

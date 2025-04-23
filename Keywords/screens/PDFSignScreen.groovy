@@ -1,6 +1,6 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
 import internal.GlobalVariable
@@ -16,6 +16,27 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 				case KHAN_CAP : return "Khẩn cấp"
 				case CAO : return "Cao"
 				case BINH_THUONG : return "Bình thường"
+				default : return "please define"
+			}
+		}
+	}
+
+	public enum PerformAction {
+		SEND_APPROVE, SEND_WITH_COMENT, SAVE
+
+		String toString() {
+			switch (this) {
+				case SEND_APPROVE : return "Gửi duyệt"
+				case SEND_WITH_COMENT : return "Lấy ý kiến"
+				case SAVE : return "Lưu"
+				default : return "please define"
+			}
+		}
+
+		String toStringEmail() {
+			switch (this) {
+				case SEND_APPROVE : return "TRÌNH PHÊ DUYỆT"
+				case SEND_WITH_COMENT : return "GÓP Ý TRÌNH DUYỆT"
 				default : return "please define"
 			}
 		}
@@ -79,31 +100,33 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		clickToElement(doneBtn)
 	}
 
-	def saveRequest() {
-		clickToElement(actionBtn)
-		clickToElement(saveFormAction)
-	}
-
-	def getOpinion() {
-		clickToElement(actionBtn)
-		clickToElement(getOpinionAction)
-	}
-
-	def sendRequest() {
-		clickToElement(actionBtn)
-		clickToElement(sendFormAction)
-	}
-
 	def openDatePicker() {
 		clickToElement(doneTime)
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForVisibilityOf(submitDatePickerBtn)
-		}
-
-		else if (GlobalVariable.PLATFORM == "iOS") {
+		} else {
 			clickToElement(iosOpenDatePicker)
 		}
 	}
+
+	def performAction(PerformAction action) {
+		clickToElement(actionBtn)
+
+		switch (action) {
+			case PerformAction.SAVE:
+				clickToElement(saveFormAction)
+				break
+			case PerformAction.SEND_WITH_COMENT:
+				clickToElement(getOpinionAction)
+				break
+			case PerformAction.SEND_APPROVE:
+				clickToElement(sendFormAction)
+				break
+			default:
+				KeywordUtil.logInfo("Unknown action: ${action}")
+		}
+	}
+
 
 	def fillInOpinion(String guest) {
 		inputText(opinionNoteTxt, guest)

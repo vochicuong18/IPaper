@@ -159,7 +159,6 @@ trait BaseKeyword {
 			}
 		}
 		driver.manage().timeouts().implicitlyWait(defaultTimeout)
-
 		return false
 		//		return WebUiCommonHelper.findWebElement(element, timeout).isDisplayed()
 		//		boolean status = Mobile.verifyElementVisible(element, timeout, FailureHandling.CONTINUE_ON_FAILURE)

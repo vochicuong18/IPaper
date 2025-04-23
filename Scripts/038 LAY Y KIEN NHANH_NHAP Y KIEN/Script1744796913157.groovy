@@ -1,65 +1,50 @@
-import java.text.SimpleDateFormat
-
+import entities.DocumentStatus
 import ipaper.IPaper
-import screens.PDFSignScreen
+import screens.IncomingDocumentScreen.ActionType
+import screens.PDFSignScreen.PerformAction
 import utilities.DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
-String WAIT_COMMET_STATUS = 'Chờ lấy ý kiến'
+String USER_CREATE_COMMENT = 'Commented by user create document'
 
-String COMMENT_STATUS = 'Đã lấy ý kiến'
-
-String USER_CREATE_COMMENT = 'Đây là bình luận của người tạo'
-
-String ASSIGNER_COMMENT = 'Automation comments'
-
-String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
+String ASSIGNER_COMMENT = 'Comment by assigner'
 
 String documentTitle = 'Trình ký ' + System.currentTimeMillis()
 
-def userCreateDocs = DataTest.getUserA5NVTest() // user create document
+def auto5 = DataTest.getUserTest('auto5') // user create document
 
-def assigner = DataTest.getUserA4NVTest() // assigner
+def auto6 = DataTest.getUserTest('auto6') // assigner
 
-def dataDocument = [
-	title         : documentTitle,
-	mainFileName  : "dummy.pdf",
-	subFileName   : "dummy.pdf",
-	priority      : PDFSignScreen.Priority.CAO,
-	time          : "01/5/2025",
-	description   : "Cuong description",
-	assigner      : assigner.getEmail(),
-	opinion       : "case 38 duyệt lấy ý kiến",
-]
+def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
 //create document
 
-IPaper.loginScreen.login(userCreateDocs)
+IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.openRequestList()
 
 IPaper.homeScreen.createRequest(REQUEST_NAME)
 
-IPaper.pdfSignScreen.fillInTitle(dataDocument.title)
+IPaper.pdfSignScreen.fillInTitle(document.getTitle())
 
-IPaper.pdfSignScreen.selectPriority(dataDocument.priority)
+IPaper.pdfSignScreen.selectPriority(document.getPriority())
 
-IPaper.pdfSignScreen.selectTime(dataDocument.time)
+IPaper.pdfSignScreen.selectTime(document.getTime())
 
-IPaper.pdfSignScreen.fillInDescription(dataDocument.description)
+IPaper.pdfSignScreen.fillInDescription(document.getDescription())
 
-IPaper.pdfSignScreen.selectAssigner(dataDocument.assigner)
+IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
 
 IPaper.pdfSignScreen.openMainFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.mainFileName)
+IPaper.fileBrowserScreen.attachFile(document.getMainFileName())
 
 IPaper.pdfSignScreen.openSubFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.subFileName)
+IPaper.fileBrowserScreen.attachFile(document.getSubFileName())
 
-IPaper.pdfSignScreen.getOpinion()
+IPaper.pdfSignScreen.performAction(PerformAction.SEND_WITH_COMENT)
 
 IPaper.pdfSignScreen.fillInOpinion(USER_CREATE_COMMENT)
 
@@ -69,39 +54,45 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.homeScreen.logout()
 
+document.setStatus(DocumentStatus.WAIT_GET_COMMENT)
+
+document.setAssigner(auto5)
+
 //assigner check document
 
-IPaper.loginScreen.login(assigner)
+IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.inComingDocument.viewInformationDocument(documentTitle)
+IPaper.inComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.checkSender(userCreateDocs.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(WAIT_COMMET_STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkCreateDate()
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 //Assinger approve document
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.sendComment(documentTitle)
+IPaper.inComingDocument.performAction(document, ActionType.SEND_COMMENT, ASSIGNER_COMMENT)
+
+document.setSender(auto6)
 
 //Assigner check document after sendComment
 
@@ -109,31 +100,31 @@ IPaper.inComingDocument.checkItemInDocument()
 
 IPaper.homeScreen.goToOutComingDocument()
 
-IPaper.outComingDocument.viewInformationDocument(documentTitle)
+IPaper.outComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.checkSender(userCreateDocs.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(COMMENT_STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkCreateDate()
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
-IPaper.documentInformationScreen.checkComment(assigner, ASSIGNER_COMMENT)
+IPaper.documentInformationScreen.checkComment(auto6, ASSIGNER_COMMENT)
 
-IPaper.documentInformationScreen.checkComment(userCreateDocs, USER_CREATE_COMMENT)
+IPaper.documentInformationScreen.checkComment(auto5, USER_CREATE_COMMENT)
 
 IPaper.documentInformationScreen.backToHome()
 

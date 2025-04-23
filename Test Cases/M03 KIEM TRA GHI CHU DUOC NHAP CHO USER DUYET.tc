@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M03 KIEM TRA GHI CHU DUOC NHAP CHO USER DUYET</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>138f71a1-9a9d-4211-ba8c-b36d5a6895eb</testCaseGuid>
+</TestCaseEntity>

@@ -1,68 +1,48 @@
-import java.text.SimpleDateFormat
-
+import entities.DocumentStatus
 import ipaper.IPaper
-import screens.PDFSignScreen
+import screens.IncomingDocumentScreen.ActionType
+import screens.PDFSignScreen.PerformAction
 import utilities.DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
-String WAIT_PROCESS_STATUS = 'Đang đợi xử lý'
+String COMMENT = 'Commented by automation team in case 18'
 
-String REJECT_STATUS = 'Từ chối'
+def auto5 = DataTest.getUserTest('auto5')
 
-String QUICK_REJECT_OPINION = 'Xem xét lại'
+def auto6 = DataTest.getUserTest('auto6')
 
-String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
-
-String documentTitle = 'Trình ký ' + System.currentTimeMillis()
-
-def creater = DataTest.getUserA3NVTest() // user create document
-
-def assigner = DataTest.getUserA4NVTest() // assigner
-
-def dataDocument = [
-	title         : documentTitle,
-	mainFileName  : "dummy.pdf",
-	subFileName   : "dummy.pdf",
-	priority      : PDFSignScreen.Priority.CAO,
-	time          : "01/5/2025",
-	description   : "Cuong description",
-	assigner      : "test0004@hdbank.com.vn",
-	cc 			  : "test0005@hdbank.com.vn",
-	opinion       : "Cho ý kiến",
-]
+def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
 //create document
 
-IPaper.loginScreen.login(creater)
+IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.openRequestList()
 
 IPaper.homeScreen.createRequest(REQUEST_NAME)
 
-IPaper.pdfSignScreen.fillInTitle(dataDocument.title)
+IPaper.pdfSignScreen.fillInTitle(document.getTitle())
 
-IPaper.pdfSignScreen.selectPriority(dataDocument.priority)
+IPaper.pdfSignScreen.selectPriority(document.getPriority())
 
-IPaper.pdfSignScreen.selectTime(dataDocument.time)
+IPaper.pdfSignScreen.selectTime(document.getTime())
 
-IPaper.pdfSignScreen.fillInDescription(dataDocument.description)
+IPaper.pdfSignScreen.fillInDescription(document.getDescription())
 
-IPaper.pdfSignScreen.selectAssigner(dataDocument.assigner)
+IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
 
 IPaper.pdfSignScreen.openMainFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.mainFileName)
+IPaper.fileBrowserScreen.attachFile(document.getMainFileName())
 
 IPaper.pdfSignScreen.openSubFileBrowser()
 
-IPaper.fileBrowserScreen.attachFile(dataDocument.subFileName)
+IPaper.fileBrowserScreen.attachFile(document.getSubFileName())
 
-IPaper.pdfSignScreen.selectRelatedMember(dataDocument.cc)
+IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 
-IPaper.pdfSignScreen.sendRequest()
-
-IPaper.pdfSignScreen.fillInOpinion(dataDocument.opinion)
+IPaper.pdfSignScreen.fillInOpinion(document.getComment())
 
 IPaper.pdfSignScreen.submitRequest()
 
@@ -70,37 +50,43 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.homeScreen.logout()
 
+document.setStatus(DocumentStatus.WAIT_PROCESS)
+
+document.setAssigner(auto5)
+
 //assigner check document
 
-IPaper.loginScreen.login(assigner)
+IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.inComingDocument.viewInformationDocument(documentTitle)
+IPaper.inComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.checkSender(creater.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(WAIT_PROCESS_STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkCreateDate()
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.quickReject(documentTitle, QUICK_REJECT_OPINION)
+IPaper.inComingDocument.performAction(document, ActionType.REJECT)
+
+document.setSender(auto6)
 
 //Assigner check document after reject
 
@@ -108,29 +94,27 @@ IPaper.inComingDocument.checkItemInDocument()
 
 IPaper.homeScreen.goToOutComingDocument()
 
-IPaper.outComingDocument.viewInformationDocument(documentTitle)
+IPaper.outComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.isSenderDisplayed()
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(REJECT_STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkCreateDate()
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
-
-IPaper.documentInformationScreen.checkComment(assigner, QUICK_REJECT_OPINION)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.backToHome()
 

@@ -11,6 +11,7 @@ import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
+import entities.Document
 import internal.GlobalVariable
 import locator.OutComingDocumentLocator
 import utilities.Utilities
@@ -18,11 +19,11 @@ import utilities.Utilities
 public class OutComingDocumentScreen extends OutComingDocumentLocator implements BaseKeyword{
 	TestObject documentItem
 
-	def viewInformationDocument (String documentTitle) {
+	def viewInformationDocument (Document doc) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
-			searchDocument(documentTitle)
+			searchDocument(doc.getTitle())
 		}
-		horizontalSwipeFromElement(documentItem(documentTitle), "right")
+		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
 
 	def goToRelatedDocument() {
@@ -46,56 +47,50 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		inputText(searchDocument, documentTitle)
 	}
 
-	boolean checkItemInDocument () {
-		if (GlobalVariable.PLATFORM == 'Android') {
-
-			List<Map<String, String>> data = getAllItemData()
-			Set<String> seenTitles = new HashSet<>()
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
-
-			boolean isTitleUnique = true
-			boolean isTimeSorted = true
-
-			Date prevTime = null
-			for (int i = 0; i < data.size(); i++) {
-				String title = data[i].title
-				String timeStr = data[i].time
-
-				if (seenTitles.contains(title)) {
-					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
-					isTitleUnique = false
-				} else {
-					seenTitles.add(title)
-				}
-
-				if (timeStr == "-") continue
-
-					Date currentTime = sdf.parse(timeStr)
-				if (prevTime != null && prevTime.before(currentTime)) {
-					Utilities.logInfo("Time is wrong -  index $i")
-					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
-					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
-					isTimeSorted = false
-				}
-				prevTime = currentTime
+	boolean checkItemInDocument() {
+		if (GlobalVariable.PLATFORM != 'Android') {
+			getAllItemDataIOS()
+			return true
+		}
+		List<Map<String, String>> data = getAllItemData()
+		if (data.isEmpty()) {
+			Utilities.logInfo("Do not have document in screens")
+			return false
+		}
+		Set<String> seenTitles = new HashSet<>()
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
+		boolean isTitleUnique = true
+		boolean isTimeSorted = true
+		Date prevTime = null
+		data.eachWithIndex { item, i ->
+			String title = item.title
+			String timeStr = item.time
+			if (!seenTitles.add(title)) {
+				Utilities.logInfo("Title is duplicated -  index $i: '$title'")
+				isTitleUnique = false
 			}
-
-			if (isTitleUnique) {
-				Utilities.logInfo("Title is not duplicated")
+			if (timeStr == "-") return
+				Date currentTime = sdf.parse(timeStr)
+			if (prevTime && prevTime.before(currentTime)) {
+				Utilities.logInfo("Time is wrong -  index $i")
+				Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
+				Utilities.logInfo("   ➤ Sau:    ${item.title} - $timeStr")
+				isTimeSorted = false
 			}
-			if (isTimeSorted) {
-				Utilities.logInfo("Time is correctly")
-			}
-		} else getAllItemDataIOS()
+			prevTime = currentTime
+		}
+		if (isTitleUnique) Utilities.logPass("Title is not duplicated")
+		if (isTimeSorted) Utilities.logPass("Time is correctly")
+		return isTitleUnique && isTimeSorted
 	}
 
 
+
 	List<Map<String, String>> getAllItemData() {
-		//		TestObject documentItem = documentItem(1)
-		//		TestObject documentItem1 = documentItem(2)
 		List<Map<String, String>> itemList = []
 		for (int i = 0; i <= 10; i ++) {
-			String title = getText(firstDocumentTitle)
+			if(isDisplayed(firstDocumentTitle)) break
+				String title = getText(firstDocumentTitle)
 			String time = getText(firstDocumentDate)
 			scrollToAnchor(secondItem, headerBar)
 			itemList.add([title: title, time: time])
@@ -109,7 +104,7 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		Mobile.delay(10)
 		List<WebElement> titles = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'Trình ký')]"))
 		println "--------------------------------------------"
-		
+
 		println "------------------- ${titles.size()} -------------------------"
 		println "--------------------------------------------"
 		println "--------------------------------------------"

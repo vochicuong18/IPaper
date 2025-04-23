@@ -36,7 +36,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Hồ sơ liên quan']/parent::XCUIElementTypeCell")
 				sendOpinionApprove = createTestObject(LocatorType.XPATH, "")
 				toastMessage = createTestObject(LocatorType.XPATH, "")
-				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTextField[@value='Tìm kiếm hồ sơ']")
+				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/following-sibling::XCUIElementTypeTextField")
 				break
 		}
 	}
@@ -56,7 +56,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 			case "Android":
 				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf']", [('documentTitle'): documentTitle])
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell")
 		}
 	}
 
@@ -86,15 +86,15 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Từ chối']", [('documentTitle'): documentTitle])
 		}
 	}
-	
+
 	TestObject sendCommentBtn(documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
 				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.TextView[@text='Gửi ý kiến']//parent::android.widget.LinearLayout",
-					[('documentTitle'): documentTitle])
+				[('documentTitle'): documentTitle])
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "", 
-					[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "",
+				[('documentTitle'): documentTitle])
 		}
 	}
 

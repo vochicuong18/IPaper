@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>054 BAT TINH NANG PHE DUYET QUA EMAIL</name>
+   <name>M02.2 KIEM TRA LUONG TRA VE MAIL CHO USER TAO - Copy</name>
    <tag></tag>
    <comment></comment>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>0fc471ad-ecdf-49dc-aaf8-4cf01be60dc0</testCaseGuid>
+   <testCaseGuid>2beb3bfd-ff03-4c24-ae28-75d5c1abbb61</testCaseGuid>
 </TestCaseEntity>
