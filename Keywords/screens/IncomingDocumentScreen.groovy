@@ -105,6 +105,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				document.setTime(TO_DAY)
 				break
 		}
+		backToHome()
 	}
 
 	def searchDocument(String documentTitle) {
@@ -188,7 +189,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 		long endTime = System.currentTimeMillis() + timeoutInSeconds * 1000
 		while (System.currentTimeMillis() < endTime) {
 			GlobalVariable.PLATFORM == 'iOS' ? searchDocument(title) : swipe('up', 0.5) //how to document show
-			
+
 			if (isDisplayed(documentItem(title))) {
 				long elapsed = (System.currentTimeMillis() + timeoutInSeconds * 1000 - endTime) / 1000
 				KeywordUtil.logInfo("✅ Found '${title}' in ${timeoutInSeconds - (endTime - System.currentTimeMillis()) / 1000} seconds.")
@@ -196,6 +197,14 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 			}
 			Mobile.delay(15)
 		}
-		KeywordUtil.markFailedAndStop("❌ '${title}' not found within ${timeoutInSeconds} seconds.")
+		KeywordUtil.markFailedAndStop("'${title}' not found within ${timeoutInSeconds} seconds.")
+	}
+
+	def backToHome() {
+		int attempts = 0
+		while (!isDisplayed(fillterBtn) && attempts++ < 5) {
+			clickToElement(backBtn)
+			Mobile.delay(0.5)
+		}
 	}
 }

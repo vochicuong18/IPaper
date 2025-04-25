@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M04.2 KIEM TRA GHI CHU DUOC NHAP CHO USER TAO_TU CHOI</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>c0737a60-c855-472c-9cff-99dbe3501103</testCaseGuid>
+</TestCaseEntity>

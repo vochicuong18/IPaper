@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>M02.2 KIEM TRA LUONG TRA VE MAIL CHO USER TAO - Copy</name>
+   <name>M15 TRA VE HO SO DA TU CHOI</name>
    <tag></tag>
    <comment></comment>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>2beb3bfd-ff03-4c24-ae28-75d5c1abbb61</testCaseGuid>
+   <testCaseGuid>582724f2-9a71-4efd-90b1-f918f640ea9e</testCaseGuid>
 </TestCaseEntity>

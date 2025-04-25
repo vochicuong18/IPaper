@@ -4,13 +4,13 @@ public class Capabilities {
 	public static final CAP = [
 		iOS: [
 			platformName                       : "iOS",
-			platformVersion                    : "18.4",
-			deviceName                         : "iPhone 13 Pro Max",
-			udid                               : "00008110-000C10543443801E",
+			platformVersion                    : "18.2.1",
+			deviceName                         : "iPhone 15 Pro Max",
+			udid                               : "00008130-001C31C23CB8001C",
 			automationName                     : "XCUITest",
 			noReset                            : true,
 			fullReset			                : false,
-			// 
+			//
 			"appium:waitForQuiescence"        : false,
 			"appium:reduceMotion"             : true,
 			"appium:animationCoolOffTimeout"  : 0,
@@ -27,4 +27,6 @@ public class Capabilities {
 		]
 	]
 }
-//			udid             : "00008110-000659C02107801E",
+//			udidgold             : "00008110-000659C02107801E",
+//			udid                               : "00008110-000C10543443801E",
+

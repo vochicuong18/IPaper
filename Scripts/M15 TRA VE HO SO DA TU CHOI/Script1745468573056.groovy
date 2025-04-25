@@ -1,11 +1,11 @@
-import entities.Document as Document
-
-import entities.DocumentStatus as DocumentStatus
-import ipaper.IPaper as IPaper
-import screens.OutLook_HomeScreen.EmailNoti as EmailNoti
-import screens.OutLook_MailScreen.ActionType as ActionType
-import screens.PDFSignScreen.PerformAction as PerformAction
-import utilities.DataTest as DataTest
+import entities.Document
+import entities.DocumentStatus
+import ipaper.IPaper
+import screens.IncomingDocumentScreen.ActionType
+import screens.OutLook_MailScreen.ActionType as ActionOutlook
+import screens.OutLook_HomeScreen.EmailNoti
+import screens.PDFSignScreen.PerformAction
+import utilities.DataTest
 import utilities.Utilities as Utilities
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
@@ -63,40 +63,30 @@ Utilities.closeCurentApp()
 
 Utilities.openOutlookApp()
 
-// User Duyệt login vào mail và chọn yêu cầu cần duyệt
+// User Duyệt login vào mail và kiểm tra email
 
 IPaper.outlook_homeScreen.switchToAccount(auto6)
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
 
-IPaper.outlook_homeScreen.backToHome()
+Utilities.closeCurentApp()
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+//User Duyệt login app IPP và chọn đúng yêu cầu vừa nhận mail phê duyệt
+//User Duyệt thực hiện từ chối hồ sơ
 
-IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
+Utilities.openIPaperApp()
 
-//Tại yêu cầu cần duyệt, user Duyệt nhấn Duyệt
-//User Duyệt nhập thông tin ghi chú vào email, nhấn Gửi
+IPaper.loginScreen.login(auto6)
 
-IPaper.outlook_mailScreen.action(ActionType.APPROVE, APPROVER_COMMENT)
+IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.outlook_homeScreen.backToHome()
+IPaper.inComingDocument.performAction(document, ActionType.REJECT)
 
-IPaper.outlook_homeScreen.waitNotiEmailSent(auto6, EmailNoti.APPROVED, document)
-
-document.setStatus(DocumentStatus.APPROVED)
+document.setStatus(DocumentStatus.REJECT)
 
 document.setSender(auto6)
 
 document.setAssigner(auto5)
-
-Utilities.closeCurentApp()
-
-Utilities.openIPaperApp()
-
-//User Duyệt login lại app IPP, kiểm tra Hồ sơ đi
-
-IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToOutComingDocument()
 
@@ -116,12 +106,28 @@ IPaper.documentInformationScreen.checkPriority(document)
 
 IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
-IPaper.documentInformationScreen.checkComment(auto6, APPROVER_COMMENT)
+Utilities.closeCurentApp()
 
-IPaper.documentInformationScreen.checkComment(auto5, document.getComment())
+//User Duyệt login vào mail và từ chối hồ sơ vừa từ chối thành công ở web IPP
+
+Utilities.openOutlookApp()
+
+IPaper.outlook_homeScreen.switchToAccount(auto6)
+
+IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+
+IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
+
+IPaper.outlook_mailScreen.action(ActionOutlook.APPROVE, APPROVER_COMMENT)
+
+IPaper.outlook_homeScreen.backToHome()
+
+//User Duyệt kiểm tra mail phản hồi kết quả duyệt
+
+IPaper.outlook_homeScreen.waitNotiEmailSent(EmailNoti.NOT_ACCEPTED, document)

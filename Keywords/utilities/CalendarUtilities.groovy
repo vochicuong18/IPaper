@@ -3,6 +3,7 @@ package utilities
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.testobject.TestObject
@@ -53,10 +54,25 @@ public class CalendarUtilities implements BaseKeyword {
 		clickToElement(dayItem)
 	}
 
+	//TH 6, 25 thg4 và T.6, 25 th4
+
 	int getCurrentMonth() {
 		String currentDate = getText(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/currentDate"))
-		return currentDate.split("thg ")[1].toInteger()
+
+		try {
+			if (currentDate.contains("thg")) {
+				return currentDate.split("thg")[1].trim().toInteger()
+			} else if (currentDate.contains("Th")) {
+				return currentDate.split("Th")[1].trim().toInteger()
+			} else {
+				throw new Exception("Không tìm thấy định dạng tháng")
+			}
+		} catch (Exception e) {
+			return LocalDate.now().getMonthValue()
+		}
 	}
+
+
 
 	String getCurrentYear() {
 		return getText(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/year"))

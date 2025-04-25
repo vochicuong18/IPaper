@@ -19,7 +19,8 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		APPROVE,
 		REJECT,
 		COMMENT,
-		APPROVE_ADD_CC
+		APPROVE_ADD_CC,
+		WITHDRAW_DOCUMENT
 	}
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
@@ -64,6 +65,14 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				document.setStatus(DocumentStatus.APPROVED)
 				document.setTime(TO_DAY)
 				break
+
+			case ActionType.WITHDRAW_DOCUMENT:
+				clickToElement(withdrawDocument)
+				if (comment) inputText(getOpinionTxt, comment)
+				clickToElement(submitApproveBtn)
+				document.setStatus(DocumentStatus.WAIT_PROCESS)
+				document.setTime(TO_DAY)
+				break
 		}
 	}
 
@@ -87,7 +96,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def isAssignerDisplayed() {
-		AssertUtilities.assertTrue(!isDisplayed(assigner), "Check sender not displayed after reject")
+		AssertUtilities.assertTrue(!isDisplayed(assigner), "Check sender not displayed")
 	}
 
 	def checkStatus(Document document) {
@@ -96,8 +105,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 
 	def checkCreateDate() {
 		String gui = getText(createDate)
-		//		Date parsedData = new SimpleDateFormat("d/M/yyyy").parse(data)
-		//		String formattedData = new SimpleDateFormat("dd/MM/yyyy").format(parsedData)
 		String toDay = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
 		AssertUtilities.checkEquals(gui, toDay)
 	}
@@ -136,13 +143,14 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	def checkAttachFileName(Document doc) {
 		String data = doc.getSubFileName().replace(".pdf", "")
 		swipe('down')
-		AssertUtilities.checkContains(data, getText(subFile))
+		boolean status = subFiles().any { getText(it).contains(data) }
+		AssertUtilities.assertTrue(status)
 	}
 
+
 	def checkUserCannotEditDocument() {
-		boolean status = false
 		clickToElement(documentActionBtn)
-		status = isDisplayed(rePresentTxt) && !isDisplayed(submitTxt) && !isDisplayed(getOpinoionTxt) && !isDisplayed(sendApprovalTxt)
+		boolean status = isDisplayed(rePresentTxt) && !isDisplayed(submitTxt) && !isDisplayed(getOpinoionTxt) && !isDisplayed(sendApprovalTxt)
 		clickToElement(documentActionBtn)
 		AssertUtilities.assertTrue(status, "Check user can not edit document")
 	}
@@ -152,13 +160,13 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		boolean status = false
 		List<TestObject> comments = processComments(user.getName())
 		for (TestObject comment : comments) {
-			String gui = getText(comment)
+			String gui = getText(comment).trim().replaceAll("[\\r\\n]", "");
 			if (gui.equals(dataComment)) {
 				status = true
 				break
 			}
 		}
-		AssertUtilities.assertTrue(status)
+		AssertUtilities.assertTrue(status, "Check comment of ${user.getName()} is ${dataComment}")
 	}
 
 	// APPROVE
@@ -244,7 +252,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		int timeoutInSeconds = 300
 		long startTime = System.currentTimeMillis()
 		while ((System.currentTimeMillis() - startTime) < timeoutInSeconds * 1000) {
-			swipe('up', 0.5)
+			swipe('up', 0.5) // swipe to load new data
 			if (getText(status).equals(docStatus)) {
 				long elapsedTime = (System.currentTimeMillis() - startTime) / 1000
 				KeywordUtil.logInfo("Status change to ${docStatus.toString()} in ${elapsedTime} seconds.")

@@ -1,11 +1,11 @@
-import entities.Document as Document
-
-import entities.DocumentStatus as DocumentStatus
-import ipaper.IPaper as IPaper
-import screens.OutLook_HomeScreen.EmailNoti as EmailNoti
-import screens.OutLook_MailScreen.ActionType as ActionType
-import screens.PDFSignScreen.PerformAction as PerformAction
-import utilities.DataTest as DataTest
+import entities.Document
+import entities.DocumentStatus
+import ipaper.IPaper
+import screens.IncomingDocumentScreen.ActionType
+import screens.OutLook_MailScreen.ActionType as ActionOutlook
+import screens.OutLook_HomeScreen.EmailNoti
+import screens.PDFSignScreen.PerformAction
+import utilities.DataTest
 import utilities.Utilities as Utilities
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
@@ -69,34 +69,21 @@ IPaper.outlook_homeScreen.switchToAccount(auto6)
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
 
-IPaper.outlook_homeScreen.backToHome()
+Utilities.closeCurentApp()
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+Utilities.openIPaperApp()
 
-IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
+IPaper.loginScreen.login(auto6)
 
-//Tại yêu cầu cần duyệt, user Duyệt nhấn Duyệt
-//User Duyệt nhập thông tin ghi chú vào email, nhấn Gửi
+IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.outlook_mailScreen.action(ActionType.APPROVE, APPROVER_COMMENT)
-
-IPaper.outlook_homeScreen.backToHome()
-
-IPaper.outlook_homeScreen.waitNotiEmailSent(auto6, EmailNoti.APPROVED, document)
+IPaper.inComingDocument.performAction(document, ActionType.QUICK_APPROVE)
 
 document.setStatus(DocumentStatus.APPROVED)
 
 document.setSender(auto6)
 
 document.setAssigner(auto5)
-
-Utilities.closeCurentApp()
-
-Utilities.openIPaperApp()
-
-//User Duyệt login lại app IPP, kiểm tra Hồ sơ đi
-
-IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToOutComingDocument()
 
@@ -122,6 +109,18 @@ IPaper.documentInformationScreen.checkPresentFileName(document)
 
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
-IPaper.documentInformationScreen.checkComment(auto6, APPROVER_COMMENT)
+Utilities.closeCurentApp()
 
-IPaper.documentInformationScreen.checkComment(auto5, document.getComment())
+Utilities.openOutlookApp()
+
+IPaper.outlook_homeScreen.switchToAccount(auto6)
+
+IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+
+IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
+
+IPaper.outlook_mailScreen.action(ActionOutlook.RETURN, APPROVER_COMMENT)
+
+IPaper.outlook_homeScreen.backToHome()
+
+IPaper.outlook_homeScreen.waitNotiEmailSent(EmailNoti.NOT_ACCEPTED, document)

@@ -1,5 +1,6 @@
 package screens
 
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
@@ -138,6 +139,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	def submitRequest() {
 		clickToElement(submitFormBtn)
+		Mobile.delay(1)
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForNotPresentOf(loadingMask)
 		} else {

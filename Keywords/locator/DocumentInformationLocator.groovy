@@ -1,6 +1,5 @@
 package locator
 
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.testobject.TestObject
 
 import entities.LocatorType
@@ -8,14 +7,13 @@ import internal.GlobalVariable
 
 public class DocumentInformationLocator extends TestObjectFactory {
 
-	TestObject assigner, subFile, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
+	TestObject assigner, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
-	ccOnPopupTxt, rejectDocument, getComment, warningPopup, ignoreBtn
+	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
 				assigner = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/email_tv")
-				subFile = createTestObject(LocatorType.XPATH, "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.hdbank.ipaper:id/lv_attach_file']//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_version']")
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				createDate = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_status_date")
 				description = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_note")
@@ -37,6 +35,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				fillterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				ccOnPopupTxt = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/et_auto_cc")
 				rejectDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Từ chối']/following-sibling::android.widget.ImageButton[1]")
+				withdrawDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Rút lại']/following-sibling::android.widget.ImageButton[1]")
 				getComment = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Gửi ý kiến']/following-sibling::android.widget.ImageButton[1]")
 				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
 				warningPopup = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Cảnh báo' and @resource-id='com.hdbank.ipaper:id/tv_title_mes']")
@@ -44,7 +43,6 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				break
 			case "iOS":
 				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-				subFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Tài liệu đính kèm']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
 				createDate = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ngày hoàn thiện:']/following-sibling::XCUIElementTypeStaticText[1]")
 				description = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Mô tả']/following-sibling::XCUIElementTypeTextView[1]")
@@ -67,11 +65,21 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				fillterBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic filter']")
 				ccOnPopupTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTextField[@value='Cc']")
 				rejectDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_reject']/parent::XCUIElementTypeOther")
+				withdrawDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Rút lại']/parent::XCUIElementTypeOther")
 				getComment = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi ý kiến']/parent::XCUIElementTypeOther")
 				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText")
 				warningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cảnh báo']")
 				ignoreBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
 				break
+		}
+	}
+
+	List<TestObject> subFiles(){
+		switch (GlobalVariable.PLATFORM) {
+			case'Android':
+				return createTestObjects(LocatorType.XPATH, "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.hdbank.ipaper:id/lv_attach_file']//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_version']")
+			case'iOS':
+				return createTestObjects(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Tài liệu đính kèm']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 		}
 	}
 

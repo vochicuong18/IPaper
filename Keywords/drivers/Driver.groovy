@@ -99,7 +99,7 @@ public class Driver extends BaseApp{
 			cap.setCapability("appium:automationName", platformCaps.automationName)
 			cap.setCapability("appium:noReset", platformCaps.noReset)
 			cap.setCapability("appium:fullReset", platformCaps.fullReset)
-			
+
 			cap.setCapability("appium:waitForQuiescence", false)
 			cap.setCapability("appium:reduceMotion", true)
 			cap.setCapability("appium:animationCoolOffTimeout", 0)

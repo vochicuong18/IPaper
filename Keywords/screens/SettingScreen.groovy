@@ -11,17 +11,15 @@ public class SettingScreen extends SettingLocator implements BaseKeyword {
 		if (GlobalVariable.PLATFORM == 'Android') {
 			currentStatus = getValueAttributeOf(approveByEmailSwitch, "checked")
 		} else {
-			String expectedName = expectedStatus ? "setting_check_ic" : "setting_off"
-			currentStatus = getValueAttributeOf(approveByEmaiSwitchStatus, "name") == expectedName
+			currentStatus = getValueAttributeOf(approveByEmaiSwitchStatus, "name")
 		}
 
 		if (currentStatus != expectedStatus) {
 			clickToElement(approveByEmailSwitch)
 		}
 	}
-	
+
 	def enablReceivedNotification () {
-		
 	}
 
 	def backToHome () {

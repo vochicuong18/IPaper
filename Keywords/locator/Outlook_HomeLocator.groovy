@@ -1,33 +1,34 @@
 package locator
 
-import static entities.LocatorType.XPATH
-
 import com.kms.katalon.core.testobject.TestObject
 
 import entities.Document
 import entities.LocatorType
+import entities.User
 import internal.GlobalVariable
-import screens.PDFSignScreen.PerformAction
 
 public class Outlook_HomeLocator extends TestObjectFactory{
-	TestObject search, searchTxt, accountButton, currentEmail, leftMenu, backBtn
+	TestObject search, searchTxt, searchProgress, accountButton, currentEmail, leftMenu, backBtn, accountItemSelected
 
 	Outlook_HomeLocator() {
 		switch(GlobalVariable.PLATFORM) {
 			case "Android":
 				search = createTestObject(LocatorType.XPATH, "//android.widget.Button[@content-desc='Tìm kiếm']/parent::androidx.appcompat.widget.LinearLayoutCompat")
 				searchTxt = createTestObject(LocatorType.ID, "com.microsoft.office.outlook:id/search_edit_text")
+				searchProgress = createTestObject(LocatorType.ID, "com.microsoft.office.outlook:id/search_progress")
 				accountButton = createTestObject(LocatorType.ID, "com.microsoft.office.outlook:id/account_button")
 				currentEmail = createTestObject(LocatorType.XPATH, "//android.widget.TextView[contains(@text,'@hdbank.com.vn')]")
 				leftMenu = createTestObject(LocatorType.ID, "com.microsoft.office.outlook:id/left_menu")
 				backBtn = createTestObject(LocatorType.XPATH, "//android.widget.ImageButton[@content-desc='Quay lại' or @content-desc='Đóng']")
+				accountItemSelected = createTestObject(LocatorType.XPATH, "//android.widget.Button[@content-desc='Tất cả Tài khoản']/following-sibling::android.widget.Button[@selected = 'true']")
 				break
 			case "iOS":
 				search = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Tìm']")
 				searchTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTextField[@name='SearchBox']")
-				accountButton = createTestObject(LocatorType.XPATH, "")
-				leftMenu = createTestObject(LocatorType.ID, "")
-				backBtn = createTestObject(LocatorType.XPATH, "")
+				searchProgress = createTestObject(LocatorType.ID, "")
+				accountButton = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='MailStartAvatar']")
+				leftMenu = createTestObject(LocatorType.ID, "//XCUIElementTypeButton[@name='Đóng']")
+				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Hủy bỏ'] | //XCUIElementTypeButton[@name='Quay lại']")
 				break
 		}
 	}
@@ -47,6 +48,15 @@ public class Outlook_HomeLocator extends TestObjectFactory{
 				return createTestObjects(LocatorType.XPATH, "//android.widget.Button[@content-desc='Tất cả Tài khoản']/following-sibling::android.widget.Button")
 			case 'iOS':
 				return createTestObjects(LocatorType.XPATH, "")
+		}
+	}
+
+	TestObject iosAccountItem(User user) {
+		switch(GlobalVariable.PLATFORM) {
+			case 'Android':
+				return createTestObject(LocatorType.XPATH, "")
+			case 'iOS':
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeCell[@name='MailAccountChooser.account.${user.getEmail()}']")
 		}
 	}
 }

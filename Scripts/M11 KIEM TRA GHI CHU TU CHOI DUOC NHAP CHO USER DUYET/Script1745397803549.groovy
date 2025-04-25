@@ -18,17 +18,13 @@ def APPROVER_COMMENT = "Automation commented by email"
 
 Document document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
-IPaper.loginScreen.login(auto6)
+IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.goToSetting()
 
 IPaper.settingScreen.enableApproveByEmail(true)
 
 IPaper.settingScreen.backToHome()
-
-IPaper.homeScreen.logout()
-
-IPaper.loginScreen.login(auto5)
 
 // create document
 IPaper.homeScreen.openRequestList()
@@ -63,24 +59,27 @@ Utilities.closeCurentApp()
 
 Utilities.openOutlookApp()
 
-// User Duyệt login vào mail và chọn yêu cầu cần duyệt
+// User Tạo login vào mail và kiểm tra
 
-IPaper.outlook_homeScreen.switchToAccount(auto6)
+IPaper.outlook_homeScreen.switchToAccount(auto5)
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
 
 IPaper.outlook_homeScreen.backToHome()
 
+// User Duyệt login vào mail và chọn yêu cầu cần duyệt
+
+IPaper.outlook_homeScreen.switchToAccount(auto6)
+
 IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
 
 IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
 
-//Tại yêu cầu cần duyệt, user Duyệt nhấn Duyệt
-//User Duyệt nhập thông tin ghi chú vào email, nhấn Gửi
-
 IPaper.outlook_mailScreen.action(ActionType.APPROVE, APPROVER_COMMENT)
 
 IPaper.outlook_homeScreen.backToHome()
+
+IPaper.outlook_homeScreen.switchToAccount(auto5)
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(auto6, EmailNoti.APPROVED, document)
 
@@ -94,13 +93,13 @@ Utilities.closeCurentApp()
 
 Utilities.openIPaperApp()
 
-//User Duyệt login lại app IPP, kiểm tra Hồ sơ đi
+//Check document
 
-IPaper.loginScreen.login(auto6)
+IPaper.loginScreen.login(auto5)
 
-IPaper.homeScreen.goToOutComingDocument()
+IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.outComingDocument.viewInformationDocument(document)
+IPaper.inComingDocument.viewInformationDocument(document)
 
 IPaper.documentInformationScreen.checkDocumentTitle(document)
 
@@ -116,7 +115,7 @@ IPaper.documentInformationScreen.checkPriority(document)
 
 IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 

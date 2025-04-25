@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M11 KIEM TRA GHI CHU TU CHOI DUOC NHAP CHO USER DUYET</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>6c62d993-bd2e-49cd-98b1-b319cf7cd388</testCaseGuid>
+</TestCaseEntity>

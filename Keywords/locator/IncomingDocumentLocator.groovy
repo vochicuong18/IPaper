@@ -8,7 +8,7 @@ import internal.GlobalVariable
 
 public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
-	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem
+	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem, backBtn
 
 	IncomingDocumentLocator () {
 		switch (GlobalVariable.PLATFORM) {
@@ -22,6 +22,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='Hồ sơ liên quan']")
 				sendOpinionApprove = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok_user")
 				toastMessage = createTestObject(LocatorType.XPATH, "//android.widget.Toast[@text=Thành công']")
+				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				break
 			case "iOS":
 				secondItem = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf'][2]")
@@ -37,6 +38,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				sendOpinionApprove = createTestObject(LocatorType.XPATH, "")
 				toastMessage = createTestObject(LocatorType.XPATH, "")
 				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/following-sibling::XCUIElementTypeTextField")
+				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
 				break
 		}
 	}

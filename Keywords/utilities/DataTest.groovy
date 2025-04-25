@@ -128,6 +128,8 @@ public class DataTest {
 				.name(jsonData.getString("name"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
+				.role(jsonData.getString("role"))
+				.department(jsonData.getString("department"))
 				.build()
 	}
 
@@ -138,6 +140,8 @@ public class DataTest {
 				.name(jsonData.getString("name"))
 				.password(jsonData.getString("password"))
 				.email(jsonData.getString("email"))
+				.role(jsonData.getString("role"))
+				.department(jsonData.getString("department"))
 				.build()
 	}
 }
