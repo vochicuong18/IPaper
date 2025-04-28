@@ -98,68 +98,72 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 
 	//--------------------------------------
 
-	//	def switchToAccount(User user) {
-	//		if(GlobalVariable.PLATFORM == 'iOS') {
-	//			openListAccountTab(true)
-	//			clickToElement(iosAccountItem(user))
-	//			return
-	//		}
-	//
-	//		else {
-	//			String expectedEmail = user.getEmail()
-	//			for (int i = 0; i < 5; i++) {
-	//				openListAccountTab(true)
-	//				if (getText(currentEmail) == expectedEmail) {
-	//					KeywordUtil.logInfo("Switched account: $expectedEmail")
-	//					openListAccountTab(false)
-	//					return
-	//				}
-	//				def items = accountItems()
-	//		if (i >= items.size()) break
-	//
-	//		clickToElement(items[i])
-	//			}
-	//			KeywordUtil.markFailed("Không tìm thấy account: $expectedEmail")
-	//		}
-	//	}
-
 	def switchToAccount(User user) {
-		if (GlobalVariable.PLATFORM == 'iOS') {
+		if(GlobalVariable.PLATFORM == 'iOS') {
 			openListAccountTab(true)
 			clickToElement(iosAccountItem(user))
 			return
 		}
 
-		String expectedEmail = user.getEmail()
-		openListAccountTab(true)
+		else {
+			String expectedEmail = user.getEmail()
+			for (int i = 0; i < 5; i++) {
+				openListAccountTab(true)
+				if (getText(currentEmail) == expectedEmail) {
+					KeywordUtil.logInfo("Switched account: $expectedEmail")
+					openListAccountTab(false)
+					return
+				}
+				def items = accountItems()
+				if (i >= items.size()) break
 
-		// Check current email account
-		if (getText(currentEmail) == expectedEmail) {
-			KeywordUtil.logInfo("Switched account: $expectedEmail")
-			openListAccountTab(false)
-			return
-		}
-
-		// If email does not match, get account list and click each item
-		def items = accountItems()
-		items.each { item ->
-			clickToElement(item)
-			Mobile.delay(1)
-			if (getText(currentEmail) == expectedEmail) {
-				KeywordUtil.logInfo("Switched account: $expectedEmail")
-				openListAccountTab(false)
-				return
+					clickToElement(items[i])
 			}
+			KeywordUtil.markFailed("Không tìm thấy account: $expectedEmail")
 		}
-
-		KeywordUtil.markFailedAndStop("Not found: $expectedEmail")
 	}
+
+	//	def switchToAccount(User user) {
+	//		waitForPresentOf(accountButton)
+	//		if (GlobalVariable.PLATFORM == 'iOS') {
+	//			openListAccountTab(true)
+	//			clickToElement(iosAccountItem(user))
+	//			return
+	//		}
+	//
+	//		String expectedEmail = user.getEmail()
+	//		openListAccountTab(true)
+	//
+	//		// Check current email account
+	//		if (getText(currentEmail) == expectedEmail) {
+	//			KeywordUtil.logInfo("Switched account: $expectedEmail")
+	//			openListAccountTab(false)
+	//			return
+	//		}
+	//
+	//		// If email does not match, get account list and click each item
+	//		def items = accountItems()
+	//		items.each { item ->
+	//			clickToElement(item)
+	//			Mobile.delay(1)
+	//			if (getText(currentEmail) == expectedEmail) {
+	//				KeywordUtil.logInfo("Switched account: $expectedEmail")
+	//				openListAccountTab(false)
+	//				return
+	//			}
+	//		}
+	//
+	//		KeywordUtil.markFailedAndStop("Not found: $expectedEmail")
+	//	}
 
 	def openListAccountTab(boolean open) {
 		if (open && !isDisplayed(leftMenu)) {
+			Mobile.delay(0.3)
 			clickToElement(accountButton)
+			Mobile.delay(0.3)
 		} else if (!open && isDisplayed(leftMenu)) {
 			clickToElement(accountItemSelected)
+			Mobile.delay(0.3)
 		}
 	}
 }

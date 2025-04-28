@@ -9,7 +9,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 
 	TestObject assigner, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
-	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn
+	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn, returnDocument
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -40,6 +40,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
 				warningPopup = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Cảnh báo' and @resource-id='com.hdbank.ipaper:id/tv_title_mes']")
 				ignoreBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok")
+				returnDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Trả về']/following-sibling::android.widget.ImageButton[1]")
 				break
 			case "iOS":
 				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
@@ -70,6 +71,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText")
 				warningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cảnh báo']")
 				ignoreBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
+				returnDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_return']/parent::XCUIElementTypeOther")
 				break
 		}
 	}

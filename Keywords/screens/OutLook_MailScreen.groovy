@@ -38,15 +38,15 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 				return
 		}
 
-		swipeToElement(actionButton)
-		swipe('down') //swipe to make sure the button can tap
+//		swipeToElement(bottomMailContent)
+		swipe ("down", 0.5) //handle scroll to actionButton
 		clickToElement(actionButton)
 
 		if (comment) {
 			waitForNotPresentOf(emailContent)
 			if(GlobalVariable.PLATFORM == 'iOS') {
 				clickToElement(emailContentWrapper)
-//				Mobile.c
+				Mobile.clearText(emailContent, 1)
 				Mobile.sendKeys(emailContent, comment)
 			} else {
 				inputText(emailContent, getEmailContent(comment))
@@ -65,12 +65,12 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 	}
 
 
-//	def clearEmailContent() {
-//		waitForNotPresentOf(emailContent)
-//		if(GlobalVariable.PLATFORM == 'iOS') {
-//			clickToElement(emailContentWrapper)
-//		}
-//	}
+	//	def clearEmailContent() {
+	//		waitForNotPresentOf(emailContent)
+	//		if(GlobalVariable.PLATFORM == 'iOS') {
+	//			clickToElement(emailContentWrapper)
+	//		}
+	//	}
 
 	String approveEmailContent(String comment) {
 		String data =

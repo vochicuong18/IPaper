@@ -20,7 +20,8 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		REJECT,
 		COMMENT,
 		APPROVE_ADD_CC,
-		WITHDRAW_DOCUMENT
+		WITHDRAW_DOCUMENT,
+		RETURN
 	}
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
@@ -71,6 +72,14 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.WAIT_PROCESS)
+				document.setTime(TO_DAY)
+				break
+
+			case ActionType.RETURN:
+				clickToElement(returnDocument)
+				if (comment) inputText(getOpinionTxt, comment)
+				clickToElement(submitApproveBtn)
+				document.setStatus(DocumentStatus.RETURNED)
 				document.setTime(TO_DAY)
 				break
 		}

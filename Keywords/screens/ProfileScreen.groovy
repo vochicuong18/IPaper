@@ -7,7 +7,7 @@ import utilities.AssertUtilities
 public class ProfileScreen extends ProfileLocator implements BaseKeyword {
 	def checkUserEmail(String emailData) {
 		String gui = getText(email)
-		AssertUtilities.checkEquals(gui, "Ádfádf")
+		AssertUtilities.checkEquals(gui, emailData)
 	}
 
 	def checkUserName(String userNameData) {

@@ -163,7 +163,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 
 	List<Map<String, String>> getAllItemDataAndroid() {
 		List<Map<String, String>> itemList = []
-		for (int i = 0; i <= 1; i ++) {
+		for (int i = 0; i <= 20; i ++) {
 			if(!isDisplayed(firstDocumentTitle)) break
 				String title = getText(firstDocumentTitle)
 			String time = getText(firstDocumentDate)

@@ -37,7 +37,6 @@ trait BaseKeyword {
 	}
 
 	def inputText(TestObject element, String text) {
-		Mobile.delay(0.1)
 		Mobile.tap(element, TIMEOUT)
 		Mobile.clearText(element, TIMEOUT)
 		Mobile.sendKeys(element, text)
@@ -52,12 +51,10 @@ trait BaseKeyword {
 
 
 	def clickToElement(TestObject element) {
-		Mobile.delay(0.1)
 		Mobile.tap(element, TIMEOUT)
 	}
 
 	def tapAtPosition(int x, int y) {
-		Mobile.delay(0.1)
 		Mobile.tapAtPosition(x, y)
 	}
 

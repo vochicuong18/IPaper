@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M20 KIEM TRA GHI CHU TRA VE DUOC NHAP CHO USER TẠO</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>a15db2d5-1359-47f6-81fd-59139965c574</testCaseGuid>
+</TestCaseEntity>

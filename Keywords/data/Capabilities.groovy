@@ -4,9 +4,9 @@ public class Capabilities {
 	public static final CAP = [
 		iOS: [
 			platformName                       : "iOS",
-			platformVersion                    : "18.2.1",
-			deviceName                         : "iPhone 15 Pro Max",
-			udid                               : "00008130-001C31C23CB8001C",
+			platformVersion                    : "18.4.1",
+			deviceName                         : "iPhone 13 Pro Max",
+			udid                               : "00008110-000C10543443801E",
 			automationName                     : "XCUITest",
 			noReset                            : true,
 			fullReset			                : false,

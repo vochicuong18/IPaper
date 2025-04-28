@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject
 
+import com.kms.katalon.core.configuration.RunConfiguration
+import com.kms.katalon.core.main.TestCaseMain
+
 import entities.Document
 import entities.User
 import screens.PDFSignScreen
@@ -83,7 +86,7 @@ public class DataTest {
 				.subFileName(subFileName)
 				.priority(randomPriority)
 				.time(tomorrow)
-				.description("Mobile automation test description")
+				.description(RunConfiguration.getExecutionSourceId())
 				.assigner(assigner)
 				.cc(cc)
 				.comment("Mobile automation test comment")
