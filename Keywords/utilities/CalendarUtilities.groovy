@@ -1,7 +1,5 @@
 package utilities
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 
@@ -10,8 +8,9 @@ import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
 import internal.GlobalVariable
+import locator.CalendarLocator
 
-public class CalendarUtilities implements BaseKeyword {
+public class CalendarUtilities extends CalendarLocator implements BaseKeyword {
 
 	def selectDate (String date) {
 		GlobalVariable.PLATFORM == "Android" ? selectDateAndroid(date) : selectDateIOS(date)
@@ -32,32 +31,31 @@ public class CalendarUtilities implements BaseKeyword {
 		selectDayAndroid(day)
 	}
 
-	def selectYearAndroid(String year) {
-		if (getCurrentYear() != year) {
-			clickToElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/year"))
-			def yearItem = findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/yearItems", [('year'): year])
-			clickToElement(yearItem)
+	def selectYearAndroid(String yearExpect) {
+		if (getCurrentYear() != yearExpect) {
+			clickToElement(year)
+			clickToElement(yearItems(yearExpect))
 		}
 	}
 
 	def selectMonthAndroid(int expectedMonth) {
 		int currentMonth = getCurrentMonth()
 		while (currentMonth < expectedMonth) {
-			clickToElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/nextBtn"))
+			clickToElement(nextBtn)
 			Thread.sleep(200)
 			currentMonth++
 		}
 	}
 
-	def selectDayAndroid(String day) {
-		def dayItem = findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/day", [('day'): day])
-		clickToElement(dayItem)
+	def selectDayAndroid(String expecteDay) {
+		waitForPresentOf(day(expecteDay))
+		clickToElement(day(expecteDay))
 	}
 
 	//TH 6, 25 thg4 và T.6, 25 th4
 
 	int getCurrentMonth() {
-		String currentDate = getText(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/currentDate"))
+		String currentDate = getText(currentDate)
 
 		try {
 			if (currentDate.contains("thg")) {
@@ -75,7 +73,7 @@ public class CalendarUtilities implements BaseKeyword {
 
 
 	String getCurrentYear() {
-		return getText(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/year"))
+		return getText(year)
 	}
 
 	/** --------------------------------------- DATE PICKER IOS --------------------------------------- */
@@ -88,26 +86,26 @@ public class CalendarUtilities implements BaseKeyword {
 		int year = new SimpleDateFormat("yyyy").format(parsedDate).toInteger()
 
 
-		String currentDate = getText(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
+		String currentDate = getText(currentMonthYear)
 		SimpleDateFormat currentSdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
 		Date currentParsedDate = currentSdf.parse(currentDate)
 
 		int currentMonth = new SimpleDateFormat("M").format(currentParsedDate).toInteger()
 		int currentYear = new SimpleDateFormat("yyyy").format(currentParsedDate).toInteger()
 
-		clickToElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
+		clickToElement(currentMonthYear)
 		selectMonthIOS(currentMonth, month)
 		selectYearIOS(currentYear, year)
-		clickToElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/closeMonthYearSelected"))
+		clickToElement(closeMonthYearSelected)
 		selectDayIOS(day)
-		tapOutSideElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
-		clickToElement(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/submitDateBtn"))
+		tapOutSideElement(currentMonthYear)
+		clickToElement(submitDateBtn)
 	}
 
 	def selectMonthIOS(int currentMonth, int expectMonth) {
 		if(currentMonth < expectMonth) {
 			while (currentMonth < expectMonth) {
-				verticalSwipeYearIOS(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/monthItems"), "down")
+				verticalSwipeYearIOS(monthItems, "down")
 				currentMonth++
 			}
 		}
@@ -116,15 +114,14 @@ public class CalendarUtilities implements BaseKeyword {
 	def selectYearIOS(int currentYear, int expectYear) {
 		if (currentYear < expectYear) {
 			while (currentYear < expectYear) {
-				verticalSwipeYearIOS(findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/yearItems"), "down")
+				verticalSwipeYearIOS(yearItems, "down")
 				currentYear++
 			}
 		}
 	}
 
 	def selectDayIOS(String day) {
-		def item = findTestObject("Object Repository/${GlobalVariable.PLATFORM}/Calendar/dayItems", [('day'): day])
-		clickToElement(item)
+		clickToElement(dayItem(day))
 	}
 
 	def verticalSwipeYearIOS(TestObject to, String direction) {

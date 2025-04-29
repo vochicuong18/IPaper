@@ -109,7 +109,8 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	}
 
 	def searchDocument(String documentTitle) {
-		inputText(searchDocument, documentTitle)
+		waitForPresentOf(searchDocument)
+		mobileInputText(searchDocument, documentTitle)
 	}
 
 	def fillOpinion(String opinion) {

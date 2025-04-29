@@ -64,7 +64,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 
 	def createRequest(String requestName) {
 		def item = requestItem(requestName)
-		waitForVisibilityOf(item)
+		waitForPresentOf(item)
 		Thread.sleep(300)
 		clickToElement(item)
 	}

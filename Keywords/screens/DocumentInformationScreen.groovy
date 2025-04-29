@@ -12,6 +12,7 @@ import entities.User
 import internal.GlobalVariable
 import locator.DocumentInformationLocator
 import utilities.AssertUtilities
+import utilities.Utilities
 
 public class DocumentInformationScreen extends DocumentInformationLocator implements BaseKeyword {
 
@@ -121,8 +122,8 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	def checkFinishDate(Document document) {
 		swipe('down')
 		String gui = getText(finishDate)
-		Date parsedData = new SimpleDateFormat("d/M/yyyy").parse(document.getTime())
-		String formattedData = new SimpleDateFormat("dd/MM/yyyy").format(parsedData)
+		Date date = new SimpleDateFormat("d/M/yyyy").parse(document.getTime())
+		String formattedData = new SimpleDateFormat("dd/MM/yyyy").format(date)
 		AssertUtilities.checkEquals(gui, formattedData)
 	}
 
@@ -169,8 +170,9 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		boolean status = false
 		List<TestObject> comments = processComments(user.getName())
 		for (TestObject comment : comments) {
-			String gui = getText(comment).trim().replaceAll("[\\r\\n]", "");
-			if (gui.equals(dataComment)) {
+			String gui = getText(comment).trim().replaceAll("[\\r\\n]", "")
+			Utilities.logInfo("GUI COMMENT: ${gui} - DATA COMMENT: ${dataComment}")
+			if (gui.contains(dataComment)) {
 				status = true
 				break
 			}

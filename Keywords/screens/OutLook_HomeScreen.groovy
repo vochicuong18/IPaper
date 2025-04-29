@@ -19,7 +19,10 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 		REJECTED,
 		RETURNED,
 		NOT_ACCEPTED,
-		NOT_ACCEPTED_WITHDRAW
+		NOT_ACCEPTED_WITHDRAW,
+		GET_COMMENT,
+		COMMENTED,
+		REJECT_COMMENT
 
 		String toString() {
 			switch (this) {
@@ -27,8 +30,11 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 				case APPROVED: return "duyệt"
 				case REJECTED: return "từ chối"
 				case RETURNED: return "trả về"
+				case GET_COMMENT: return "lấy ý kiến"
 				case NOT_ACCEPTED : return "Kính gửi Anh/Chị, Phê duyệt của Anh/Chị(Chi tiết file đính kèm) KHÔNG ĐƯỢC GHI NHẬN. Lý do: Hồ sơ không tồn tại hoặc đã được chuyển bước"
 				case NOT_ACCEPTED_WITHDRAW : return "Kính gửi Anh/Chị, Phê duyệt của Anh/Chị(Chi tiết file đính kèm) KHÔNG ĐƯỢC GHI NHẬN. Lý do: Hồ sơ đã được chuyển bước hoặc rút lại"
+				case COMMENTED : return "Kính gửi Anh/Chị, Góp ý của Anh/Chị đã được hệ thống tiếp nhận và xử lý. Chi tiết Anh/Chị vui lòng xem file đính kèm."
+				case REJECT_COMMENT : return "Kính gửi Anh/Chị, Góp ý của Anh/Chị không được hệ thống xử lý. Lý do: Vui lòng nhập nội dung khi cho ý kiến!" 
 				default : return "please define"
 			}
 		}
@@ -84,7 +90,7 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 			inputText(searchTxt, document.getTitle())
 			enterText(searchTxt)
 			// wait result shown after searching
-			//			waitForNotPresentOf(searchProgress)
+			//waitForNotPresentOf(searchProgress)
 			Mobile.delay(3)
 			if (isDisplayed(emailItem(content, document))) {
 				KeywordUtil.markPassed("Email item appeared after ${(SEND_MAIL_TIME_OUT * 1000 - (deadline - System.currentTimeMillis())) / 1000} seconds")
@@ -116,45 +122,11 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 				}
 				def items = accountItems()
 				if (i >= items.size()) break
-
 					clickToElement(items[i])
 			}
 			KeywordUtil.markFailed("Không tìm thấy account: $expectedEmail")
 		}
 	}
-
-	//	def switchToAccount(User user) {
-	//		waitForPresentOf(accountButton)
-	//		if (GlobalVariable.PLATFORM == 'iOS') {
-	//			openListAccountTab(true)
-	//			clickToElement(iosAccountItem(user))
-	//			return
-	//		}
-	//
-	//		String expectedEmail = user.getEmail()
-	//		openListAccountTab(true)
-	//
-	//		// Check current email account
-	//		if (getText(currentEmail) == expectedEmail) {
-	//			KeywordUtil.logInfo("Switched account: $expectedEmail")
-	//			openListAccountTab(false)
-	//			return
-	//		}
-	//
-	//		// If email does not match, get account list and click each item
-	//		def items = accountItems()
-	//		items.each { item ->
-	//			clickToElement(item)
-	//			Mobile.delay(1)
-	//			if (getText(currentEmail) == expectedEmail) {
-	//				KeywordUtil.logInfo("Switched account: $expectedEmail")
-	//				openListAccountTab(false)
-	//				return
-	//			}
-	//		}
-	//
-	//		KeywordUtil.markFailedAndStop("Not found: $expectedEmail")
-	//	}
 
 	def openListAccountTab(boolean open) {
 		if (open && !isDisplayed(leftMenu)) {

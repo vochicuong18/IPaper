@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M27 KIEM TRA MAIL KHI KHONG NHAP Y KIEN</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>dada99cc-b42b-48da-8e7c-660b66585e9d</testCaseGuid>
+</TestCaseEntity>

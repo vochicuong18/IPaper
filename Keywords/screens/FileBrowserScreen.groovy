@@ -10,6 +10,7 @@ public class FileBrowserScreen extends FileBrowserLocator implements BaseKeyword
 		if (GlobalVariable.PLATFORM == "Android") {
 			clickToSearch()
 		}
+		waitForPresentOf(searchTxt)
 		inputSearch(fileName)
 		Thread.sleep(1000) //wait system find file
 		selectFile(fileName)
@@ -30,6 +31,7 @@ public class FileBrowserScreen extends FileBrowserLocator implements BaseKeyword
 
 	def selectFile(String fileName) {
 		def fileItem = fileLbl(fileName)
+		waitForPresentOf(fileItem)
 		clickToElement(fileItem)
 	}
 }

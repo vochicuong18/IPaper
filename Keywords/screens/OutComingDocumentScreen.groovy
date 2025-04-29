@@ -44,7 +44,8 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 	}
 
 	def searchDocument(String documentTitle) {
-		inputText(searchDocument, documentTitle)
+		waitForPresentOf(searchDocument)
+		mobileInputText(searchDocument, documentTitle)
 	}
 
 	boolean checkItemInDocument() {

@@ -43,7 +43,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				returnDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Trả về']/following-sibling::android.widget.ImageButton[1]")
 				break
 			case "iOS":
-				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label, 'hdbank.com.vn')]")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
 				createDate = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ngày hoàn thiện:']/following-sibling::XCUIElementTypeStaticText[1]")
 				description = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Mô tả']/following-sibling::XCUIElementTypeTextView[1]")
@@ -86,29 +86,24 @@ public class DocumentInformationLocator extends TestObjectFactory {
 	}
 
 	TestObject processComment(String name) {
-		return createTestObject(LocatorType.XPATH, "//android.widget.TextView[contains(@text, '${name}')]/parent::android.widget.RelativeLayout//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_comment']",
-				[('name') : name])
+		return createTestObject(LocatorType.XPATH, "//android.widget.TextView[contains(@text, '${name}')]/parent::android.widget.RelativeLayout//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_comment']")
 	}
 
 	List<TestObject> processComments(String nameOfUser) {
 		switch (GlobalVariable.PLATFORM) {
 			case 'Android' :
-				return createTestObjects(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_user_name' and contains(@text, '${nameOfUser}')]/parent::android.widget.RelativeLayout//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_comment']",
-				[('nameOfUser') : nameOfUser])
+				return createTestObjects(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_user_name' and contains(@text, '${nameOfUser}')]/parent::android.widget.RelativeLayout//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_comment']")
 			case 'iOS' :
-				return createTestObjects(LocatorType.XPATH, "//XCUIElementTypeCell[.//XCUIElementTypeStaticText[contains(@name, '${nameOfUser}')] and .//XCUIElementTypeButton[@name='ic dot deactive']]/XCUIElementTypeStaticText[2]",
-				[('nameOfUser') : nameOfUser])
+				return createTestObjects(LocatorType.XPATH, "//XCUIElementTypeCell[.//XCUIElementTypeStaticText[contains(@name, '${nameOfUser}')] and .//XCUIElementTypeButton[@name='ic dot deactive']]/XCUIElementTypeStaticText[1]")
 		}
 	}
 
 	TestObject ccUserItemOnPopup(String userEmail) {
 		switch (GlobalVariable.PLATFORM) {
 			case 'Android' :
-				return createTestObject(LocatorType.XPATH, "",
-				[('userEmail') : userEmail])
+				return createTestObject(LocatorType.XPATH, "")
 			case 'iOS' :
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@name, '${userEmail}')]",
-				[('userEmail') : userEmail])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@name, '${userEmail}')]")
 		}
 	}
 }

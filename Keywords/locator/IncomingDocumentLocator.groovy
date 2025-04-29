@@ -37,7 +37,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Hồ sơ liên quan']/parent::XCUIElementTypeCell")
 				sendOpinionApprove = createTestObject(LocatorType.XPATH, "")
 				toastMessage = createTestObject(LocatorType.XPATH, "")
-				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/following-sibling::XCUIElementTypeTextField")
+				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/parent::XCUIElementTypeOther/XCUIElementTypeTextField")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
 				break
 		}

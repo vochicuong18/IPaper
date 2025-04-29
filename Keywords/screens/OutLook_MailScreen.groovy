@@ -13,7 +13,8 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 	enum ActionType {
 		APPROVE,
 		REJECT,
-		RETURN
+		RETURN,
+		COMMENT
 	}
 
 	def action(ActionType actionType, String comment = null) {
@@ -33,17 +34,22 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 				actionButton = returnBtn
 				getEmailContent = { c -> returnEmailContent(c) }
 				break
+			case ActionType.COMMENT:
+				actionButton = commentBtn
+				getEmailContent = { c -> returnEmailContent(c) }
+				break
 			default:
 				KeywordUtil.markFailed("Invalid ActionType: ${actionType}")
 				return
 		}
 
-//		swipeToElement(bottomMailContent)
+		//swipeToElement(bottomMailContent)
 		swipe ("down", 0.5) //handle scroll to actionButton
+		waitForPresentOf(actionButton)
 		clickToElement(actionButton)
 
 		if (comment) {
-			waitForNotPresentOf(emailContent)
+			waitForPresentOf(sendEmailBtn)
 			if(GlobalVariable.PLATFORM == 'iOS') {
 				clickToElement(emailContentWrapper)
 				Mobile.clearText(emailContent, 1)
@@ -52,7 +58,7 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 				inputText(emailContent, getEmailContent(comment))
 			}
 		}
-
+		Mobile.delay(1)
 		clickToElement(sendEmailBtn)
 
 		if (GlobalVariable.PLATFORM == 'iOS') {
@@ -99,6 +105,16 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 				"=====Bắt đầu ý kiến phản hồi trả về (nếu có)=====\n" +
 				comment + "\n" +
 				"=====Kết thúc ý kiến phản hồi=====\n\n"
+		return data
+	}
+
+	String commentsEmailContent(String comment) {
+		String data =
+				"[VUI LÒNG KHÔNG XÓA NỘI DUNG MẶC ĐỊNH CỦA EMAIL NÀY]\n" +
+				"Anh/Chị vui lòng nhập nội dung phản hồi trong khung phía dưới\n" +
+				"=====Bắt đầu nội dung góp ý=====\n\n" +
+				comment + "\n" +
+				"=====Kết thúc nội dung góp ý=====\n\n"
 		return data
 	}
 }

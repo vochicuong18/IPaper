@@ -1,8 +1,7 @@
- import entities.Document
+import entities.Document
 import entities.DocumentStatus
 import ipaper.IPaper
 import screens.IncomingDocumentScreen.ActionType
-import screens.DocumentInformationScreen.ActionType as ActionDocumentInformation
 import screens.OutLook_MailScreen.ActionType as ActionOutlook
 import screens.OutLook_HomeScreen.EmailNoti
 import screens.PDFSignScreen.PerformAction
@@ -15,11 +14,9 @@ def auto5 = DataTest.getUserTest('auto5')
 
 def auto6 = DataTest.getUserTest('auto6')
 
-def APPROVER_COMMENT = "Automation commented by email"
+def APPROVER_COMMENT = "Automation commented by quick action"
 
 Document document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
-
-println document.getDescription()
 
 IPaper.loginScreen.login(auto6)
 
@@ -56,7 +53,7 @@ IPaper.pdfSignScreen.openSubFileBrowser()
 
 IPaper.fileBrowserScreen.attachFile(document.getMainFileName())
 
-IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
+IPaper.pdfSignScreen.performAction(PerformAction.SEND_WITH_COMENT)
 
 IPaper.pdfSignScreen.fillInOpinion(document.getComment())
 
@@ -70,64 +67,69 @@ Utilities.openOutlookApp()
 
 IPaper.outlook_homeScreen.switchToAccount(auto6)
 
-IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
+IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.GET_COMMENT, document)
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_WITH_COMENT, document)
 
 Utilities.closeCurentApp()
 
-// User Tạo login web/app IPP và thực hiện rút lại hồ sơ vừa gửi duyệt thành công
+//User Duyệt login app IPP và chọn đúng yêu cầu vừa nhận mail phê duyệt
+//User Duyệt thực hiện từ chối hồ sơ
 
 Utilities.openIPaperApp()
 
-IPaper.loginScreen.login(auto5)
-
-IPaper.homeScreen.goToOutComingDocument()
-
-IPaper.outComingDocument.viewInformationDocument(document)
-
-// Đảm bảo yêu cầu đều hiển thị ở Hồ sơ đi và Hồ sơ đến
-
-IPaper.documentInformationScreen.performAction(document, ActionDocumentInformation.WITHDRAW_DOCUMENT)
-
-document.setStatus(DocumentStatus.WAIT_PROCESS)
-
-IPaper.documentInformationScreen.backToHome()
+IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.inComingDocument.viewInformationDocument(document)
+IPaper.inComingDocument.performAction(document, ActionType.SEND_COMMENT, APPROVER_COMMENT)
 
-IPaper.documentInformationScreen.checkStatus(document)
+document.setStatus(DocumentStatus.COMMENTED)
 
-IPaper.documentInformationScreen.isAssignerDisplayed()
+document.setSender(auto6)
 
-IPaper.documentInformationScreen.backToHome()
+document.setAssigner(auto5)
 
 IPaper.homeScreen.goToOutComingDocument()
 
 IPaper.outComingDocument.viewInformationDocument(document)
 
+IPaper.documentInformationScreen.checkDocumentTitle(document)
+
+IPaper.documentInformationScreen.checkSender(document)
+
 IPaper.documentInformationScreen.checkStatus(document)
+
+IPaper.documentInformationScreen.checkCreateDate()
+
+IPaper.documentInformationScreen.checkFinishDate(document)
+
+IPaper.documentInformationScreen.checkPriority(document)
+
+IPaper.documentInformationScreen.checkDescription(document)
 
 IPaper.documentInformationScreen.isAssignerDisplayed()
 
-//  User Duyệt login vào mail và thực hiện Trả về hồ sơ user Tạo vừa rút về thành công ở app/web IPP
+IPaper.documentInformationScreen.checkPresentFileName(document)
+
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 Utilities.closeCurentApp()
+
+//User Duyệt login vào mail và cho ý kiến hồ sơ vừa cho ý kiến thành công ở APP IPP
 
 Utilities.openOutlookApp()
 
 IPaper.outlook_homeScreen.switchToAccount(auto6)
 
-//User Duyệt kiểm tra mail phản hồi kết quả trả về
+IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_WITH_COMENT, document)
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_WITH_COMENT, document)
 
-IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
-
-IPaper.outlook_mailScreen.action(ActionOutlook.RETURN)
+IPaper.outlook_mailScreen.action(ActionOutlook.COMMENT, APPROVER_COMMENT)
 
 IPaper.outlook_homeScreen.backToHome()
+
+//User Duyệt kiểm tra mail phản hồi kết quả duyệt
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(EmailNoti.NOT_ACCEPTED_WITHDRAW, document)

@@ -86,7 +86,7 @@ public class DataTest {
 				.subFileName(subFileName)
 				.priority(randomPriority)
 				.time(tomorrow)
-				.description(RunConfiguration.getExecutionSourceId())
+				.description(RunConfiguration.getExecutionSourceName())
 				.assigner(assigner)
 				.cc(cc)
 				.comment("Mobile automation test comment")

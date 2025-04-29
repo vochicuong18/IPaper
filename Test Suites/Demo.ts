@@ -12,10 +12,10 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>30055584-e4a7-460e-8f61-f830fcd8b9a8</testSuiteGuid>
    <testCaseLink>
-      <guid>d140b1a5-4b2a-4fbb-9c4f-20fb10b24d62</guid>
+      <guid>63c75151-0c74-4f3a-b920-f5e799d0946d</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/CHUC NANG TRA VE TREN MAIL/M23 TU CHOI HO SO DA TRA VE TRUOC DO</testCaseId>
+      <testCaseId>Test Cases/CHUC NANG LAY Y KIEN TREN MAIL/M25 KIEM TRA LUONG GUI Y KIEN TREN MAIL</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>

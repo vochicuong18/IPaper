@@ -1,0 +1,479 @@
+{
+    "name": "M23 TU CHOI HO SO DA TRA VE TRUOC DO",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/allure/../../ErrorScreen/android/Test Cases_CHUC NANG TRA VE TREN MAIL_M23 TU CHOI HO SO DA TRA VE TRUOC DO.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1745827124893,
+    "stop": 1745827335970,
+    "uuid": "13389345992070",
+    "historyId": "13389345992070",
+    "testCaseId": "13389345992070",
+    "fullName": "Test Cases/CHUC NANG TRA VE TREN MAIL/M23 TU CHOI HO SO DA TRA VE TRUOC DO",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 28-04-2025 14:58:44"
+        }
+    ],
+    "steps": [
+        {
+            "name": "file.withWriterAppend(\"UTF-8\", { java.lang.Object writer -> ... })",
+            "status": "passed",
+            "start": 1745827111345,
+            "stop": 1745827111356,
+            "steps": []
+        },
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1745827124929,
+            "stop": 1745827124955,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto6)",
+            "status": "passed",
+            "start": 1745827150297,
+            "stop": 1745827165693,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField'",
+                    "status": "passed",
+                    "start": 1745827152685,
+                    "stop": 1745827152686
+                },
+                {
+                    "name": "Element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField' text is cleared",
+                    "status": "passed",
+                    "start": 1745827153977,
+                    "stop": 1745827153978
+                },
+                {
+                    "name": "Send keys 'auto6' on test object '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827155584,
+                    "stop": 1745827155585
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField'",
+                    "status": "passed",
+                    "start": 1745827156993,
+                    "stop": 1745827156994
+                },
+                {
+                    "name": "Element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField' text is cleared",
+                    "status": "passed",
+                    "start": 1745827158000,
+                    "stop": 1745827158001
+                },
+                {
+                    "name": "Send keys 'Auto@12345' on test object '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827159599,
+                    "stop": 1745827159600
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeToolbar[@name='Toolbar']'",
+                    "status": "passed",
+                    "start": 1745827161433,
+                    "stop": 1745827161434
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='\u0110\u0103ng nh\u1eadp']'",
+                    "status": "passed",
+                    "start": 1745827162467,
+                    "stop": 1745827162468
+                }
+            ]
+        },
+        {
+            "name": "homeScreen.goToSetting()",
+            "status": "passed",
+            "start": 1745827165694,
+            "stop": 1745827172404,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='ic user info']'",
+                    "status": "passed",
+                    "start": 1745827168848,
+                    "stop": 1745827168849
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeStaticText[@name='C\u00e0i \u0111\u1eb7t']'",
+                    "status": "passed",
+                    "start": 1745827172403,
+                    "stop": 1745827172404
+                }
+            ]
+        },
+        {
+            "name": "settingScreen.enableApproveByEmail(true)",
+            "status": "passed",
+            "start": 1745827172405,
+            "stop": 1745827173719,
+            "steps": [
+                {
+                    "name": "Element '//XCUIElementTypeStaticText[@name=' Duy\u1ec7t h\u1ed3 s\u01a1 qua Email']/following-sibling::XCUIElementTypeSwitch/XCUIElementTypeImage' has attribute 'name' is 'setting_check_ic'",
+                    "status": "passed",
+                    "start": 1745827173718,
+                    "stop": 1745827173719
+                }
+            ]
+        },
+        {
+            "name": "settingScreen.backToHome()",
+            "status": "passed",
+            "start": 1745827173719,
+            "stop": 1745827174930,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='ic back']'",
+                    "status": "passed",
+                    "start": 1745827174930,
+                    "stop": 1745827174931
+                }
+            ]
+        },
+        {
+            "name": "homeScreen.logout()",
+            "status": "passed",
+            "start": 1745827174931,
+            "stop": 1745827193626,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='ic user info']'",
+                    "status": "passed",
+                    "start": 1745827182650,
+                    "stop": 1745827182651
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='menu_logout']//parent::XCUIElementTypeCell'",
+                    "status": "passed",
+                    "start": 1745827190189,
+                    "stop": 1745827190190
+                }
+            ]
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1745827193626,
+            "stop": 1745827210210,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField'",
+                    "status": "passed",
+                    "start": 1745827195991,
+                    "stop": 1745827195992
+                },
+                {
+                    "name": "Element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField' text is cleared",
+                    "status": "passed",
+                    "start": 1745827197528,
+                    "stop": 1745827197529
+                },
+                {
+                    "name": "Send keys 'auto5' on test object '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827199183,
+                    "stop": 1745827199184
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField'",
+                    "status": "passed",
+                    "start": 1745827200768,
+                    "stop": 1745827200769
+                },
+                {
+                    "name": "Element '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField' text is cleared",
+                    "status": "passed",
+                    "start": 1745827201922,
+                    "stop": 1745827201923
+                },
+                {
+                    "name": "Send keys 'Auto@12345' on test object '//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827203424,
+                    "stop": 1745827203425
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeToolbar[@name='Toolbar']'",
+                    "status": "passed",
+                    "start": 1745827205346,
+                    "stop": 1745827205347
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='\u0110\u0103ng nh\u1eadp']'",
+                    "status": "passed",
+                    "start": 1745827206293,
+                    "stop": 1745827206294
+                }
+            ]
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1745827210210,
+            "stop": 1745827227400,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeButton[@name='ic user info']'",
+                    "status": "passed",
+                    "start": 1745827216833,
+                    "stop": 1745827216834
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='menu_template']'",
+                    "status": "passed",
+                    "start": 1745827227398,
+                    "stop": 1745827227399
+                }
+            ]
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1745827227401,
+            "stop": 1745827230524,
+            "steps": [
+                {
+                    "name": "Tapped on element '//XCUIElementTypeStaticText[@name='Tr\u00ecnh k\u00fd PDF c\u00f3 s\u1eb5n']/parent::XCUIElementTypeCell'",
+                    "status": "passed",
+                    "start": 1745827230523,
+                    "stop": 1745827230524
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1745827230524,
+            "stop": 1745827236389,
+            "steps": [
+                {
+                    "name": "Tapped on element '(//XCUIElementTypeTable//XCUIElementTypeTextView)[1]'",
+                    "status": "passed",
+                    "start": 1745827231738,
+                    "stop": 1745827231739
+                },
+                {
+                    "name": "Element '(//XCUIElementTypeTable//XCUIElementTypeTextView)[1]' text is cleared",
+                    "status": "passed",
+                    "start": 1745827234173,
+                    "stop": 1745827234174
+                },
+                {
+                    "name": "Send keys 'Tr\u00ecnh k\u00fd 1745827150295' on test object '(//XCUIElementTypeTable//XCUIElementTypeTextView)[1]' successfully.",
+                    "status": "passed",
+                    "start": 1745827236388,
+                    "stop": 1745827236389
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1745827236389,
+            "stop": 1745827244692,
+            "steps": [
+                {
+                    "name": "Tapped on element '(//XCUIElementTypeButton[@name='ic edit pen'])[1]/preceding-sibling::*[1]'",
+                    "status": "passed",
+                    "start": 1745827242211,
+                    "stop": 1745827242212
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeStaticText[@name='\u01afu ti\u00ean']/parent::XCUIElementTypeOther//XCUIElementTypeStaticText[@name='Cao']//following-sibling::*[1]'",
+                    "status": "passed",
+                    "start": 1745827244691,
+                    "stop": 1745827244692
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1745827244692,
+            "stop": 1745827267034,
+            "steps": [
+                {
+                    "name": "Tapped on element '(//XCUIElementTypeStaticText[@name='Ng\u00e0y ho\u00e0n thi\u1ec7n'])[2]//following-sibling::XCUIElementTypeButton'",
+                    "status": "passed",
+                    "start": 1745827247042,
+                    "stop": 1745827247043
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeDatePicker'",
+                    "status": "passed",
+                    "start": 1745827248943,
+                    "stop": 1745827248944
+                },
+                {
+                    "name": "Text of element 'Object Repository/iOS/Calendar/currentMonthYear' is: 'April 2025'",
+                    "status": "passed",
+                    "start": 1745827251479,
+                    "stop": 1745827251480
+                },
+                {
+                    "name": "Tapped on element 'Object Repository/iOS/Calendar/currentMonthYear'",
+                    "status": "passed",
+                    "start": 1745827254334,
+                    "stop": 1745827254335
+                },
+                {
+                    "name": "Tapped on element 'Object Repository/iOS/Calendar/closeMonthYearSelected'",
+                    "status": "passed",
+                    "start": 1745827256619,
+                    "stop": 1745827256620
+                },
+                {
+                    "name": "Tapped on element 'Object Repository/iOS/Calendar/dayItems'",
+                    "status": "passed",
+                    "start": 1745827259450,
+                    "stop": 1745827259451
+                },
+                {
+                    "name": "Object 'Object Repository/iOS/Calendar/currentMonthYear' has left position '36'",
+                    "status": "passed",
+                    "start": 1745827261795,
+                    "stop": 1745827261796
+                },
+                {
+                    "name": "Object 'Object Repository/iOS/Calendar/currentMonthYear' has top position '401'",
+                    "status": "passed",
+                    "start": 1745827264123,
+                    "stop": 1745827264124
+                },
+                {
+                    "name": "Tapped at [16, 381]",
+                    "status": "passed",
+                    "start": 1745827264695,
+                    "stop": 1745827264696
+                },
+                {
+                    "name": "Tapped on element 'Object Repository/iOS/Calendar/submitDateBtn'",
+                    "status": "passed",
+                    "start": 1745827267032,
+                    "stop": 1745827267033
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1745827267034,
+            "stop": 1745827276137,
+            "steps": [
+                {
+                    "name": "Tapped on element '(//XCUIElementTypeStaticText[@name='M\u00f4 t\u1ea3:'])[1]//following-sibling::XCUIElementTypeTextView'",
+                    "status": "passed",
+                    "start": 1745827271609,
+                    "stop": 1745827271610
+                },
+                {
+                    "name": "Element '(//XCUIElementTypeStaticText[@name='M\u00f4 t\u1ea3:'])[1]//following-sibling::XCUIElementTypeTextView' text is cleared",
+                    "status": "passed",
+                    "start": 1745827273643,
+                    "stop": 1745827273644
+                },
+                {
+                    "name": "Send keys 'Demo' on test object '(//XCUIElementTypeStaticText[@name='M\u00f4 t\u1ea3:'])[1]//following-sibling::XCUIElementTypeTextView' successfully.",
+                    "status": "passed",
+                    "start": 1745827276136,
+                    "stop": 1745827276137
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "failed",
+            "start": 1745827276138,
+            "stop": 1745827334611,
+            "steps": [
+                {
+                    "name": "Current device physical height is 926",
+                    "status": "passed",
+                    "start": 1745827283017,
+                    "stop": 1745827283018
+                },
+                {
+                    "name": "Current device physical width is 428",
+                    "status": "passed",
+                    "start": 1745827283407,
+                    "stop": 1745827283408
+                },
+                {
+                    "name": "Swiped from 214,463 to 214,278",
+                    "status": "passed",
+                    "start": 1745827284836,
+                    "stop": 1745827284837
+                },
+                {
+                    "name": "Current device physical height is 926",
+                    "status": "passed",
+                    "start": 1745827286464,
+                    "stop": 1745827286465
+                },
+                {
+                    "name": "Current device physical width is 428",
+                    "status": "passed",
+                    "start": 1745827286832,
+                    "stop": 1745827286833
+                },
+                {
+                    "name": "Swiped from 214,463 to 214,278",
+                    "status": "passed",
+                    "start": 1745827288225,
+                    "stop": 1745827288226
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeStaticText[@name='Email']//parent::XCUIElementTypeCell'",
+                    "status": "passed",
+                    "start": 1745827293267,
+                    "stop": 1745827293268
+                },
+                {
+                    "name": "Tapped on element '//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField'",
+                    "status": "passed",
+                    "start": 1745827294424,
+                    "stop": 1745827294425
+                },
+                {
+                    "name": "Element '//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField' text is cleared",
+                    "status": "passed",
+                    "start": 1745827295627,
+                    "stop": 1745827295628
+                },
+                {
+                    "name": "Send keys 'auto6@hdbank.com.vn' on test object '//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827297391,
+                    "stop": 1745827297392
+                },
+                {
+                    "name": "Send keys 'RETURN + ' on test object '//XCUIElementTypeImage[@name='ic-search']//following-sibling::XCUIElementTypeTextField' successfully.",
+                    "status": "passed",
+                    "start": 1745827298833,
+                    "stop": 1745827298834
+                },
+                {
+                    "name": "Object //XCUIElementTypeStaticText[contains(@label, 'auto6@hdbank.com.vn')]/parent::* not found (Root cause: com.kms.katalon.core.exception.StepFailedException: Object //XCUIElementTypeStaticText[contains(@label, 'auto6@hdbank.com.vn')]/parent::* not found\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.stepFailed(MobileKeywordMain.groovy:64)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword$_tap_closure1.doCall(TapKeyword.groovy:46)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword$_tap_closure1.call(TapKeyword.groovy)\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.runKeyword(MobileKeywordMain.groovy:30)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword.tap(TapKeyword.groovy:51)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword.execute(TapKeyword.groovy:35)\n\tat com.kms.katalon.core.keyword.internal.KeywordExecutor.executeKeywordForPlatform(KeywordExecutor.groovy:74)\n\tat com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords.tap(MobileBuiltInKeywords.groovy:1517)\n\tat base.BaseKeyword$Trait$Helper.clickToElement(BaseKeyword.groovy:54)\n\tat screens.PDFSignScreen.clickToElement(PDFSignScreen.groovy)\n\tat screens.PDFSignScreen.selectAssigner(PDFSignScreen.groovy:76)\n\tat M23 TU CHOI HO SO DA TRA VE TRUOC DO.run(M23 TU CHOI HO SO DA TRA VE TRUOC DO:46)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:486)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:477)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:456)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:322)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:71)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:160)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:107)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:186)\n\tat TempTestSuite1745827108055.run(TempTestSuite1745827108055.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n)",
+                    "status": "failed",
+                    "start": 1745827334456,
+                    "stop": 1745827334457
+                },
+                {
+                    "name": "Failed to tap on element '//XCUIElementTypeStaticText[contains(@label, 'auto6@hdbank.com.vn')]/parent::*' (Root cause: com.kms.katalon.core.exception.StepFailedException: Failed to tap on element '//XCUIElementTypeStaticText[contains(@label, 'auto6@hdbank.com.vn')]/parent::*'\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.stepFailed(MobileKeywordMain.groovy:64)\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.runKeyword(MobileKeywordMain.groovy:34)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword.tap(TapKeyword.groovy:51)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword.execute(TapKeyword.groovy:35)\n\tat com.kms.katalon.core.keyword.internal.KeywordExecutor.executeKeywordForPlatform(KeywordExecutor.groovy:74)\n\tat com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords.tap(MobileBuiltInKeywords.groovy:1517)\n\tat base.BaseKeyword$Trait$Helper.clickToElement(BaseKeyword.groovy:54)\n\tat screens.PDFSignScreen.clickToElement(PDFSignScreen.groovy)\n\tat screens.PDFSignScreen.selectAssigner(PDFSignScreen.groovy:76)\n\tat M23 TU CHOI HO SO DA TRA VE TRUOC DO.run(M23 TU CHOI HO SO DA TRA VE TRUOC DO:46)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:486)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:477)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:456)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:322)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:71)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:160)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:107)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:186)\n\tat TempTestSuite1745827108055.run(TempTestSuite1745827108055.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\nCaused by: com.kms.katalon.core.exception.StepFailedException: Object //XCUIElementTypeStaticText[contains(@label, 'auto6@hdbank.com.vn')]/parent::* not found\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.stepFailed(MobileKeywordMain.groovy:64)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword$_tap_closure1.doCall(TapKeyword.groovy:46)\n\tat com.kms.katalon.core.mobile.keyword.builtin.TapKeyword$_tap_closure1.call(TapKeyword.groovy)\n\tat com.kms.katalon.core.mobile.keyword.internal.MobileKeywordMain.runKeyword(MobileKeywordMain.groovy:30)\n\t... 23 more\n)",
+                    "status": "failed",
+                    "start": 1745827334611,
+                    "stop": 1745827334612
+                }
+            ]
+        }
+    ]
+}

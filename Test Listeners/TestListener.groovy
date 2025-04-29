@@ -57,7 +57,7 @@ class TestListener {
 		String report_folder = RunConfiguration.getReportFolder()
 		String report_logs = "Reports/reports_${GlobalVariable.PLATFORM}.log".toLowerCase()
 		File file = new File(report_logs)
-		file.withWriter('UTF-8') { writer ->
+		file.withWriterAppend('UTF-8') { writer ->
 			writer.writeLine(report_folder)
 		}
 	}

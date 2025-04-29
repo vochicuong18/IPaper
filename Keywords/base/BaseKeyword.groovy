@@ -36,10 +36,18 @@ trait BaseKeyword {
 		return Mobile.getText(element, TIMEOUT)
 	}
 
-	def inputText(TestObject element, String text) {
-		Mobile.tap(element, TIMEOUT)
-		Mobile.clearText(element, TIMEOUT)
-		Mobile.sendKeys(element, text)
+	def inputText(TestObject to, String text) {
+		WebDriver driver = MobileDriverFactory.getDriver()
+		def element = driver.findElement(convertToBy(to))
+		element.clear()
+		element.sendKeys(text)
+	}
+
+	//use Mobile functions of Katalon to stabilize
+	def mobileInputText(TestObject to, String text) {
+		Mobile.tap(to, TIMEOUT)
+		Mobile.clearText(to, TIMEOUT)
+		Mobile.sendKeys(to, text)
 	}
 
 	def enterText(TestObject to) {
@@ -49,9 +57,10 @@ trait BaseKeyword {
 		} else Mobile.sendKeys(to, Keys.chord(Keys.RETURN))
 	}
 
-
-	def clickToElement(TestObject element) {
-		Mobile.tap(element, TIMEOUT)
+	def clickToElement(TestObject to) {
+		WebDriver driver = MobileDriverFactory.getDriver()
+		def element = driver.findElement(convertToBy(to))
+		element.click()
 	}
 
 	def tapAtPosition(int x, int y) {
@@ -107,8 +116,6 @@ trait BaseKeyword {
 		}
 	}
 
-
-
 	def swipeToBottom() {
 		int screenHeight = Mobile.getDeviceHeight()
 		int screenWidth = Mobile.getDeviceWidth()
@@ -146,7 +153,7 @@ trait BaseKeyword {
 	}
 
 	boolean isDisplayed(TestObject to, int timeout) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		Duration defaultTimeout = driver.manage().timeouts().getImplicitWaitTimeout()
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
 		def elements = driver.findElements(convertToBy(to))
@@ -157,14 +164,6 @@ trait BaseKeyword {
 		}
 		driver.manage().timeouts().implicitlyWait(defaultTimeout)
 		return false
-		//		return WebUiCommonHelper.findWebElement(element, timeout).isDisplayed()
-		//		boolean status = Mobile.verifyElementVisible(element, timeout, FailureHandling.CONTINUE_ON_FAILURE)
-		//		return status
-	}
-
-	boolean isExisted(TestObject element) {
-		//		boolean status = Mobile.verifyElementExist(element, 1, FailureHandling.CONTINUE_ON_FAILURE)
-		//		return status
 	}
 
 	/**
@@ -175,7 +174,7 @@ trait BaseKeyword {
 	 */
 
 	def waitForPresentOf(TestObject testObject) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until { driver.findElements(convertToBy(testObject)).size() > 0 }
 	}
@@ -188,14 +187,14 @@ trait BaseKeyword {
 	 */
 
 	def waitForNotPresentOf(TestObject testObject) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until { driver.findElements(convertToBy(testObject)).size() == 0 }
 	}
 
 	def waitForNotPresentOf(By by) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		wait.until {driver.findElements(by).size() == 0}
@@ -213,7 +212,7 @@ trait BaseKeyword {
 	}
 
 	def waitForAttributeValueOf(TestObject testObject, String attributeName, String expectedValue, int timeout = TIMEOUT) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout))
 		By locator = convertToBy(testObject)
 
@@ -228,13 +227,12 @@ trait BaseKeyword {
 
 
 	def waitForCondition(TestObject testObject, Closure<Boolean> condition) {
-		WebDriver driver = MobileDriverFactory.getDriver()
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
 		return wait.until(condition)
 	}
 
 	WebElement convertTestObjectToWebElement(TestObject testObject) {
-		WebDriver driver = MobileDriverFactory.getDriver()
+		AppiumDriver driver = MobileDriverFactory.getDriver()
 		return driver.findElement(convertToBy(testObject))
 	}
 
