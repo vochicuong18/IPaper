@@ -7,7 +7,7 @@ import internal.GlobalVariable
 
 public class HomeScreenLocator extends TestObjectFactory {
 	TestObject avatar, createRequestItems, inComingDocument, loadingMask, logoutButton, menuIcon, menuTab, outComingDocument, requestItem, screenTitle,
-	closeMenuTab, closeTabBtn, setting
+	closeMenuTab, closeTabBtn, setting, logo, loadingItem
 
 	TestObject requestItem(String requestName) {
 		switch (GlobalVariable.PLATFORM) {
@@ -24,6 +24,8 @@ public class HomeScreenLocator extends TestObjectFactory {
 	HomeScreenLocator() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
+				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
+				logo = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_logo")
 				avatar = createTestObject(LocatorType.XPATH, "//android.widget.ImageView[@resource-id='com.hdbank.ipaper:id/img_menu_profile']")
 			//				requestItem = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='$requestName}']/parent::android.widget.LinearLayout/parent::android.widget.RelativeLayout")
 				createRequestItems = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Tạo yêu cầu theo mẫu']")
@@ -37,6 +39,8 @@ public class HomeScreenLocator extends TestObjectFactory {
 				setting = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Cài đặt']")
 				break
 			case "iOS":
+				loadingItem = createTestObject(LocatorType.ID, "")
+				logo = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đăng nhập']")
 				avatar = createTestObject(LocatorType.XPATH, "")
 			//				requestItem = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${requestName}']/parent::XCUIElementTypeCell")
 				createRequestItems = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='menu_template']")

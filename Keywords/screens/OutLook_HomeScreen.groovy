@@ -1,6 +1,11 @@
 package screens
 
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
@@ -22,7 +27,8 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 		NOT_ACCEPTED_WITHDRAW,
 		GET_COMMENT,
 		COMMENTED,
-		REJECT_COMMENT
+		REJECT_COMMENT,
+		SUMMARY_DOCUMENT
 
 		String toString() {
 			switch (this) {
@@ -34,7 +40,8 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 				case NOT_ACCEPTED : return "Kính gửi Anh/Chị, Phê duyệt của Anh/Chị(Chi tiết file đính kèm) KHÔNG ĐƯỢC GHI NHẬN. Lý do: Hồ sơ không tồn tại hoặc đã được chuyển bước"
 				case NOT_ACCEPTED_WITHDRAW : return "Kính gửi Anh/Chị, Phê duyệt của Anh/Chị(Chi tiết file đính kèm) KHÔNG ĐƯỢC GHI NHẬN. Lý do: Hồ sơ đã được chuyển bước hoặc rút lại"
 				case COMMENTED : return "Kính gửi Anh/Chị, Góp ý của Anh/Chị đã được hệ thống tiếp nhận và xử lý. Chi tiết Anh/Chị vui lòng xem file đính kèm."
-				case REJECT_COMMENT : return "Kính gửi Anh/Chị, Góp ý của Anh/Chị không được hệ thống xử lý. Lý do: Vui lòng nhập nội dung khi cho ý kiến!" 
+				case REJECT_COMMENT : return "Kính gửi Anh/Chị, Góp ý của Anh/Chị không được hệ thống xử lý. Lý do: Vui lòng nhập nội dung khi cho ý kiến!"
+				case SUMMARY_DOCUMENT : return "HỒ SƠ IPAPER ĐANG CHỜ PHÊ DUYỆT ĐẾN NGÀY"
 				default : return "please define"
 			}
 		}
@@ -53,10 +60,13 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 		enterText(searchTxt)
 	}
 
+	def goToFirstEmail() {
+		clickToElement(firstEmail)
+	}
+
 	def goToEmail(PerformAction action, Document document) {
 		clickToElement(emailItem(action.toStringEmail(), document))
 	}
-
 
 	/*
 	 * Search until the email show on search result
@@ -79,27 +89,58 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 		backToHome()
 	}
 
-	private void waitForEmail(String content, Document document) {
-		long deadline = System.currentTimeMillis() + SEND_MAIL_TIME_OUT * 1000
+	def waitNotiEmailSent(String noti) {
+		String content = "${noti}"
+		waitForEmail(content)
+	}
 
-		/*Search email*/
+	/**
+	 * Waits for an email with the given content to appear within the timeout.
+	 * If a document is provided, its title will be used in the search criteria.
+	 * Also validates that the received email is within the allowed time window.
+	 */
+
+	private void waitForEmail(String content, Document document = null) {
+		long deadline = System.currentTimeMillis() + SEND_MAIL_TIME_OUT * 1000
+		LocalTime startTime = LocalTime.now()
+
+		TestObject email = emailItem(content, document != null ? document : new Document(title: ''))
+		TestObject timeReceivedEmail = timeReceivedEmailItem(content, document != null ? document : new Document(title: ''))
+
+		// Search email
 		waitForPresentOf(search)
 		clickToElement(search)
 
 		while (System.currentTimeMillis() < deadline) {
-			inputText(searchTxt, document.getTitle())
+			// Use document title if available, otherwise use empty string
+			String keyword = document != null ? document.getTitle() : content
+			inputText(searchTxt, keyword)
 			enterText(searchTxt)
-			// wait result shown after searching
-			//waitForNotPresentOf(searchProgress)
+
 			Mobile.delay(3)
-			if (isDisplayed(emailItem(content, document))) {
-				KeywordUtil.markPassed("Email item appeared after ${(SEND_MAIL_TIME_OUT * 1000 - (deadline - System.currentTimeMillis())) / 1000} seconds")
-				return
+
+			// Pass empty title if document is null
+			if (isDisplayed(email)) {
+				println "Check email time"
+				String timeText = getText(timeReceivedEmail).trim()
+				println timeText
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm")
+				LocalTime receivedTime = LocalTime.parse(timeText, formatter)
+
+				long diffMinutes = ChronoUnit.MINUTES.between(startTime, receivedTime)
+				println "check diff: " + diffMinutes
+				if (diffMinutes >= 0 && diffMinutes <= SEND_MAIL_TIME_OUT) {
+					KeywordUtil.markPassed("Email item appeared after ${(SEND_MAIL_TIME_OUT * 1000 - (deadline - System.currentTimeMillis())) / 1000} seconds")
+					return
+				}
 			}
+
 			Mobile.delay(15)
 		}
 		KeywordUtil.markFailedAndStop("Email item not found within ${SEND_MAIL_TIME_OUT} seconds.")
 	}
+
+
 
 
 	//--------------------------------------

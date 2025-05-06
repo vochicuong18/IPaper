@@ -166,7 +166,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def checkComment(User user, String dataComment) {
-		swipe('down', 1)
+		swipe('down', 0.5)
 		boolean status = false
 		List<TestObject> comments = processComments(user.getName())
 		for (TestObject comment : comments) {

@@ -1,33 +1,31 @@
-import entities.Document
-import entities.DocumentStatus
-import ipaper.IPaper
-import screens.IncomingDocumentScreen.ActionType
-import screens.OutLook_MailScreen.ActionType as ActionOutlook
-import screens.OutLook_HomeScreen.EmailNoti
-import screens.PDFSignScreen.PerformAction
-import utilities.DataTest
+import entities.Document as Document
+import ipaper.IPaper as IPaper
+import screens.DocumentInformationScreen.ActionType as DocumentActionType
+import screens.OutLook_HomeScreen.EmailNoti as EmailNoti
+import screens.OutLook_MailScreen.ActionType as ActionType
+import screens.PDFSignScreen.PerformAction as PerformAction
+import utilities.DataTest as DataTest
 import utilities.Utilities as Utilities
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
-def auto5 = DataTest.getUserTest('auto5')
+String TO_DAY = new Date().format('dd/MM/yyyy')
 
 def auto6 = DataTest.getUserTest('auto6')
 
-def APPROVER_COMMENT = "Automation commented by email"
+def auto5 = DataTest.getUserTest('auto5')
 
 Document document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
-IPaper.loginScreen.login(auto6)
-
-IPaper.homeScreen.goToSetting()
-
-IPaper.settingScreen.enableApproveByEmail(true)
-
-IPaper.settingScreen.backToHome()
-
-IPaper.homeScreen.logout()
-
+//IPaper.loginScreen.login(auto6)
+//
+//IPaper.homeScreen.goToSetting()
+//
+//IPaper.settingScreen.enableApproveByEmail(true)
+//
+//IPaper.settingScreen.backToHome()
+//
+//IPaper.homeScreen.logout()
 IPaper.loginScreen.login(auto5)
 
 // create document
@@ -63,13 +61,11 @@ Utilities.closeCurentApp()
 
 Utilities.openOutlookApp()
 
-// User Duyệt login vào mail và chọn yêu cầu cần duyệt
-
 IPaper.outlook_homeScreen.switchToAccount(auto6)
 
-IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
+IPaper.outlook_homeScreen.waitNotiEmailSent("$EmailNoti.SUMMARY_DOCUMENT $TO_DAY")
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+IPaper.outlook_homeScreen.backToHome()
 
 Utilities.closeCurentApp()
 
@@ -79,9 +75,9 @@ IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.inComingDocument.performAction(document, ActionType.QUICK_APPROVE)
+IPaper.inComingDocument.viewInformationDocument(document)
 
-document.setStatus(DocumentStatus.APPROVED)
+IPaper.documentInformationScreen.performAction(document, DocumentActionType.REJECT)
 
 document.setSender(auto6)
 
@@ -105,7 +101,7 @@ IPaper.documentInformationScreen.checkPriority(document)
 
 IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 
@@ -117,12 +113,42 @@ Utilities.openOutlookApp()
 
 IPaper.outlook_homeScreen.switchToAccount(auto6)
 
-IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+IPaper.outlook_homeScreen.searchEmail("$EmailNoti.SUMMARY_DOCUMENT $TO_DAY")
 
-IPaper.outlook_homeScreen.goToEmail(PerformAction.SEND_APPROVE, document)
+IPaper.outlook_homeScreen.goToFirstEmail()
 
-IPaper.outlook_mailScreen.action(ActionOutlook.RETURN, APPROVER_COMMENT)
+IPaper.outlook_mailScreen.actionSummarizeEmail(document, ActionType.REJECT, 'Cuong check mail nha')
 
 IPaper.outlook_homeScreen.backToHome()
 
-IPaper.outlook_homeScreen.waitNotiEmailSent(EmailNoti.NOT_ACCEPTED_WITHDRAW, document)
+IPaper.outlook_homeScreen.waitNotiEmailSent(EmailNoti.NOT_ACCEPTED, document)
+
+Utilities.closeCurentApp()
+
+Utilities.openIPaperApp()
+
+IPaper.loginScreen.login(auto5)
+
+IPaper.homeScreen.goToIncomingDocument()
+
+IPaper.inComingDocument.viewInformationDocument(document)
+
+IPaper.documentInformationScreen.checkDocumentTitle(document)
+
+IPaper.documentInformationScreen.checkSender(document)
+
+IPaper.documentInformationScreen.checkStatus(document)
+
+IPaper.documentInformationScreen.checkCreateDate()
+
+IPaper.documentInformationScreen.checkFinishDate(document)
+
+IPaper.documentInformationScreen.checkPriority(document)
+
+IPaper.documentInformationScreen.checkDescription(document)
+
+IPaper.documentInformationScreen.isAssignerDisplayed()
+
+IPaper.documentInformationScreen.checkPresentFileName(document)
+
+IPaper.documentInformationScreen.checkAttachFileName(document)

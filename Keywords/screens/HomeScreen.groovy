@@ -14,6 +14,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		if(!isInComingDocumentScreen()) {
 			expandMenu()
 			clickToElement(inComingDocument)
+			waitForNotPresentOf(loadingItem)
 		}
 	}
 
@@ -21,6 +22,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		if (!isOutComingDocumentScreen()) {
 			expandMenu()
 			clickToElement(outComingDocument)
+			waitForNotPresentOf(loadingItem)
 		}
 	}
 
@@ -38,6 +40,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		expandMenu()
 		clickToElement(logoutButton)
 		waitForNotPresentOf(loadingMask)
+		waitForPresentOf(logo)
 	}
 
 	def expandMenu() {

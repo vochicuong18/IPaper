@@ -7,12 +7,13 @@ import internal.GlobalVariable
 
 
 public class IncomingDocumentLocator extends TestObjectFactory{
-	TestObject approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
+	TestObject loadingItem, approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
 	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem, backBtn
 
 	IncomingDocumentLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
+				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
 				secondItem = createTestObject(LocatorType.XPATH, "(//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf']//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[2]")
 				fillterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				firstDocumentDate = createTestObject(LocatorType.XPATH, "(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[1]//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_date_approve']")
@@ -25,6 +26,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				break
 			case "iOS":
+				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
 				secondItem = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf'][2]")
 				approveWithCondition = createTestObject(LocatorType.XPATH, "")
 				documentItem = createTestObject(LocatorType.XPATH, "")
@@ -56,7 +58,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject documentItem(String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf']", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']")
 			case "iOS":
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell")
 		}

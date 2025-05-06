@@ -69,6 +69,8 @@ IPaper.outlook_homeScreen.switchToAccount(auto6)
 
 IPaper.outlook_homeScreen.waitNotiEmailSent(auto5, EmailNoti.SEND_APPROVED, document)
 
+IPaper.outlook_homeScreen.waitActionEmailSent(PerformAction.SEND_APPROVE, document)
+
 Utilities.closeCurentApp()
 
 Utilities.openIPaperApp()
