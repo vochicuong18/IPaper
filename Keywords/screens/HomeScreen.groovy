@@ -46,6 +46,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 	def expandMenu() {
 		if(GlobalVariable.PLATFORM == "iOS") {
 			if (!isDisplayed(closeTabBtn)) {
+				waitForPresentOf(menuIcon)
 				clickToElement(menuIcon)
 			}
 		}

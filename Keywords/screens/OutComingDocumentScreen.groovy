@@ -23,6 +23,7 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(doc.getTitle())
 		}
+		waitForPresentOf(documentItem(doc.getTitle()))
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
 
@@ -45,7 +46,8 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 
 	def searchDocument(String documentTitle) {
 		waitForPresentOf(searchDocument)
-		mobileInputText(searchDocument, documentTitle)
+		clickToElement(searchDocument)
+		inputText(searchDocument, documentTitle)
 	}
 
 	boolean checkItemInDocument() {

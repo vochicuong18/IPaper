@@ -1,14 +1,10 @@
 package base
 
-import static com.kms.katalon.core.testobject.ConditionType.EQUALS
-
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.testobject.TestObject
 
-import entities.LocatorType
 import internal.GlobalVariable
 
-public class BaseApp implements BaseKeyword {
+public class BaseApp {
 
 	def pressBack() {
 		if (GlobalVariable.PLATFORM == "Android") {
@@ -24,12 +20,12 @@ public class BaseApp implements BaseKeyword {
 	}
 
 	def waitAppLauch () {
-		TestObject logo = new TestObject()
-		if (GlobalVariable.PLATFORM == "Android") {
-			logo.addProperty(LocatorType.ID.toString(), EQUALS, "com.hdbank.ipaper:id/img_logo")
-		} else {
-			logo.addProperty(LocatorType.XPATH.toString(), EQUALS, "//XCUIElementTypeToolbar[@name='Toolbar']")
-		}
-		waitForPresentOf(logo)
+		//		TestObject logo = new TestObject()
+		//		if (GlobalVariable.PLATFORM == "Android") {
+		//			logo.addProperty(LocatorType.ID.toString(), EQUALS, "com.hdbank.ipaper:id/img_logo")
+		//		} else {
+		//			logo.addProperty(LocatorType.XPATH.toString(), EQUALS, "//XCUIElementTypeToolbar[@name='Toolbar']")
+		//		}
+		//		waitForPresentOf(logo)
 	}
 }

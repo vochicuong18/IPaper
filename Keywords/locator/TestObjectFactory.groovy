@@ -4,12 +4,11 @@ package locator
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
-import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.testobject.TestObject
 
+import drivers.Driver
 import entities.LocatorType
-import io.appium.java_client.AppiumDriver
 
 public class TestObjectFactory {
 	def TestObject createTestObject(LocatorType type, String locator, Map<String, Object> params = [:]) {
@@ -26,16 +25,15 @@ public class TestObjectFactory {
 			locatorTemplate = replaceParams(locatorTemplate, params)
 		}
 
-		AppiumDriver driver = MobileDriverFactory.getDriver()
 		List<WebElement> elements
 		List<TestObject> testObjects = []
 
 		switch (type) {
 			case LocatorType.XPATH:
-				elements = driver.findElements(By.xpath(locatorTemplate))
+				elements = Driver.driver.findElements(By.xpath(locatorTemplate))
 				break
 			case LocatorType.ID:
-				elements = driver.findElements(By.id(locatorTemplate))
+				elements = Driver.driver.findElements(By.id(locatorTemplate))
 				break
 			default:
 				throw new IllegalArgumentException("Unsupported locator type: " + type)

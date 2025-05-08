@@ -1,10 +1,10 @@
 package utilities
 
 import com.kms.katalon.core.logging.KeywordLogger;
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseApp
+import drivers.Driver
 import internal.GlobalVariable
 
 
@@ -12,19 +12,33 @@ public class Utilities extends BaseApp{
 	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class);
 
 	def static openOutlookApp() {
-		Mobile.startExistingApplication(GlobalVariable.PLATFORM == 'Android' ? "com.microsoft.office.outlook" : "com.microsoft.Office.Outlook")
+		String bundleIdOrPackage = GlobalVariable.PLATFORM == 'Android' ?
+				"com.microsoft.office.outlook" :
+				"com.microsoft.Office.Outlook"
+		Driver.driver.activateApp(bundleIdOrPackage)
 	}
 
 	def static openIPaperApp() {
 		Utilities utility = new Utilities()
-		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
-		Mobile.startExistingApplication(appPath)
+		String bundleIdOrPackage = DataTest.APP[GlobalVariable.PLATFORM]
+		Driver.driver.activateApp(bundleIdOrPackage)
 		utility.waitAppLauch()
 	}
 
-	def static closeCurentApp() {
-		Mobile.closeApplication()
-	}
+def static closeCurentApp() {
+    def capabilities = Driver.driver.getCapabilities()
+
+    String appId = null
+    if (GlobalVariable.PLATFORM == 'Android') {
+        appId = capabilities.getCapability("appPackage")
+    } else {
+        appId = capabilities.getCapability("bundleId")
+    }
+
+    if (appId instanceof String && appId) {
+         Driver.driver.terminateApp(appId)
+    }
+}
 
 	def static getOS() {
 		def osName = System.getProperty("os.name").toLowerCase()

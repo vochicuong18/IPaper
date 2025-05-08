@@ -47,7 +47,7 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.homeScreen.logout()
 
-document.setStatus(DocumentStatus.WAIT_PROCESS)
+document.setStatus(DocumentStatus.WAIT_APPROVE)
 
 //assigner check document
 document.setAssigner(auto5)
@@ -109,7 +109,7 @@ IPaper.documentInformationScreen.checkAssigner(document)
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkAttachFileName(document)
+IPaper.documentInformationScreen.checkAttachFileName(document)  
 
 IPaper.documentInformationScreen.backToHome()
 

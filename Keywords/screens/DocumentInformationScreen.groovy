@@ -27,6 +27,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
 		String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
+		waitForPresentOf(documentActionBtn)
 		clickToElement(documentActionBtn)
 		switch (actionType) {
 			case ActionType.APPROVE:
@@ -120,7 +121,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def checkFinishDate(Document document) {
-		swipe('down')
 		String gui = getText(finishDate)
 		Date date = new SimpleDateFormat("d/M/yyyy").parse(document.getTime())
 		String formattedData = new SimpleDateFormat("dd/MM/yyyy").format(date)
@@ -132,7 +132,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def checkDescription(Document doc) {
-		swipe('down')
 		AssertUtilities.checkEquals(getText(description), doc.getDescription())
 	}
 

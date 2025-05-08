@@ -32,6 +32,8 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(doc.getTitle())
 		}
+
+		waitForPresentOf(documentItem(doc.getTitle()))
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
 
@@ -72,6 +74,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 
 		switch (action) {
 			case ActionType.QUICK_APPROVE:
+				waitForPresentOf(quickApproveBtn(document.getTitle()))
 				clickToElement(quickApproveBtn(document.getTitle()))
 				waitForNotPresentOf(quickApproveBtn(document.getTitle()))
 				document.setStatus(DocumentStatus.APPROVED)
@@ -79,6 +82,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				break
 
 			case ActionType.APPROVE_WITH_CONDITION:
+				waitForPresentOf(approveWithCondition(document.getTitle()))
 				clickToElement(approveWithCondition(document.getTitle()))
 				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
@@ -88,6 +92,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				break
 
 			case ActionType.REJECT:
+				waitForPresentOf(quickRejectBtn(document.getTitle()))
 				clickToElement(quickRejectBtn(document.getTitle()))
 				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
@@ -97,6 +102,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				break
 
 			case ActionType.SEND_COMMENT:
+				waitForPresentOf(sendCommentBtn(document.getTitle()))
 				clickToElement(sendCommentBtn(document.getTitle()))
 				if (comment) fillOpinion(comment)
 				clickOnSendOpinionApprove()
@@ -110,7 +116,8 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 
 	def searchDocument(String documentTitle) {
 		waitForPresentOf(searchDocument)
-		mobileInputText(searchDocument, documentTitle)
+		clickToElement(searchDocument)
+		inputText(searchDocument, documentTitle)
 	}
 
 	def fillOpinion(String opinion) {
@@ -156,7 +163,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				Utilities.logInfo("Time is correctly")
 			}
 		} else {
-//			getAllItemDataIOS ()
+			//			getAllItemDataIOS ()
 			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
 		}
 	}
@@ -196,7 +203,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				KeywordUtil.logInfo("✅ Found '${title}' in ${timeoutInSeconds - (endTime - System.currentTimeMillis()) / 1000} seconds.")
 				return
 			}
-			Mobile.delay(15)
+			Thread.sleep(15)
 		}
 		KeywordUtil.markFailedAndStop("'${title}' not found within ${timeoutInSeconds} seconds.")
 	}

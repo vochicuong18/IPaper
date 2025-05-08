@@ -61,6 +61,7 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 	}
 
 	def goToFirstEmail() {
+		waitForPresentOf(firstEmail)
 		clickToElement(firstEmail)
 	}
 
@@ -110,14 +111,15 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 		// Search email
 		waitForPresentOf(search)
 		clickToElement(search)
-
+		waitForPresentOf(searchTxt)
+		
 		while (System.currentTimeMillis() < deadline) {
 			// Use document title if available, otherwise use empty string
 			String keyword = document != null ? document.getTitle() : content
 			inputText(searchTxt, keyword)
 			enterText(searchTxt)
 
-			Mobile.delay(3)
+			Thread.sleep(3)
 
 			// Pass empty title if document is null
 			if (isDisplayed(email)) {
@@ -135,7 +137,7 @@ public class OutLook_HomeScreen extends Outlook_HomeLocator implements BaseKeywo
 				}
 			}
 
-			Mobile.delay(15)
+			Thread.sleep(15)
 		}
 		KeywordUtil.markFailedAndStop("Email item not found within ${SEND_MAIL_TIME_OUT} seconds.")
 	}

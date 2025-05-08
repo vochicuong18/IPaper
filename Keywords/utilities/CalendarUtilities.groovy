@@ -1,15 +1,20 @@
 package utilities
 
 import java.text.SimpleDateFormat
+import java.time.Duration
 import java.time.LocalDate
+
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.PointerInput
 
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
+import drivers.Driver
 import internal.GlobalVariable
+import io.appium.java_client.touch.offset.PointOption
 import locator.CalendarLocator
-
 public class CalendarUtilities extends CalendarLocator implements BaseKeyword {
 
 	def selectDate (String date) {
@@ -135,11 +140,5 @@ public class CalendarUtilities extends CalendarLocator implements BaseKeyword {
 		else if (direction == "up") {
 			Mobile.swipe(xPosition, yPosition, xPosition, yPosition - 20)
 		}
-	}
-
-	def tapOutSideElement(TestObject to) {
-		int xPosition = Mobile.getElementLeftPosition(to, 10) - 20
-		int yPosition = Mobile.getElementTopPosition(to, 10) - 20
-		Mobile.tapAtPosition(xPosition, yPosition)
 	}
 }

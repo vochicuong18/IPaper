@@ -7,7 +7,6 @@ import org.apache.commons.io.FileUtils;
 import org.json.JSONObject
 
 import com.kms.katalon.core.configuration.RunConfiguration
-import com.kms.katalon.core.main.TestCaseMain
 
 import entities.Document
 import entities.User

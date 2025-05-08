@@ -3,8 +3,10 @@ import java.time.Duration
 
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.PointerInput
+import org.openqa.selenium.interactions.Sequence
+import org.openqa.selenium.interactions.PointerInput.Origin
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
@@ -14,14 +16,11 @@ import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.testobject.TestObjectProperty
 
+import drivers.Driver
 import internal.GlobalVariable
-import io.appium.java_client.AppiumDriver
-import io.appium.java_client.android.AndroidDriver
-import io.appium.java_client.android.nativekey.AndroidKey
-import io.appium.java_client.android.nativekey.KeyEvent
+import utilities.Utilities
 
-trait BaseKeyword {
-	AppiumDriver driver
+trait BaseKeyword{
 	final int TIMEOUT = 30
 
 	def hideKeyboard() {
@@ -29,77 +28,88 @@ trait BaseKeyword {
 	}
 
 	boolean getValueAttributeOf(TestObject to, attribute) {
-		return Mobile.getAttribute(to, attribute, TIMEOUT)
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		return element.getAttribute(attribute)
 	}
 
-	String getText(TestObject element) {
-		return Mobile.getText(element, TIMEOUT)
+	String getText(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		return element.getText()
 	}
 
 	def inputText(TestObject to, String text) {
-		WebDriver driver = MobileDriverFactory.getDriver()
-		def element = driver.findElement(convertToBy(to))
+		WebElement element = Driver.driver.findElement(convertToBy(to))
 		element.clear()
 		element.sendKeys(text)
 	}
-
-	//use Mobile functions of Katalon to stabilize
-	def mobileInputText(TestObject to, String text) {
-		Mobile.tap(to, TIMEOUT)
-		Mobile.clearText(to, TIMEOUT)
-		Mobile.sendKeys(to, text)
-	}
-
+	
 	def enterText(TestObject to) {
 		if (GlobalVariable.PLATFORM == "Android") {
-			AndroidDriver driver = MobileDriverFactory.getDriver()
-			driver.pressKey(new KeyEvent(AndroidKey.ENTER))
-		} else Mobile.sendKeys(to, Keys.chord(Keys.RETURN))
+			Utilities.runCommand("adb shell input keyevent 66")
+		} else {
+			WebElement element = Driver.driver.findElement(convertToBy(to))
+			element.sendKeys(Keys.RETURN)
+		}
 	}
 
 	def clickToElement(TestObject to) {
-		WebDriver driver = MobileDriverFactory.getDriver()
-		def element = driver.findElement(convertToBy(to))
+		def element = Driver.driver.findElement(convertToBy(to))
 		element.click()
 	}
 
-	def tapAtPosition(int x, int y) {
-		Mobile.tapAtPosition(x, y)
+	def tapAt(int x, int y) {
+		def driver = MobileDriverFactory.getDriver()
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		def sequence = new Sequence(finger, 0)
+		sequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y))
+		sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(sequence))
 	}
 
-	def swipe(String direction) {
-		int height = Mobile.getDeviceHeight()
-		int width = Mobile.getDeviceWidth()
-		int startX = width / 2
-		int startY = height / 2
-		int distance = (height * 0.2) as int
+	def tapOutSideElement(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		int xPosition = element.getLocation().getX() - 20
+		int yPosition = element.getLocation().getY() - 20
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		def sequence = new Sequence(finger, 0)
+		sequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), xPosition, yPosition))
+		sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(sequence))
+	}
+
+	def verticalSwipeYearIOS(TestObject to, String direction) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		int xPosition = element.getLocation().getX() + 20
+		int yStart = element.getLocation().getY() + 100
+		int yEnd = direction == "down" ? yStart + 30 : yStart - 20
+		println "Swipe from (${xPosition}, ${yStart}) to (${xPosition}, ${yEnd})"
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 0)
+
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), xPosition, yStart))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), xPosition, yEnd))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform([swipe])
+	}
+
+	def swipe(String direction, double distancePercent = 0.2) {
+		def size = Driver.driver.manage().window().getSize()
+		int startX = size.getWidth() / 2
+		int startY = size.getHeight() / 2
+		int distance = (size.getHeight() * distancePercent) as int
 		int endY = direction == 'down' ? startY - distance : startY + distance
-		Mobile.swipe(startX, startY, startX, endY)
-	}
 
-	def swipe(String direction, double distancePercent) {
-		int height = Mobile.getDeviceHeight()
-		int width = Mobile.getDeviceWidth()
-		int startX = width / 2
-		int startY = height / 2
-		int distance = (height * distancePercent) as int
-		int endY = direction == 'down' ? startY - distance : startY + distance
-		Mobile.swipe(startX, startY, startX, endY)
-	}
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 1)
 
-	def horizontalSwipeFromElement(TestObject to, String direction) {
-		int screenWidth = Mobile.getDeviceWidth()
-		int screenHeight = Mobile.getDeviceHeight()
-		int elementX = Mobile.getElementLeftPosition(to, 10)
-		int elementY = Mobile.getElementTopPosition(to, 10)
-		int screenCenterX = screenWidth / 2
-		int elementCenterX = elementX + 100
-		int elementCenterY = elementY + 50
-		int deltaX = screenCenterX - elementCenterX
-		int swipeDistance = (int)(screenWidth * 0.5)
-		int startX = elementCenterX
-		int endX = (direction == "right") ? startX + swipeDistance : startX - swipeDistance
-		Mobile.swipe(startX, elementCenterY, endX, elementCenterY)
+		swipe.addAction(finger.createPointerMove(Duration.ZERO, Origin.viewport(), startX, startY))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), Origin.viewport(), startX, endY))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(swipe))
 	}
 
 	def swipeToElement(TestObject element) {
@@ -116,36 +126,83 @@ trait BaseKeyword {
 		}
 	}
 
+	def horizontalSwipeFromElement(TestObject to, String direction) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+
+		int screenWidth = Driver.driver.manage().window().getSize().getWidth()
+		int elementX = element.getLocation().getX()
+		int elementY = element.getLocation().getY()
+		int elementCenterX = elementX + 100
+		int elementCenterY = elementY + 50
+		int swipeDistance = (int)(screenWidth * 0.5)
+		int startX = elementCenterX
+		int endX = direction == "right" ? startX + swipeDistance : startX - swipeDistance
+		performSwipe(Driver.driver, startX, elementCenterY, endX, elementCenterY)
+	}
+
 	def swipeToBottom() {
-		int screenHeight = Mobile.getDeviceHeight()
-		int screenWidth = Mobile.getDeviceWidth()
+		int screenHeight = Driver.driver.manage().window().getSize().getHeight()
+		int screenWidth = Driver.driver.manage().window().getSize().getWidth()
 		int startX = screenWidth / 2
 		int startY = (int)(screenHeight * 0.8)
 		int endY = (int)(screenHeight * 0.2)
-		Mobile.swipe(startX, startY, startX, endY)
+		performSwipe(Driver.driver, startX, startY, startX, endY)
 	}
-
+	
 	def scrollToAnchor(TestObject item, TestObject anchor) {
-		int itemTop = Mobile.getElementTopPosition(item, 5)
-		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
+		WebElement itemEl = Driver.driver.findElement(convertToBy(item))
+		WebElement anchorEl =Driver.driver.findElement(convertToBy(anchor))
+		int itemTop = itemEl.getLocation().getY()
+		int anchorBottom = anchorEl.getLocation().getY() + anchorEl.getSize().getHeight()
 		int offset = itemTop - anchorBottom
+	
 		if (offset > 0) {
-			int centerX = Mobile.getDeviceWidth() / 2
-			int deviceHeight = Mobile.getDeviceHeight()
+			int centerX = Driver.driver.manage().window().getSize().getWidth() / 2
+			int deviceHeight = Driver.driver.manage().window().getSize().getHeight()
 			int stepSize = (int)(deviceHeight * 0.09)
 			int totalSteps = Math.ceil(offset / stepSize)
-
+	
 			for (int i = 0; i < totalSteps; i++) {
 				int currentStartY = itemTop - (i * stepSize)
-				int currentEndY = currentStartY - stepSize
-
-				if (currentEndY < anchorBottom) {
-					currentEndY = anchorBottom
-				}
-				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
-				Mobile.delay(0.5)
+				int currentEndY = Math.max(currentStartY - stepSize, anchorBottom)
+				performSwipe(Driver.driver, centerX, currentStartY, centerX, currentEndY)
+				Thread.sleep(500)
 			}
 		}
+	}
+	
+	
+//	def scrollToAnchor(TestObject item, TestObject anchor) {
+//		int itemTop = Mobile.getElementTopPosition(item, 5)
+//		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
+//		int offset = itemTop - anchorBottom
+//		if (offset > 0) {
+//			int centerX = Mobile.getDeviceWidth() / 2
+//			int deviceHeight = Mobile.getDeviceHeight()
+//			int stepSize = (int)(deviceHeight * 0.09)
+//			int totalSteps = Math.ceil(offset / stepSize)
+//
+//			for (int i = 0; i < totalSteps; i++) {
+//				int currentStartY = itemTop - (i * stepSize)
+//				int currentEndY = currentStartY - stepSize
+//
+//				if (currentEndY < anchorBottom) {
+//					currentEndY = anchorBottom
+//				}
+//				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
+//				Mobile.delay(0.5)
+//			}
+//		}
+//	}
+
+	def performSwipe(driver, int startX, int startY, int endX, int endY) {
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 0)
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, endY))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform([swipe])
 	}
 
 	boolean isDisplayed(TestObject element) {
@@ -153,16 +210,13 @@ trait BaseKeyword {
 	}
 
 	boolean isDisplayed(TestObject to, int timeout) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		Duration defaultTimeout = driver.manage().timeouts().getImplicitWaitTimeout()
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
-		def elements = driver.findElements(convertToBy(to))
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
+		def elements = Driver.driver.findElements(convertToBy(to))
 		for (def element in elements) {
 			if (element.isDisplayed()) {
 				return true
 			}
 		}
-		driver.manage().timeouts().implicitlyWait(defaultTimeout)
 		return false
 	}
 
@@ -174,9 +228,10 @@ trait BaseKeyword {
 	 */
 
 	def waitForPresentOf(TestObject testObject) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
-		wait.until { driver.findElements(convertToBy(testObject)).size() > 0 }
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(convertToBy(testObject)).size() > 0
+		}
 	}
 
 	/**
@@ -187,39 +242,43 @@ trait BaseKeyword {
 	 */
 
 	def waitForNotPresentOf(TestObject testObject) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
-		wait.until { driver.findElements(convertToBy(testObject)).size() == 0 }
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(convertToBy(testObject)).size() == 0
+		}
 	}
 
 	def waitForNotPresentOf(By by) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
-		wait.until {driver.findElements(by).size() == 0}
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(by).size() == 0
+		}
 	}
 
 
 	def waitForVisibilityOf(TestObject testObject) {
 		WebElement element = convertTestObjectToWebElement(testObject)
-		return waitForCondition(testObject) { ExpectedConditions.visibilityOf(element) }
+		return waitForCondition(testObject) {
+			ExpectedConditions.visibilityOf(element)
+		}
 	}
 
 	def waitForInVisibilityOf(TestObject testObject) {
 		WebElement element = convertTestObjectToWebElement(testObject)
-		return waitForCondition(testObject) { ExpectedConditions.invisibilityOf(element) }
+		return waitForCondition(testObject) {
+			ExpectedConditions.invisibilityOf(element)
+		}
 	}
 
 	def waitForAttributeValueOf(TestObject testObject, String attributeName, String expectedValue, int timeout = TIMEOUT) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(timeout))
 		By locator = convertToBy(testObject)
 
 		wait.until {
-			List<WebElement> elements = driver.findElements(locator)
+			List<WebElement> elements = Driver.driver.findElements(locator)
 			if (elements.isEmpty()) return false
-
 			String actualValue = elements[0].getAttribute(attributeName)
 			return actualValue == expectedValue
 		}
@@ -227,13 +286,12 @@ trait BaseKeyword {
 
 
 	def waitForCondition(TestObject testObject, Closure<Boolean> condition) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
 		return wait.until(condition)
 	}
 
 	WebElement convertTestObjectToWebElement(TestObject testObject) {
-		AppiumDriver driver = MobileDriverFactory.getDriver()
-		return driver.findElement(convertToBy(testObject))
+		return Driver.driver.findElement(convertToBy(testObject))
 	}
 
 	By convertToBy(TestObject to) {

@@ -99,15 +99,15 @@ public class OutLook_MailScreen extends Outlook_MailLocator implements BaseKeywo
 		}
 
 		swipeToElement(actionButton)
-		swipe ("down", 0.2) //handle scroll to actionButton
+//		swipe ("down", 0.2) //handle scroll to actionButton
 		clickToElement(actionButton)
-
+		waitForPresentOf(sendEmailBtn)
+		
 		if (comment) {
-			waitForPresentOf(sendEmailBtn)
 			if(GlobalVariable.PLATFORM == 'iOS') {
 				clickToElement(emailContentWrapper)
 				Mobile.clearText(emailContent, 1)
-				Mobile.sendKeys(emailContent, comment)
+				Mobile.sendKeys(emailContent, getEmailContent(comment))
 			} else {
 				inputText(emailContent, getEmailContent(comment))
 			}
