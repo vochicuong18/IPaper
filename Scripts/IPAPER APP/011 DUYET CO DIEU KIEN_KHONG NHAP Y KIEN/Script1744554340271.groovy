@@ -80,11 +80,12 @@ IPaper.documentInformationScreen.checkPresentFileName(document)
 
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
-document.setSender(auto6)
 //Assinger approve document
 IPaper.documentInformationScreen.backToHome()
 
 IPaper.inComingDocument.performAction(document, ActionType.APPROVE_WITH_CONDITION, QUICK_APPROVE_OPINION)
+
+document.setSender(auto6)
 
 //Assigner check document after approve
 IPaper.inComingDocument.checkItemInDocument()

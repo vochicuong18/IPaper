@@ -12,45 +12,45 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>30055584-e4a7-460e-8f61-f830fcd8b9a8</testSuiteGuid>
    <testCaseLink>
-      <guid>acd1965b-1191-4a3f-898a-a41b520c3197</guid>
+      <guid>49dfd190-9cd9-4e26-8866-84f891389639</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/014 DUYET TAI MAIN FILE_KHÔNG NHAP Y KIEN</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/011 DUYET CO DIEU KIEN_KHONG NHAP Y KIEN</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>57a349f8-e069-4061-aee3-fc3a6045217a</guid>
+      <guid>6389164f-81f0-4375-9a02-e27fa98837bc</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/013 DUYET CHI TIET_KHONG NHAP Y KIEN</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/016 DUYET CO CC_KHONG NHAP Y KIEN</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>64352bb7-0ee1-4357-8779-0d1e7f8a024e</guid>
+      <guid>0441643f-0308-4bb5-8617-c69d41c2b51b</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/009 DUYET NHANH</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/017 DUYET CO CC_NHAP Y KIEN</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>556db08a-8e05-484a-bcba-4c2da9563267</guid>
+      <guid>bac69b8c-9a0d-4b0a-bf14-79ab3f7e0545</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/IPAPER APP/018 TU CHOI NHANH</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>f2281229-bc3c-44d8-93fc-09877558343f</guid>
+      <guid>31c8e70a-9f5e-4d05-b1b7-ad867400dfc3</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/019 TU CHOI CHI TIET_NHAP Y KIEN</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>3bed2d52-8fcc-4987-99e6-84c49e4ebba3</guid>
+      <guid>00b80276-3f9a-4d9a-a6e3-b37b4e1bb4c3</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/021 TU CHOI TẠI MAIN FILE_NHAP Y KIEN</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>

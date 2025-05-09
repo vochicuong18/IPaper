@@ -10,6 +10,7 @@ import internal.GlobalVariable
 
 public class Utilities extends BaseApp{
 	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class);
+	static String testCaseId
 
 	def static openOutlookApp() {
 		String bundleIdOrPackage = GlobalVariable.PLATFORM == 'Android' ?
@@ -25,20 +26,20 @@ public class Utilities extends BaseApp{
 		utility.waitAppLauch()
 	}
 
-def static closeCurentApp() {
-    def capabilities = Driver.driver.getCapabilities()
+	def static closeCurentApp() {
+		def capabilities = Driver.driver.getCapabilities()
 
-    String appId = null
-    if (GlobalVariable.PLATFORM == 'Android') {
-        appId = capabilities.getCapability("appPackage")
-    } else {
-        appId = capabilities.getCapability("bundleId")
-    }
+		String appId = null
+		if (GlobalVariable.PLATFORM == 'Android') {
+			appId = capabilities.getCapability("appPackage")
+		} else {
+			appId = capabilities.getCapability("bundleId")
+		}
 
-    if (appId instanceof String && appId) {
-         Driver.driver.terminateApp(appId)
-    }
-}
+		if (appId instanceof String && appId) {
+			Driver.driver.terminateApp(appId)
+		}
+	}
 
 	def static getOS() {
 		def osName = System.getProperty("os.name").toLowerCase()
@@ -67,10 +68,7 @@ def static closeCurentApp() {
 
 
 	def static runCommand(String command) {
-		logInfo(command)
-
 		def process
-		logInfo(getOS())
 		if (getOS() == 'Windows') {
 			process = ["cmd", "/c", command].execute()
 		}
@@ -89,7 +87,6 @@ def static closeCurentApp() {
 		}
 
 		process.waitFor() // Wait for the process to finish
-		logInfo("Output: ${output.toString()}")
 		return output.toString()
 	}
 }

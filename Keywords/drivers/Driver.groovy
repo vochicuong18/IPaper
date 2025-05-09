@@ -31,7 +31,6 @@ class Driver extends BaseApp {
 	def startAppium() {
 		service = AppiumDriverLocalService.buildService(
 				new AppiumServiceBuilder()
-				.withAppiumJS(new File("/usr/local/lib/node_modules/appium")) // <- Đường dẫn chính xác
 				.withIPAddress(APPIUM_IP_ADDRESS)
 				.usingPort(APPIUM_PORT)
 				.withArgument({ "--base-path" }, APPIUM_BASE_PATH)
@@ -63,11 +62,13 @@ class Driver extends BaseApp {
 
 	@Keyword
 	def closeApp() {
-		Mobile.closeApplication()
+		String appPackage = DataTest.APP[GlobalVariable.PLATFORM]
+		driver.terminateApp(appPackage)
 	}
 
 	@Keyword
 	def initMobileDriver() {
+		Utilities.logInfo("Init driver")
 		DesiredCapabilities cap = new DesiredCapabilities()
 		URL appiumServerURL = new URL("http://${APPIUM_IP_ADDRESS}:${APPIUM_PORT}${APPIUM_BASE_PATH}")
 		def platformCaps = Capabilities.CAP[GlobalVariable.PLATFORM]
@@ -75,12 +76,10 @@ class Driver extends BaseApp {
 		switch (GlobalVariable.PLATFORM) {
 			case 'Android':
 				setAndroidCapabilities(cap, platformCaps)
-				driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps)
-				MobileDriverFactory.setDriver(driver)
-
+				return AppiumDriverManager.createMobileDriver(MobileDriverType.ANDROID_DRIVER, cap, appiumServerURL)
 			case 'iOS':
 				setIOSCapabilities(cap, platformCaps)
-				return new IOSDriver(appiumServerURL, cap)
+				return AppiumDriverManager.createMobileDriver(MobileDriverType.IOS_DRIVER, cap, appiumServerURL)
 		}
 	}
 
@@ -99,10 +98,6 @@ class Driver extends BaseApp {
 		cap.setCapability("appium:automationName", platformCaps.automationName)
 		cap.setCapability("appium:noReset", platformCaps.noReset)
 		cap.setCapability("appium:fullReset", platformCaps.fullReset)
-		//
-		//		"appium:usePreinstalledWDA": true,
-		//		"appium:prebuiltWDAPath": "/Users/cuongvo/.../WebDriverAgentRunner-Runner.app",
-		//		"appium:updatedWDABundleId": "com.cuongvc1.WebDriverAgentRunner",
 	}
 
 	@Keyword

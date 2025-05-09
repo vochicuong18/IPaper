@@ -52,7 +52,6 @@ IPaper.homeScreen.logout()
 document.setStatus(DocumentStatus.WAIT_APPROVE)
 
 document.setAssigner(auto5)
-
 //assigner check document
 
 IPaper.loginScreen.login(auto6)
@@ -82,7 +81,6 @@ IPaper.documentInformationScreen.checkPresentFileName(document)
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
 //Assinger approve document
-document.setSender(auto6)
 
 IPaper.documentInformationScreen.performAction(document, ActionType.APPROVE)
 

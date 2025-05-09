@@ -1,3 +1,5 @@
+import static entities.DocumentStatus.WAIT_APPROVE
+
 import java.text.SimpleDateFormat
 
 import ipaper.IPaper
@@ -18,7 +20,7 @@ def auto5 = DataTest.getUserTest("auto5")
 
 def auto6 = DataTest.getUserTest("auto6")
 
-def auto7 = DataTest.getUserTest("auto7")s
+def auto7 = DataTest.getUserTest("auto7")
 
 def document = DataTest.createDocumentTest(auto5, auto6, auto7, 'dummy.pdf', 'dummy.pdf')
 
@@ -52,6 +54,8 @@ IPaper.pdfSignScreen.selectRelatedMember(document.getCc().getEmail())
 
 IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 
+document.setStatus(WAIT_APPROVE)
+
 IPaper.pdfSignScreen.fillInOpinion(document.getComment())
 
 IPaper.pdfSignScreen.submitRequest()
@@ -60,27 +64,25 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.homeScreen.goToOutComingDocument()
 
-IPaper.outComingDocument.viewInformationDocument(documentTitle)
+IPaper.outComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.checkSender(userA3NV.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkAssigner(dataDocument.assigner)
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
-
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.backToHome()
 
@@ -90,7 +92,7 @@ IPaper.homeScreen.logout()
 
 // Check document in assinger account
 
-IPaper.loginScreen.login(userA4NV)
+IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
@@ -98,23 +100,21 @@ IPaper.inComingDocument.viewInformationDocument(documentTitle)
 
 IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
 
-IPaper.documentInformationScreen.checkSender(userA3NV.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
 IPaper.documentInformationScreen.checkStatus(STATUS)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkAssigner(userA3NV.getEmail())
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
-
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.backToHome()
 
@@ -124,33 +124,31 @@ IPaper.homeScreen.logout()
 
 // Check account CC
 
-IPaper.loginScreen.login(userA5NV)
+IPaper.loginScreen.login(auto7)
 
 IPaper.homeScreen.goToIncomingDocument()
 
 IPaper.inComingDocument.goToRelatedDocument()
 
-IPaper.relatedDocumentScreen.viewInformationDocument(documentTitle)
+IPaper.relatedDocumentScreen.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.checkDocumentTitle(documentTitle)
+IPaper.documentInformationScreen.checkDocumentTitle(document)
 
-IPaper.documentInformationScreen.checkSender(userA3NV.getName())
+IPaper.documentInformationScreen.checkSender(document)
 
-IPaper.documentInformationScreen.checkStatus(STATUS)
+IPaper.documentInformationScreen.checkStatus(document)
 
-IPaper.documentInformationScreen.checkCreateDate(TO_DAY)
+IPaper.documentInformationScreen.checkFinishDate(document)
 
-IPaper.documentInformationScreen.checkFinishDate(dataDocument.time)
+IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkPriority(dataDocument.priority)
+IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkDescription(dataDocument.description)
+IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkAssigner(userA4NV.getEmail())
+IPaper.documentInformationScreen.checkPresentFileName(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(dataDocument.mainFileName)
-
-IPaper.documentInformationScreen.checkAttachFileName(dataDocument.subFileName)
+IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.checkUserCannotEditDocument()
 

@@ -50,7 +50,7 @@ IPaper.pdfSignScreen.fillInOpinion(document.getComment())
 
 IPaper.pdfSignScreen.submitRequest()
 
-document.setStatus(DocumentStatus.WAIT_PROCESS)
+document.setStatus(DocumentStatus.WAIT_APPROVE)
 
 IPaper.documentInformationScreen.backToHome()
 

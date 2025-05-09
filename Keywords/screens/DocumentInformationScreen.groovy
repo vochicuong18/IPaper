@@ -26,7 +26,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
-		String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
 		waitForPresentOf(documentActionBtn)
 		clickToElement(documentActionBtn)
 		switch (actionType) {
@@ -35,7 +34,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.APPROVED)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.REJECT:
@@ -43,7 +41,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.REJECT)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.COMMENT:
@@ -51,7 +48,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.COMMENTED)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.APPROVE_ADD_CC:
@@ -66,7 +62,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				}
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.APPROVED)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.WITHDRAW_DOCUMENT:
@@ -74,7 +69,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.WAIT_PROCESS)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.RETURN:
@@ -82,7 +76,6 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.RETURNED)
-				document.setTime(TO_DAY)
 				break
 		}
 	}
@@ -143,9 +136,9 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	//only check file name
 
 	def checkPresentFileName(Document doc) {
+		swipeToElement(mainFile)
 		String gui = getText(mainFile).split('_')[0]
 		String data = doc.getMainFileName().split('.pdf')[0]
-		swipe('down')
 		AssertUtilities.checkContains(getText(mainFile), data)
 	}
 

@@ -93,12 +93,14 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	}
 
 	def selectRelatedMember(String email) {
+		waitForPresentOf(relatedTxt)
 		clickToElement(relatedTxt)
 		inputText(relatedEmailSearch, email)
 		enterText(relatedEmailSearch)
 		if (GlobalVariable.PLATFORM == "iOS") {
 			waitForNotPresentOf(listUserLoadingMask)
 		}
+		waitForPresentOf(relatedMemberItem(email))
 		clickToElement(relatedMemberItem(email))
 		clickToElement(doneBtn)
 	}
@@ -142,7 +144,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	def submitRequest() {
 		waitForPresentOf(submitFormBtn)
 		clickToElement(submitFormBtn)
-		Mobile.delay(1)
+		Thread.sleep(1)
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForNotPresentOf(loadingMask)
 		} else {

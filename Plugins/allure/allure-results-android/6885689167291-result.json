@@ -1,0 +1,207 @@
+{
+    "name": "017 DUYET CO CC_NHAP Y KIEN",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/allure/../../ErrorScreen/android/Test Cases_IPAPER APP_017 DUYET CO CC_NHAP Y KIEN.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1746779152688,
+    "stop": 1746779254931,
+    "uuid": "6885689167291",
+    "historyId": "6885689167291",
+    "testCaseId": "6885689167291",
+    "fullName": "Test Cases/IPAPER APP/017 DUYET CO CC_NHAP Y KIEN",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 09-05-2025 15:21:06"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1746779152699,
+            "stop": 1746779152699,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1746779155524,
+            "stop": 1746779163616,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1746779163617,
+            "stop": 1746779166481,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1746779166481,
+            "stop": 1746779169840,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1746779169840,
+            "stop": 1746779174115,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1746779174116,
+            "stop": 1746779175908,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1746779175908,
+            "stop": 1746779178615,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1746779178615,
+            "stop": 1746779180221,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1746779180222,
+            "stop": 1746779188156,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1746779188157,
+            "stop": 1746779191352,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getMainFileName())",
+            "status": "passed",
+            "start": 1746779191353,
+            "stop": 1746779196752,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1746779196753,
+            "stop": 1746779198028,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getSubFileName())",
+            "status": "passed",
+            "start": 1746779198029,
+            "stop": 1746779203710,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.performAction(SEND_APPROVE)",
+            "status": "passed",
+            "start": 1746779203711,
+            "stop": 1746779207557,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInOpinion(document.getComment())",
+            "status": "passed",
+            "start": 1746779207558,
+            "stop": 1746779208277,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitRequest()",
+            "status": "passed",
+            "start": 1746779208278,
+            "stop": 1746779216466,
+            "steps": [
+                {
+                    "name": "Delayed 1 second(s)",
+                    "status": "passed",
+                    "start": 1746779210058,
+                    "stop": 1746779210059
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1746779216467,
+            "stop": 1746779216660,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.logout()",
+            "status": "passed",
+            "start": 1746779216660,
+            "stop": 1746779222390,
+            "steps": []
+        },
+        {
+            "name": "document.setStatus(WAIT_PROCESS)",
+            "status": "passed",
+            "start": 1746779222390,
+            "stop": 1746779222391,
+            "steps": []
+        },
+        {
+            "name": "document.setAssigner(auto5)",
+            "status": "passed",
+            "start": 1746779222391,
+            "stop": 1746779222391,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto6)",
+            "status": "passed",
+            "start": 1746779222391,
+            "stop": 1746779230491,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToIncomingDocument()",
+            "status": "passed",
+            "start": 1746779230492,
+            "stop": 1746779230541,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.viewMainFile(document)",
+            "status": "passed",
+            "start": 1746779230541,
+            "stop": 1746779230993,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.performAction(document, APPROVE_ADD_CC, COMMENT, auto7)",
+            "status": "failed",
+            "start": 1746779230993,
+            "stop": 1746779251560,
+            "steps": [
+                {
+                    "name": "Test Cases/IPAPER APP/017 DUYET CO CC_NHAP Y KIEN FAILED.\nReason:\norg.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: '4.28.1', revision: '73f5ad48a2'\nSystem info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.4.1', java.version: '17.0.14'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [2bb2148d-d47b-433c-98fe-86e3961a0d5b, findElement {using=id, value=com.hdbank.ipaper:id/btn_ok_user}]\nCapabilities {appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {automationName: UiAutomator2, deviceName: af0c5cf7, noReset: true, platformName: ANDROID, waitForIdleTimeout: 3000}, appium:deviceApiLevel: 35, appium:deviceManufacturer: OPPO, appium:deviceModel: CPH2699, appium:deviceName: af0c5cf7, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: af0c5cf7, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 15, appium:statBarHeight: 120, appium:takesScreenshot: true, appium:viewportRect: {height: 2280, left: 0, top: 120, width: 1080}, appium:waitForIdleTimeout: 3000, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nSession ID: 2bb2148d-d47b-433c-98fe-86e3961a0d5b\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)\n\tat io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:237)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)\n\tat base.BaseKeyword$Trait$Helper.clickToElement(BaseKeyword.groovy:56)\n\tat screens.DocumentInformationScreen.clickToElement(DocumentInformationScreen.groovy)\n\tat screens.DocumentInformationScreen.performAction(DocumentInformationScreen.groovy:64)\n\tat 017 DUYET CO CC_NHAP Y KIEN.run(017 DUYET CO CC_NHAP Y KIEN:69)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:486)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:477)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:456)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:322)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:71)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:160)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:107)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:186)\n\tat TempTestSuite1746778855561.run(TempTestSuite1746778855561.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+                    "status": "failed",
+                    "start": 1746779251554,
+                    "stop": 1746779251555
+                }
+            ]
+        }
+    ]
+}

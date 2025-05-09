@@ -1,11 +1,12 @@
-import entities.DocumentStatus
-import ipaper.IPaper
-import screens.DocumentInformationScreen.ActionType
-import screens.PDFSignScreen.PerformAction
-import utilities.DataTest
+import entities.DocumentStatus as DocumentStatus
+import ipaper.IPaper as IPaper
+import screens.DocumentInformationScreen.ActionType as ActionType
+import screens.PDFSignScreen.PerformAction as PerformAction
+import utilities.DataTest as DataTest
+
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
-String COMMENT = 'Automation approve'
+String COMMENT = ' '
 
 def auto5 = DataTest.getUserTest('auto5')
 
@@ -14,7 +15,6 @@ def auto6 = DataTest.getUserTest('auto6')
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
 //create document
-
 IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.openRequestList()
@@ -51,42 +51,21 @@ IPaper.homeScreen.logout()
 
 document.setStatus(DocumentStatus.WAIT_APPROVE)
 
-document.setAssigner(auto5)
 //assigner check document
-
 IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToIncomingDocument()
 
-IPaper.inComingDocument.viewInformationDocument(document)
-
-IPaper.documentInformationScreen.checkDocumentTitle(document)
-
-IPaper.documentInformationScreen.checkSender(document)
-
-IPaper.documentInformationScreen.checkStatus(document)
-
-IPaper.documentInformationScreen.checkCreateDate()
-
-IPaper.documentInformationScreen.checkFinishDate(document)
-
-IPaper.documentInformationScreen.checkPriority(document)
-
-IPaper.documentInformationScreen.checkDescription(document)
-
-IPaper.documentInformationScreen.checkAssigner(document)
-
-IPaper.documentInformationScreen.checkPresentFileName(document)
-
-IPaper.documentInformationScreen.checkAttachFileName(document)
+IPaper.inComingDocument.viewMainFile(document)
 
 //Assinger approve document
-IPaper.documentInformationScreen.performAction(document, ActionType.APPROVE, COMMENT)
+IPaper.documentInformationScreen.performAction(document, ActionType.RETURN)
+
+document.setSender(auto6)
 
 IPaper.documentInformationScreen.backToHome()
 
 //Assigner check document after approve
-
 IPaper.inComingDocument.checkItemInDocument()
 
 IPaper.homeScreen.goToOutComingDocument()
@@ -105,9 +84,9 @@ IPaper.documentInformationScreen.checkFinishDate(document)
 
 IPaper.documentInformationScreen.checkPriority(document)
 
-IPaper.documentInformationScreen.checkDescription(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.checkDescription(document)
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 

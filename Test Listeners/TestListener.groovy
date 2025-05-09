@@ -10,10 +10,15 @@ import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import drivers.Driver
 import internal.GlobalVariable
 import utilities.DataTest
+import utilities.Utilities
 class TestListener {
+
+	protected def tsContext
+
 
 	@BeforeTestSuite
 	def beforeSuite(TestSuiteContext testSuiteContext) {
+		this.tsContext = testSuiteContext
 		logReportFolder()
 		CustomKeywords.'drivers.Driver.startAppium'()
 		Driver.driver = Driver.driver ?: CustomKeywords.'drivers.Driver.initMobileDriver'()
@@ -22,28 +27,35 @@ class TestListener {
 	@BeforeTestCase
 	def beforeTest(TestCaseContext testCaseContext) {
 		DataTest.init()
-		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'())
+		Utilities.testCaseId = testCaseContext.getTestCaseId().split("/").last()
+		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'()) {
 			CustomKeywords.'drivers.Driver.startAppium'()
-		Driver.driver = Driver.driver ?: CustomKeywords.'drivers.Driver.initMobileDriver'()
+		}
+
+		if (Driver.driver == null || Driver.driver.getSessionId() == null) {
+			Driver.driver = CustomKeywords.'drivers.Driver.initMobileDriver'()
+		}
+
 		CustomKeywords.'drivers.Driver.openApp'()
-	} 
+	}
 
 	@AfterTestCase
 	def afterTest(TestCaseContext testCaseContext) {
-		if (testCaseContext.getTestCaseId() != 'Test Cases') {
-			if (testCaseContext.getTestCaseStatus() != 'PASSED') {
-				Mobile.takeScreenshot("ErrorScreen/${testCaseContext.getTestCaseId()}.png")
-			}
+		String testCaseName = testCaseContext.getTestCaseId().split("/").last()
+		if(testCaseContext.testCaseStatus != "PASSED" && this.tsContext != null) {
+			Mobile.takeScreenshot("ErrorScreen/${GlobalVariable.PLATFORM}/Test Cases/${testCaseName}.png")
 		}
 		CustomKeywords.'drivers.Driver.closeApp'()
-		CustomKeywords.'drivers.Driver.stopAppium'()
+
+		if(this.tsContext == null) {
+			CustomKeywords.'drivers.Driver.stopAppium'()
+		}
 	}
 
 	@AfterTestSuite
 	def afterSuite(TestSuiteContext testSuiteContext) {
-		if (testSuiteContext.getTestSuiteId() != 'Test Suites/Test') {
-			CustomKeywords.'drivers.Driver.stopAppium'()
-		}
+		CustomKeywords.'drivers.Driver.stopAppium'()
+		CustomKeywords.'drivers.Driver.closeApp'()
 	}
 
 	def logReportFolder() {
