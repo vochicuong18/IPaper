@@ -1,5 +1,7 @@
 package locator
 
+import static entities.LocatorType.XPATH
+
 import com.kms.katalon.core.testobject.TestObject
 
 import entities.LocatorType
@@ -9,7 +11,8 @@ public class DocumentInformationLocator extends TestObjectFactory {
 
 	TestObject assigner, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
-	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn, returnDocument
+	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn, returnDocument, downloadSubFile, useFolder, acceptUseFolder, loadingImage,
+	mainFileAttachIcon, btnUploadFile, acceptNotifiDownloadSuccess
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -41,6 +44,12 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				warningPopup = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Cảnh báo' and @resource-id='com.hdbank.ipaper:id/tv_title_mes']")
 				ignoreBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok")
 				returnDocument = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Trả về']/following-sibling::android.widget.ImageButton[1]")
+				downloadSubFile = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_delete")
+				useFolder = createTestObject(LocatorType.XPATH, "//android.widget.Button[@text='SỬ DỤNG THƯ MỤC NÀY']")
+				acceptUseFolder = createTestObject(LocatorType.XPATH, "//android.widget.Button[@text='CHO PHÉP']")
+				loadingImage = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/loading_image")
+				mainFileAttachIcon = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_menu_attach")
+				btnUploadFile = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_upload_server")
 				break
 			case "iOS":
 				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label, 'hdbank.com.vn')]")
@@ -72,6 +81,11 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				warningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cảnh báo']")
 				ignoreBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
 				returnDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_return']/parent::XCUIElementTypeOther")
+				downloadSubFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic download gray']")
+				acceptUseFolder = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Lưu']")
+				acceptNotifiDownloadSuccess = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đồng ý']")
+				mainFileAttachIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic attach file white']")
+				btnUploadFile = createTestObject(LocatorType.ID, "")
 				break
 		}
 	}

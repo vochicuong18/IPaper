@@ -116,7 +116,7 @@ IPaper.documentInformationScreen.checkPriority(document)
 
 IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 

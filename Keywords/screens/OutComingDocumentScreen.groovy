@@ -26,6 +26,14 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		waitForPresentOf(documentItem(doc.getTitle()))
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
+	
+	def viewMainFile(Document doc) {
+		if (GlobalVariable.PLATFORM == 'iOS') {
+			searchDocument(doc.getTitle())
+		}
+		waitForPresentOf(documentItem(doc.getTitle()))
+		clickToElement(documentItem(doc.getTitle()))
+	}
 
 	def goToRelatedDocument() {
 		clickOnFillter()

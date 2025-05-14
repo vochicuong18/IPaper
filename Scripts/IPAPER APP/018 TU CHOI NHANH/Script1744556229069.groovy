@@ -86,8 +86,6 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.inComingDocument.performAction(document, ActionType.REJECT)
 
-document.setSender(auto6)
-
 //Assigner check document after reject
 
 IPaper.inComingDocument.checkItemInDocument()

@@ -85,7 +85,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		int attempts = 0
 		while (!isDisplayed(fillterBtn) && attempts++ < 5) {
 			clickToElement(backBtn)
-			Mobile.delay(0.5)
+			Thread.sleep(500)
 		}
 	}
 
@@ -131,6 +131,11 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	def checkAssigner(Document doc) {
 		swipe('down')
 		AssertUtilities.checkContains(getText(assigner), doc.getAssigner().getEmail())
+	}
+	
+	def checkAssigner(User user) {
+		swipe('down')
+		AssertUtilities.checkContains(getText(assigner), user.getEmail())
 	}
 
 	//only check file name
@@ -264,5 +269,41 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 			Mobile.delay(10)
 		}
 		KeywordUtil.markFailed("Status not change within ${timeoutInSeconds} seconds.")
+	}
+
+
+	def downloadFileAtmainFile() {
+		waitForPresentOf(mainFileAttachIcon)
+		clickToElement(mainFileAttachIcon)
+		downLoadFileFromDocument()
+		submitDownload()
+		waitForPresentOf(mainFileAttachIcon)
+	}
+
+	def downloadFile() {
+		waitForPresentOf(requestType)
+		waitForVisibilityOf(requestType)
+		downLoadFileFromDocument()
+		submitDownload()
+		waitForPresentOf(documentActionBtn)
+	}
+
+	def downLoadFileFromDocument() {
+		swipeToElement(downloadSubFile)
+		clickToElement(downloadSubFile)
+		if(GlobalVariable == 'Android') {
+			waitForNotPresentOf(loadingImage)
+		}
+	}
+
+	def submitDownload() {
+		if(GlobalVariable.PLATFORM == 'iOS') {
+			clickToElement(acceptUseFolder)
+			clickToElement(acceptNotifiDownloadSuccess)
+		} else {
+			waitForPresentOf(useFolder)
+			clickToElement(useFolder)
+			clickToElement(acceptUseFolder)
+		}
 	}
 }

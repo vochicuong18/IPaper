@@ -13,11 +13,15 @@ public class Utilities extends BaseApp{
 	static String testCaseId
 
 	def static openOutlookApp() {
-		String bundleIdOrPackage = GlobalVariable.PLATFORM == 'Android' ?
-				"com.microsoft.office.outlook" :
-				"com.microsoft.Office.Outlook"
+		String bundleIdOrPackage = GlobalVariable.PLATFORM == 'Android' ? "com.microsoft.office.outlook" : "com.microsoft.Office.Outlook"
 		Driver.driver.activateApp(bundleIdOrPackage)
 	}
+
+	def static openFileManagerApp() {
+		String bundleIdOrPackage = GlobalVariable.PLATFORM == 'Android' ? "com.coloros.filemanager" : "com.apple.DocumentsApp"
+		Driver.driver.activateApp(bundleIdOrPackage)
+	}
+
 
 	def static openIPaperApp() {
 		Utilities utility = new Utilities()

@@ -12,7 +12,7 @@ public class FileBrowserScreen extends FileBrowserLocator implements BaseKeyword
 		}
 		waitForPresentOf(searchTxt)
 		inputSearch(fileName)
-		Thread.sleep(1000) //wait system find file
+		Thread.sleep(1200) //wait system find file
 		selectFile(fileName)
 		if (GlobalVariable.PLATFORM == "iOS" && isDisplayed(submitSelectedFile)) {
 			clickToElement(submitSelectedFile)

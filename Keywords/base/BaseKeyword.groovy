@@ -4,6 +4,7 @@ import java.time.Duration
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.Pause
 import org.openqa.selenium.interactions.PointerInput
 import org.openqa.selenium.interactions.Sequence
 import org.openqa.selenium.interactions.PointerInput.Origin
@@ -42,7 +43,7 @@ trait BaseKeyword{
 		element.clear()
 		element.sendKeys(text)
 	}
-	
+
 	def enterText(TestObject to) {
 		if (GlobalVariable.PLATFORM == "Android") {
 			Utilities.runCommand("adb shell input keyevent 66")
@@ -65,6 +66,23 @@ trait BaseKeyword{
 		sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
 		sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
 		Driver.driver.perform(Arrays.asList(sequence))
+	}
+
+	def tapAndHold(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+
+		int centerX = element.getLocation().getX() + (element.getSize().getWidth() / 2)
+		int centerY = element.getLocation().getY() + (element.getSize().getHeight() / 2)
+
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence longPress = new Sequence(finger, 0)
+
+		longPress.addAction(finger.createPointerMove(Duration.ofMillis(0), Origin.viewport(), centerX, centerY))
+		longPress.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		longPress.addAction(new Pause(finger, Duration.ofSeconds(1)))
+		longPress.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+
+		Driver.driver.perform(Arrays.asList(longPress))
 	}
 
 	def tapOutSideElement(TestObject to) {
@@ -148,20 +166,20 @@ trait BaseKeyword{
 		int endY = (int)(screenHeight * 0.2)
 		performSwipe(Driver.driver, startX, startY, startX, endY)
 	}
-	
+
 	def scrollToAnchor(TestObject item, TestObject anchor) {
 		WebElement itemEl = Driver.driver.findElement(convertToBy(item))
 		WebElement anchorEl =Driver.driver.findElement(convertToBy(anchor))
 		int itemTop = itemEl.getLocation().getY()
 		int anchorBottom = anchorEl.getLocation().getY() + anchorEl.getSize().getHeight()
 		int offset = itemTop - anchorBottom
-	
+
 		if (offset > 0) {
 			int centerX = Driver.driver.manage().window().getSize().getWidth() / 2
 			int deviceHeight = Driver.driver.manage().window().getSize().getHeight()
 			int stepSize = (int)(deviceHeight * 0.09)
 			int totalSteps = Math.ceil(offset / stepSize)
-	
+
 			for (int i = 0; i < totalSteps; i++) {
 				int currentStartY = itemTop - (i * stepSize)
 				int currentEndY = Math.max(currentStartY - stepSize, anchorBottom)
@@ -170,30 +188,30 @@ trait BaseKeyword{
 			}
 		}
 	}
-	
-	
-//	def scrollToAnchor(TestObject item, TestObject anchor) {
-//		int itemTop = Mobile.getElementTopPosition(item, 5)
-//		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
-//		int offset = itemTop - anchorBottom
-//		if (offset > 0) {
-//			int centerX = Mobile.getDeviceWidth() / 2
-//			int deviceHeight = Mobile.getDeviceHeight()
-//			int stepSize = (int)(deviceHeight * 0.09)
-//			int totalSteps = Math.ceil(offset / stepSize)
-//
-//			for (int i = 0; i < totalSteps; i++) {
-//				int currentStartY = itemTop - (i * stepSize)
-//				int currentEndY = currentStartY - stepSize
-//
-//				if (currentEndY < anchorBottom) {
-//					currentEndY = anchorBottom
-//				}
-//				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
-//				Mobile.delay(0.5)
-//			}
-//		}
-//	}
+
+
+	//	def scrollToAnchor(TestObject item, TestObject anchor) {
+	//		int itemTop = Mobile.getElementTopPosition(item, 5)
+	//		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
+	//		int offset = itemTop - anchorBottom
+	//		if (offset > 0) {
+	//			int centerX = Mobile.getDeviceWidth() / 2
+	//			int deviceHeight = Mobile.getDeviceHeight()
+	//			int stepSize = (int)(deviceHeight * 0.09)
+	//			int totalSteps = Math.ceil(offset / stepSize)
+	//
+	//			for (int i = 0; i < totalSteps; i++) {
+	//				int currentStartY = itemTop - (i * stepSize)
+	//				int currentEndY = currentStartY - stepSize
+	//
+	//				if (currentEndY < anchorBottom) {
+	//					currentEndY = anchorBottom
+	//				}
+	//				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
+	//				Mobile.delay(0.5)
+	//			}
+	//		}
+	//	}
 
 	def performSwipe(driver, int startX, int startY, int endX, int endY) {
 		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")

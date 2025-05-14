@@ -82,7 +82,6 @@ IPaper.documentInformationScreen.checkPresentFileName(document)
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
 //Assinger approve document
-document.setSender(auto6)
 
 IPaper.documentInformationScreen.performAction(document, ActionType.REJECT, COMMENT)
 

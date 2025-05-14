@@ -1,9 +1,10 @@
 package screens
 
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
+import entities.User
+import groovy.transform.ThreadInterrupt
 import internal.GlobalVariable
 import locator.PDFSignLocator
 import utilities.CalendarUtilities
@@ -38,6 +39,18 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 			switch (this) {
 				case SEND_APPROVE : return "TRÌNH PHÊ DUYỆT"
 				case SEND_WITH_COMENT : return "GÓP Ý TRÌNH DUYỆT"
+				default : return "please define"
+			}
+		}
+	}
+
+	public enum Process {
+		GET_COMMENT, PARALLEL_PROCESS
+
+		String toString() {
+			switch (this) {
+				case GET_COMMENT : return "Lấy ý kiến"
+				case PARALLEL_PROCESS : return "Quy trình song song"
 				default : return "please define"
 			}
 		}
@@ -160,5 +173,26 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	String getErrorMessage() {
 		return getText(errorMessage)
+	}
+
+	def processDefinition(User ...users) {
+		openUserList()
+		searchSelectUser(users)
+	}
+
+	def openUserList() {
+		swipeToElement(addDefineProcess)
+		clickToElement(addDefineProcess)
+	}
+
+	def searchSelectUser(User ...users) {
+		waitForPresentOf(searchEmailDefineProcess)
+		for (User user : users) {
+			inputText(searchEmailDefineProcess, user.getEmail())
+			waitForPresentOf(userItemDefineProcess(user))
+			Thread.sleep(500)
+			clickToElement(userItemDefineProcess(user))
+		}
+		clickToElement(submitUseSelection)
 	}
 }

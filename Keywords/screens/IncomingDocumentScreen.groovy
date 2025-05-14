@@ -78,7 +78,6 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				clickToElement(quickApproveBtn(document.getTitle()))
 				waitForNotPresentOf(quickApproveBtn(document.getTitle()))
 				document.setStatus(DocumentStatus.APPROVED)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.APPROVE_WITH_CONDITION:
@@ -88,7 +87,6 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				clickOnSendOpinionApprove()
 				waitForNotPresentOf(approveWithCondition(document.getTitle()))
 				document.setStatus(DocumentStatus.APPROVED)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.REJECT:
@@ -98,7 +96,6 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				clickOnSendOpinionApprove()
 				waitForNotPresentOf(quickRejectBtn(document.getTitle()))
 				document.setStatus(DocumentStatus.REJECT)
-				document.setTime(TO_DAY)
 				break
 
 			case ActionType.SEND_COMMENT:
@@ -108,7 +105,6 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 				clickOnSendOpinionApprove()
 				waitForNotPresentOf(sendCommentBtn(document.getTitle()))
 				document.setStatus(DocumentStatus.COMMENTED)
-				document.setTime(TO_DAY)
 				break
 		}
 		backToHome()

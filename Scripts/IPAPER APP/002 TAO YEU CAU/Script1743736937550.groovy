@@ -85,6 +85,8 @@ IPaper.homeScreen.logout()
 // Check document in assinger account
 IPaper.loginScreen.login(auto6)
 
+document.setAssigner(auto5)
+
 IPaper.homeScreen.goToIncomingDocument()
 
 IPaper.inComingDocument.viewInformationDocument(document)
@@ -114,6 +116,9 @@ IPaper.documentInformationScreen.backToHome()
 IPaper.homeScreen.logout()
 
 // Check account CC
+
+document.setAssigner(auto6)
+
 IPaper.loginScreen.login(auto7)
 
 IPaper.homeScreen.goToIncomingDocument()

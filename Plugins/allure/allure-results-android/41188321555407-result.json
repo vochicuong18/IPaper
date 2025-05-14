@@ -1,0 +1,60 @@
+{
+    "name": "025 TRA VE TAI MAIN FILE_NHAP Y KIEN",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/allure/../../ErrorScreen/android/Test Cases_IPAPER APP_025 TRA VE TAI MAIN FILE_NHAP Y KIEN.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1747044112561,
+    "stop": 1747044133910,
+    "uuid": "41188321555407",
+    "historyId": "41188321555407",
+    "testCaseId": "41188321555407",
+    "fullName": "Test Cases/IPAPER APP/025 TRA VE TAI MAIN FILE_NHAP Y KIEN",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 12-05-2025 16:46:23"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1747044112567,
+            "stop": 1747044112568,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1747044115159,
+            "stop": 1747044125826,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1747044125826,
+            "stop": 1747044128889,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "failed",
+            "start": 1747044128889,
+            "stop": 1747044132745,
+            "steps": [
+                {
+                    "name": "Test Cases/IPAPER APP/025 TRA VE TAI MAIN FILE_NHAP Y KIEN FAILED.\nReason:\norg.openqa.selenium.StaleElementReferenceException: The element 'By.xpath: //android.widget.TextView[@text='Tr\u00ecnh k\u00fd PDF c\u00f3 s\u1eb5n']' is not linked to the same object in DOM anymore\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nBuild info: version: '4.28.1', revision: '73f5ad48a2'\nSystem info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.4.1', java.version: '17.0.14'\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [3733c4f3-b30d-48e2-9ac4-fd1edf64c759, clickElement {id=00000000-0000-88aa-ffff-ffff0000020d}]\nCapabilities {appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {automationName: UiAutomator2, deviceName: af0c5cf7, noReset: true, platformName: ANDROID, waitForIdleTimeout: 3000}, appium:deviceApiLevel: 35, appium:deviceManufacturer: OPPO, appium:deviceModel: CPH2699, appium:deviceName: af0c5cf7, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: af0c5cf7, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 3, appium:platformVersion: 15, appium:statBarHeight: 120, appium:takesScreenshot: true, appium:viewportRect: {height: 2280, left: 0, top: 120, width: 1080}, appium:waitForIdleTimeout: 3000, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nElement: [[AndroidDriver:  on ANDROID (3733c4f3-b30d-48e2-9ac4-fd1edf64c759)] -> xpath: //android.widget.TextView[@text='Tr\u00ecnh k\u00fd PDF c\u00f3 s\u1eb5n']]\nSession ID: 3733c4f3-b30d-48e2-9ac4-fd1edf64c759\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)\n\tat io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:237)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)\n\tat org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)\n\tat org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)\n\tat base.BaseKeyword$Trait$Helper.clickToElement(BaseKeyword.groovy:57)\n\tat screens.HomeScreen.clickToElement(HomeScreen.groovy)\n\tat screens.HomeScreen.createRequest(HomeScreen.groovy:73)\n\tat 025 TRA VE TAI MAIN FILE_NHAP Y KIEN.run(025 TRA VE TAI MAIN FILE_NHAP Y KIEN:22)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:486)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:477)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:456)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:322)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:406)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:71)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:160)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:107)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:186)\n\tat TempTestSuite1747043170220.run(TempTestSuite1747043170220.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+                    "status": "failed",
+                    "start": 1747044132742,
+                    "stop": 1747044132743
+                }
+            ]
+        }
+    ]
+}

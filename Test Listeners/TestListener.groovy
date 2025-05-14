@@ -41,9 +41,9 @@ class TestListener {
 
 	@AfterTestCase
 	def afterTest(TestCaseContext testCaseContext) {
-		String testCaseName = testCaseContext.getTestCaseId().split("/").last()
+//		String testCaseName = testCaseContext.getTestCaseId().split("/").last()
 		if(testCaseContext.testCaseStatus != "PASSED" && this.tsContext != null) {
-			Mobile.takeScreenshot("ErrorScreen/${GlobalVariable.PLATFORM}/Test Cases/${testCaseName}.png")
+			Mobile.takeScreenshot("ErrorScreen/${GlobalVariable.PLATFORM}/${testCaseContext.getTestCaseId()}.png")
 		}
 		CustomKeywords.'drivers.Driver.closeApp'()
 
@@ -55,7 +55,8 @@ class TestListener {
 	@AfterTestSuite
 	def afterSuite(TestSuiteContext testSuiteContext) {
 		CustomKeywords.'drivers.Driver.stopAppium'()
-		CustomKeywords.'drivers.Driver.closeApp'()
+//		CustomKeywords.'drivers.Driver.closeApp'()
+//		Utilities.runCommand("cd Plugins/allure && python3 allure-for-kes.py --platform android && allure serve allure-results-android")
 	}
 
 	def logReportFolder() {
