@@ -1,125 +1,241 @@
 package base
-
-import static org.junit.Assert.assertTrue
-
 import java.time.Duration
 
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
-import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.Pause
+import org.openqa.selenium.interactions.PointerInput
+import org.openqa.selenium.interactions.Sequence
+import org.openqa.selenium.interactions.PointerInput.Origin
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
+import com.kms.katalon.core.exception.StepFailedException
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
-import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testobject.MobileTestObject
 import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.TestObjectProperty
 
+import drivers.Driver
 import internal.GlobalVariable
-import io.appium.java_client.AppiumDriver
-import io.appium.java_client.android.AndroidDriver
-import io.appium.java_client.android.nativekey.AndroidKey
-import io.appium.java_client.android.nativekey.KeyEvent
 import utilities.Utilities
 
-public class BaseKeyword {
-	AppiumDriver driver
+trait BaseKeyword{
 	final int TIMEOUT = 30
-
-	BaseKeyword() {
-	}
 
 	def hideKeyboard() {
 		Mobile.hideKeyboard()
 	}
 
-	def getLocator(TestObject element) {
-		MobileTestObject mObj = (MobileTestObject) element
-		return mObj.getMobileLocator()
+	boolean getValueAttributeOf(TestObject to, attribute) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		return element.getAttribute(attribute)
 	}
 
-	def getValueAttributeOf(TestObject to, attribute) {
-		return Mobile.getAttribute(to, attribute, TIMEOUT)
+	String getText(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		return element.getText()
 	}
 
-	String getText(TestObject element) {
-		return Mobile.getText(element, TIMEOUT)
-	}
-
-	def inputText(TestObject element, String text) {
-		Mobile.delay(0.1)
-		Mobile.tap(element, TIMEOUT)
-		Mobile.clearText(element, TIMEOUT)
-		Mobile.sendKeys(element, text)
-		Utilities.log("Entered ${text} into ${getLocator(element)}")
+	def inputText(TestObject to, String text) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		element.clear()
+		element.sendKeys(text)
 	}
 
 	def enterText(TestObject to) {
-		if (GlobalVariable.PLATFORM=="Android") {
-			AndroidDriver driver = MobileDriverFactory.getDriver()
-			driver.pressKey(new KeyEvent(AndroidKey.ENTER))
-		} else Mobile.sendKeys(to, Keys.chord(Keys.RETURN))
-	}
-
-
-	def clickToElement(TestObject element) {
-		Mobile.delay(0.1)
-		Mobile.tap(element, TIMEOUT)
-	}
-
-	def swipe(String direction) {
-		int height  = Mobile.getDeviceHeight()
-		int weight = Mobile.getDeviceWidth()
-		int startX = weight/2
-		int startY = height/2
-		int endX = weight/2
-		int endY = height/2
-		if (direction == 'down') {
-			Mobile.swipe(startX, startY, endX, endY - 200)
+		if (GlobalVariable.PLATFORM == "Android") {
+			Utilities.runCommand("adb shell input keyevent 66")
+		} else {
+			WebElement element = Driver.driver.findElement(convertToBy(to))
+			element.sendKeys(Keys.RETURN)
 		}
-		else if (direction == 'up') {
-			Mobile.swipe(1050, 400, 1050, 1200)
+	}
+
+	def clickToElement(TestObject to) {
+		def element = Driver.driver.findElement(convertToBy(to))
+		element.click()
+	}
+
+	def tapAt(int x, int y) {
+		def driver = MobileDriverFactory.getDriver()
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		def sequence = new Sequence(finger, 0)
+		sequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y))
+		sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(sequence))
+	}
+
+	def tapAndHold(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+
+		int centerX = element.getLocation().getX() + (element.getSize().getWidth() / 2)
+		int centerY = element.getLocation().getY() + (element.getSize().getHeight() / 2)
+
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence longPress = new Sequence(finger, 0)
+
+		longPress.addAction(finger.createPointerMove(Duration.ofMillis(0), Origin.viewport(), centerX, centerY))
+		longPress.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		longPress.addAction(new Pause(finger, Duration.ofSeconds(1)))
+		longPress.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+
+		Driver.driver.perform(Arrays.asList(longPress))
+	}
+
+	def tapOutSideElement(TestObject to) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		int xPosition = element.getLocation().getX() - 20
+		int yPosition = element.getLocation().getY() - 20
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		def sequence = new Sequence(finger, 0)
+		sequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), xPosition, yPosition))
+		sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(sequence))
+	}
+
+	def verticalSwipeYearIOS(TestObject to, String direction) {
+		WebElement element = Driver.driver.findElement(convertToBy(to))
+		int xPosition = element.getLocation().getX() + 20
+		int yStart = element.getLocation().getY() + 100
+		int yEnd = direction == "down" ? yStart + 30 : yStart - 20
+		println "Swipe from (${xPosition}, ${yStart}) to (${xPosition}, ${yEnd})"
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 0)
+
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), xPosition, yStart))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), xPosition, yEnd))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform([swipe])
+	}
+
+	def swipe(String direction, double distancePercent = 0.2) {
+		def size = Driver.driver.manage().window().getSize()
+		int startX = size.getWidth() / 2
+		int startY = size.getHeight() / 2
+		int distance = (size.getHeight() * distancePercent) as int
+		int endY = direction == 'down' ? startY - distance : startY + distance
+
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 1)
+
+		swipe.addAction(finger.createPointerMove(Duration.ZERO, Origin.viewport(), startX, startY))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), Origin.viewport(), startX, endY))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform(Arrays.asList(swipe))
+	}
+
+	def swipeToElement(TestObject element) {
+		int MAX_ATTEMPTS = 10
+		int attempts = 0
+
+		while (attempts < MAX_ATTEMPTS && !isDisplayed(element)) {
+			swipe("down")
+			attempts++
+		}
+
+		if (!isDisplayed(element)) {
+			throw new StepFailedException("Element not found after $MAX_ATTEMPTS swipes")
 		}
 	}
 
 	def horizontalSwipeFromElement(TestObject to, String direction) {
-		int xPosition = Mobile.getElementLeftPosition(to, 10) + 400
-		int yPosition = Mobile.getElementTopPosition(to, 10) + 200
+		WebElement element = Driver.driver.findElement(convertToBy(to))
 
-		if (direction == "right") {
-			Mobile.swipe(xPosition, yPosition, xPosition + 300, yPosition)
-		}
+		int screenWidth = Driver.driver.manage().window().getSize().getWidth()
+		int elementX = element.getLocation().getX()
+		int elementY = element.getLocation().getY()
+		int elementCenterX = elementX + 100
+		int elementCenterY = elementY + 50
+		int swipeDistance = (int)(screenWidth * 0.5)
+		int startX = elementCenterX
+		int endX = direction == "right" ? startX + swipeDistance : startX - swipeDistance
+		performSwipe(Driver.driver, startX, elementCenterY, endX, elementCenterY)
+	}
 
-		else if (direction == "left") {
-			Mobile.swipe(xPosition, yPosition, xPosition - 300, yPosition)
+	def swipeToBottom() {
+		int screenHeight = Driver.driver.manage().window().getSize().getHeight()
+		int screenWidth = Driver.driver.manage().window().getSize().getWidth()
+		int startX = screenWidth / 2
+		int startY = (int)(screenHeight * 0.8)
+		int endY = (int)(screenHeight * 0.2)
+		performSwipe(Driver.driver, startX, startY, startX, endY)
+	}
+
+	def scrollToAnchor(TestObject item, TestObject anchor) {
+		WebElement itemEl = Driver.driver.findElement(convertToBy(item))
+		WebElement anchorEl =Driver.driver.findElement(convertToBy(anchor))
+		int itemTop = itemEl.getLocation().getY()
+		int anchorBottom = anchorEl.getLocation().getY() + anchorEl.getSize().getHeight()
+		int offset = itemTop - anchorBottom
+
+		if (offset > 0) {
+			int centerX = Driver.driver.manage().window().getSize().getWidth() / 2
+			int deviceHeight = Driver.driver.manage().window().getSize().getHeight()
+			int stepSize = (int)(deviceHeight * 0.09)
+			int totalSteps = Math.ceil(offset / stepSize)
+
+			for (int i = 0; i < totalSteps; i++) {
+				int currentStartY = itemTop - (i * stepSize)
+				int currentEndY = Math.max(currentStartY - stepSize, anchorBottom)
+				performSwipe(Driver.driver, centerX, currentStartY, centerX, currentEndY)
+				Thread.sleep(500)
+			}
 		}
 	}
 
 
-	def swipeToElement(TestObject element, String direction) {
-		int MAX_ATTEMPTS = 5
-		int attempts = 0
-		while (attempts < MAX_ATTEMPTS && isDisplayed(element)) {
-			Utilities.log("Swipe ${direction} to find ${getLocator(element)}")
-			swipe(direction)
-			attempts++
-		}
-		assertTrue(isDisplayed(element))
-	}
+	//	def scrollToAnchor(TestObject item, TestObject anchor) {
+	//		int itemTop = Mobile.getElementTopPosition(item, 5)
+	//		int anchorBottom = Mobile.getElementTopPosition(anchor, 5) + Mobile.getElementHeight(anchor, 5)
+	//		int offset = itemTop - anchorBottom
+	//		if (offset > 0) {
+	//			int centerX = Mobile.getDeviceWidth() / 2
+	//			int deviceHeight = Mobile.getDeviceHeight()
+	//			int stepSize = (int)(deviceHeight * 0.09)
+	//			int totalSteps = Math.ceil(offset / stepSize)
+	//
+	//			for (int i = 0; i < totalSteps; i++) {
+	//				int currentStartY = itemTop - (i * stepSize)
+	//				int currentEndY = currentStartY - stepSize
+	//
+	//				if (currentEndY < anchorBottom) {
+	//					currentEndY = anchorBottom
+	//				}
+	//				Mobile.swipe(centerX, currentStartY, centerX, currentEndY)
+	//				Mobile.delay(0.5)
+	//			}
+	//		}
+	//	}
 
+	def performSwipe(driver, int startX, int startY, int endX, int endY) {
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
+		Sequence swipe = new Sequence(finger, 0)
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY))
+		swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, endY))
+		swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+		Driver.driver.perform([swipe])
+	}
 
 	boolean isDisplayed(TestObject element) {
-		boolean status = Mobile.verifyElementVisible(element, 1, FailureHandling.OPTIONAL)
-		Utilities.log("Verify ${getLocator(element)} is displayed: ${status}")
-		return status
+		isDisplayed(element, 1)
 	}
 
-	boolean isExisted(TestObject element) {
-		boolean status = Mobile.verifyElementExist(element, 1, FailureHandling.OPTIONAL)
-		Utilities.log("Verify ${getLocator(element)} is existed: ${status}")
-		return status
+	boolean isDisplayed(TestObject to, int timeout) {
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
+		def elements = Driver.driver.findElements(convertToBy(to))
+		for (def element in elements) {
+			if (element.isDisplayed()) {
+				return true
+			}
+		}
+		return false
 	}
 
 	/**
@@ -130,8 +246,10 @@ public class BaseKeyword {
 	 */
 
 	def waitForPresentOf(TestObject testObject) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
-		wait.until { driver.findElements(convertToBy(testObject)).size() > 0 }
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(convertToBy(testObject)).size() > 0
+		}
 	}
 
 	/**
@@ -142,43 +260,76 @@ public class BaseKeyword {
 	 */
 
 	def waitForNotPresentOf(TestObject testObject) {
-		WebDriver driver = MobileDriverFactory.getDriver()
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
-		wait.until { driver.findElements(convertToBy(testObject)).size() == 0 }
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(convertToBy(testObject)).size() == 0
+		}
 	}
+
+	def waitForNotPresentOf(By by) {
+		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		wait.until {
+			Driver.driver.findElements(by).size() == 0
+		}
+	}
+
 
 	def waitForVisibilityOf(TestObject testObject) {
 		WebElement element = convertTestObjectToWebElement(testObject)
-		return waitForCondition(testObject) { ExpectedConditions.visibilityOf(element) }
+		return waitForCondition(testObject) {
+			ExpectedConditions.visibilityOf(element)
+		}
 	}
 
 	def waitForInVisibilityOf(TestObject testObject) {
 		WebElement element = convertTestObjectToWebElement(testObject)
-		return waitForCondition(testObject) { ExpectedConditions.invisibilityOf(element) }
+		return waitForCondition(testObject) {
+			ExpectedConditions.invisibilityOf(element)
+		}
 	}
 
+	def waitForAttributeValueOf(TestObject testObject, String attributeName, String expectedValue, int timeout = TIMEOUT) {
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(timeout))
+		By locator = convertToBy(testObject)
+
+		wait.until {
+			List<WebElement> elements = Driver.driver.findElements(locator)
+			if (elements.isEmpty()) return false
+			String actualValue = elements[0].getAttribute(attributeName)
+			return actualValue == expectedValue
+		}
+	}
+
+
 	def waitForCondition(TestObject testObject, Closure<Boolean> condition) {
-		WebDriver driver = MobileDriverFactory.getDriver()
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
 		return wait.until(condition)
 	}
 
 	WebElement convertTestObjectToWebElement(TestObject testObject) {
-		WebDriver driver = MobileDriverFactory.getDriver()
-		return driver.findElement(convertToBy(testObject))
+		return Driver.driver.findElement(convertToBy(testObject))
 	}
 
-	By convertToBy(TestObject testObject) {
-		MobileTestObject mobileObject = (MobileTestObject) testObject
-		String method = mobileObject.getMobileLocatorStrategy().toString()
-		String locator = mobileObject.getMobileLocator()
+	By convertToBy(TestObject to) {
+		List<TestObjectProperty> properties = to.getProperties()
+
+		if (properties == null || properties.isEmpty()) {
+			throw new IllegalArgumentException("TestObject has no properties defined")
+		}
+		TestObjectProperty prop = properties.get(0)
+		String method = prop.getName().toUpperCase()
+		String locator = prop.getValue()
 
 		switch (method) {
 			case "XPATH": return By.xpath(locator)
 			case "CSS": return By.cssSelector(locator)
-			case "ID": return By.id(locator)
-			default: throw new IllegalArgumentException("Not supported locator type: " + method)
+			case "RESOURCE-ID": return By.id(locator)
+			case "NAME": return By.name(locator)
+			case "CLASS_NAME": return By.className(locator)
+			default:
+				throw new IllegalArgumentException("Unsupported locator strategy: " + method)
 		}
 	}
 }

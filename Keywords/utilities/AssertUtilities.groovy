@@ -1,16 +1,35 @@
 package utilities
 
-import com.kms.katalon.core.exception.StepFailedException
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling
+import com.kms.katalon.core.logging.KeywordLogger
+import com.kms.katalon.core.util.KeywordUtil
 
 
-public class AssertUtilities {
-	public static void checkEquals(String gui, String data) {
-		try {
-			Mobile.verifyEqual(gui, data, FailureHandling.OPTIONAL)
-		} catch (StepFailedException e) {
-			Utilities.log("Verify equals GUI: ${gui} - DATA: ${data}")
+class AssertUtilities {
+	private static final KeywordLogger logger = KeywordLogger.getInstance(KeywordUtil.class)
+
+	static void checkEquals(String gui, String data) {
+		logResult(gui == data, "Verify equals GUI: $gui - DATA: $data")
+	}
+
+	static void checkContains(String gui, String data) {
+		logResult(gui?.contains(data), "Verify contains GUI: $gui - DATA: $data")
+	}
+
+	static void assertTrue(boolean condition, String message = "Expected true condition") {
+		logResult(condition, message)
+	}
+
+	static void assertFalse(boolean condition, String message = "Expected false condition") {
+		logResult(!condition, message)
+	}
+
+	private static void logResult(boolean passed, String message) {
+		if (passed) {
+			logger.logPassed(message)
+		} else {
+			KeywordUtil.markFailed(message)
 		}
 	}
 }
+
+

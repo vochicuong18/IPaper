@@ -3,8 +3,11 @@ package drivers
 import org.openqa.selenium.remote.DesiredCapabilities
 
 import com.kms.katalon.core.annotation.Keyword
+import com.kms.katalon.core.appium.driver.AppiumDriverManager
+import com.kms.katalon.core.mobile.driver.MobileDriverType
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
+import base.BaseApp
 import data.Capabilities
 import internal.GlobalVariable
 import io.appium.java_client.AppiumDriver
@@ -15,33 +18,30 @@ import io.appium.java_client.service.local.AppiumServiceBuilder
 import utilities.DataTest
 import utilities.Utilities
 
-public class Driver {
+class Driver extends BaseApp {
 
 	private static final String APPIUM_IP_ADDRESS = "127.0.0.1"
 	private static final int APPIUM_PORT = 4723
 	private static final String APPIUM_BASE_PATH = "/wd/hub"
-	private static final String APPIUM_LOG_LEVEL = "info"
-	private static final String JAVA_ENCODING = "UTF-8"
 
 	public static AppiumDriverLocalService service
 	public static AppiumDriver driver
 
 	@Keyword
 	def startAppium() {
-		def buildService = new AppiumServiceBuilder()
+		service = AppiumDriverLocalService.buildService(
+				new AppiumServiceBuilder()
 				.withIPAddress(APPIUM_IP_ADDRESS)
 				.usingPort(APPIUM_PORT)
 				.withArgument({ "--base-path" }, APPIUM_BASE_PATH)
-				.withEnvironment(["JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"])
-		service = AppiumDriverLocalService.buildService(buildService);
-		Utilities.log("Appium will be started...")
+				)
 		service.start()
 	}
 
+
 	@Keyword
 	def stopAppium() {
-		if(isAppiumRunning()) {
-			Utilities.log("Appium will be stopped...")
+		if (isAppiumRunning()) {
 			service.stop()
 		}
 	}
@@ -49,65 +49,79 @@ public class Driver {
 	@Keyword
 	def isAppiumRunning() {
 		boolean status = service != null && service.isRunning()
-		Utilities.log("Appium running: ${status.toString()}")
-		println("------------ ${status}")
+		Utilities.logInfo("Appium running: ${status}")
 		return status
 	}
 
-	// FOR ADB ==================================================================================================================
-	@Keyword
-	def startAppADB() {
-	}
-
-	@Keyword
-	def forceStopAppADB() {
-	}
-
-
-	// FOR APP ==================================================================================================================
 	@Keyword
 	def openApp() {
-		String appPath = DataTest.APP[GlobalVariable.PLATFORM]
-		Mobile.startApplication(appPath, false)
-		//		Mobile.startExistingApplication(appPath)
+		String appPackage = DataTest.APP[GlobalVariable.PLATFORM]
+		driver.activateApp(appPackage)
+		waitAppLauch()
 	}
 
 	@Keyword
 	def closeApp() {
-		//		Mobile.closeApplication()
+		String appPackage = DataTest.APP[GlobalVariable.PLATFORM]
+		driver.terminateApp(appPackage)
 	}
 
 	@Keyword
 	def initMobileDriver() {
-		DesiredCapabilities cap = new DesiredCapabilities();
-		URL appiumServerURL = new URL("http://127.0.0.1:4723/wd/hub");
+		Utilities.logInfo("Init driver")
+		DesiredCapabilities cap = new DesiredCapabilities()
+		URL appiumServerURL = new URL("http://${APPIUM_IP_ADDRESS}:${APPIUM_PORT}${APPIUM_BASE_PATH}")
 		def platformCaps = Capabilities.CAP[GlobalVariable.PLATFORM]
-		if (GlobalVariable.PLATFORM == 'Android') {
-			cap.setCapability("platformName", platformCaps.platformName)
-			cap.setCapability("appium:deviceName", platformCaps.deviceName)
-			cap.setCapability("appium:automationName", platformCaps.automationName)
-			cap.setCapability("appium:noReset", platformCaps.noReset)
-			return new AndroidDriver(appiumServerURL, cap)
+
+		switch (GlobalVariable.PLATFORM) {
+			case 'Android':
+				setAndroidCapabilities(cap, platformCaps)
+				return AppiumDriverManager.createMobileDriver(MobileDriverType.ANDROID_DRIVER, cap, appiumServerURL)
+			case 'iOS':
+				setIOSCapabilities(cap, platformCaps)
+				return AppiumDriverManager.createMobileDriver(MobileDriverType.IOS_DRIVER, cap, appiumServerURL)
 		}
-		else if (GlobalVariable.PLATFORM == 'iOS') {
-			cap.setCapability("platformName", platformCaps.platformName)
-			cap.setCapability("appium:platformVersion", platformCaps.platformVersion)
-			cap.setCapability("appium:udid", platformCaps.udid)
-			cap.setCapability("appium:automationName", platformCaps.automationName)
-			cap.setCapability("appium:noReset", platformCaps.noReset)
-			return new IOSDriver(appiumServerURL, cap)
-		}
+	}
+
+	private void setAndroidCapabilities(DesiredCapabilities cap, def platformCaps) {
+		cap.setCapability("platformName", platformCaps.platformName)
+		cap.setCapability("appium:deviceName", platformCaps.deviceName)
+		cap.setCapability("appium:automationName", platformCaps.automationName)
+		cap.setCapability("appium:noReset", platformCaps.noReset)
+		cap.setCapability("appium:fullReset", platformCaps.fullReset)
+		cap.setCapability("appium:waitForIdleTimeout", platformCaps.waitForIdleTimeout)
+	}
+
+	private void setIOSCapabilities(DesiredCapabilities cap, def platformCaps) {
+		cap.setCapability("platformName", platformCaps.platformName)
+		cap.setCapability("appium:udid", platformCaps.udid)
+		cap.setCapability("appium:automationName", platformCaps.automationName)
+		cap.setCapability("appium:noReset", platformCaps.noReset)
+		cap.setCapability("appium:fullReset", platformCaps.fullReset)
 	}
 
 	@Keyword
 	def terminateApp() {
+		// Reserved for future implementation
 	}
 
 	@Keyword
-	def installApp(String app_package) {
+	def installApp(String appPackage) {
+		// Reserved for future implementation
 	}
 
 	@Keyword
-	def uninstallApp(String app_package) {
+	def uninstallApp(String appPackage) {
+		// Reserved for future implementation
+	}
+
+	@Keyword
+	def startAppADB() {
+		// Reserved for future implementation
+	}
+
+	@Keyword
+	def forceStopAppADB() {
+		// Reserved for future implementation
 	}
 }

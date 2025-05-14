@@ -1,32 +1,21 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
-import com.kms.katalon.core.testobject.TestObject
-
-import base.BaseApp
+import base.BaseKeyword
 import internal.GlobalVariable
+import locator.FileBrowserLocator
 
-public class FileBrowserScreen extends BaseApp {
-
-	private TestObject searchBtn
-	private TestObject searchTxt
-	private TestObject fileLbl, submitSelectedFile
-
-	public FileBrowserScreen() {
-		String platformPath = "Object Repository/Elements/${GlobalVariable.PLATFORM}/FileBrowserScreen/"
-		searchBtn = findTestObject("${platformPath}searchBtn")
-		searchTxt = findTestObject("${platformPath}searchTxt")
-		fileLbl = findTestObject("${platformPath}fileLbl")
-		submitSelectedFile = findTestObject("${platformPath}submitSelectedFile")
-	}
+public class FileBrowserScreen extends FileBrowserLocator implements BaseKeyword {
 
 	def attachFile(String fileName) {
 		if (GlobalVariable.PLATFORM == "Android") {
 			clickToSearch()
-		} else {
-			inputSearch(fileName)
-			selectFile(fileName)
+		}
+		waitForPresentOf(searchTxt)
+		inputSearch(fileName)
+		Thread.sleep(1200) //wait system find file
+		selectFile(fileName)
+		if (GlobalVariable.PLATFORM == "iOS" && isDisplayed(submitSelectedFile)) {
+			clickToElement(submitSelectedFile)
 		}
 	}
 
@@ -41,7 +30,8 @@ public class FileBrowserScreen extends BaseApp {
 
 
 	def selectFile(String fileName) {
-		def fileItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/FileBrowserScreen/fileLbl", [('fileName') : fileName])
+		def fileItem = fileLbl(fileName)
+		waitForPresentOf(fileItem)
 		clickToElement(fileItem)
 	}
 }

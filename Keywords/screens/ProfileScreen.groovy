@@ -1,23 +1,31 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import base.BaseKeyword
-import internal.GlobalVariable
+import locator.ProfileLocator
 import utilities.AssertUtilities
 
-public class ProfileScreen extends BaseKeyword{
-	def checkUserEmail(String email) {
-		String gui = getText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/ProfileScreen/email"))
-		AssertUtilities.checkEquals(gui, email)
+public class ProfileScreen extends ProfileLocator implements BaseKeyword {
+	def checkUserEmail(String emailData) {
+		String gui = getText(email)
+		AssertUtilities.checkEquals(gui, emailData)
 	}
 
-	def checkPhoneNumber (String phoneNumber) {
-		String gui = getText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/ProfileScreen/phoneNumber"))
-		AssertUtilities.checkEquals(gui, phoneNumber)
+	def checkUserName(String userNameData) {
+		String gui = getText(userName)
+		AssertUtilities.checkEquals(gui, userNameData)
+	}
+
+	def checkName(String nameData) {
+		String gui = getText(name)
+		AssertUtilities.checkEquals(gui, nameData)
+	}
+
+	def checkPhoneNumber (String phoneNumberData) {
+		String gui = getText(phoneNumber)
+		AssertUtilities.checkEquals(gui, phoneNumberData)
 	}
 
 	def back() {
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/ProfileScreen/backButton"))
+		clickToElement(backBtn)
 	}
 }

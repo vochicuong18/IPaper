@@ -1,27 +1,29 @@
 package utilities
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
 import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.LocalDate
+
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.PointerInput
 
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
+import drivers.Driver
 import internal.GlobalVariable
+import io.appium.java_client.touch.offset.PointOption
+import locator.CalendarLocator
+public class CalendarUtilities extends CalendarLocator implements BaseKeyword {
 
-public class CalendarUtilities extends BaseKeyword {
-
-	int getCurrentMonth() {
-		String currentDate = getText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/currentDate"))
-		return currentDate.split("thg ")[1].toInteger()
+	def selectDate (String date) {
+		GlobalVariable.PLATFORM == "Android" ? selectDateAndroid(date) : selectDateIOS(date)
 	}
 
-	String getCurrentYear() {
-		return getText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/year"))
-	}
+	/** --------------------------------------- DATE PICKER ANDROID --------------------------------------- */
 
-	def selectDate(String date) {
+	def selectDateAndroid(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy")
 		Date parsedDate = sdf.parse(date)
 
@@ -29,37 +31,59 @@ public class CalendarUtilities extends BaseKeyword {
 		int month = new SimpleDateFormat("M").format(parsedDate).toInteger()
 		String year = new SimpleDateFormat("yyyy").format(parsedDate)
 
-		selectYear(year)
-		selectMonth(month)
-		selectDay(day)
+		selectYearAndroid(year)
+		selectMonthAndroid(month)
+		selectDayAndroid(day)
 	}
 
-	def selectYear(String year) {
-		if (getCurrentYear() != year) {
-			clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/year"))
-			def yearItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/yearItems", [('year'): year])
-			clickToElement(yearItem)
+	def selectYearAndroid(String yearExpect) {
+		if (getCurrentYear() != yearExpect) {
+			clickToElement(year)
+			clickToElement(yearItems(yearExpect))
 		}
 	}
 
-	def selectMonth(int expectedMonth) {
+	def selectMonthAndroid(int expectedMonth) {
 		int currentMonth = getCurrentMonth()
 		while (currentMonth < expectedMonth) {
-			clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/nextBtn"))
+			clickToElement(nextBtn)
 			Thread.sleep(200)
 			currentMonth++
 		}
 	}
 
-	def selectDay(String day) {
-		def dayItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/day", [('day'): day])
-		clickToElement(dayItem)
+	def selectDayAndroid(String expecteDay) {
+		waitForPresentOf(day(expecteDay))
+		clickToElement(day(expecteDay))
 	}
 
-	//--------------------------------------------------------------------------------------------------------------------------------------------
+	//TH 6, 25 thg4 và T.6, 25 th4
+
+	int getCurrentMonth() {
+		String currentDate = getText(currentDate)
+
+		try {
+			if (currentDate.contains("thg")) {
+				return currentDate.split("thg")[1].trim().toInteger()
+			} else if (currentDate.contains("Th")) {
+				return currentDate.split("Th")[1].trim().toInteger()
+			} else {
+				throw new Exception("Không tìm thấy định dạng tháng")
+			}
+		} catch (Exception e) {
+			return LocalDate.now().getMonthValue()
+		}
+	}
 
 
-	def selectDate1(String date) {
+
+	String getCurrentYear() {
+		return getText(year)
+	}
+
+	/** --------------------------------------- DATE PICKER IOS --------------------------------------- */
+
+	def selectDateIOS(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy")
 		Date parsedDate = sdf.parse(date)
 		String day = new SimpleDateFormat("d").format(parsedDate)
@@ -67,45 +91,42 @@ public class CalendarUtilities extends BaseKeyword {
 		int year = new SimpleDateFormat("yyyy").format(parsedDate).toInteger()
 
 
-		String currentDate = getText(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
+		String currentDate = getText(currentMonthYear)
 		SimpleDateFormat currentSdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
 		Date currentParsedDate = currentSdf.parse(currentDate)
 
 		int currentMonth = new SimpleDateFormat("M").format(currentParsedDate).toInteger()
 		int currentYear = new SimpleDateFormat("yyyy").format(currentParsedDate).toInteger()
 
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
-		selectMonth1(currentMonth, month)
-		selectYear1(currentYear, year)
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/closeMonthYearSelected"))
-		selectDay1(day)
-		tapOutSideElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/currentMonthYear"))
-		clickToElement(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/submitDateBtn"))
+		clickToElement(currentMonthYear)
+		selectMonthIOS(currentMonth, month)
+		selectYearIOS(currentYear, year)
+		clickToElement(closeMonthYearSelected)
+		selectDayIOS(day)
+		tapOutSideElement(currentMonthYear)
+		clickToElement(submitDateBtn)
 	}
 
-	def selectMonth1(int currentMonth, int expectMonth) {
+	def selectMonthIOS(int currentMonth, int expectMonth) {
 		if(currentMonth < expectMonth) {
 			while (currentMonth < expectMonth) {
-				verticalSwipeYearIOS(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/monthItems"), "down")
-				Thread.sleep(200)
+				verticalSwipeYearIOS(monthItems, "down")
 				currentMonth++
 			}
 		}
 	}
 
-	def selectYear1(int currentYear, int expectYear) {
+	def selectYearIOS(int currentYear, int expectYear) {
 		if (currentYear < expectYear) {
 			while (currentYear < expectYear) {
-				verticalSwipeYearIOS(findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/yearItems"), "down")
-				Thread.sleep(200)
+				verticalSwipeYearIOS(yearItems, "down")
 				currentYear++
 			}
 		}
 	}
 
-	def selectDay1(String day) {
-		def item = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/Calendar/dayItems", [('day'): day])
-		clickToElement(item)
+	def selectDayIOS(String day) {
+		clickToElement(dayItem(day))
 	}
 
 	def verticalSwipeYearIOS(TestObject to, String direction) {
@@ -119,11 +140,5 @@ public class CalendarUtilities extends BaseKeyword {
 		else if (direction == "up") {
 			Mobile.swipe(xPosition, yPosition, xPosition, yPosition - 20)
 		}
-	}
-
-	def tapOutSideElement(TestObject to) {
-		int xPosition = Mobile.getElementLeftPosition(to, 10) - 20
-		int yPosition = Mobile.getElementTopPosition(to, 10) - 20
-		Mobile.tapAtPosition(xPosition, yPosition)
 	}
 }

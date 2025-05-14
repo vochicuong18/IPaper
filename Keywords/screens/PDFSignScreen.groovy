@@ -1,16 +1,14 @@
 package screens
 
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
-import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
+import entities.User
+import groovy.transform.ThreadInterrupt
 import internal.GlobalVariable
+import locator.PDFSignLocator
 import utilities.CalendarUtilities
-public class PDFSignScreen extends BaseKeyword{
-	TestObject doneTime, submitDatePickerBtn, mailFile, subFile, titleTxt, priorityValue, descriptionTxt, assignerTxt, assignerEmailSearch,
-	relatedTxt, relatedEmailSearch, actionBtn, getOpinionAction, saveFormAction, sendFormAction, backBtn, opinionNoteTxt, submitFormBtn, iosOpenDatePicker,
-	submitSelectedFile
+public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	public enum Priority {
 		KHAN_CAP, CAO, BINH_THUONG
@@ -25,39 +23,48 @@ public class PDFSignScreen extends BaseKeyword{
 		}
 	}
 
-	public PDFSignScreen() {
-		String platformPath = "Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/"
-		doneTime = findTestObject("${platformPath}doneTime")
-		submitDatePickerBtn = findTestObject("${platformPath}submitDatePickerBtn")
-		mailFile = findTestObject("${platformPath}mainFile")
-		subFile = findTestObject("${platformPath}subFile")
-		titleTxt = findTestObject("${platformPath}titleTxt")
-		priorityValue = findTestObject("${platformPath}priorityValue")
-		descriptionTxt = findTestObject("${platformPath}descriptionTxt")
-		assignerTxt = findTestObject("${platformPath}assignerTxt")
-		assignerEmailSearch = findTestObject("${platformPath}assignerEmailSearch")
-		relatedTxt = findTestObject("${platformPath}relatedTxt")
-		relatedEmailSearch = findTestObject("${platformPath}relatedEmailSearch")
-		actionBtn = findTestObject("${platformPath}actionBtn")
-		getOpinionAction = findTestObject("${platformPath}getOpinionAction")
-		saveFormAction = findTestObject("${platformPath}saveFormAction")
-		sendFormAction = findTestObject("${platformPath}sendFormAction")
-		backBtn = findTestObject("${platformPath}backBtn")
-		opinionNoteTxt = findTestObject("${platformPath}opinionNoteTxt")
-		submitFormBtn = findTestObject("${platformPath}submitFormBtn")
-		iosOpenDatePicker = findTestObject("${platformPath}iosOpenDatePicker")
-		submitSelectedFile = findTestObject("${platformPath}submitSelectedFile")
+	public enum PerformAction {
+		SEND_APPROVE, SEND_WITH_COMENT, SAVE
+
+		String toString() {
+			switch (this) {
+				case SEND_APPROVE : return "Gửi duyệt"
+				case SEND_WITH_COMENT : return "Lấy ý kiến"
+				case SAVE : return "Lưu"
+				default : return "please define"
+			}
+		}
+
+		String toStringEmail() {
+			switch (this) {
+				case SEND_APPROVE : return "TRÌNH PHÊ DUYỆT"
+				case SEND_WITH_COMENT : return "GÓP Ý TRÌNH DUYỆT"
+				default : return "please define"
+			}
+		}
+	}
+
+	public enum Process {
+		GET_COMMENT, PARALLEL_PROCESS
+
+		String toString() {
+			switch (this) {
+				case GET_COMMENT : return "Lấy ý kiến"
+				case PARALLEL_PROCESS : return "Quy trình song song"
+				default : return "please define"
+			}
+		}
 	}
 
 	def fillInTitle(String title) {
+		waitForPresentOf(titleTxt)
 		inputText(titleTxt, title)
 	}
 
 	def selectPriority (Priority priority) {
-		swipe('down')
-		def priorityItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/priorityItem", [('priority') : priority.toString()])
+		swipeToElement(priorityValue)
 		clickToElement(priorityValue)
-		clickToElement(priorityItem)
+		clickToElement(priorityItem(priority.toString()))
 	}
 
 	def selectTime (String date) {
@@ -68,77 +75,124 @@ public class PDFSignScreen extends BaseKeyword{
 	}
 
 	def fillInDescription(String decs) {
+		swipeToElement(descriptionTxt)
 		inputText(descriptionTxt, decs)
 	}
 
 	def selectAssigner(String email) {
-		def assignerItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/assignerItem", [('email') : email])
-		swipe('down')
+		swipeToElement(assignerTxt)
 		clickToElement(assignerTxt)
 		inputText(assignerEmailSearch, email)
 		enterText(assignerEmailSearch)
-		clickToElement(assignerItem)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		waitForPresentOf(assignerItem(email))
+		clickToElement(assignerItem(email))
 
 		if (GlobalVariable.PLATFORM == "iOS") {
-			clickToElement(backBtn) // click to "Xong"
+			clickToElement(doneBtn) // click to "Xong"
 		}
 	}
 
 	def openMainFileBrowser() {
-		swipe('down')
-		clickToElement(mailFile)
+		swipeToElement(mainFile)
+		clickToElement(mainFile)
 	}
 
 	def openSubFileBrowser() {
+		swipeToElement(subFile)
 		clickToElement(subFile)
 	}
 
 	def selectRelatedMember(String email) {
-		def relatedMemberItem = findTestObject("Object Repository/Elements/${GlobalVariable.PLATFORM}/PDFSignScreen/relatedMemberItem", [('email') : email])
+		waitForPresentOf(relatedTxt)
 		clickToElement(relatedTxt)
 		inputText(relatedEmailSearch, email)
 		enterText(relatedEmailSearch)
-		clickToElement(relatedMemberItem)
-		clickToElement(backBtn)
-	}
-
-	def saveRequest() {
-		clickToElement(actionBtn)
-		clickToElement(saveFormAction)
-	}
-
-	def getOpinion() {
-		clickToElement(actionBtn)
-		clickToElement(getOpinionAction)
-	}
-
-	def sendRequest() {
-		clickToElement(actionBtn)
-		clickToElement(sendFormAction)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		waitForPresentOf(relatedMemberItem(email))
+		clickToElement(relatedMemberItem(email))
+		clickToElement(doneBtn)
 	}
 
 	def openDatePicker() {
 		clickToElement(doneTime)
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForVisibilityOf(submitDatePickerBtn)
-		}
-
-		else if (GlobalVariable.PLATFORM == "iOS") {
+		} else {
 			clickToElement(iosOpenDatePicker)
 		}
 	}
+
+	def performAction(PerformAction action) {
+		clickToElement(actionBtn)
+
+		switch (action) {
+			case PerformAction.SAVE:
+				clickToElement(saveFormAction)
+				break
+			case PerformAction.SEND_WITH_COMENT:
+				clickToElement(getOpinionAction)
+				break
+			case PerformAction.SEND_APPROVE:
+				clickToElement(sendFormAction)
+				break
+			default:
+				KeywordUtil.logInfo("Unknown action: ${action}")
+		}
+	}
+
 
 	def fillInOpinion(String guest) {
 		inputText(opinionNoteTxt, guest)
 	}
 
+	def submitErrorPopup() {
+		clickToElement(acceptErrorButton)
+	}
+
 	def submitRequest() {
+		waitForPresentOf(submitFormBtn)
 		clickToElement(submitFormBtn)
+		Thread.sleep(1)
+		if (GlobalVariable.PLATFORM == "Android") {
+			waitForNotPresentOf(loadingMask)
+		} else {
+			waitForAttributeValueOf(screenTitle, "name", "Tạo yêu cầu theo mẫu")
+		}
 	}
 
 	def submitDate() {
 		if (GlobalVariable.PLATFORM == "Android") {
 			clickToElement(submitDatePickerBtn)
 		}
+	}
+
+	String getErrorMessage() {
+		return getText(errorMessage)
+	}
+
+	def processDefinition(User ...users) {
+		openUserList()
+		searchSelectUser(users)
+	}
+
+	def openUserList() {
+		swipeToElement(addDefineProcess)
+		clickToElement(addDefineProcess)
+	}
+
+	def searchSelectUser(User ...users) {
+		waitForPresentOf(searchEmailDefineProcess)
+		for (User user : users) {
+			inputText(searchEmailDefineProcess, user.getEmail())
+			waitForPresentOf(userItemDefineProcess(user))
+			Thread.sleep(500)
+			clickToElement(userItemDefineProcess(user))
+		}
+		clickToElement(submitUseSelection)
 	}
 }

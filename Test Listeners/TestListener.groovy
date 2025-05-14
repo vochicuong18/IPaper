@@ -1,70 +1,70 @@
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
-import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-
-import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
-import com.kms.katalon.core.model.FailureHandling as FailureHandling
-import com.kms.katalon.core.testcase.TestCase as TestCase
-import com.kms.katalon.core.testdata.TestData as TestData
-import com.kms.katalon.core.testobject.TestObject as TestObject
-
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.annotation.BeforeTestCase
-import com.kms.katalon.core.annotation.BeforeTestSuite
 import com.kms.katalon.core.annotation.AfterTestCase
 import com.kms.katalon.core.annotation.AfterTestSuite
+import com.kms.katalon.core.annotation.BeforeTestCase
+import com.kms.katalon.core.annotation.BeforeTestSuite
+import com.kms.katalon.core.configuration.RunConfiguration
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
-import com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass
-import com.kms.katalon.core.annotation.Keyword
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
 import drivers.Driver
+import internal.GlobalVariable
 import utilities.DataTest
+import utilities.Utilities
 class TestListener {
+
+	protected def tsContext
+
 
 	@BeforeTestSuite
 	def beforeSuite(TestSuiteContext testSuiteContext) {
-		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'())
-			CustomKeywords.'drivers.Driver.startAppium'()
-
+		this.tsContext = testSuiteContext
+		logReportFolder()
+		CustomKeywords.'drivers.Driver.startAppium'()
 		Driver.driver = Driver.driver ?: CustomKeywords.'drivers.Driver.initMobileDriver'()
-		CustomKeywords.'drivers.Driver.openApp'()
 	}
 
 	@BeforeTestCase
 	def beforeTest(TestCaseContext testCaseContext) {
 		DataTest.init()
-		
-		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'())
+		Utilities.testCaseId = testCaseContext.getTestCaseId().split("/").last()
+		if (!CustomKeywords.'drivers.Driver.isAppiumRunning'()) {
 			CustomKeywords.'drivers.Driver.startAppium'()
+		}
 
-		Driver.driver = Driver.driver ?: CustomKeywords.'drivers.Driver.initMobileDriver'()
+		if (Driver.driver == null || Driver.driver.getSessionId() == null) {
+			Driver.driver = CustomKeywords.'drivers.Driver.initMobileDriver'()
+		}
 
 		CustomKeywords.'drivers.Driver.openApp'()
 	}
 
 	@AfterTestCase
 	def afterTest(TestCaseContext testCaseContext) {
-		if (testCaseContext.getTestCaseId() != 'Test Cases') {
-			if (testCaseContext.getTestCaseStatus() != 'PASSED') {
-				Mobile.takeScreenshot("ErrorScreen/${testCaseContext.getTestCaseId()}.png")
-			}
+//		String testCaseName = testCaseContext.getTestCaseId().split("/").last()
+		if(testCaseContext.testCaseStatus != "PASSED" && this.tsContext != null) {
+			Mobile.takeScreenshot("ErrorScreen/${GlobalVariable.PLATFORM}/${testCaseContext.getTestCaseId()}.png")
 		}
-		
-		if (testCaseContext.getTestCaseStatus() != 'FAILED') {
-			CustomKeywords.'drivers.Driver.closeApp'()
+		CustomKeywords.'drivers.Driver.closeApp'()
+
+		if(this.tsContext == null) {
+			CustomKeywords.'drivers.Driver.stopAppium'()
 		}
-		CustomKeywords.'drivers.Driver.stopAppium'()
 	}
 
 	@AfterTestSuite
 	def afterSuite(TestSuiteContext testSuiteContext) {
-		CustomKeywords.'drivers.Driver.closeApp'()
-		if (testSuiteContext.getTestSuiteId() != 'Test Suites/Test') {
-			CustomKeywords.'drivers.Driver.stopAppium'()
+		CustomKeywords.'drivers.Driver.stopAppium'()
+//		CustomKeywords.'drivers.Driver.closeApp'()
+//		Utilities.runCommand("cd Plugins/allure && python3 allure-for-kes.py --platform android && allure serve allure-results-android")
+	}
+
+	def logReportFolder() {
+		String report_folder = RunConfiguration.getReportFolder()
+		String report_logs = "Reports/reports_${GlobalVariable.PLATFORM}.log".toLowerCase()
+		File file = new File(report_logs)
+		file.withWriterAppend('UTF-8') { writer ->
+			writer.writeLine(report_folder)
 		}
 	}
 }

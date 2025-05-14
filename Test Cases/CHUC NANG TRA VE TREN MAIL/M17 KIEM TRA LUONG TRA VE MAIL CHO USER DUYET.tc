@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>M17 KIEM TRA LUONG TRA VE MAIL CHO USER DUYET</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>d2f1f2a1-ae64-4147-99c4-6aa0d25b1c9e</testCaseGuid>
+</TestCaseEntity>

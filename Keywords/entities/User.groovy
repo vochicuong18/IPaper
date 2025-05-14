@@ -6,13 +6,16 @@ class User {
 	String password
 	String email
 	String phoneNumber
+	String role
+	String department
 
 	private User() {}
 
+	// --- Getter / Setter ---
 	String getName() {
 		return name
 	}
-	void setName() {
+	void setName(String name) {
 		this.name = name
 	}
 
@@ -44,18 +47,35 @@ class User {
 		this.phoneNumber = phoneNumber
 	}
 
+	String getRole() {
+		return role
+	}
+	void setRole(String role) {
+		this.role = role
+	}
+
+	String getDepartment() {
+		return department
+	}
+	void setDepartment(String department) {
+		this.department = department
+	}
+
+	// --- Builder pattern ---
 	static class Builder {
 		private String name
 		private String userName
 		private String password
 		private String email
 		private String phoneNumber
+		private String role
+		private String department
 
-		Builder name (String name) {
+		Builder name(String name) {
 			this.name = name
 			return this
 		}
-		
+
 		Builder userName(String userName) {
 			this.userName = userName
 			return this
@@ -76,6 +96,16 @@ class User {
 			return this
 		}
 
+		Builder role(String role) {
+			this.role = role
+			return this
+		}
+
+		Builder department(String department) {
+			this.department = department
+			return this
+		}
+
 		User build() {
 			User user = new User()
 			user.name = this.name
@@ -83,6 +113,8 @@ class User {
 			user.password = this.password
 			user.email = this.email
 			user.phoneNumber = this.phoneNumber
+			user.role = this.role
+			user.department = this.department
 			return user
 		}
 	}
