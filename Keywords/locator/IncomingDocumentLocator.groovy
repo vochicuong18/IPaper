@@ -28,16 +28,16 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 			case "iOS":
 				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
 				secondItem = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf'][2]")
-				approveWithCondition = createTestObject(LocatorType.XPATH, "")
-				documentItem = createTestObject(LocatorType.XPATH, "")
-				documentItems = createTestObject(LocatorType.XPATH, "")
+//				approveWithCondition = createTestObject(LocatorType.XPATH, "")
+//				documentItem = createTestObject(LocatorType.XPATH, "")
+//				documentItems = createTestObject(LocatorType.XPATH, "")
 				fillterBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic filter']")
 				firstDocumentDate = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[1]//XCUIElementTypeStaticText[3]")
 				firstDocumentTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[1]//XCUIElementTypeStaticText[1]")
 				headerBar = createTestObject(LocatorType.XPATH, "")
-				opinionTxt = createTestObject(LocatorType.XPATH, "")
+				opinionTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ý kiến']/parent::XCUIElementTypeOther/XCUIElementTypeTextView")
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Hồ sơ liên quan']/parent::XCUIElementTypeCell")
-				sendOpinionApprove = createTestObject(LocatorType.XPATH, "")
+				sendOpinionApprove = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Gửi']")
 				toastMessage = createTestObject(LocatorType.XPATH, "")
 				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/parent::XCUIElementTypeOther/XCUIElementTypeTextField")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
@@ -49,9 +49,9 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject approveWithCondition(String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_approve_condition']",[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_approve_condition']")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell//XCUIElementTypeStaticText[@name='Duyệt với ĐK']")
 		}
 	}
 
@@ -67,47 +67,45 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject documentItems(String index) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[${index}]",[('index'): index])
+				return createTestObject(LocatorType.XPATH,"(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[${index}]")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[${index}]", [('index'): index])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[${index}]")
 		}
 	}
 
 	TestObject quickApproveBtn(String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_approve']",[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_approve']")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Duyệt']", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Duyệt']")
 		}
 	}
 
 	TestObject quickRejectBtn(String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_reject']",[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_btn_reject']")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Từ chối']", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Từ chối']")
 		}
 	}
 
 	TestObject sendCommentBtn(documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.TextView[@text='Gửi ý kiến']//parent::android.widget.LinearLayout",
-				[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@text='${documentTitle}']/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout//android.widget.TextView[@text='Gửi ý kiến']//parent::android.widget.LinearLayout")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "",
-				[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "")
 		}
 	}
 
 	TestObject documentTitle (String documentTitle) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']" ,[('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']", [('documentTitle'): documentTitle])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']")
 		}
 	}
 }

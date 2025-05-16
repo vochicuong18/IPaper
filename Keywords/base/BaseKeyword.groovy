@@ -28,9 +28,10 @@ trait BaseKeyword{
 		Mobile.hideKeyboard()
 	}
 
-	boolean getValueAttributeOf(TestObject to, attribute) {
+	boolean getValueAttributeOf(TestObject to, String attribute) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
-		return element.getAttribute(attribute)
+		//		return element.getAttribute(attribute)
+		return Mobile.getAttribute(to, attribute, 1)
 	}
 
 	String getText(TestObject to) {

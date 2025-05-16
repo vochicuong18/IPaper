@@ -63,8 +63,6 @@ IPaper.inComingDocument.viewMainFile(document)
 
 //Assinger approve document
 
-document.setSender(auto6)
-
 IPaper.documentInformationScreen.performAction(document, ActionType.REJECT)
 
 IPaper.documentInformationScreen.backToHome()

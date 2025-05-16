@@ -132,14 +132,30 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		swipe('down')
 		AssertUtilities.checkContains(getText(assigner), doc.getAssigner().getEmail())
 	}
-	
+
 	def checkAssigner(User user) {
 		swipe('down')
 		AssertUtilities.checkContains(getText(assigner), user.getEmail())
 	}
 
-	//only check file name
+	def checkAssigners(User... users) {
+		expandDefineProcess()
+		swipe('down')
+		List<String> listEmails = []
+		for (TestObject item : listProcessDefineUser()) {
+			listEmails.add(getText(item))
+		}
+		boolean allEmailsFound = true
+		for (User user : users) {
+			boolean emailFound = listEmails.any { email ->
+				email.contains(user.getEmail())
+			}
+		}
 
+		AssertUtilities.assertTrue(allEmailsFound, "Checking if all user emails are present in the list")
+	}
+
+	//only check file name
 	def checkPresentFileName(Document doc) {
 		swipeToElement(mainFile)
 		String gui = getText(mainFile).split('_')[0]
@@ -150,7 +166,9 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	def checkAttachFileName(Document doc) {
 		String data = doc.getSubFileName().replace(".pdf", "")
 		swipe('down')
-		boolean status = subFiles().any { getText(it).contains(data) }
+		boolean status = subFiles().any {
+			getText(it).contains(data)
+		}
 		AssertUtilities.assertTrue(status)
 	}
 
@@ -304,6 +322,21 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 			waitForPresentOf(useFolder)
 			clickToElement(useFolder)
 			clickToElement(acceptUseFolder)
+		}
+	}
+
+	def expandDefineProcess() {
+		if (GlobalVariable.PLATFORM == 'iOS') {
+			swipeToElement(defindeProcessTitle)
+			clickToElement(defindeProcessTitle)
+		} else {
+			swipeToElement(expandDefineProcess)
+			swipe("down", 0.2)
+			boolean check = isDisplayed(defindeProcessComponent)
+			if (!isDisplayed(defindeProcessComponent)) {
+				clickToElement(expandDefineProcess)
+				waitForPresentOf(defindeProcessComponent)
+			}
 		}
 	}
 }

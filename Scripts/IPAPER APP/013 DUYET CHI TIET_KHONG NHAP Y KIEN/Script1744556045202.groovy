@@ -86,6 +86,7 @@ IPaper.documentInformationScreen.performAction(document, ActionType.APPROVE)
 
 IPaper.documentInformationScreen.backToHome()
 
+document.setSender(auto6)
 //Assigner check document after approve
 
 IPaper.inComingDocument.checkItemInDocument()
