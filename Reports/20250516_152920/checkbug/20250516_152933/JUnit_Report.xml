@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="checkbug" time="248.531" tests="1" failures="0" errors="0">
+   <testsuite name="checkbug" tests="1" failures="0" errors="0" time="248.531" skipped="0" timestamp="16-05-2025T15:29:39" hostname="cuongvo - localhost" id="Test Suites/checkbug">
+      <properties>
+         <property name="deviceName" value="null"/>
+         <property name="devicePlatform" value="null"/>
+         <property name="logFolder" value="/Users/cuongvo/hdb_katalon/IPaper/Reports/20250516_152920/checkbug/20250516_152933"/>
+         <property name="logFiles" value="/Users/cuongvo/hdb_katalon/IPaper/Reports/20250516_152920/checkbug/20250516_152933/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="cuongvo - localhost"/>
+         <property name="os" value="Mac OS X 64bit"/>
+         <property name="appiumServerStatus" value="{&quot;value&quot;:{&quot;ready&quot;:true,&quot;message&quot;:&quot;The server is ready to accept new connections&quot;,&quot;build&quot;:{&quot;version&quot;:&quot;2.17.1&quot;}}}"/>
+         <property name="katalonVersion" value="9.7.5.223"/>
+         <property name="deviceOS" value="null"/>
+         <property name="appiumVersion" value="2.17.1"/>
+         <property name="deviceModel" value="null"/>
+         <property name="hostAddress" value="127.0.0.1"/>
+         <property name="deviceManufacturer" value="null"/>
+         <property name="deviceId" value="null"/>
+         <property name="deviceName" value="null"/>
+         <property name="deviceOSVersion" value="null"/>
+      </properties>
+      <testcase name="Test Cases/IPAPER APP/002 TAO YEU CAU" time="235.796" classname="Test Cases/IPAPER APP/002 TAO YEU CAU" status="PASSED">
+         <system-out><![CDATA[16-05-2025T15:29:52 - [TEST_CASE][PASSED] - Test Cases/IPAPER APP/002 TAO YEU CAU: Test Cases/IPAPER APP/002 TAO YEU CAU
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - Start listener action : beforeTest: drivers.Driver.openApp is PASSED
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - DataTest.init(): null
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - testCaseId = split("/").last(): null
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - if (!(drivers.Driver.isAppiumRunning())): drivers.Driver.isAppiumRunning is PASSED
+
+16-05-2025T15:29:52 - [MESSAGE][INFO] - Appium running: true
+
+16-05-2025T15:29:52 - [MESSAGE][PASSED] - drivers.Driver.isAppiumRunning is PASSED
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - if (driver == null || driver.getSessionId() == null): null
+
+16-05-2025T15:29:52 - [TEST_STEP][PASSED] - drivers.Driver.openApp(): drivers.Driver.openApp is PASSED
+
+16-05-2025T15:29:56 - [MESSAGE][PASSED] - drivers.Driver.openApp is PASSED
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - REQUEST_NAME = "Trình ký PDF có sẵn": null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()): null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - auto5 = DataTest.getUserTest("auto5"): null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - auto6 = DataTest.getUserTest("auto6"): null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - auto7 = DataTest.getUserTest("auto7"): null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - document = DataTest.createDocumentTest(auto5, auto6, auto7, "dummy.pdf", "dummy.pdf"): null
+
+16-05-2025T15:29:56 - [TEST_STEP][PASSED] - loginScreen.login(auto5): null
+
+16-05-2025T15:30:06 - [TEST_STEP][PASSED] - homeScreen.openRequestList(): null
+
+16-05-2025T15:30:12 - [TEST_STEP][PASSED] - homeScreen.createRequest(REQUEST_NAME): null
+
+16-05-2025T15:30:16 - [TEST_STEP][PASSED] - pdfSignScreen.fillInTitle(title): null
+
+16-05-2025T15:30:19 - [TEST_STEP][PASSED] - pdfSignScreen.selectPriority(priority): null
+
+16-05-2025T15:30:21 - [TEST_STEP][PASSED] - pdfSignScreen.selectTime(time): null
+
+16-05-2025T15:30:24 - [TEST_STEP][PASSED] - pdfSignScreen.fillInDescription(description): null
+
+16-05-2025T15:30:26 - [TEST_STEP][PASSED] - pdfSignScreen.selectAssigner(getAssigner().getEmail()): null
+
+16-05-2025T15:30:33 - [TEST_STEP][PASSED] - pdfSignScreen.openMainFileBrowser(): null
+
+16-05-2025T15:30:38 - [TEST_STEP][PASSED] - fileBrowserScreen.attachFile(mainFileName): null
+
+16-05-2025T15:30:44 - [TEST_STEP][PASSED] - pdfSignScreen.openSubFileBrowser(): null
+
+16-05-2025T15:30:46 - [TEST_STEP][PASSED] - fileBrowserScreen.attachFile(subFileName): null
+
+16-05-2025T15:30:54 - [TEST_STEP][PASSED] - pdfSignScreen.selectRelatedMember(getCc().getEmail()): null
+
+16-05-2025T15:31:02 - [TEST_STEP][PASSED] - pdfSignScreen.performAction(SEND_APPROVE): null
+
+16-05-2025T15:31:06 - [TEST_STEP][PASSED] - pdfSignScreen.fillInOpinion(document.getComment()): null
+
+16-05-2025T15:31:07 - [TEST_STEP][PASSED] - pdfSignScreen.submitRequest(): null
+
+16-05-2025T15:31:16 - [TEST_STEP][PASSED] - document.setStatus(WAIT_APPROVE): null
+
+16-05-2025T15:31:16 - [TEST_STEP][PASSED] - documentInformationScreen.backToHome(): null
+
+16-05-2025T15:31:17 - [TEST_STEP][PASSED] - homeScreen.goToOutComingDocument(): null
+
+16-05-2025T15:31:27 - [TEST_STEP][PASSED] - outComingDocument.viewInformationDocument(document): null
+
+16-05-2025T15:31:29 - [TEST_STEP][PASSED] - documentInformationScreen.checkDocumentTitle(document): Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:31:35 - [MESSAGE][PASSED] - Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:31:35 - [TEST_STEP][PASSED] - documentInformationScreen.checkSender(document): Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:31:35 - [MESSAGE][PASSED] - Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:31:35 - [TEST_STEP][PASSED] - documentInformationScreen.checkStatus(document): Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:31:35 - [MESSAGE][PASSED] - Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:31:35 - [TEST_STEP][PASSED] - documentInformationScreen.checkCreateDate(): Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:31:35 - [MESSAGE][PASSED] - Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:31:35 - [TEST_STEP][PASSED] - documentInformationScreen.checkFinishDate(document): Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:31:36 - [MESSAGE][PASSED] - Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:31:36 - [TEST_STEP][PASSED] - documentInformationScreen.checkPriority(document): Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:31:36 - [MESSAGE][PASSED] - Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:31:36 - [TEST_STEP][PASSED] - documentInformationScreen.checkDescription(document): Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:31:36 - [MESSAGE][PASSED] - Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:31:36 - [TEST_STEP][PASSED] - documentInformationScreen.checkAssigner(document): Verify contains GUI: auto6@hdbank.com.vn - DATA: auto6@hdbank.com.vn
+
+16-05-2025T15:31:37 - [MESSAGE][PASSED] - Verify contains GUI: auto6@hdbank.com.vn - DATA: auto6@hdbank.com.vn
+
+16-05-2025T15:31:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkPresentFileName(document): Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:31:43 - [MESSAGE][PASSED] - Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:31:43 - [TEST_STEP][PASSED] - documentInformationScreen.checkAttachFileName(document): Expected true condition
+
+16-05-2025T15:31:45 - [MESSAGE][PASSED] - Expected true condition
+
+16-05-2025T15:31:45 - [TEST_STEP][PASSED] - documentInformationScreen.backToHome(): null
+
+16-05-2025T15:31:50 - [TEST_STEP][PASSED] - homeScreen.logout(): null
+
+16-05-2025T15:31:58 - [TEST_STEP][PASSED] - loginScreen.login(auto6): null
+
+16-05-2025T15:32:09 - [TEST_STEP][PASSED] - document.setAssigner(auto5): null
+
+16-05-2025T15:32:09 - [TEST_STEP][PASSED] - homeScreen.goToIncomingDocument(): null
+
+16-05-2025T15:32:09 - [TEST_STEP][PASSED] - inComingDocument.viewInformationDocument(document): null
+
+16-05-2025T15:32:11 - [TEST_STEP][PASSED] - documentInformationScreen.checkDocumentTitle(document): Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:32:36 - [MESSAGE][PASSED] - Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:32:36 - [TEST_STEP][PASSED] - documentInformationScreen.checkSender(document): Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkStatus(document): Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkCreateDate(): Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkFinishDate(document): Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkPriority(document): Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkDescription(document): Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:32:37 - [MESSAGE][PASSED] - Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:32:37 - [TEST_STEP][PASSED] - documentInformationScreen.checkAssigner(document): Verify contains GUI: auto5@hdbank.com.vn - DATA: auto5@hdbank.com.vn
+
+16-05-2025T15:32:39 - [MESSAGE][PASSED] - Verify contains GUI: auto5@hdbank.com.vn - DATA: auto5@hdbank.com.vn
+
+16-05-2025T15:32:39 - [TEST_STEP][PASSED] - documentInformationScreen.checkPresentFileName(document): Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:32:40 - [MESSAGE][PASSED] - Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:32:40 - [TEST_STEP][PASSED] - documentInformationScreen.checkAttachFileName(document): Expected true condition
+
+16-05-2025T15:32:42 - [MESSAGE][PASSED] - Expected true condition
+
+16-05-2025T15:32:42 - [TEST_STEP][PASSED] - documentInformationScreen.backToHome(): null
+
+16-05-2025T15:32:46 - [TEST_STEP][PASSED] - homeScreen.logout(): null
+
+16-05-2025T15:32:55 - [TEST_STEP][PASSED] - document.setAssigner(auto6): null
+
+16-05-2025T15:32:55 - [TEST_STEP][PASSED] - loginScreen.login(auto7): null
+
+16-05-2025T15:33:05 - [TEST_STEP][PASSED] - homeScreen.goToIncomingDocument(): null
+
+16-05-2025T15:33:05 - [TEST_STEP][PASSED] - inComingDocument.goToRelatedDocument(): null
+
+16-05-2025T15:33:07 - [TEST_STEP][PASSED] - relatedDocumentScreen.viewInformationDocument(document): null
+
+16-05-2025T15:33:20 - [TEST_STEP][PASSED] - documentInformationScreen.checkDocumentTitle(document): Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: Trình ký 1747384196442 - DATA: Trình ký 1747384196442
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkSender(document): Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkStatus(document): Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: Chờ giám sát phê duyệt - DATA: Chờ giám sát phê duyệt
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkCreateDate(): Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: 16/05/2025 - DATA: 16/05/2025
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkFinishDate(document): Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: 17/05/2025 - DATA: 17/05/2025
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkPriority(document): Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:33:26 - [MESSAGE][PASSED] - Verify equals GUI: Bình thường - DATA: Bình thường
+
+16-05-2025T15:33:26 - [TEST_STEP][PASSED] - documentInformationScreen.checkDescription(document): Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:33:27 - [MESSAGE][PASSED] - Verify equals GUI: 002 TAO YEU CAU - DATA: 002 TAO YEU CAU
+
+16-05-2025T15:33:27 - [TEST_STEP][PASSED] - documentInformationScreen.checkAssigner(document): Verify contains GUI: auto6@hdbank.com.vn - DATA: auto6@hdbank.com.vn
+
+16-05-2025T15:33:28 - [MESSAGE][PASSED] - Verify contains GUI: auto6@hdbank.com.vn - DATA: auto6@hdbank.com.vn
+
+16-05-2025T15:33:28 - [TEST_STEP][PASSED] - documentInformationScreen.checkPresentFileName(document): Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:33:33 - [MESSAGE][PASSED] - Verify contains GUI: dummy_20250516153120.ozd - DATA: dummy
+
+16-05-2025T15:33:34 - [TEST_STEP][PASSED] - documentInformationScreen.checkAttachFileName(document): Expected true condition
+
+16-05-2025T15:33:35 - [MESSAGE][PASSED] - Expected true condition
+
+16-05-2025T15:33:35 - [TEST_STEP][PASSED] - documentInformationScreen.checkUserCannotEditDocument(): Check user can not edit document
+
+16-05-2025T15:33:47 - [MESSAGE][PASSED] - Check user can not edit document
+
+16-05-2025T15:33:47 - [TEST_STEP][PASSED] - Start listener action : afterTest: null
+
+16-05-2025T15:33:47 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+16-05-2025T15:33:47 - [TEST_STEP][PASSED] - drivers.Driver.closeApp(): drivers.Driver.closeApp is PASSED
+
+16-05-2025T15:33:48 - [MESSAGE][PASSED] - drivers.Driver.closeApp is PASSED
+
+16-05-2025T15:33:48 - [TEST_STEP][PASSED] - if (tsContext == null): null]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[16-05-2025T15:29:39 - [TEST_SUITE][INCOMPLETE] - checkbug: null]]></system-out>
+      <system-err><![CDATA[16-05-2025T15:29:39 - [TEST_SUITE][INCOMPLETE] - checkbug: null]]></system-err>
+   </testsuite>
+</testsuites>

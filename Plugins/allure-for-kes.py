@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description="Katalon")
 parser.add_argument('--platform', type=str, required=True, help="platform")
 args = parser.parse_args()
 
-REPORT_FOLDER = '../../Reports'
+REPORT_FOLDER = '../Reports'
 SCREENSHOT_FOLDER = '../../ErrorScreen'
 ALLURE_RESULT_FOLDER = f'allure-results-{args.platform}'
 LOG_FILE = f'reports_{args.platform}.log'
