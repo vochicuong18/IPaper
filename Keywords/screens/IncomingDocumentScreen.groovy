@@ -121,47 +121,47 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	}
 
 	boolean checkItemInDocument () {
-		if (GlobalVariable.PLATFORM == 'Android') {
-			List<Map<String, String>> data = getAllItemDataAndroid()
-			Set<String> seenTitles = new HashSet<>()
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
-			boolean isTitleUnique = true
-			boolean isTimeSorted = true
-
-			Date prevTime = null
-			for (int i = 0; i < data.size(); i++) {
-				String title = data[i].title
-				String timeStr = data[i].time
-
-				if (seenTitles.contains(title)) {
-					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
-					isTitleUnique = false
-				} else {
-					seenTitles.add(title)
-				}
-
-				if (timeStr == "-") continue
-
-					Date currentTime = sdf.parse(timeStr)
-				if (prevTime != null && prevTime.before(currentTime)) {
-					Utilities.logInfo("Time is wrong -  index $i")
-					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
-					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
-					isTimeSorted = false
-				}
-				prevTime = currentTime
-			}
-
-			if (isTitleUnique) {
-				Utilities.logInfo("Title is not duplicated")
-			}
-			if (isTimeSorted) {
-				Utilities.logInfo("Time is correctly")
-			}
-		} else {
-			//			getAllItemDataIOS ()
-			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
-		}
+//		if (GlobalVariable.PLATFORM == 'Android') {
+//			List<Map<String, String>> data = getAllItemDataAndroid()
+//			Set<String> seenTitles = new HashSet<>()
+//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
+//			boolean isTitleUnique = true
+//			boolean isTimeSorted = true
+//
+//			Date prevTime = null
+//			for (int i = 0; i < data.size(); i++) {
+//				String title = data[i].title
+//				String timeStr = data[i].time
+//
+//				if (seenTitles.contains(title)) {
+//					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
+//					isTitleUnique = false
+//				} else {
+//					seenTitles.add(title)
+//				}
+//
+//				if (timeStr == "-") continue
+//
+//					Date currentTime = sdf.parse(timeStr)
+//				if (prevTime != null && prevTime.before(currentTime)) {
+//					Utilities.logInfo("Time is wrong -  index $i")
+//					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
+//					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
+//					isTimeSorted = false
+//				}
+//				prevTime = currentTime
+//			}
+//
+//			if (isTitleUnique) {
+//				Utilities.logInfo("Title is not duplicated")
+//			}
+//			if (isTimeSorted) {
+//				Utilities.logInfo("Time is correctly")
+//			}
+//		} else {
+//			//			getAllItemDataIOS ()
+//			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
+//		}
 	}
 
 

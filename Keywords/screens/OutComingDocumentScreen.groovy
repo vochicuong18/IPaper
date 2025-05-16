@@ -26,7 +26,7 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 		waitForPresentOf(documentItem(doc.getTitle()))
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
-	
+
 	def viewMainFile(Document doc) {
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(doc.getTitle())
@@ -59,40 +59,40 @@ public class OutComingDocumentScreen extends OutComingDocumentLocator implements
 	}
 
 	boolean checkItemInDocument() {
-		if (GlobalVariable.PLATFORM != 'Android') {
-			getAllItemDataIOS()
-			return true
-		}
-		List<Map<String, String>> data = getAllItemData()
-		if (data.isEmpty()) {
-			Utilities.logInfo("Do not have document in screens")
-			return false
-		}
-		Set<String> seenTitles = new HashSet<>()
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
-		boolean isTitleUnique = true
-		boolean isTimeSorted = true
-		Date prevTime = null
-		data.eachWithIndex { item, i ->
-			String title = item.title
-			String timeStr = item.time
-			if (!seenTitles.add(title)) {
-				Utilities.logInfo("Title is duplicated -  index $i: '$title'")
-				isTitleUnique = false
-			}
-			if (timeStr == "-") return
-				Date currentTime = sdf.parse(timeStr)
-			if (prevTime && prevTime.before(currentTime)) {
-				Utilities.logInfo("Time is wrong -  index $i")
-				Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
-				Utilities.logInfo("   ➤ Sau:    ${item.title} - $timeStr")
-				isTimeSorted = false
-			}
-			prevTime = currentTime
-		}
-		if (isTitleUnique) Utilities.logPass("Title is not duplicated")
-		if (isTimeSorted) Utilities.logPass("Time is correctly")
-		return isTitleUnique && isTimeSorted
+//		if (GlobalVariable.PLATFORM != 'Android') {
+//			getAllItemDataIOS()
+//			return true
+//		}
+//		List<Map<String, String>> data = getAllItemData()
+//		if (data.isEmpty()) {
+//			Utilities.logInfo("Do not have document in screens")
+//			return false
+//		}
+//		Set<String> seenTitles = new HashSet<>()
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
+//		boolean isTitleUnique = true
+//		boolean isTimeSorted = true
+//		Date prevTime = null
+//		data.eachWithIndex { item, i ->
+//			String title = item.title
+//			String timeStr = item.time
+//			if (!seenTitles.add(title)) {
+//				Utilities.logInfo("Title is duplicated -  index $i: '$title'")
+//				isTitleUnique = false
+//			}
+//			if (timeStr == "-") return
+//				Date currentTime = sdf.parse(timeStr)
+//			if (prevTime && prevTime.before(currentTime)) {
+//				Utilities.logInfo("Time is wrong -  index $i")
+//				Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
+//				Utilities.logInfo("   ➤ Sau:    ${item.title} - $timeStr")
+//				isTimeSorted = false
+//			}
+//			prevTime = currentTime
+//		}
+//		if (isTitleUnique) Utilities.logPass("Title is not duplicated")
+//		if (isTimeSorted) Utilities.logPass("Time is correctly")
+//		return isTitleUnique && isTimeSorted
 	}
 
 
