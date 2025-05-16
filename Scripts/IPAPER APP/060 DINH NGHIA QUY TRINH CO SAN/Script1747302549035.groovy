@@ -7,6 +7,8 @@ import utilities.DataTest as DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
+String PROCESS_NAME = 'Automation Test'
+
 String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
 
 def auto5 = DataTest.getUserTest('auto5')
@@ -42,9 +44,11 @@ IPaper.pdfSignScreen.openSubFileBrowser()
 
 IPaper.fileBrowserScreen.attachFile(document.subFileName)
 
-IPaper.pdfSignScreen.processDefinition(auto6)
+//IPaper.pdfSignScreen.processDefinition(auto6)
+//
+//IPaper.pdfSignScreen.processDefinition(auto7, auto8)
 
-IPaper.pdfSignScreen.processDefinition(auto7, auto8)
+IPaper.pdfSignScreen.selectProcessDefined(PROCESS_NAME)
 
 IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 

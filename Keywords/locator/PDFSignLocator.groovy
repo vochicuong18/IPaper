@@ -13,7 +13,7 @@ public class PDFSignLocator extends TestObjectFactory{
 	TestObject screenTitle, acceptErrorButton, errorMessagePopup, relatedTxt, actionBtn, getOpinionAction, saveFormAction, assignerEmailSearch, loadingMask,
 	sendFormAction, assignerItem, mainFile, subFile, assignerTxt, opinionNoteTxt, submitDatePickerBtn, backBtn, priorityItem,
 	submitFormBtn, descriptionTxt, priorityValue, titleTxt, doneBtn, relatedEmailSearch, doneTime, relatedMemberItem, iosOpenDatePicker, listUserLoadingMask, priorityTitle, emptyListCC,
-	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess
+	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess, listDefineProcess, submitProcess
 	PDFSignLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -45,8 +45,9 @@ public class PDFSignLocator extends TestObjectFactory{
 
 				addDefineProcess = createTestObject(XPATH, "//android.widget.ImageView[@resource-id='com.hdbank.ipaper:id/icAddDefine']")
 				submitUseSelection = createTestObject(ID, "com.hdbank.ipaper:id/btn_ok_user")
-				searchEmailDefineProcess = createTestObject(ID, "com.hdbank.ipaper:id/search_src_text")	
+				searchEmailDefineProcess = createTestObject(ID, "com.hdbank.ipaper:id/search_src_text")
 			//				processType = createTestObject(ID, "com.hdbank.ipaper:id/spinner_type")
+				listDefineProcess = createTestObject(ID, "com.hdbank.ipaper:id/lvDefineNewTitle")
 				break
 			case "iOS":
 				screenTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
@@ -77,6 +78,8 @@ public class PDFSignLocator extends TestObjectFactory{
 				addDefineProcess = createTestObject(XPATH, "//XCUIElementTypeButton[@name='ic mis add option']")
 				submitUseSelection = createTestObject(XPATH, "//XCUIElementTypeButton[@name='Xác nhận']")
 				searchEmailDefineProcess = createTestObject(XPATH, "//XCUIElementTypeSearchField[@name='Tìm kiếm']")
+				listDefineProcess = createTestObject(XPATH, "//XCUIElementTypeStaticText[@name='quy trình đã được định nghĩa']")
+				submitProcess = createTestObject(XPATH, "//XCUIElementTypeButton[@name='Xác nhận']")
 				break
 		}
 	}
@@ -106,6 +109,13 @@ public class PDFSignLocator extends TestObjectFactory{
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":return createTestObject(LocatorType.XPATH, "//android.widget.RelativeLayout[descendant::android.widget.TextView[@resource-id='com.hdbank.ipaper:id/content_tv' and contains(@text, '${user.getEmail()}')]]")
 			case "iOS": return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@name, '${user.getEmail()}')]/parent::XCUIElementTypeCell")
+		}
+	}
+
+	TestObject processDefined(String processName) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tvContent' and @text='${processName}']")
+			case "iOS": return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Quy trình đã định nghĩa']/parent::XCUIElementTypeOther//XCUIElementTypeStaticText[@name='${processName}']")
 		}
 	}
 }

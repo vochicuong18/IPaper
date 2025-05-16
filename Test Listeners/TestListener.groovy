@@ -41,8 +41,7 @@ class TestListener {
 
 	@AfterTestCase
 	def afterTest(TestCaseContext testCaseContext) {
-//		String testCaseName = testCaseContext.getTestCaseId().split("/").last()
-		if(testCaseContext.testCaseStatus != "PASSED" && this.tsContext != null) {
+		if(testCaseContext.testCaseStatus != "PASSED") {
 			Mobile.takeScreenshot("ErrorScreen/${GlobalVariable.PLATFORM}/${testCaseContext.getTestCaseId()}.png")
 		}
 		CustomKeywords.'drivers.Driver.closeApp'()

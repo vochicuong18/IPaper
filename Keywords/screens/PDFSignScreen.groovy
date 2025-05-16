@@ -129,7 +129,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	def performAction(PerformAction action) {
 		clickToElement(actionBtn)
-
+		Thread.sleep(500)
 		switch (action) {
 			case PerformAction.SAVE:
 				clickToElement(saveFormAction)
@@ -174,6 +174,17 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	String getErrorMessage() {
 		return getText(errorMessage)
 	}
+	
+	def selectProcessDefined(String processName) {
+		swipeToElement(listDefineProcess)
+		clickToElement(listDefineProcess)
+		waitForPresentOf(processDefined(processName))
+		clickToElement(processDefined(processName))
+		
+		if (GlobalVariable.PLATFORM == 'iOS'){
+			clickToElement(submitProcess)
+		}
+	}
 
 	def processDefinition(User ...users) {
 		openUserList()
@@ -195,4 +206,5 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		}
 		clickToElement(submitUseSelection)
 	}
+	
 }

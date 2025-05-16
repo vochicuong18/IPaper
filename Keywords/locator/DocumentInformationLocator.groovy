@@ -12,7 +12,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 	TestObject assigner, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
 	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, warningPopup, ignoreBtn, returnDocument, downloadSubFile, useFolder, acceptUseFolder, loadingImage,
-	mainFileAttachIcon, btnUploadFile, acceptNotifiDownloadSuccess
+	mainFileAttachIcon, btnUploadFile, acceptNotifiDownloadSuccess, defindeProcessTitle, expandDefineProcess, defindeProcessComponent
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -50,6 +50,8 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				loadingImage = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/loading_image")
 				mainFileAttachIcon = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_menu_attach")
 				btnUploadFile = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_upload_server")
+				defindeProcessComponent = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/rcvDefine")
+				expandDefineProcess = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/imgArrowShowDefine")
 				break
 			case "iOS":
 				assigner = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Chuyển tới']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label, 'hdbank.com.vn')]")
@@ -77,7 +79,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				rejectDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_reject']/parent::XCUIElementTypeOther")
 				withdrawDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Rút lại']/parent::XCUIElementTypeOther")
 				getComment = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi ý kiến']/parent::XCUIElementTypeOther")
-				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText")
+				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText[contains(@name, 'Quy trình PDF')]")
 				warningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cảnh báo']")
 				ignoreBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
 				returnDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_return']/parent::XCUIElementTypeOther")
@@ -85,7 +87,9 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				acceptUseFolder = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Lưu']")
 				acceptNotifiDownloadSuccess = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đồng ý']")
 				mainFileAttachIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic attach file white']")
-				btnUploadFile = createTestObject(LocatorType.ID, "")
+//				btnUploadFile = createTestObject(LocatorType.ID, "")
+				defindeProcessTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Định nghĩa quy trình']")
+				expandDefineProcess = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Định nghĩa quy trình']/XCUIElementTypeButton")
 				break
 		}
 	}
@@ -118,6 +122,15 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				return createTestObject(LocatorType.XPATH, "")
 			case 'iOS' :
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@name, '${userEmail}')]")
+		}
+	}
+	
+	List<TestObject> listProcessDefineUser(){
+		switch (GlobalVariable.PLATFORM) {
+			case 'Android' :
+				return createTestObjects(LocatorType.XPATH, "(//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/email_tv'])")
+			case 'iOS' :
+				return createTestObjects(LocatorType.XPATH, "(//XCUIElementTypeCell[following-sibling::XCUIElementTypeOther[@name='Quy trình phê duyệt'] and preceding-sibling::XCUIElementTypeOther[@name='Định nghĩa quy trình']]//XCUIElementTypeStaticText[contains(@name,'@hdbank.com.vn') and not(contains(@name, 'Auto Test User'))])")
 		}
 	}
 }
