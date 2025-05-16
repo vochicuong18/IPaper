@@ -12,7 +12,7 @@ def auto6 = DataTest.getUserTest('auto6')
 
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 
-//create document 009
+//create document
 IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.openRequestList()
