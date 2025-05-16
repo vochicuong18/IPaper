@@ -2,14 +2,15 @@ package locator
 
 import com.kms.katalon.core.testobject.TestObject
 
+import entities.DocumentStatus
 import entities.LocatorType
 import internal.GlobalVariable
 
 
 public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject loadingItem, approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
-	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem, backBtn
-
+	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem, backBtn,
+	filterDocumentStatusTab
 	IncomingDocumentLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -24,13 +25,15 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				sendOpinionApprove = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok_user")
 				toastMessage = createTestObject(LocatorType.XPATH, "//android.widget.Toast[@text=Thành công']")
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
+				
+				filterDocumentStatusTab = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tab_status")
 				break
 			case "iOS":
 				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
 				secondItem = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']//ancestor::android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/layout_inf'][2]")
-//				approveWithCondition = createTestObject(LocatorType.XPATH, "")
-//				documentItem = createTestObject(LocatorType.XPATH, "")
-//				documentItems = createTestObject(LocatorType.XPATH, "")
+			//				approveWithCondition = createTestObject(LocatorType.XPATH, "")
+			//				documentItem = createTestObject(LocatorType.XPATH, "")
+			//				documentItems = createTestObject(LocatorType.XPATH, "")
 				fillterBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic filter']")
 				firstDocumentDate = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[1]//XCUIElementTypeStaticText[3]")
 				firstDocumentTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[1]//XCUIElementTypeStaticText[1]")
@@ -106,6 +109,15 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item' and @text='${documentTitle}']")
 			case "iOS":
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']")
+		}
+	}
+	
+	TestObject documentStatusFilter(DocumentStatus documentStatus) {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='${documentStatus.toString()}']")
+			case "iOS":
+				return createTestObject(LocatorType.XPATH, "")
 		}
 	}
 }

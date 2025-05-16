@@ -87,7 +87,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				acceptUseFolder = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Lưu']")
 				acceptNotifiDownloadSuccess = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đồng ý']")
 				mainFileAttachIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic attach file white']")
-//				btnUploadFile = createTestObject(LocatorType.ID, "")
+			//				btnUploadFile = createTestObject(LocatorType.ID, "")
 				defindeProcessTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Định nghĩa quy trình']")
 				expandDefineProcess = createTestObject(LocatorType.XPATH, "//XCUIElementTypeOther[@name='Định nghĩa quy trình']/XCUIElementTypeButton")
 				break
@@ -124,7 +124,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[contains(@name, '${userEmail}')]")
 		}
 	}
-	
+
 	List<TestObject> listProcessDefineUser(){
 		switch (GlobalVariable.PLATFORM) {
 			case 'Android' :
