@@ -1,13 +1,14 @@
 package base
 import java.time.Duration
+import java.util.concurrent.TimeUnit
 
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Pause
 import org.openqa.selenium.interactions.PointerInput
-import org.openqa.selenium.interactions.Sequence
 import org.openqa.selenium.interactions.PointerInput.Origin
+import org.openqa.selenium.interactions.Sequence
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 
@@ -229,7 +230,7 @@ trait BaseKeyword{
 	}
 
 	boolean isDisplayed(TestObject to, int timeout) {
-		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout))
+		Driver.driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS)
 		def elements = Driver.driver.findElements(convertToBy(to))
 		for (def element in elements) {
 			if (element.isDisplayed()) {
@@ -247,7 +248,7 @@ trait BaseKeyword{
 	 */
 
 	def waitForPresentOf(TestObject testObject) {
-		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, TIMEOUT)
 		wait.until {
 			Driver.driver.findElements(convertToBy(testObject)).size() > 0
 		}
@@ -261,16 +262,16 @@ trait BaseKeyword{
 	 */
 
 	def waitForNotPresentOf(TestObject testObject) {
-		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		Driver.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
+		WebDriverWait wait = new WebDriverWait(Driver.driver, TIMEOUT)
 		wait.until {
 			Driver.driver.findElements(convertToBy(testObject)).size() == 0
 		}
 	}
 
 	def waitForNotPresentOf(By by) {
-		Driver.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3))
-		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		Driver.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
+		WebDriverWait wait = new WebDriverWait(Driver.driver, TIMEOUT)
 		wait.until {
 			Driver.driver.findElements(by).size() == 0
 		}
@@ -292,7 +293,7 @@ trait BaseKeyword{
 	}
 
 	def waitForAttributeValueOf(TestObject testObject, String attributeName, String expectedValue, int timeout = TIMEOUT) {
-		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(timeout))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, TIMEOUT)
 		By locator = convertToBy(testObject)
 
 		wait.until {
@@ -305,7 +306,7 @@ trait BaseKeyword{
 
 
 	def waitForCondition(TestObject testObject, Closure<Boolean> condition) {
-		WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(TIMEOUT))
+		WebDriverWait wait = new WebDriverWait(Driver.driver, TIMEOUT)
 		return wait.until(condition)
 	}
 
