@@ -226,7 +226,7 @@ trait BaseKeyword{
 	}
 
 	boolean isDisplayed(TestObject element) {
-		isDisplayed(element, 1)
+		isDisplayed(element, 3)
 	}
 
 	boolean isDisplayed(TestObject to, int timeout) {
