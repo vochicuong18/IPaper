@@ -12,10 +12,10 @@
    <rerunImmediately>true</rerunImmediately>
    <testSuiteGuid>4a8c4bc3-9e07-44e5-924d-7178daa8f1df</testSuiteGuid>
    <testCaseLink>
-      <guid>dc9b4354-33c7-44dc-8ba7-5c0f6613caf0</guid>
+      <guid>13018924-e513-498c-981c-f7ecc373fd76</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/IPAPER APP/002 TAO YEU CAU</testCaseId>
+      <testCaseId>Test Cases/IPAPER APP/001 DANG NHAP</testCaseId>
       <usingDataBindingAtTestSuiteLevel>true</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>
