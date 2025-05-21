@@ -1,5 +1,7 @@
 package entities
 
+import java.lang.runtime.SwitchBootstraps
+
 enum DocumentStatus {
 	WAIT_APPROVE("Chờ giám sát phê duyệt"),       // Gửi duyệt thành công, hồ sơ chưa phê duyệt
 	WAIT_PROCESS("Chờ xử lý"),                    // Rút hồ sơ
@@ -7,7 +9,9 @@ enum DocumentStatus {
 	REJECT("Từ chối"),                            // Từ chối
 	RETURNED("Chờ bổ sung hồ sơ"),                // Trả về
 	WAIT_GET_COMMENT("Chờ lấy ý kiến"),           // Lấy ý kiến
-	COMMENTED("Đã lấy ý kiến")                    // Gửi ý kiến
+	COMMENTED("Đã lấy ý kiến") ,                   // Gửi ý kiến
+	COMPLETE("Đã hoàn thành"),
+	DRAFTED("Lưu nháp")
 
 	private final String description
 

@@ -9,6 +9,7 @@ import base.BaseKeyword
 import entities.Document
 import entities.DocumentStatus
 import entities.User
+import groovy.transform.ThreadInterrupt
 import internal.GlobalVariable
 import locator.DocumentInformationLocator
 import utilities.AssertUtilities
@@ -22,7 +23,9 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		COMMENT,
 		APPROVE_ADD_CC,
 		WITHDRAW_DOCUMENT,
-		RETURN
+		RETURN,
+		COMPLETE,
+		TRANSFER_EXCUTION,
 	}
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
@@ -53,13 +56,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 			case ActionType.APPROVE_ADD_CC:
 				clickToElement(approveDocument)
 				if (comment) inputText(getOpinionTxt, comment)
-				inputText(ccOnPopupTxt, user.getEmail())
-				if (GlobalVariable.PLATFORM == 'Android') {
-					Thread.sleep(5000)
-					clickToElement(submitApproveBtn) // can't click user item
-				} else {
-					clickToElement(ccUserItemOnPopup(user.getEmail()))
-				}
+				selectCCUser(user)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.APPROVED)
 				break
@@ -76,6 +73,28 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				if (comment) inputText(getOpinionTxt, comment)
 				clickToElement(submitApproveBtn)
 				document.setStatus(DocumentStatus.RETURNED)
+				break
+
+			case ActionType.COMPLETE:
+				clickToElement(completeDocument)
+				clickToElement(okBtn)
+				if (GlobalVariable.PLATFORM == 'Android') {
+					waitForNotPresentOf(loadingImage)
+				} else {
+					backToHome()
+					waitForPresentOf(bellIcon)
+				}
+				document.setStatus(DocumentStatus.COMPLETE)
+				break
+
+			case ActionType.TRANSFER_EXCUTION:
+				clickToElement(transferExcution)
+				if (GlobalVariable.PLATFORM == 'Android') {
+					waitForNotPresentOf(loadingImage)
+				} else {
+					backToHome()
+					waitForPresentOf(bellIcon)
+				}
 				break
 		}
 	}
@@ -99,12 +118,12 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		AssertUtilities.checkEquals(getText(senderName), document.getSender().getName())
 	}
 
-	def isAssignerDisplayed() {
-		AssertUtilities.assertTrue(!isDisplayed(assigner), "Check sender not displayed")
-	}
-
 	def checkStatus(Document document) {
 		AssertUtilities.checkEquals(getText(status), document.getStatus().toString())
+	}
+
+	def checkStatus(DocumentStatus documentStatus) {
+		AssertUtilities.checkEquals(getText(status), documentStatus.toString())
 	}
 
 	def checkCreateDate() {
@@ -195,6 +214,14 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		AssertUtilities.assertTrue(status, "Check comment of ${user.getName()} is ${dataComment}")
 	}
 
+	def showMoreComment() {
+		swipe('down', 0.5)
+		if (isDisplayed(showMoreComment)) {
+			clickToElement(showMoreComment)
+			Thread.sleep(500)
+		}
+	}
+
 	// APPROVE
 
 	def approveAddCC(User user, String comment = "") {
@@ -270,6 +297,17 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		AssertUtilities.assertTrue(status)
 	}
 
+	def isAssignerDisplayed() {
+		AssertUtilities.assertTrue(!isDisplayed(assigner), "Check sender not displayed")
+	}
+
+	def isSendCommentDisplayed() {
+		clickToElement(documentActionBtn) //click to open actions pop-up
+		boolean status = isDisplayed(getComment)
+		AssertUtilities.assertTrue(status)
+		clickToElement(documentActionBtn) //click to close actions pop-up
+	}
+
 	def ignoreWarningPopup () {
 		clickToElement(ignoreBtn)
 	}
@@ -338,5 +376,46 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 				waitForPresentOf(defindeProcessComponent)
 			}
 		}
+	}
+
+	def selectUserTransfered(User user) {
+		clickToElement(assignTransfer)
+		inputText(transferEmailSearch, user.getEmail())
+		enterText(transferEmailSearch)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		waitForPresentOf(assignerItem(user.getEmail()))
+		clickToElement(assignerItem(user.getEmail()))
+	}
+
+	/**
+	 * Selects a CC user in document approval process.
+	 * @param user User to be added as CC
+	 */
+	def selectCCUser(User user) {
+		inputText(ccOnPopupTxt, user.getEmail())
+
+		if (GlobalVariable.PLATFORM == 'Android') {
+			// Handle Android suggestion pop-up issue - direct element selection not possible
+			clickToElement(ccOnPopupTxt)
+			Utilities.runCommand("adb shell input keyevent 123") // Move cursor to end
+			Utilities.runCommand("adb shell input keyevent 67")  // Delete 1 char to trigger suggestions
+			Thread.sleep(5000)                                   // Wait for suggestions to appear
+			clickToElement(submitApproveBtn)                     // Select first suggestion
+		} else {
+			// iOS: Direct element selection works
+			clickToElement(ccUserItemOnPopup(user.getEmail()))
+		}
+	}
+	
+	def isEditFileIconDisplayed() {
+		boolean status = isDisplayed(editFileAttachIcon, 20)
+		AssertUtilities.assertTrue(status, "Check edit file icon is displayed")
+	}
+	
+	def isEditFileIconNotDisplayed() {
+		boolean status = isDisplayed(editFileAttachIcon, 20)
+		AssertUtilities.assertFalse(status, "Check edit file icon is not displayed")
 	}
 }

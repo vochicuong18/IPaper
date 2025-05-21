@@ -1,6 +1,7 @@
 package ipaper
 
 import screens.DocumentInformationScreen
+import screens.DraftDocumentScreen
 import screens.FileBrowserScreen
 import screens.FileManager_FolderScreen
 import screens.FileManager_HomeScreen
@@ -31,4 +32,5 @@ public class IPaper {
 	public static OutLook_MailScreen outlook_mailScreen = new OutLook_MailScreen()
 	public static FileManager_HomeScreen fileManager_HomeScreen = new FileManager_HomeScreen()
 	public static FileManager_FolderScreen fileManager_FolderScreen = new FileManager_FolderScreen()
+	public static DraftDocumentScreen draftDocumentScreen = new DraftDocumentScreen()
 }

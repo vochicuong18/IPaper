@@ -14,9 +14,9 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
 public class AIUtilities {
-
     static String API_KEY = "AIzaSyBdH5XPPt8hsRl37iWpdIxRe47N4mgNz7g"
     static String GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}"
+	
 
     static String analyzeImage(String imagePath, String promptText) {
         def base64Image = encodeImageToBase64(imagePath)

@@ -10,7 +10,7 @@ import internal.GlobalVariable
 public class IncomingDocumentLocator extends TestObjectFactory{
 	TestObject loadingItem, approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
 	firstDocumentTitle, headerBar, opinionTxt, quickApproveBtn, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, documentTitle, secondItem, backBtn,
-	filterDocumentStatusTab
+	filterDocumentStatusTab, requestType, submitWarningPopup, loadingSwipeIcon, imageViewLoading
 	IncomingDocumentLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -27,6 +27,11 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				
 				filterDocumentStatusTab = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tab_status")
+				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
+				submitWarningPopup = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok")
+				loadingSwipeIcon = createTestObject(LocatorType.XPATH, "//android.view.ViewGroup[@resource-id='com.hdbank.ipaper:id/swipe_layout']/android.widget.ImageView")
+				searchDocument = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_search_view")
+				imageViewLoading = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_view_loading")
 				break
 			case "iOS":
 				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
@@ -44,6 +49,13 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				toastMessage = createTestObject(LocatorType.XPATH, "")
 				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/parent::XCUIElementTypeOther/XCUIElementTypeTextField")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
+				
+				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText[contains(@name, 'Quy trình PDF')]")
+				
+				submitWarningPopup = createTestObject(LocatorType.XPATH, "")
+				loadingSwipeIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeActivityIndicator[@name='Progress halted']")
+				imageViewLoading = createTestObject(LocatorType.XPATH, "")
+				
 				break
 		}
 	}
@@ -73,6 +85,15 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH,"(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[${index}]")
 			case "iOS":
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[${index}]")
+		}
+	}
+	
+	List<TestObject> titleItems() {
+		switch (GlobalVariable.PLATFORM) {
+			case "Android":
+				return createTestObjects(LocatorType.XPATH,"(//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item'])")
+			case "iOS":
+				return createTestObjects(LocatorType.XPATH, "")
 		}
 	}
 
@@ -112,10 +133,10 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 		}
 	}
 	
-	TestObject documentStatusFilter(DocumentStatus documentStatus) {
+	TestObject documentStatusFilter(String documentStatus) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='${documentStatus.toString()}']")
+				return createTestObject(LocatorType.XPATH,"//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='${documentStatus}']")
 			case "iOS":
 				return createTestObject(LocatorType.XPATH, "")
 		}

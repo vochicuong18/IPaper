@@ -1,0 +1,354 @@
+{
+    "name": "037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/../ErrorScreen/android/Test Cases/IPAPER APP/037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1747553133834,
+    "stop": 1747553246895,
+    "uuid": "62652057647119",
+    "historyId": "62652057647119",
+    "testCaseId": "62652057647119",
+    "fullName": "Test Cases/IPAPER APP/037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 18-05-2025 14:17:51"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1747553133876,
+            "stop": 1747553133878,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1747553135981,
+            "stop": 1747553144280,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1747553144281,
+            "stop": 1747553149546,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1747553149546,
+            "stop": 1747553152888,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1747553152889,
+            "stop": 1747553155756,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1747553155757,
+            "stop": 1747553157627,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1747553157628,
+            "stop": 1747553160830,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1747553160830,
+            "stop": 1747553162613,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1747553162613,
+            "stop": 1747553167497,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1747553167497,
+            "stop": 1747553172979,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getMainFileName())",
+            "status": "passed",
+            "start": 1747553172980,
+            "stop": 1747553178965,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1747553178966,
+            "stop": 1747553180493,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getSubFileName())",
+            "status": "passed",
+            "start": 1747553180493,
+            "stop": 1747553186739,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.performAction(SEND_WITH_COMENT)",
+            "status": "passed",
+            "start": 1747553186740,
+            "stop": 1747553190769,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInOpinion(USER_CREATE_COMMENT)",
+            "status": "passed",
+            "start": 1747553190770,
+            "stop": 1747553191555,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitRequest()",
+            "status": "passed",
+            "start": 1747553191555,
+            "stop": 1747553198794,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1747553198794,
+            "stop": 1747553198989,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.logout()",
+            "status": "passed",
+            "start": 1747553198989,
+            "stop": 1747553207402,
+            "steps": []
+        },
+        {
+            "name": "document.setStatus(WAIT_GET_COMMENT)",
+            "status": "passed",
+            "start": 1747553207402,
+            "stop": 1747553207403,
+            "steps": []
+        },
+        {
+            "name": "document.setAssigner(auto5)",
+            "status": "passed",
+            "start": 1747553207404,
+            "stop": 1747553207404,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto6)",
+            "status": "passed",
+            "start": 1747553207404,
+            "stop": 1747553216220,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToIncomingDocument()",
+            "status": "passed",
+            "start": 1747553216220,
+            "stop": 1747553216296,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.viewInformationDocument(document)",
+            "status": "passed",
+            "start": 1747553216297,
+            "stop": 1747553221940,
+            "steps": [
+                {
+                    "name": "View document Tr\u00ecnh k\u00fd 1747553135980",
+                    "status": "passed",
+                    "start": 1747553216297,
+                    "stop": 1747553216298
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkDocumentTitle(document)",
+            "status": "passed",
+            "start": 1747553221940,
+            "stop": 1747553222304,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Tr\u00ecnh k\u00fd 1747553135980 - DATA: Tr\u00ecnh k\u00fd 1747553135980",
+                    "status": "passed",
+                    "start": 1747553222303,
+                    "stop": 1747553222304
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkSender(document)",
+            "status": "passed",
+            "start": 1747553222305,
+            "stop": 1747553222433,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Auto Test User 5 - DATA: Auto Test User 5",
+                    "status": "passed",
+                    "start": 1747553222432,
+                    "stop": 1747553222433
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkStatus(document)",
+            "status": "passed",
+            "start": 1747553222433,
+            "stop": 1747553222567,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Ch\u1edd l\u1ea5y \u00fd ki\u1ebfn - DATA: Ch\u1edd l\u1ea5y \u00fd ki\u1ebfn",
+                    "status": "passed",
+                    "start": 1747553222566,
+                    "stop": 1747553222567
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkCreateDate()",
+            "status": "passed",
+            "start": 1747553222568,
+            "stop": 1747553222701,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 18/05/2025 - DATA: 18/05/2025",
+                    "status": "passed",
+                    "start": 1747553222699,
+                    "stop": 1747553222700
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkFinishDate(document)",
+            "status": "passed",
+            "start": 1747553222701,
+            "stop": 1747553222832,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 19/05/2025 - DATA: 19/05/2025",
+                    "status": "passed",
+                    "start": 1747553222831,
+                    "stop": 1747553222832
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPriority(document)",
+            "status": "passed",
+            "start": 1747553222833,
+            "stop": 1747553222962,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: B\u00ecnh th\u01b0\u1eddng - DATA: B\u00ecnh th\u01b0\u1eddng",
+                    "status": "passed",
+                    "start": 1747553222961,
+                    "stop": 1747553222962
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkDescription(document)",
+            "status": "passed",
+            "start": 1747553222963,
+            "stop": 1747553223119,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN - DATA: 037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN",
+                    "status": "passed",
+                    "start": 1747553223118,
+                    "stop": 1747553223119
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAssigner(document)",
+            "status": "passed",
+            "start": 1747553223120,
+            "stop": 1747553224565,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: auto5@hdbank.com.vn - DATA: auto5@hdbank.com.vn",
+                    "status": "passed",
+                    "start": 1747553224563,
+                    "stop": 1747553224564
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPresentFileName(document)",
+            "status": "passed",
+            "start": 1747553224565,
+            "stop": 1747553225583,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: dummy_20250518142654.ozd - DATA: dummy",
+                    "status": "passed",
+                    "start": 1747553225582,
+                    "stop": 1747553225583
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAttachFileName(document)",
+            "status": "passed",
+            "start": 1747553225583,
+            "stop": 1747553227280,
+            "steps": [
+                {
+                    "name": "Expected true condition",
+                    "status": "passed",
+                    "start": 1747553227276,
+                    "stop": 1747553227277
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1747553227280,
+            "stop": 1747553231796,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.performAction(document, SEND_COMMENT)",
+            "status": "failed",
+            "start": 1747553231797,
+            "stop": 1747553243466,
+            "steps": [
+                {
+                    "name": "Test Cases/IPAPER APP/037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN FAILED.\nReason:\norg.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.\nFor documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: '3.141.59', revision: 'unknown', time: 'unknown'\nSystem info: host: '192.168.1.4.non-exists.ptr.local', ip: '2402:800:63f2:b9ce:1859:4296:77a1:a88d%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.4.1', java.version: '17.0.7'\nDriver info: com.kms.katalon.core.appium.driver.SwipeableAndroidDriver\nCapabilities {automationName: UiAutomator2, databaseEnabled: false, desired: {automationName: UiAutomator2, deviceName: af0c5cf7, noReset: true, platformName: android, waitForIdleTimeout: 3000}, deviceApiLevel: 35, deviceManufacturer: OPPO, deviceModel: CPH2699, deviceName: af0c5cf7, deviceScreenDensity: 480, deviceScreenSize: 1080x2400, deviceUDID: af0c5cf7, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 15, statBarHeight: 120, takesScreenshot: true, viewportRect: {height: 2280, left: 0, top: 120, width: 1080}, waitForIdleTimeout: 3000, warnings: {}, webStorageEnabled: false}\nSession ID: a2ddd6f2-eda7-4b95-9f4b-0be7892e4c4b\n*** Element info: {Using=id, value=com.hdbank.ipaper:id/img_home_bar}\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)\n\tat io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\n\tat io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)\n\tat io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)\n\tat io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)\n\tat com.kms.katalon.core.appium.driver.SwipeableAndroidDriver.execute(SwipeableAndroidDriver.java:1)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)\n\tat io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)\n\tat io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)\n\tat io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)\n\tat com.kms.katalon.core.appium.driver.SwipeableAndroidDriver.findElement(SwipeableAndroidDriver.java:1)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:372)\n\tat io.appium.java_client.DefaultGenericMobileDriver.findElementById(DefaultGenericMobileDriver.java:70)\n\tat io.appium.java_client.AppiumDriver.findElementById(AppiumDriver.java:1)\n\tat io.appium.java_client.android.AndroidDriver.findElementById(AndroidDriver.java:1)\n\tat com.kms.katalon.core.appium.driver.SwipeableAndroidDriver.findElementById(SwipeableAndroidDriver.java:1)\n\tat org.openqa.selenium.By$ById.findElement(By.java:188)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)\n\tat io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:58)\n\tat io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)\n\tat io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)\n\tat com.kms.katalon.core.appium.driver.SwipeableAndroidDriver.findElement(SwipeableAndroidDriver.java:1)\n\tat base.BaseKeyword$Trait$Helper.clickToElement(BaseKeyword.groovy:59)\n\tat screens.IncomingDocumentScreen.clickToElement(IncomingDocumentScreen.groovy)\n\tat screens.IncomingDocumentScreen.backToHome(IncomingDocumentScreen.groovy:233)\n\tat screens.IncomingDocumentScreen.performAction(IncomingDocumentScreen.groovy:113)\n\tat screens.IncomingDocumentScreen.performAction(IncomingDocumentScreen.groovy)\n\tat 037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN.run(037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN:93)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:439)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:418)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:410)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:285)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:65)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:150)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:106)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:180)\n\tat TempTestSuite1747552661021.run(TempTestSuite1747552661021.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+                    "status": "failed",
+                    "start": 1747553243465,
+                    "stop": 1747553243466
+                }
+            ]
+        }
+    ]
+}

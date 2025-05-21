@@ -25,41 +25,75 @@ import utilities.Utilities
 trait BaseKeyword{
 	final int TIMEOUT = 30
 
+	/**
+	 * Hides the keyboard on the mobile device.
+	 */
 	def hideKeyboard() {
 		Mobile.hideKeyboard()
 	}
 
-	boolean getValueAttributeOf(TestObject to, String attribute) {
+	/**
+	 * Gets the value of a specified attribute from a TestObject.
+	 * @param to TestObject to get attribute from
+	 * @param attribute Name of the attribute to retrieve 
+	 * @return value of the specified attribute as String
+	 */
+	String getValueAttributeOf(TestObject to, String attribute) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
-		//		return element.getAttribute(attribute)
-		return Mobile.getAttribute(to, attribute, 1)
+		println element.getAttribute(attribute)
+		return element.getAttribute(attribute)
 	}
 
+	/**
+	 * Gets the text content from a TestObject.
+	 * @param to TestObject to get text from
+	 * @return String containing the text of the element
+	 */
 	String getText(TestObject to) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 		return element.getText()
 	}
 
+	/**
+	 * Sets text in an input field after clearing its current content.
+	 * @param to TestObject representing the input field
+	 * @param text Text to input
+	 */
 	def inputText(TestObject to, String text) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 		element.clear()
 		element.sendKeys(text)
 	}
 
+	/**
+	 * Submits text input by pressing Enter/Return key.
+	 * Uses platform-specific approach for Android vs iOS.
+	 * @param to TestObject representing the input field
+	 */
 	def enterText(TestObject to) {
 		if (GlobalVariable.PLATFORM == "Android") {
 			Utilities.runCommand("adb shell input keyevent 66")
+			println("A")
 		} else {
 			WebElement element = Driver.driver.findElement(convertToBy(to))
 			element.sendKeys(Keys.RETURN)
 		}
 	}
 
+	/**
+	 * Clicks on a TestObject element.
+	 * @param to TestObject to click
+	 */
 	def clickToElement(TestObject to) {
 		def element = Driver.driver.findElement(convertToBy(to))
 		element.click()
 	}
 
+	/**
+	 * Taps at specific x,y coordinates on the screen.
+	 * @param x X-coordinate to tap
+	 * @param y Y-coordinate to tap
+	 */
 	def tapAt(int x, int y) {
 		def driver = MobileDriverFactory.getDriver()
 		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
@@ -70,6 +104,10 @@ trait BaseKeyword{
 		Driver.driver.perform(Arrays.asList(sequence))
 	}
 
+	/**
+	 * Performs a tap and hold (long press) on a TestObject element.
+	 * @param to TestObject to tap and hold
+	 */
 	def tapAndHold(TestObject to) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 
@@ -87,6 +125,10 @@ trait BaseKeyword{
 		Driver.driver.perform(Arrays.asList(longPress))
 	}
 
+	/**
+	 * Taps outside a given element (20px to the left and up).
+	 * @param to TestObject to tap outside of
+	 */
 	def tapOutSideElement(TestObject to) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 		int xPosition = element.getLocation().getX() - 20
@@ -99,6 +141,11 @@ trait BaseKeyword{
 		Driver.driver.perform(Arrays.asList(sequence))
 	}
 
+	/**
+	 * Performs vertical swipe on iOS date picker elements.
+	 * @param to TestObject to swipe
+	 * @param direction Direction to swipe ("up" or "down")
+	 */
 	def verticalSwipeYearIOS(TestObject to, String direction) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 		int xPosition = element.getLocation().getX() + 20
@@ -115,6 +162,11 @@ trait BaseKeyword{
 		Driver.driver.perform([swipe])
 	}
 
+	/**
+	 * Performs a vertical swipe on the screen.
+	 * @param direction Direction to swipe ("up" or "down")
+	 * @param distancePercent Percentage of screen height to swipe (default: 0.2)
+	 */
 	def swipe(String direction, double distancePercent = 0.2) {
 		def size = Driver.driver.manage().window().getSize()
 		int startX = size.getWidth() / 2
@@ -132,6 +184,11 @@ trait BaseKeyword{
 		Driver.driver.perform(Arrays.asList(swipe))
 	}
 
+	/**
+	 * Swipes down repeatedly until a specified element is visible.
+	 * @param element TestObject to swipe to
+	 * @throws StepFailedException if element not found after MAX_ATTEMPTS
+	 */
 	def swipeToElement(TestObject element) {
 		int MAX_ATTEMPTS = 10
 		int attempts = 0
@@ -146,6 +203,11 @@ trait BaseKeyword{
 		}
 	}
 
+	/**
+	 * Performs horizontal swipe from an element in specified direction.
+	 * @param to TestObject to swipe from
+	 * @param direction Direction to swipe ("left" or "right")
+	 */
 	def horizontalSwipeFromElement(TestObject to, String direction) {
 		WebElement element = Driver.driver.findElement(convertToBy(to))
 
@@ -160,6 +222,9 @@ trait BaseKeyword{
 		performSwipe(Driver.driver, startX, elementCenterY, endX, elementCenterY)
 	}
 
+	/**
+	 * Swipes from bottom to top of screen (revealing content below).
+	 */
 	def swipeToBottom() {
 		int screenHeight = Driver.driver.manage().window().getSize().getHeight()
 		int screenWidth = Driver.driver.manage().window().getSize().getWidth()
@@ -169,9 +234,14 @@ trait BaseKeyword{
 		performSwipe(Driver.driver, startX, startY, startX, endY)
 	}
 
+	/**
+	 * Scrolls to make an item visible relative to an anchor element.
+	 * @param item TestObject to scroll to
+	 * @param anchor TestObject to use as reference point
+	 */
 	def scrollToAnchor(TestObject item, TestObject anchor) {
 		WebElement itemEl = Driver.driver.findElement(convertToBy(item))
-		WebElement anchorEl =Driver.driver.findElement(convertToBy(anchor))
+		WebElement anchorEl = Driver.driver.findElement(convertToBy(anchor))
 		int itemTop = itemEl.getLocation().getY()
 		int anchorBottom = anchorEl.getLocation().getY() + anchorEl.getSize().getHeight()
 		int offset = itemTop - anchorBottom
@@ -215,6 +285,14 @@ trait BaseKeyword{
 	//		}
 	//	}
 
+	/**
+	 * Performs a swipe gesture from one point to another.
+	 * @param driver WebDriver instance
+	 * @param startX Starting X coordinate
+	 * @param startY Starting Y coordinate
+	 * @param endX Ending X coordinate
+	 * @param endY Ending Y coordinate
+	 */
 	def performSwipe(driver, int startX, int startY, int endX, int endY) {
 		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger")
 		Sequence swipe = new Sequence(finger, 0)
@@ -225,10 +303,21 @@ trait BaseKeyword{
 		Driver.driver.perform([swipe])
 	}
 
+	/**
+	 * Checks if a TestObject is displayed using default timeout.
+	 * @param element TestObject to check
+	 * @return true if element is displayed, false otherwise
+	 */
 	boolean isDisplayed(TestObject element) {
 		isDisplayed(element, 3)
 	}
 
+	/**
+	 * Checks if a TestObject is displayed with custom timeout.
+	 * @param to TestObject to check
+	 * @param timeout Timeout in seconds
+	 * @return true if element is displayed, false otherwise
+	 */
 	boolean isDisplayed(TestObject to, int timeout) {
 		Driver.driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS)
 		def elements = Driver.driver.findElements(convertToBy(to))

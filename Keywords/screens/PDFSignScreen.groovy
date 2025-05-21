@@ -4,7 +4,6 @@ import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
 import entities.User
-import groovy.transform.ThreadInterrupt
 import internal.GlobalVariable
 import locator.PDFSignLocator
 import utilities.CalendarUtilities
@@ -24,13 +23,13 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	}
 
 	public enum PerformAction {
-		SEND_APPROVE, SEND_WITH_COMENT, SAVE
+		SEND_APPROVE, SEND_WITH_COMENT, SAVE_DRAFT
 
 		String toString() {
 			switch (this) {
 				case SEND_APPROVE : return "Gửi duyệt"
 				case SEND_WITH_COMENT : return "Lấy ý kiến"
-				case SAVE : return "Lưu"
+				case SAVE_DRAFT : return "Lưu"
 				default : return "please define"
 			}
 		}
@@ -95,6 +94,22 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		}
 	}
 
+	def selectAssigner(User user) {
+		swipeToElement(assignerTxt)
+		clickToElement(assignerTxt)
+		inputText(assignerEmailSearch, user.getEmail())
+		enterText(assignerEmailSearch)
+		if (GlobalVariable.PLATFORM == "iOS") {
+			waitForNotPresentOf(listUserLoadingMask)
+		}
+		waitForPresentOf(assignerItem(user.getEmail()))
+		clickToElement(assignerItem(user.getEmail()))
+
+		if (GlobalVariable.PLATFORM == "iOS") {
+			clickToElement(doneBtn) // click to "Xong"
+		}
+	}
+
 	def openMainFileBrowser() {
 		swipeToElement(mainFile)
 		clickToElement(mainFile)
@@ -131,7 +146,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		clickToElement(actionBtn)
 		Thread.sleep(500)
 		switch (action) {
-			case PerformAction.SAVE:
+			case PerformAction.SAVE_DRAFT:
 				clickToElement(saveFormAction)
 				break
 			case PerformAction.SEND_WITH_COMENT:
@@ -161,7 +176,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		if (GlobalVariable.PLATFORM == "Android") {
 			waitForNotPresentOf(loadingMask)
 		} else {
-			waitForAttributeValueOf(screenTitle, "name", "Tạo yêu cầu theo mẫu")
+			waitForPresentOf(bellIcon) // Back to home when submit request
 		}
 	}
 
@@ -174,13 +189,13 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	String getErrorMessage() {
 		return getText(errorMessage)
 	}
-	
+
 	def selectProcessDefined(String processName) {
 		swipeToElement(listDefineProcess)
 		clickToElement(listDefineProcess)
 		waitForPresentOf(processDefined(processName))
 		clickToElement(processDefined(processName))
-		
+
 		if (GlobalVariable.PLATFORM == 'iOS'){
 			clickToElement(submitProcess)
 		}
@@ -206,5 +221,4 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		}
 		clickToElement(submitUseSelection)
 	}
-	
 }

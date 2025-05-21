@@ -55,7 +55,7 @@ class TestListener {
 	def afterSuite(TestSuiteContext testSuiteContext) {
 		CustomKeywords.'drivers.Driver.stopAppium'()
 //		CustomKeywords.'drivers.Driver.closeApp'()
-//		Utilities.runCommand("cd Plugins/allure && python3 allure-for-kes.py --platform android && allure serve allure-results-android")
+//		Utilities.runCommand("cd Plugins && python3 allure-for-kse.py --platform android && allure serve allure-results-android")
 	}
 
 	def logReportFolder() {

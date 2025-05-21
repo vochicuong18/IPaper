@@ -18,6 +18,16 @@ public class RelatedDocumentScreen extends RelatedDocumentLocator implements Bas
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
 	}
 
+	def viewInformationExecuteDocument(Document doc) {
+		String prefix = GlobalVariable.PLATFORM == 'iOS' ? "[Thực Thi]" : "[Thực thi]"
+		String title = "${prefix} ${doc.getTitle()}"
+		if (GlobalVariable.PLATFORM == 'iOS') {
+			searchDocument(doc.getTitle())
+		}
+		waitForPresentOf(documentItem(title))
+		horizontalSwipeFromElement(documentItem(title), "right")
+	}
+
 	def searchDocument(String documentTitle) {
 		waitForPresentOf(searchDocument)
 		clickToElement(searchDocument)

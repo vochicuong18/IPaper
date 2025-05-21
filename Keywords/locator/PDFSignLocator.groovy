@@ -13,7 +13,7 @@ public class PDFSignLocator extends TestObjectFactory{
 	TestObject screenTitle, acceptErrorButton, errorMessagePopup, relatedTxt, actionBtn, getOpinionAction, saveFormAction, assignerEmailSearch, loadingMask,
 	sendFormAction, assignerItem, mainFile, subFile, assignerTxt, opinionNoteTxt, submitDatePickerBtn, backBtn, priorityItem,
 	submitFormBtn, descriptionTxt, priorityValue, titleTxt, doneBtn, relatedEmailSearch, doneTime, relatedMemberItem, iosOpenDatePicker, listUserLoadingMask, priorityTitle, emptyListCC,
-	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess, listDefineProcess, submitProcess
+	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess, listDefineProcess, submitProcess, bellIcon
 	PDFSignLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -58,7 +58,7 @@ public class PDFSignLocator extends TestObjectFactory{
 				relatedTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Cc']")
 				listUserLoadingMask = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='footer_bar']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeOther")
 				saveFormAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_save']")
-				assignerTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Email']//parent::XCUIElementTypeCell")
+				assignerTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Email']")
 				mainFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Tải lên tài liệu PDF']//ancestor::XCUIElementTypeCell")
 				sendFormAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi duyệt']/parent::*")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Xong']")
@@ -80,6 +80,7 @@ public class PDFSignLocator extends TestObjectFactory{
 				searchEmailDefineProcess = createTestObject(XPATH, "//XCUIElementTypeSearchField[@name='Tìm kiếm']")
 				listDefineProcess = createTestObject(XPATH, "//XCUIElementTypeStaticText[@name='quy trình đã được định nghĩa']")
 				submitProcess = createTestObject(XPATH, "//XCUIElementTypeButton[@name='Xác nhận']")
+				bellIcon = createTestObject(XPATH, "//XCUIElementTypeButton[@name='ic bell']")
 				break
 		}
 	}

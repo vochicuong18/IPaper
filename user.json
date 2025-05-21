@@ -35,6 +35,15 @@
     "role": "Chuyên viên phát triển ứng dụng",
     "department": "KCNTT-NHĐT"
   },
+    "userA8NV": {
+    "name": "HD999995 NGUYỄN VĂN A5 - Chuyên viên phát triển ứng dụng - KCNTT-NHĐT",
+    "userName": "a8nv",
+    "password": "Hdb@nk@3!",
+    "email": "test0005@hdbank.com.vn",
+    "emailPassword": "HDBank123!@#",
+    "role": "Chuyên viên phát triển ứng dụng",
+    "department": "KCNTT-NHĐT"
+  },
   "auto1": {
     "name": "Auto Test User 1",
     "userName": "auto1",

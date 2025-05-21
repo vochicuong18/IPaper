@@ -26,9 +26,27 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		}
 	}
 
+	def goToDraftDocument() {
+		if (!isDraftDocumentScreen()) {
+			expandMenu()
+			clickToElement(draftDocument)
+			waitForNotPresentOf(loadingItem)
+		}
+	}
+
 	def goToRelatedDocument() {
-		expandMenu()
-		clickToElement(outComingDocument)
+		clickOnFillter()
+		clickOnRelatedDocument()
+		waitForNotPresentOf(loadingListDocument)
+	}
+
+
+	def clickOnRelatedDocument() {
+		clickToElement(relatedDocumentBtn)
+	}
+
+	def clickOnFillter () {
+		clickToElement(fillterBtn)
 	}
 
 	def goToSetting() {
@@ -62,15 +80,19 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 	// TAB MENU
 
 	def openRequestList() {
-		expandMenu()
-		clickToElement(createRequestItems)
+		if (GlobalVariable.PLATFORM == 'iOS') {
+			clickToElement(addDocumentIcon)
+		} else {
+			expandMenu()
+			clickToElement(createRequestItems)
+		}
 	}
 
 	def createRequest(String requestName) {
-		def item = requestItem(requestName)
-		waitForPresentOf(item)
+		waitForPresentOf(listFormSample)
+		waitForPresentOf(requestItem(requestName))
 		Thread.sleep(300)
-		clickToElement(item)
+		clickToElement(requestItem(requestName))
 	}
 
 	//--------------------------
@@ -82,8 +104,14 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 	boolean isInComingDocumentScreen() {
 		getText(screenTitle) == "Hồ sơ đến"
 	}
+
 	boolean isOutComingDocumentScreen() {
 		return getText(screenTitle)== "Hồ sơ đi"
 	}
+
+	boolean isDraftDocumentScreen() {
+		return getText(screenTitle)== "Hồ sơ nháp"
+	}
+
 	boolean isRelatedDocumentScreen() {}
 }

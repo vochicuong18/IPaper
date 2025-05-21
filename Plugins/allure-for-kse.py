@@ -13,7 +13,7 @@ parser.add_argument('--platform', type=str, required=True, help="platform")
 args = parser.parse_args()
 
 REPORT_FOLDER = '../Reports'
-SCREENSHOT_FOLDER = '../../ErrorScreen'
+SCREENSHOT_FOLDER = '../ErrorScreen'
 ALLURE_RESULT_FOLDER = f'allure-results-{args.platform}'
 LOG_FILE = f'reports_{args.platform}.log'
 
@@ -184,10 +184,10 @@ def convert_to_allure(testcase):
             template['steps'].append(step_template)
 
     if testcase['status'] == 'FAILED':
-        testcase_name_safe = testcase['name'].replace('/', '_')
+        # testcase_name_safe = testcase['name'].replace('/', '_')
         template['attachments'].append({
             "name": "Lỗi",
-            "source": f"{os.getcwd()}/{SCREENSHOT_FOLDER}/{args.platform}/{testcase_name_safe}.png",
+            "source": f"{os.getcwd()}/{SCREENSHOT_FOLDER}/{args.platform}/{testcase['name']}.png",
             "type": "image/png"
         })
 

@@ -1,5 +1,6 @@
 package screens
 
+import java.lang.annotation.Documented
 import java.text.SimpleDateFormat
 
 import org.openqa.selenium.By
@@ -11,10 +12,12 @@ import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
+import ch.qos.logback.core.joran.conditional.ElseAction
 import entities.Document
 import entities.DocumentStatus
 import internal.GlobalVariable
 import locator.IncomingDocumentLocator
+import utilities.AssertUtilities
 import utilities.Utilities
 
 
@@ -29,20 +32,25 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	}
 
 	def viewInformationDocument (Document doc) {
+		Utilities.logInfo("View document ${doc.getTitle()}")
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(doc.getTitle())
 		}
 
 		waitForPresentOf(documentItem(doc.getTitle()))
 		horizontalSwipeFromElement(documentItem(doc.getTitle()), "right")
+		waitForPresentOf(requestType)
+		waitForVisibilityOf(requestType)
 	}
 
 	def viewMainFile(Document doc) {
+		Utilities.logInfo("View main file document: ${doc.getTitle()}")
 		if (GlobalVariable.PLATFORM == 'iOS') {
 			searchDocument(doc.getTitle())
 		}
 		waitForPresentOf(documentItem(doc.getTitle()))
 		clickToElement(documentItem(doc.getTitle()))
+		waitForNotPresentOf(imageViewLoading)
 	}
 
 	def goToRelatedDocument() {
@@ -101,8 +109,15 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 			case ActionType.SEND_COMMENT:
 				waitForPresentOf(sendCommentBtn(document.getTitle()))
 				clickToElement(sendCommentBtn(document.getTitle()))
-				if (comment) fillOpinion(comment)
-				clickOnSendOpinionApprove()
+				if (comment) {
+					fillOpinion(comment)
+					clickOnSendOpinionApprove()
+				} else {
+					clickOnSendOpinionApprove()
+					clickToElement(submitWarningPopup)
+					fillOpinion(comment)
+					clickOnSendOpinionApprove()
+				}
 				waitForNotPresentOf(sendCommentBtn(document.getTitle()))
 				document.setStatus(DocumentStatus.COMMENTED)
 				break
@@ -114,6 +129,7 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 		waitForPresentOf(searchDocument)
 		clickToElement(searchDocument)
 		inputText(searchDocument, documentTitle)
+		enterText(searchDocument)
 	}
 
 	def fillOpinion(String opinion) {
@@ -121,47 +137,47 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 	}
 
 	boolean checkItemInDocument () {
-//		if (GlobalVariable.PLATFORM == 'Android') {
-//			List<Map<String, String>> data = getAllItemDataAndroid()
-//			Set<String> seenTitles = new HashSet<>()
-//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
-//			boolean isTitleUnique = true
-//			boolean isTimeSorted = true
-//
-//			Date prevTime = null
-//			for (int i = 0; i < data.size(); i++) {
-//				String title = data[i].title
-//				String timeStr = data[i].time
-//
-//				if (seenTitles.contains(title)) {
-//					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
-//					isTitleUnique = false
-//				} else {
-//					seenTitles.add(title)
-//				}
-//
-//				if (timeStr == "-") continue
-//
-//					Date currentTime = sdf.parse(timeStr)
-//				if (prevTime != null && prevTime.before(currentTime)) {
-//					Utilities.logInfo("Time is wrong -  index $i")
-//					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
-//					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
-//					isTimeSorted = false
-//				}
-//				prevTime = currentTime
-//			}
-//
-//			if (isTitleUnique) {
-//				Utilities.logInfo("Title is not duplicated")
-//			}
-//			if (isTimeSorted) {
-//				Utilities.logInfo("Time is correctly")
-//			}
-//		} else {
-//			//			getAllItemDataIOS ()
-//			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
-//		}
+		//		if (GlobalVariable.PLATFORM == 'Android') {
+		//			List<Map<String, String>> data = getAllItemDataAndroid()
+		//			Set<String> seenTitles = new HashSet<>()
+		//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm")
+		//			boolean isTitleUnique = true
+		//			boolean isTimeSorted = true
+		//
+		//			Date prevTime = null
+		//			for (int i = 0; i < data.size(); i++) {
+		//				String title = data[i].title
+		//				String timeStr = data[i].time
+		//
+		//				if (seenTitles.contains(title)) {
+		//					Utilities.logInfo("Title is duplicated -  index $i: '$title'")
+		//					isTitleUnique = false
+		//				} else {
+		//					seenTitles.add(title)
+		//				}
+		//
+		//				if (timeStr == "-") continue
+		//
+		//					Date currentTime = sdf.parse(timeStr)
+		//				if (prevTime != null && prevTime.before(currentTime)) {
+		//					Utilities.logInfo("Time is wrong -  index $i")
+		//					Utilities.logInfo("   ➤ Trước:  ${data[i-1].title} - ${data[i-1].time}")
+		//					Utilities.logInfo("   ➤ Sau:    ${data[i].title} - $timeStr")
+		//					isTimeSorted = false
+		//				}
+		//				prevTime = currentTime
+		//			}
+		//
+		//			if (isTitleUnique) {
+		//				Utilities.logInfo("Title is not duplicated")
+		//			}
+		//			if (isTimeSorted) {
+		//				Utilities.logInfo("Time is correctly")
+		//			}
+		//		} else {
+		//			//			getAllItemDataIOS ()
+		//			Utilities.logInfo("Ignore this checkpoint in IOS temporary")
+		//		}
 	}
 
 
@@ -188,6 +204,26 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 		return itemList
 	}
 
+	List<String> getListDocumentTitle() {
+		List<String> titles = []
+		for (TestObject item : titleItems()) {
+			titles.add(getText(item))
+		}
+		return titles
+	}
+
+	/**
+	 * Gets a random document title from the list of available document titles.
+	 * @return String A random document title, or null if no documents are available
+	 */
+	String getRandomDocumentTitle() {
+		List<String> titles = getListDocumentTitle()
+		Random random = new Random()
+		int randomIndex = random.nextInt(titles.size())
+		String selectedTitle = titles[randomIndex]
+		return selectedTitle
+	}
+
 	def waitForDocument(Document document, int timeoutInSeconds = 300) {
 		String title = document.getTitle()
 		long endTime = System.currentTimeMillis() + timeoutInSeconds * 1000
@@ -210,5 +246,31 @@ public class IncomingDocumentScreen extends IncomingDocumentLocator implements B
 			clickToElement(backBtn)
 			Mobile.delay(0.5)
 		}
+	}
+
+	def filterByStatus (DocumentStatus status) {
+		clickToElement(fillterBtn)
+		clickToElement(filterDocumentStatusTab)
+		clickToElement(documentStatusFilter(status.toString()))
+		waitForNotPresentOf(loadingItem)
+		Utilities.logInfo("Filter by ${status.toString()} status")
+	}
+
+	def filterByStatus (String status) {
+		clickToElement(fillterBtn)
+		clickToElement(filterDocumentStatusTab)
+		clickToElement(documentStatusFilter(status))
+		waitForNotPresentOf(loadingItem)
+		Utilities.logInfo("Filter by ${status.toString()} status")
+	}
+
+	def isDocumentDisplayed(Document document) {
+		boolean status = isDisplayed(documentItem(document.getTitle()))
+		AssertUtilities.assertTrue(status, "Check ${document.getTitle()} is displayed")
+	}
+
+	def loadDataResult() {
+		swipe('up', 0.5)
+		waitForNotPresentOf(loadingSwipeIcon)
 	}
 }

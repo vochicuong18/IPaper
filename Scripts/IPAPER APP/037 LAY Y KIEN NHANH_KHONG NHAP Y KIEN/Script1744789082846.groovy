@@ -90,7 +90,7 @@ IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.backToHome()
 
-IPaper.inComingDocument.performAction(document, ActionType.SEND_COMMENT)
+IPaper.inComingDocument.performAction(document, ActionType.SEND_COMMENT, ASSIGNER_COMMENT)
 
 document.setSender(auto6)
 

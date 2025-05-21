@@ -8,7 +8,7 @@ import internal.GlobalVariable
 
 public class OutComingDocumentLocator extends TestObjectFactory{
 	TestObject approveWithCondition, documentItem, documentItems, fillterBtn, firstDocumentDate,
-	firstDocumentTitle, headerBar, opinionTxt, quickApprove, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, secondItem
+	firstDocumentTitle, headerBar, opinionTxt, quickApprove, relatedDocumentBtn, sendOpinionApprove, toastMessage, searchDocument, secondItem, loadingSwipeIcon
 
 	OutComingDocumentLocator() {
 		switch (GlobalVariable.PLATFORM) {
@@ -22,6 +22,7 @@ public class OutComingDocumentLocator extends TestObjectFactory{
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='Hồ sơ liên quan']")
 				sendOpinionApprove = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok_user")
 				toastMessage = createTestObject(LocatorType.XPATH, "//android.widget.Toast[@text=Thành công']")
+				loadingSwipeIcon = createTestObject(LocatorType.XPATH, "//android.view.ViewGroup[@resource-id='com.hdbank.ipaper:id/swipe_layout']/android.widget.ImageView")
 				break
 			case "iOS":
 				approveWithCondition = createTestObject(LocatorType.XPATH, "")
@@ -36,6 +37,7 @@ public class OutComingDocumentLocator extends TestObjectFactory{
 				sendOpinionApprove = createTestObject(LocatorType.XPATH, "")
 				toastMessage = createTestObject(LocatorType.XPATH, "")
 				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/parent::XCUIElementTypeOther/XCUIElementTypeTextField")
+				loadingSwipeIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeActivityIndicator[@name='Progress halted']")
 				break
 		}
 	}

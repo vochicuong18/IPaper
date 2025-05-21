@@ -27,9 +27,9 @@ public class FileBrowserLocator extends TestObjectFactory {
 	TestObject fileLbl(fileName) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='android:id/title' and @text='${fileName}']/parent::android.widget.LinearLayout", [('fileName') : fileName])
+				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='android:id/title' and @text='${fileName}']/parent::android.widget.LinearLayout")
 			case "iOS":
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeCell[@name='${fileName}, pdf']", [('fileName') : fileName])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeCell[@name='${fileName}, pdf']")
 		}
 	}
 }
