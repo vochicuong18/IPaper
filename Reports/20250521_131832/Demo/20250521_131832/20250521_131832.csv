@@ -1,0 +1,1034 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+Demo,,,,21-05-2025 13:18:33,21-05-2025 14:19:07,1h - 33.651s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/002 TAO YEU CAU,,,,21-05-2025 13:18:39,21-05-2025 13:23:27,4m - 48.679s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:18:39,21-05-2025 13:18:41,2.055s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.001s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.008s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.009s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.001s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.002s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:18:41,21-05-2025 13:18:41,0.029s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:18:41,21-05-2025 13:18:51,10.102s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:18:51,21-05-2025 13:18:52,0.650s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:18:52,21-05-2025 13:18:55,3.347s,PASSED
+pdfSignScreen.fillInTitle(title),,,,21-05-2025 13:18:55,21-05-2025 13:18:58,2.443s,PASSED
+pdfSignScreen.selectPriority(priority),,,,21-05-2025 13:18:58,21-05-2025 13:19:03,5.309s,PASSED
+pdfSignScreen.selectTime(time),,,,21-05-2025 13:19:03,21-05-2025 13:19:12,9.269s,PASSED
+pdfSignScreen.fillInDescription(description),,,,21-05-2025 13:19:12,21-05-2025 13:19:15,3.138s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:19:15,21-05-2025 13:19:29,14.072s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:19:29,21-05-2025 13:19:31,2.009s,PASSED
+fileBrowserScreen.attachFile(mainFileName),,,,21-05-2025 13:19:31,21-05-2025 13:19:41,9.763s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:19:41,21-05-2025 13:19:43,1.927s,PASSED
+fileBrowserScreen.attachFile(subFileName),,,,21-05-2025 13:19:43,21-05-2025 13:19:50,7.389s,PASSED
+pdfSignScreen.selectRelatedMember(getCc().getEmail()),,,,21-05-2025 13:19:50,21-05-2025 13:20:01,10.081s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:20:01,21-05-2025 13:20:03,2.753s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:20:03,21-05-2025 13:20:06,2.287s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:20:06,21-05-2025 13:20:12,6.662s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:20:12,21-05-2025 13:20:12,0.020s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:20:12,21-05-2025 13:20:13,0.500s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:20:13,21-05-2025 13:20:21,8.589s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:20:21,21-05-2025 13:20:33,11.348s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:20:33,21-05-2025 13:20:40,7.547s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:20:40,21-05-2025 13:20:41,0.459s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:20:41,21-05-2025 13:20:41,0.421s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:20:41,21-05-2025 13:20:42,0.416s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:20:42,21-05-2025 13:20:42,0.432s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:20:42,21-05-2025 13:20:42,0.414s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:20:42,21-05-2025 13:20:43,0.420s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:20:43,21-05-2025 13:20:46,3.304s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:20:46,21-05-2025 13:20:48,2.172s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:20:48,21-05-2025 13:20:52,3.718s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:20:52,21-05-2025 13:21:01,9.118s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:21:01,21-05-2025 13:21:10,8.715s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:21:10,21-05-2025 13:21:22,11.835s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:21:22,21-05-2025 13:21:22,0.002s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:21:22,21-05-2025 13:21:22,0.214s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:21:22,21-05-2025 13:21:59,36.811s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:21:59,21-05-2025 13:22:00,1.092s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:22:00,21-05-2025 13:22:00,0.404s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:22:00,21-05-2025 13:22:01,0.397s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:22:01,21-05-2025 13:22:01,0.420s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:22:01,21-05-2025 13:22:01,0.436s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:22:01,21-05-2025 13:22:02,0.434s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:22:02,21-05-2025 13:22:02,0.426s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:22:02,21-05-2025 13:22:06,3.333s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:22:06,21-05-2025 13:22:08,2.057s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:22:08,21-05-2025 13:22:11,3.631s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:22:11,21-05-2025 13:22:21,9.258s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:22:21,21-05-2025 13:22:29,8.776s,PASSED
+document.setAssigner(auto6),,,,21-05-2025 13:22:29,21-05-2025 13:22:29,0.002s,PASSED
+loginScreen.login(auto7),,,,21-05-2025 13:22:29,21-05-2025 13:22:41,11.868s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:22:41,21-05-2025 13:22:41,0.285s,PASSED
+inComingDocument.goToRelatedDocument(),,,,21-05-2025 13:22:41,21-05-2025 13:22:46,4.084s,PASSED
+relatedDocumentScreen.viewInformationDocument(document),,,,21-05-2025 13:22:46,21-05-2025 13:23:21,35.143s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:23:21,21-05-2025 13:23:27,6.714s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/003 TAO YEU CAU KHONG CO ASSIGNER,,,,21-05-2025 13:23:27,21-05-2025 13:27:54,4m - 26.456s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:23:27,21-05-2025 13:23:29,1.901s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+"STATUS = ""Đang đợi xử lý""",,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.001s,PASSED
+"ERROR_MESSAGE = ""Vui lòng nhập Email người nhận""",,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:23:29,21-05-2025 13:23:29,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:23:29,21-05-2025 13:23:40,10.139s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:23:40,21-05-2025 13:23:40,0.637s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:23:40,21-05-2025 13:23:45,4.978s,PASSED
+pdfSignScreen.fillInTitle(title),,,,21-05-2025 13:23:45,21-05-2025 13:23:48,2.545s,PASSED
+pdfSignScreen.selectPriority(priority),,,,21-05-2025 13:23:48,21-05-2025 13:23:51,3.388s,PASSED
+pdfSignScreen.selectTime(time),,,,21-05-2025 13:23:51,21-05-2025 13:24:00,9.148s,PASSED
+pdfSignScreen.fillInDescription(description),,,,21-05-2025 13:24:00,21-05-2025 13:24:04,3.369s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:24:04,21-05-2025 13:24:18,13.916s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:24:18,21-05-2025 13:24:20,1.901s,PASSED
+fileBrowserScreen.attachFile(mainFileName),,,,21-05-2025 13:24:20,21-05-2025 13:24:29,9.605s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:24:29,21-05-2025 13:24:34,4.612s,PASSED
+fileBrowserScreen.attachFile(subFileName),,,,21-05-2025 13:24:34,21-05-2025 13:24:42,8.083s,PASSED
+pdfSignScreen.selectRelatedMember(getCc().getEmail()),,,,21-05-2025 13:24:42,21-05-2025 13:24:52,10.045s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:24:52,21-05-2025 13:24:55,2.722s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:24:55,21-05-2025 13:24:55,0.001s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:24:55,21-05-2025 13:24:57,2.326s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:24:57,21-05-2025 13:25:09,12.267s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:25:09,21-05-2025 13:25:09,0.279s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:25:09,21-05-2025 13:25:18,8.575s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:25:18,21-05-2025 13:25:31,12.501s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:25:31,21-05-2025 13:25:39,8.478s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:25:39,21-05-2025 13:25:39,0.366s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:25:39,21-05-2025 13:25:40,0.404s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:25:40,21-05-2025 13:25:40,0.420s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:25:40,21-05-2025 13:25:41,0.427s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:25:41,21-05-2025 13:25:41,0.416s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:25:41,21-05-2025 13:25:44,3.252s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:25:44,21-05-2025 13:25:46,2.008s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:25:46,21-05-2025 13:25:50,3.504s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:25:50,21-05-2025 13:25:59,9.193s,PASSED
+outComingDocument.checkItemInDocument(),,,,21-05-2025 13:25:59,21-05-2025 13:25:59,0.001s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:25:59,21-05-2025 13:26:08,8.921s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:26:08,21-05-2025 13:26:08,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:26:08,21-05-2025 13:26:18,10.219s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:26:18,21-05-2025 13:26:18,0.224s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:26:18,21-05-2025 13:26:35,16.219s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:26:35,21-05-2025 13:26:36,1.044s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:26:36,21-05-2025 13:26:36,0.426s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:26:36,21-05-2025 13:26:36,0.428s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:26:36,21-05-2025 13:26:37,0.436s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:26:37,21-05-2025 13:26:37,0.430s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:26:37,21-05-2025 13:26:38,0.439s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:26:38,21-05-2025 13:26:41,3.312s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:26:41,21-05-2025 13:26:43,2.071s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:26:43,21-05-2025 13:26:47,3.627s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:26:47,21-05-2025 13:26:56,9.314s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:26:56,21-05-2025 13:26:56,0.002s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:26:56,21-05-2025 13:27:05,8.980s,PASSED
+document.setAssigner(auto6),,,,21-05-2025 13:27:05,21-05-2025 13:27:05,0.000s,PASSED
+loginScreen.login(auto7),,,,21-05-2025 13:27:05,21-05-2025 13:27:15,10.265s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:27:15,21-05-2025 13:27:16,0.258s,PASSED
+inComingDocument.goToRelatedDocument(),,,,21-05-2025 13:27:16,21-05-2025 13:27:17,1.739s,PASSED
+relatedDocumentScreen.viewInformationDocument(document),,,,21-05-2025 13:27:17,21-05-2025 13:27:52,35.083s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:27:52,21-05-2025 13:27:54,1.445s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/004 TAO YEU CAU LAY Y KIEN_1 NGUOI,,,,21-05-2025 13:27:54,21-05-2025 13:28:21,27.023s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:27:54,21-05-2025 13:27:55,1.532s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.000s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:27:56,21-05-2025 13:27:56,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:27:56,21-05-2025 13:28:16,20.873s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:28:16,21-05-2025 13:28:20,3.160s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:28:20,21-05-2025 13:28:21,1.341s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/005 TAO YEU CAU LAY Y KIEN_NHIEU NGUOI,,,,21-05-2025 13:28:21,21-05-2025 13:33:08,4m - 47.168s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:28:21,21-05-2025 13:28:23,1.604s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.001s,PASSED
+"AUTO6_COMMENT = ""Commented by auto6""",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+"AUTO7_COMMENT = ""Commented by auto7""",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+"AUTO8_COMMENT = ""Commented by auto8""",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.000s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:28:23,21-05-2025 13:28:23,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:28:23,21-05-2025 13:28:33,9.978s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:28:33,21-05-2025 13:28:33,0.534s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:28:33,21-05-2025 13:28:36,3.049s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:28:36,21-05-2025 13:28:39,2.409s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:28:39,21-05-2025 13:28:57,18.718s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:28:57,21-05-2025 13:29:06,9.080s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:29:06,21-05-2025 13:29:10,3.477s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:29:10,21-05-2025 13:29:25,15.104s,PASSED
+pdfSignScreen.selectAssigner(auto7),,,,21-05-2025 13:29:25,21-05-2025 13:29:43,17.669s,PASSED
+pdfSignScreen.selectAssigner(auto8),,,,21-05-2025 13:29:43,21-05-2025 13:29:56,12.835s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:29:56,21-05-2025 13:29:57,1.929s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:29:57,21-05-2025 13:30:07,9.623s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:30:07,21-05-2025 13:30:13,5.554s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:30:13,21-05-2025 13:30:20,7.763s,PASSED
+pdfSignScreen.performAction(SEND_WITH_COMENT),,,,21-05-2025 13:30:20,21-05-2025 13:30:24,3.425s,PASSED
+pdfSignScreen.fillInOpinion(USER_CREATE_COMMENT),,,,21-05-2025 13:30:24,21-05-2025 13:30:26,2.375s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:30:26,21-05-2025 13:30:40,14.261s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:30:40,21-05-2025 13:30:41,0.290s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:30:41,21-05-2025 13:30:49,8.735s,PASSED
+document.setStatus(WAIT_GET_COMMENT),,,,21-05-2025 13:30:49,21-05-2025 13:30:49,0.002s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:30:49,21-05-2025 13:30:49,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:30:49,21-05-2025 13:31:00,10.253s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:31:00,21-05-2025 13:31:00,0.217s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:31:00,21-05-2025 13:31:18,18.380s,PASSED
+documentInformationScreen.isSendCommentDisplayed(),,,,21-05-2025 13:31:18,21-05-2025 13:31:21,2.356s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:31:21,21-05-2025 13:31:22,1.285s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:31:22,21-05-2025 13:31:22,0.434s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:31:22,21-05-2025 13:31:23,0.427s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:31:23,21-05-2025 13:31:23,0.426s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:31:23,21-05-2025 13:31:24,0.421s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:31:24,21-05-2025 13:31:24,0.410s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:31:24,21-05-2025 13:31:27,3.338s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:31:27,21-05-2025 13:31:30,2.099s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:31:30,21-05-2025 13:31:33,3.232s,PASSED
+"documentInformationScreen.performAction(document, COMMENT, AUTO6_COMMENT)",,,,21-05-2025 13:31:33,21-05-2025 13:31:38,5.219s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:31:38,21-05-2025 13:31:43,4.550s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:31:43,21-05-2025 13:31:51,8.945s,PASSED
+loginScreen.login(auto7),,,,21-05-2025 13:31:51,21-05-2025 13:32:02,10.215s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:32:02,21-05-2025 13:32:02,0.243s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:32:02,21-05-2025 13:32:18,16.290s,PASSED
+documentInformationScreen.isSendCommentDisplayed(),,,,21-05-2025 13:32:18,21-05-2025 13:32:21,2.311s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:32:21,21-05-2025 13:32:22,1.305s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:32:22,21-05-2025 13:32:22,0.481s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:32:22,21-05-2025 13:32:23,0.471s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:32:23,21-05-2025 13:32:23,0.474s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:32:23,21-05-2025 13:32:24,0.466s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:32:24,21-05-2025 13:32:24,0.454s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:32:24,21-05-2025 13:32:27,3.217s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:32:27,21-05-2025 13:32:29,1.821s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:32:29,21-05-2025 13:32:33,3.553s,PASSED
+"documentInformationScreen.performAction(document, COMMENT, AUTO7_COMMENT)",,,,21-05-2025 13:32:33,21-05-2025 13:32:38,5.330s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:32:38,21-05-2025 13:32:43,4.637s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:32:43,21-05-2025 13:32:52,8.780s,PASSED
+loginScreen.login(auto8),,,,21-05-2025 13:32:52,21-05-2025 13:33:04,12.115s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:33:04,21-05-2025 13:33:07,3.138s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:33:07,21-05-2025 13:33:08,1.311s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/006 TAO YEU CAU LAY Y KIEN_KHONG NHAP Y KIEN,,,,21-05-2025 13:33:08,21-05-2025 13:33:31,22.485s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:33:08,21-05-2025 13:33:10,1.543s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:33:10,21-05-2025 13:33:10,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:33:10,21-05-2025 13:33:26,16.497s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:33:26,21-05-2025 13:33:29,3.054s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:33:29,21-05-2025 13:33:31,1.326s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/007 HIEN THI HO SO DEN,,,,21-05-2025 13:33:31,21-05-2025 13:33:50,19.600s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 13:33:31,21-05-2025 13:33:32,1.543s,PASSED
+"auto1 = DataTest.getUserTest(""auto1"")",,,,21-05-2025 13:33:32,21-05-2025 13:33:32,0.001s,PASSED
+loginScreen.login(auto1),,,,21-05-2025 13:33:32,21-05-2025 13:33:46,14.236s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:33:46,21-05-2025 13:33:49,2.745s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:33:49,21-05-2025 13:33:49,0.001s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:33:49,21-05-2025 13:33:50,1.030s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/008 HIEN THI HO SO DI,,,,21-05-2025 13:33:50,21-05-2025 13:34:14,24.105s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 13:33:50,21-05-2025 13:33:52,1.519s,PASSED
+"auto1 = DataTest.getUserTest(""auto1"")",,,,21-05-2025 13:33:52,21-05-2025 13:33:52,0.001s,PASSED
+loginScreen.login(auto1),,,,21-05-2025 13:33:52,21-05-2025 13:34:05,13.111s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:34:05,21-05-2025 13:34:13,8.412s,PASSED
+outComingDocument.checkItemInDocument(),,,,21-05-2025 13:34:13,21-05-2025 13:34:13,0.000s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:34:13,21-05-2025 13:34:14,1.023s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/009 DUYET NHANH,,,,21-05-2025 13:34:14,21-05-2025 13:37:47,3m - 32.974s,FAILED
+Start listener action : beforeTest,,,,21-05-2025 13:34:14,21-05-2025 13:34:16,1.526s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:34:16,21-05-2025 13:34:16,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:34:16,21-05-2025 13:34:16,0.002s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:34:16,21-05-2025 13:34:16,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:34:16,21-05-2025 13:34:16,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:34:16,21-05-2025 13:34:26,10.447s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:34:26,21-05-2025 13:34:27,0.534s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:34:27,21-05-2025 13:34:32,4.999s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:34:32,21-05-2025 13:34:34,2.345s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:34:34,21-05-2025 13:34:41,6.984s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:34:41,21-05-2025 13:34:51,9.644s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:34:51,21-05-2025 13:34:54,3.162s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:34:54,21-05-2025 13:35:04,10.341s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:35:04,21-05-2025 13:35:06,1.905s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:35:06,21-05-2025 13:35:16,9.530s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:35:16,21-05-2025 13:35:21,5.050s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:35:21,21-05-2025 13:35:29,7.986s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:35:29,21-05-2025 13:35:32,3.400s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:35:32,21-05-2025 13:35:34,2.241s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:35:34,21-05-2025 13:35:44,9.580s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:35:44,21-05-2025 13:35:45,0.501s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:35:45,21-05-2025 13:35:53,8.620s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:35:53,21-05-2025 13:35:53,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:35:53,21-05-2025 13:35:53,0.000s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:35:53,21-05-2025 13:36:03,10.003s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:36:03,21-05-2025 13:36:03,0.235s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:36:03,21-05-2025 13:36:20,16.157s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:36:20,21-05-2025 13:36:21,1.077s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:36:21,21-05-2025 13:36:21,0.434s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:36:21,21-05-2025 13:36:22,0.419s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:36:22,21-05-2025 13:36:22,0.408s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:36:22,21-05-2025 13:36:22,0.426s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:36:22,21-05-2025 13:36:23,0.416s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:36:23,21-05-2025 13:36:23,0.409s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:36:23,21-05-2025 13:36:26,3.281s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:36:26,21-05-2025 13:36:28,1.779s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:36:28,21-05-2025 13:36:31,2.667s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:36:31,21-05-2025 13:36:40,9.345s,PASSED
+"inComingDocument.performAction(document, QUICK_APPROVE)",,,,21-05-2025 13:36:40,21-05-2025 13:37:03,22.428s,PASSED
+document.setSender(auto6),,,,21-05-2025 13:37:03,21-05-2025 13:37:03,0.001s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:37:03,21-05-2025 13:37:03,0.001s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:37:03,21-05-2025 13:37:12,8.997s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:37:12,21-05-2025 13:37:20,8.104s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:37:20,21-05-2025 13:37:25,5.529s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:37:25,21-05-2025 13:37:26,0.430s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:37:26,21-05-2025 13:37:26,0.463s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:37:26,21-05-2025 13:37:27,0.456s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:37:27,21-05-2025 13:37:27,0.452s,FAILED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:37:27,21-05-2025 13:37:28,0.451s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:37:28,21-05-2025 13:37:28,0.449s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:37:28,21-05-2025 13:37:31,3.326s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:37:31,21-05-2025 13:37:33,2.061s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:37:33,21-05-2025 13:37:37,3.394s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:37:37,21-05-2025 13:37:46,9.229s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:37:46,21-05-2025 13:37:46,0.001s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:37:46,21-05-2025 13:37:47,1.277s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/010 DUYET CO DIEU KIEN_NHAP Y KIEN,,,,21-05-2025 13:37:47,21-05-2025 13:39:30,1m - 42.512s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:37:47,21-05-2025 13:37:49,1.611s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:37:49,21-05-2025 13:37:49,0.001s,PASSED
+"QUICK_APPROVE_OPINION = ""Duyệt nhanh có điều kiện""",,,,21-05-2025 13:37:49,21-05-2025 13:37:49,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:37:49,21-05-2025 13:37:49,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:37:49,21-05-2025 13:37:49,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:37:49,21-05-2025 13:37:49,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:37:49,21-05-2025 13:37:59,9.974s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:37:59,21-05-2025 13:38:00,0.578s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:38:00,21-05-2025 13:38:03,3.255s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:38:03,21-05-2025 13:38:07,4.115s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:38:07,21-05-2025 13:38:10,3.382s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:38:10,21-05-2025 13:38:19,9.165s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:38:19,21-05-2025 13:38:23,3.416s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:38:23,21-05-2025 13:38:37,13.886s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:38:37,21-05-2025 13:38:39,1.923s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:38:39,21-05-2025 13:38:48,9.534s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:38:48,21-05-2025 13:39:02,13.916s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:39:02,21-05-2025 13:39:22,19.634s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:39:22,21-05-2025 13:39:25,3.419s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:39:25,21-05-2025 13:39:29,3.317s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:39:29,21-05-2025 13:39:30,1.311s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/011 DUYET CO DIEU KIEN_KHONG NHAP Y KIEN,,,,21-05-2025 13:39:30,21-05-2025 13:39:57,26.804s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:39:30,21-05-2025 13:39:31,1.550s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:39:31,21-05-2025 13:39:31,0.000s,PASSED
+"QUICK_APPROVE_OPINION = ""Không có bình luận""",,,,21-05-2025 13:39:31,21-05-2025 13:39:31,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:39:31,21-05-2025 13:39:31,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:39:31,21-05-2025 13:39:31,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:39:31,21-05-2025 13:39:31,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:39:31,21-05-2025 13:39:52,20.829s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:39:52,21-05-2025 13:39:55,3.092s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:39:55,21-05-2025 13:39:57,1.266s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/012 DUYET CHI TIET_NHAP Y KIEN,,,,21-05-2025 13:39:57,21-05-2025 13:43:14,3m - 17.204s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 13:39:57,21-05-2025 13:39:58,1.498s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:39:58,21-05-2025 13:39:58,0.000s,PASSED
+"COMMENT = ""Automation approve""",,,,21-05-2025 13:39:58,21-05-2025 13:39:58,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:39:58,21-05-2025 13:39:58,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:39:58,21-05-2025 13:39:58,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:39:58,21-05-2025 13:39:58,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:39:58,21-05-2025 13:40:09,10.691s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:40:09,21-05-2025 13:40:09,0.600s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:40:09,21-05-2025 13:40:12,3.018s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:40:12,21-05-2025 13:40:17,4.177s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:40:17,21-05-2025 13:40:20,3.331s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:40:20,21-05-2025 13:40:29,9.276s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:40:29,21-05-2025 13:40:33,3.245s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:40:33,21-05-2025 13:40:46,13.384s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:40:46,21-05-2025 13:40:48,1.991s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:40:48,21-05-2025 13:40:58,9.709s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:40:58,21-05-2025 13:40:59,1.858s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:40:59,21-05-2025 13:41:07,7.869s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:41:07,21-05-2025 13:41:11,3.312s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:41:11,21-05-2025 13:41:13,2.247s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:41:13,21-05-2025 13:41:20,7.580s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:41:20,21-05-2025 13:41:21,0.291s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:41:21,21-05-2025 13:41:29,8.710s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:41:29,21-05-2025 13:41:29,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:41:29,21-05-2025 13:41:29,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:41:29,21-05-2025 13:41:40,10.460s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:41:40,21-05-2025 13:41:40,0.350s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:41:40,21-05-2025 13:41:57,16.662s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:41:57,21-05-2025 13:41:58,1.049s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:41:58,21-05-2025 13:41:58,0.416s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:41:58,21-05-2025 13:41:59,0.437s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:41:59,21-05-2025 13:41:59,0.421s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:41:59,21-05-2025 13:42:00,0.434s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:42:00,21-05-2025 13:42:00,0.416s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:42:00,21-05-2025 13:42:01,0.428s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:42:01,21-05-2025 13:42:04,3.271s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:42:04,21-05-2025 13:42:06,2.108s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:42:06,21-05-2025 13:42:09,2.848s,PASSED
+"documentInformationScreen.performAction(document, APPROVE, COMMENT)",,,,21-05-2025 13:42:09,21-05-2025 13:42:14,5.647s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:42:14,21-05-2025 13:42:26,11.303s,PASSED
+document.setSender(auto6),,,,21-05-2025 13:42:26,21-05-2025 13:42:26,0.001s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:42:26,21-05-2025 13:42:26,0.000s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:42:26,21-05-2025 13:42:35,9.002s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:42:35,21-05-2025 13:42:43,8.180s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:42:43,21-05-2025 13:42:50,6.887s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:42:50,21-05-2025 13:42:50,0.441s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:42:50,21-05-2025 13:42:51,0.430s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:42:51,21-05-2025 13:42:51,0.432s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:42:51,21-05-2025 13:42:52,0.430s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:42:52,21-05-2025 13:42:52,0.417s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:42:52,21-05-2025 13:42:52,0.435s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:42:52,21-05-2025 13:42:56,3.310s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:42:56,21-05-2025 13:42:58,2.186s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:42:58,21-05-2025 13:43:01,3.270s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 13:43:01,21-05-2025 13:43:04,2.421s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:43:04,21-05-2025 13:43:13,9.240s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:43:13,21-05-2025 13:43:13,0.000s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:43:13,21-05-2025 13:43:14,1.024s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/013 DUYET CHI TIET_KHONG NHAP Y KIEN,,,,21-05-2025 13:43:14,21-05-2025 13:43:47,33.550s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:43:14,21-05-2025 13:43:15,1.512s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:43:15,21-05-2025 13:43:15,0.001s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 13:43:15,21-05-2025 13:43:15,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:43:15,21-05-2025 13:43:15,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:43:15,21-05-2025 13:43:15,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:43:15,21-05-2025 13:43:15,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:43:15,21-05-2025 13:43:43,27.417s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:43:43,21-05-2025 13:43:46,3.246s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:43:46,21-05-2025 13:43:47,1.304s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/014 DUYET TAI MAIN FILE_KHÔNG NHAP Y KIEN,,,,21-05-2025 13:43:47,21-05-2025 13:46:49,3m - 1.326s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 13:43:47,21-05-2025 13:43:49,1.578s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:43:49,21-05-2025 13:43:49,0.001s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 13:43:49,21-05-2025 13:43:49,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:43:49,21-05-2025 13:43:49,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:43:49,21-05-2025 13:43:49,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:43:49,21-05-2025 13:43:49,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:43:49,21-05-2025 13:43:59,9.598s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:43:59,21-05-2025 13:44:01,2.464s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:44:01,21-05-2025 13:44:06,4.744s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:44:06,21-05-2025 13:44:10,3.736s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:44:10,21-05-2025 13:44:13,3.364s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:44:13,21-05-2025 13:44:22,9.250s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:44:22,21-05-2025 13:44:26,3.552s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:44:26,21-05-2025 13:44:38,12.277s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:44:38,21-05-2025 13:44:40,1.889s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:44:40,21-05-2025 13:44:50,9.619s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:44:50,21-05-2025 13:44:54,4.563s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:44:54,21-05-2025 13:45:02,7.992s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:45:02,21-05-2025 13:45:06,3.427s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:45:06,21-05-2025 13:45:08,2.261s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:45:08,21-05-2025 13:45:15,7.247s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:45:15,21-05-2025 13:45:15,0.322s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:45:15,21-05-2025 13:45:24,8.751s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:45:24,21-05-2025 13:45:24,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:45:24,21-05-2025 13:45:24,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:45:24,21-05-2025 13:45:34,10.066s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:45:34,21-05-2025 13:45:34,0.224s,PASSED
+inComingDocument.viewMainFile(document),,,,21-05-2025 13:45:34,21-05-2025 13:45:45,10.714s,PASSED
+document.setSender(auto6),,,,21-05-2025 13:45:45,21-05-2025 13:45:45,0.001s,PASSED
+"documentInformationScreen.performAction(document, APPROVE)",,,,21-05-2025 13:45:45,21-05-2025 13:45:52,7.064s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:45:52,21-05-2025 13:45:57,4.639s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:45:57,21-05-2025 13:45:57,0.001s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:45:57,21-05-2025 13:46:06,8.949s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:46:06,21-05-2025 13:46:17,11.143s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:46:17,21-05-2025 13:46:25,7.614s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:46:25,21-05-2025 13:46:25,0.413s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:46:25,21-05-2025 13:46:25,0.407s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:46:25,21-05-2025 13:46:26,0.390s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:46:26,21-05-2025 13:46:26,0.412s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:46:26,21-05-2025 13:46:27,0.419s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:46:27,21-05-2025 13:46:27,0.438s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:46:27,21-05-2025 13:46:30,3.321s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:46:30,21-05-2025 13:46:32,2.129s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:46:32,21-05-2025 13:46:36,3.563s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 13:46:36,21-05-2025 13:46:38,2.426s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:46:38,21-05-2025 13:46:48,9.278s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:46:48,21-05-2025 13:46:48,0.001s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:46:48,21-05-2025 13:46:49,1.027s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/015 DUYET TAI MAIN FILE_NHAP Y KIEN,,,,21-05-2025 13:46:49,21-05-2025 13:49:04,2m - 15.601s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:46:49,21-05-2025 13:46:50,1.620s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:46:50,21-05-2025 13:46:50,0.001s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 13:46:50,21-05-2025 13:46:50,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:46:50,21-05-2025 13:46:50,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:46:50,21-05-2025 13:46:50,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:46:50,21-05-2025 13:46:50,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:46:50,21-05-2025 13:47:01,10.149s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:47:01,21-05-2025 13:47:01,0.597s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:47:01,21-05-2025 13:47:04,3.301s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:47:04,21-05-2025 13:47:09,4.210s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:47:09,21-05-2025 13:47:12,3.325s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:47:12,21-05-2025 13:47:21,9.246s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:47:21,21-05-2025 13:47:24,3.264s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:47:24,21-05-2025 13:47:37,12.466s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:47:37,21-05-2025 13:47:39,1.705s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:47:39,21-05-2025 13:47:48,9.706s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:47:48,21-05-2025 13:47:50,1.793s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:47:50,21-05-2025 13:47:58,7.692s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:47:58,21-05-2025 13:48:01,3.340s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:48:01,21-05-2025 13:48:03,2.208s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:48:03,21-05-2025 13:48:11,7.529s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:48:11,21-05-2025 13:48:11,0.351s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:48:11,21-05-2025 13:48:20,8.817s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:48:20,21-05-2025 13:48:20,0.002s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:48:20,21-05-2025 13:48:20,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:48:20,21-05-2025 13:48:30,10.363s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:48:30,21-05-2025 13:48:31,0.363s,PASSED
+inComingDocument.viewMainFile(document),,,,21-05-2025 13:48:31,21-05-2025 13:48:43,11.747s,PASSED
+document.setSender(auto6),,,,21-05-2025 13:48:43,21-05-2025 13:48:43,0.001s,PASSED
+"documentInformationScreen.performAction(document, APPROVE, COMMENT)",,,,21-05-2025 13:48:43,21-05-2025 13:48:58,14.996s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:48:58,21-05-2025 13:49:03,5.493s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:49:03,21-05-2025 13:49:04,1.258s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/016 DUYET CO CC_KHONG NHAP Y KIEN,,,,21-05-2025 13:49:04,21-05-2025 13:50:55,1m - 50.631s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:49:04,21-05-2025 13:49:06,1.874s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.000s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:49:06,21-05-2025 13:49:06,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:49:06,21-05-2025 13:49:16,10.156s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:49:16,21-05-2025 13:49:17,0.705s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:49:17,21-05-2025 13:49:22,5.007s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:49:22,21-05-2025 13:49:26,4.025s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:49:26,21-05-2025 13:49:30,3.364s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:49:30,21-05-2025 13:49:39,9.089s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:49:39,21-05-2025 13:49:42,3.169s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:49:42,21-05-2025 13:49:55,13.305s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:49:55,21-05-2025 13:49:57,1.982s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:49:57,21-05-2025 13:50:07,9.834s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:50:07,21-05-2025 13:50:09,1.786s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:50:09,21-05-2025 13:50:16,7.444s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:50:16,21-05-2025 13:50:19,3.293s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:50:19,21-05-2025 13:50:22,2.266s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:50:22,21-05-2025 13:50:54,32.023s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:50:54,21-05-2025 13:50:55,1.230s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/017 DUYET CO CC_NHAP Y KIEN,,,,21-05-2025 13:50:55,21-05-2025 13:54:51,3m - 55.644s,FAILED
+Start listener action : beforeTest,,,,21-05-2025 13:50:55,21-05-2025 13:50:57,2.018s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.001s,PASSED
+"COMMENT = ""Commented by automation team in case 17""",,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:50:57,21-05-2025 13:50:57,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:50:57,21-05-2025 13:51:07,10.028s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:51:07,21-05-2025 13:51:08,0.633s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:51:08,21-05-2025 13:51:10,2.078s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:51:10,21-05-2025 13:51:14,4.102s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:51:14,21-05-2025 13:51:17,3.277s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:51:17,21-05-2025 13:51:26,9.094s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:51:26,21-05-2025 13:51:30,3.208s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:51:30,21-05-2025 13:51:43,13.238s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:51:43,21-05-2025 13:51:45,2.027s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:51:45,21-05-2025 13:51:55,9.754s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:51:55,21-05-2025 13:51:56,1.839s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:51:56,21-05-2025 13:52:04,7.878s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:52:04,21-05-2025 13:52:08,3.368s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:52:08,21-05-2025 13:52:10,2.260s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:52:10,21-05-2025 13:52:18,8.145s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:52:18,21-05-2025 13:52:18,0.376s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:52:18,21-05-2025 13:52:27,8.914s,PASSED
+document.setStatus(WAIT_PROCESS),,,,21-05-2025 13:52:27,21-05-2025 13:52:27,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:52:27,21-05-2025 13:52:27,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:52:27,21-05-2025 13:52:37,10.099s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:52:37,21-05-2025 13:52:38,0.314s,PASSED
+inComingDocument.viewMainFile(document),,,,21-05-2025 13:52:38,21-05-2025 13:52:49,11.718s,PASSED
+"documentInformationScreen.performAction(document, APPROVE_ADD_CC, COMMENT, auto7)",,,,21-05-2025 13:52:49,21-05-2025 13:53:02,12.586s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:53:02,21-05-2025 13:53:07,4.628s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:53:07,21-05-2025 13:53:07,0.003s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:53:07,21-05-2025 13:53:15,8.734s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:53:15,21-05-2025 13:53:24,8.718s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:53:24,21-05-2025 13:53:30,5.552s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:53:30,21-05-2025 13:53:30,0.420s,FAILED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:53:30,21-05-2025 13:53:30,0.397s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:53:30,21-05-2025 13:53:31,0.438s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:53:31,21-05-2025 13:53:31,0.440s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:53:31,21-05-2025 13:53:32,0.429s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:53:32,21-05-2025 13:53:32,0.417s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:53:32,21-05-2025 13:53:36,3.287s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:53:36,21-05-2025 13:53:38,2.076s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:53:38,21-05-2025 13:53:41,3.655s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 13:53:41,21-05-2025 13:53:44,2.462s,FAILED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:53:44,21-05-2025 13:53:53,9.374s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:53:53,21-05-2025 13:53:53,0.001s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:53:53,21-05-2025 13:54:02,8.967s,PASSED
+loginScreen.login(auto7),,,,21-05-2025 13:54:02,21-05-2025 13:54:12,10.109s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:54:12,21-05-2025 13:54:12,0.290s,PASSED
+inComingDocument.goToRelatedDocument(),,,,21-05-2025 13:54:12,21-05-2025 13:54:14,1.759s,PASSED
+relatedDocumentScreen.viewInformationDocument(document),,,,21-05-2025 13:54:14,21-05-2025 13:54:49,35.031s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:54:49,21-05-2025 13:54:51,1.395s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/018 TU CHOI NHANH,,,,21-05-2025 13:54:51,21-05-2025 13:58:17,3m - 26.264s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 13:54:51,21-05-2025 13:54:52,1.522s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:54:52,21-05-2025 13:54:52,0.000s,PASSED
+"COMMENT = ""Commented by automation team in case 18""",,,,21-05-2025 13:54:52,21-05-2025 13:54:52,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:54:52,21-05-2025 13:54:52,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:54:52,21-05-2025 13:54:52,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:54:52,21-05-2025 13:54:52,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:54:52,21-05-2025 13:55:04,11.590s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:55:04,21-05-2025 13:55:04,0.692s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:55:04,21-05-2025 13:55:07,2.988s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:55:07,21-05-2025 13:55:11,3.837s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:55:11,21-05-2025 13:55:15,3.230s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:55:15,21-05-2025 13:55:24,9.142s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:55:24,21-05-2025 13:55:27,2.991s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:55:27,21-05-2025 13:55:41,13.984s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:55:41,21-05-2025 13:55:43,1.928s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:55:43,21-05-2025 13:55:52,9.857s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:55:52,21-05-2025 13:55:54,1.808s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:55:54,21-05-2025 13:56:02,7.804s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:56:02,21-05-2025 13:56:05,3.321s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:56:05,21-05-2025 13:56:08,2.237s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 13:56:08,21-05-2025 13:56:19,11.032s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:56:19,21-05-2025 13:56:19,0.315s,PASSED
+homeScreen.logout(),,,,21-05-2025 13:56:19,21-05-2025 13:56:28,8.808s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 13:56:28,21-05-2025 13:56:28,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 13:56:28,21-05-2025 13:56:28,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 13:56:28,21-05-2025 13:56:38,10.211s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 13:56:38,21-05-2025 13:56:38,0.206s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 13:56:38,21-05-2025 13:56:54,16.268s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:56:54,21-05-2025 13:56:55,1.031s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:56:55,21-05-2025 13:56:56,0.404s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:56:56,21-05-2025 13:56:56,0.399s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:56:56,21-05-2025 13:56:57,0.452s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:56:57,21-05-2025 13:56:57,0.508s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:56:57,21-05-2025 13:56:58,0.408s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:56:58,21-05-2025 13:56:58,0.403s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 13:56:58,21-05-2025 13:57:01,3.215s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:57:01,21-05-2025 13:57:03,1.690s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:57:03,21-05-2025 13:57:06,2.677s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:57:06,21-05-2025 13:57:15,9.392s,PASSED
+"inComingDocument.performAction(document, REJECT)",,,,21-05-2025 13:57:15,21-05-2025 13:57:33,17.610s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 13:57:33,21-05-2025 13:57:33,0.002s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 13:57:33,21-05-2025 13:57:42,9.073s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 13:57:42,21-05-2025 13:57:50,8.304s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 13:57:50,21-05-2025 13:57:53,3.240s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 13:57:53,21-05-2025 13:57:54,0.383s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 13:57:54,21-05-2025 13:57:54,0.416s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 13:57:54,21-05-2025 13:57:54,0.421s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 13:57:54,21-05-2025 13:57:55,0.417s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 13:57:55,21-05-2025 13:57:55,0.415s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 13:57:55,21-05-2025 13:57:56,0.424s,PASSED
+documentInformationScreen.isAssignerDisplayed(),,,,21-05-2025 13:57:56,21-05-2025 13:57:59,3.259s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 13:57:59,21-05-2025 13:58:04,5.012s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 13:58:04,21-05-2025 13:58:07,2.557s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 13:58:07,21-05-2025 13:58:16,9.296s,PASSED
+outComingDocument.checkItemInDocument(),,,,21-05-2025 13:58:16,21-05-2025 13:58:16,0.001s,PASSED
+Start listener action : afterTest,,,,21-05-2025 13:58:16,21-05-2025 13:58:17,1.032s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/019 TU CHOI CHI TIET_NHAP Y KIEN,,,,21-05-2025 13:58:17,21-05-2025 13:59:33,1m - 15.840s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:58:17,21-05-2025 13:58:19,1.603s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:58:19,21-05-2025 13:58:19,0.000s,PASSED
+"COMMENT = ""Commented by automaton test in case 19""",,,,21-05-2025 13:58:19,21-05-2025 13:58:19,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:58:19,21-05-2025 13:58:19,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:58:19,21-05-2025 13:58:19,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:58:19,21-05-2025 13:58:19,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:58:19,21-05-2025 13:58:29,10.170s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 13:58:29,21-05-2025 13:58:29,0.651s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 13:58:29,21-05-2025 13:58:32,2.127s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 13:58:32,21-05-2025 13:58:36,4.043s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 13:58:36,21-05-2025 13:58:39,3.392s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 13:58:39,21-05-2025 13:58:48,9.143s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 13:58:48,21-05-2025 13:58:51,3.357s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 13:58:51,21-05-2025 13:59:04,12.291s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 13:59:04,21-05-2025 13:59:06,1.759s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 13:59:06,21-05-2025 13:59:15,9.553s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 13:59:15,21-05-2025 13:59:17,1.842s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 13:59:17,21-05-2025 13:59:25,7.912s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 13:59:25,21-05-2025 13:59:28,3.367s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 13:59:28,21-05-2025 13:59:31,3.312s,ERROR
+Start listener action : afterTest,,,,21-05-2025 13:59:31,21-05-2025 13:59:33,1.249s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN,,,,21-05-2025 13:59:33,21-05-2025 14:00:07,34.204s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 13:59:33,21-05-2025 13:59:34,1.533s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 13:59:34,21-05-2025 13:59:34,0.001s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 13:59:34,21-05-2025 13:59:34,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 13:59:34,21-05-2025 13:59:34,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 13:59:34,21-05-2025 13:59:34,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 13:59:34,21-05-2025 13:59:34,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 13:59:34,21-05-2025 14:00:02,28.031s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:00:02,21-05-2025 14:00:06,3.212s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:00:06,21-05-2025 14:00:07,1.346s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/021 TU CHOI TẠI MAIN FILE_NHAP Y KIEN,,,,21-05-2025 14:00:07,21-05-2025 14:01:21,1m - 14.480s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:00:07,21-05-2025 14:00:09,1.703s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:00:09,21-05-2025 14:00:09,0.001s,PASSED
+"COMMENT = ""Commented by automation team in case 21""",,,,21-05-2025 14:00:09,21-05-2025 14:00:09,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:00:09,21-05-2025 14:00:09,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:00:09,21-05-2025 14:00:09,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:00:09,21-05-2025 14:00:09,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:00:09,21-05-2025 14:00:19,9.968s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:00:19,21-05-2025 14:00:19,0.664s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:00:19,21-05-2025 14:00:22,2.188s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:00:22,21-05-2025 14:00:26,4.135s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:00:26,21-05-2025 14:00:29,3.362s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 14:00:29,21-05-2025 14:00:38,9.263s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 14:00:38,21-05-2025 14:00:42,3.559s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 14:00:42,21-05-2025 14:01:20,38.250s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:01:20,21-05-2025 14:01:21,1.336s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/022 TU CHOI TẠI MAIN FILE_KHONG NHAP Y KIEN,,,,21-05-2025 14:01:21,21-05-2025 14:01:39,17.888s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:01:21,21-05-2025 14:01:23,1.572s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:01:23,21-05-2025 14:01:23,0.000s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 14:01:23,21-05-2025 14:01:23,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:01:23,21-05-2025 14:01:23,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:01:23,21-05-2025 14:01:23,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:01:23,21-05-2025 14:01:23,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:01:23,21-05-2025 14:01:35,11.773s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:01:35,21-05-2025 14:01:38,3.141s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:01:38,21-05-2025 14:01:39,1.331s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/024 TRA VE CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:01:39,21-05-2025 14:04:48,3m - 8.443s,PASSED
+Start listener action : beforeTest,,,,21-05-2025 14:01:39,21-05-2025 14:01:41,1.586s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:01:41,21-05-2025 14:01:41,0.000s,PASSED
+"COMMENT = ""Commented by automaton test in case 19""",,,,21-05-2025 14:01:41,21-05-2025 14:01:41,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:01:41,21-05-2025 14:01:41,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:01:41,21-05-2025 14:01:41,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:01:41,21-05-2025 14:01:41,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:01:41,21-05-2025 14:01:51,10.073s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:01:51,21-05-2025 14:01:52,0.705s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:01:52,21-05-2025 14:01:54,2.145s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:01:54,21-05-2025 14:01:58,3.827s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:01:58,21-05-2025 14:02:01,3.410s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 14:02:01,21-05-2025 14:02:10,9.242s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 14:02:10,21-05-2025 14:02:14,3.255s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 14:02:14,21-05-2025 14:02:27,13.380s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 14:02:27,21-05-2025 14:02:29,2.150s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 14:02:29,21-05-2025 14:02:39,9.812s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 14:02:39,21-05-2025 14:02:41,1.867s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 14:02:41,21-05-2025 14:02:49,7.980s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 14:02:49,21-05-2025 14:02:52,3.352s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 14:02:52,21-05-2025 14:02:54,2.254s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 14:02:54,21-05-2025 14:03:04,9.465s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:03:04,21-05-2025 14:03:04,0.369s,PASSED
+homeScreen.logout(),,,,21-05-2025 14:03:04,21-05-2025 14:03:13,8.954s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 14:03:13,21-05-2025 14:03:13,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 14:03:13,21-05-2025 14:03:13,0.000s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 14:03:13,21-05-2025 14:03:24,10.442s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 14:03:24,21-05-2025 14:03:24,0.235s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 14:03:24,21-05-2025 14:03:39,15.139s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:03:39,21-05-2025 14:03:40,0.944s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:03:40,21-05-2025 14:03:40,0.356s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:03:40,21-05-2025 14:03:41,0.392s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:03:41,21-05-2025 14:03:41,0.426s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:03:41,21-05-2025 14:03:42,0.452s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:03:42,21-05-2025 14:03:42,0.424s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:03:42,21-05-2025 14:03:42,0.428s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 14:03:42,21-05-2025 14:03:46,3.308s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:03:46,21-05-2025 14:03:48,2.044s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:03:48,21-05-2025 14:03:51,2.773s,PASSED
+document.setSender(auto6),,,,21-05-2025 14:03:51,21-05-2025 14:03:51,0.001s,PASSED
+"documentInformationScreen.performAction(document, RETURN, COMMENT)",,,,21-05-2025 14:03:51,21-05-2025 14:03:57,6.075s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:03:57,21-05-2025 14:04:01,4.710s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 14:04:01,21-05-2025 14:04:01,0.001s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 14:04:01,21-05-2025 14:04:10,8.795s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 14:04:10,21-05-2025 14:04:19,8.364s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:04:19,21-05-2025 14:04:24,5.516s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:04:24,21-05-2025 14:04:24,0.377s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:04:24,21-05-2025 14:04:25,0.376s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:04:25,21-05-2025 14:04:25,0.410s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:04:25,21-05-2025 14:04:26,0.478s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:04:26,21-05-2025 14:04:26,0.373s,PASSED
+documentInformationScreen.isAssignerDisplayed(),,,,21-05-2025 14:04:26,21-05-2025 14:04:29,3.131s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:04:29,21-05-2025 14:04:30,0.478s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:04:30,21-05-2025 14:04:31,1.640s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:04:31,21-05-2025 14:04:35,3.554s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 14:04:35,21-05-2025 14:04:37,2.504s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:04:37,21-05-2025 14:04:47,9.323s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 14:04:47,21-05-2025 14:04:47,0.002s,PASSED
+Start listener action : afterTest,,,,21-05-2025 14:04:47,21-05-2025 14:04:48,1.058s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/025 TRA VE TAI MAIN FILE_NHAP Y KIEN,,,,21-05-2025 14:04:48,21-05-2025 14:05:40,52.380s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:04:48,21-05-2025 14:04:49,1.568s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:04:49,21-05-2025 14:04:49,0.001s,PASSED
+"COMMENT = ""Commented by automaton test in case 25""",,,,21-05-2025 14:04:49,21-05-2025 14:04:49,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:04:49,21-05-2025 14:04:49,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:04:49,21-05-2025 14:04:49,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:04:49,21-05-2025 14:04:49,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:04:49,21-05-2025 14:05:01,11.732s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:05:01,21-05-2025 14:05:04,2.769s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:05:04,21-05-2025 14:05:39,34.753s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:05:39,21-05-2025 14:05:40,1.482s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/026 TRA VE TAI MAIN FILE_KHONG NHAP Y KIEN,,,,21-05-2025 14:05:40,21-05-2025 14:06:00,20.301s,FAILED
+Start listener action : beforeTest,,,,21-05-2025 14:05:40,21-05-2025 14:05:42,1.613s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:05:42,21-05-2025 14:05:42,0.000s,PASSED
+"COMMENT = "" """,,,,21-05-2025 14:05:42,21-05-2025 14:05:42,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:05:42,21-05-2025 14:05:42,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:05:42,21-05-2025 14:05:42,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:05:42,21-05-2025 14:05:42,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:05:42,21-05-2025 14:05:52,10.058s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:05:52,21-05-2025 14:05:53,0.657s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:05:53,21-05-2025 14:05:55,2.903s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:05:55,21-05-2025 14:05:58,2.594s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:05:58,21-05-2025 14:05:59,1.081s,PASSED
+Start listener action : afterTest,,,,21-05-2025 14:05:59,21-05-2025 14:06:00,1.326s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/060 DINH NGHIA QUY TRINH CO SAN,,,,21-05-2025 14:06:00,21-05-2025 14:06:49,48.489s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:06:01,21-05-2025 14:06:02,1.582s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+"PROCESS_NAME = ""Automation Test""",,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.001s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:06:02,21-05-2025 14:06:02,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:06:02,21-05-2025 14:06:12,10.159s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:06:12,21-05-2025 14:06:13,0.547s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:06:13,21-05-2025 14:06:15,2.042s,PASSED
+pdfSignScreen.fillInTitle(title),,,,21-05-2025 14:06:15,21-05-2025 14:06:48,32.766s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:06:48,21-05-2025 14:06:49,1.319s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/031 HOAN TAT HO SO,,,,21-05-2025 14:06:49,21-05-2025 14:11:12,4m - 23.439s,FAILED
+Start listener action : beforeTest,,,,21-05-2025 14:06:49,21-05-2025 14:06:51,1.888s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.000s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.000s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:06:51,21-05-2025 14:06:51,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:06:51,21-05-2025 14:07:01,10.106s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:07:01,21-05-2025 14:07:02,0.546s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:07:02,21-05-2025 14:07:05,3.466s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:07:05,21-05-2025 14:07:10,5.380s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:07:10,21-05-2025 14:07:14,3.336s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 14:07:14,21-05-2025 14:07:23,9.222s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 14:07:23,21-05-2025 14:07:26,3.123s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 14:07:26,21-05-2025 14:07:39,13.263s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 14:07:39,21-05-2025 14:07:41,2.012s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 14:07:41,21-05-2025 14:07:51,9.756s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 14:07:51,21-05-2025 14:07:53,1.827s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 14:07:53,21-05-2025 14:08:01,7.933s,PASSED
+pdfSignScreen.performAction(SEND_APPROVE),,,,21-05-2025 14:08:01,21-05-2025 14:08:04,3.375s,PASSED
+pdfSignScreen.fillInOpinion(document.getComment()),,,,21-05-2025 14:08:04,21-05-2025 14:08:07,2.225s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 14:08:07,21-05-2025 14:08:16,9.647s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:08:16,21-05-2025 14:08:17,0.487s,PASSED
+homeScreen.logout(),,,,21-05-2025 14:08:17,21-05-2025 14:08:26,8.905s,PASSED
+document.setStatus(WAIT_APPROVE),,,,21-05-2025 14:08:26,21-05-2025 14:08:26,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 14:08:26,21-05-2025 14:08:26,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 14:08:26,21-05-2025 14:08:36,10.191s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 14:08:36,21-05-2025 14:08:36,0.346s,PASSED
+inComingDocument.viewMainFile(document),,,,21-05-2025 14:08:36,21-05-2025 14:08:49,12.919s,PASSED
+document.setSender(auto6),,,,21-05-2025 14:08:49,21-05-2025 14:08:49,0.000s,PASSED
+"documentInformationScreen.performAction(document, APPROVE, COMMENT)",,,,21-05-2025 14:08:49,21-05-2025 14:08:59,9.971s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:08:59,21-05-2025 14:09:04,4.656s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 14:09:04,21-05-2025 14:09:04,0.001s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 14:09:04,21-05-2025 14:09:13,9.059s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 14:09:13,21-05-2025 14:09:22,9.526s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:09:22,21-05-2025 14:09:28,5.593s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:09:28,21-05-2025 14:09:28,0.441s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:09:28,21-05-2025 14:09:29,0.439s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:09:29,21-05-2025 14:09:29,0.440s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:09:29,21-05-2025 14:09:30,0.448s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:09:30,21-05-2025 14:09:30,0.460s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:09:30,21-05-2025 14:09:31,0.458s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 14:09:31,21-05-2025 14:09:34,3.337s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:09:34,21-05-2025 14:09:36,1.737s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:09:36,21-05-2025 14:09:39,3.003s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 14:09:39,21-05-2025 14:09:41,2.403s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:09:41,21-05-2025 14:09:50,9.315s,PASSED
+inComingDocument.checkItemInDocument(),,,,21-05-2025 14:09:50,21-05-2025 14:09:50,0.000s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:09:50,21-05-2025 14:09:51,0.364s,PASSED
+homeScreen.logout(),,,,21-05-2025 14:09:51,21-05-2025 14:10:00,8.992s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:10:00,21-05-2025 14:10:10,9.966s,PASSED
+homeScreen.goToOutComingDocument(),,,,21-05-2025 14:10:10,21-05-2025 14:10:19,8.871s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 14:10:19,21-05-2025 14:10:27,8.194s,PASSED
+"documentInformationScreen.performAction(document, COMPLETE)",,,,21-05-2025 14:10:27,21-05-2025 14:10:35,8.604s,PASSED
+outComingDocument.loadDataResult(),,,,21-05-2025 14:10:35,21-05-2025 14:10:40,4.607s,PASSED
+outComingDocument.viewInformationDocument(document),,,,21-05-2025 14:10:40,21-05-2025 14:10:50,10.550s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:10:50,21-05-2025 14:10:57,6.822s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:10:57,21-05-2025 14:10:58,0.450s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:10:58,21-05-2025 14:10:58,0.436s,FAILED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:10:58,21-05-2025 14:10:59,0.449s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:10:59,21-05-2025 14:10:59,0.443s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:10:59,21-05-2025 14:11:00,0.439s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:11:00,21-05-2025 14:11:00,0.444s,PASSED
+documentInformationScreen.isAssignerDisplayed(),,,,21-05-2025 14:11:00,21-05-2025 14:11:03,3.276s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:11:03,21-05-2025 14:11:05,1.829s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:11:05,21-05-2025 14:11:09,3.647s,PASSED
+"documentInformationScreen.checkComment(auto6, COMMENT)",,,,21-05-2025 14:11:09,21-05-2025 14:11:11,2.419s,PASSED
+Start listener action : afterTest,,,,21-05-2025 14:11:11,21-05-2025 14:11:12,1.278s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/038 LAY Y KIEN NHANH_NHAP Y KIEN,,,,21-05-2025 14:11:12,21-05-2025 14:14:09,2m - 56.963s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:11:12,21-05-2025 14:11:14,1.517s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.001s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.000s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:11:14,21-05-2025 14:11:14,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:11:14,21-05-2025 14:11:25,10.519s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:11:25,21-05-2025 14:11:25,0.587s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:11:25,21-05-2025 14:11:27,2.057s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:11:27,21-05-2025 14:11:33,5.351s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:11:33,21-05-2025 14:11:36,3.282s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 14:11:36,21-05-2025 14:11:45,9.095s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 14:11:45,21-05-2025 14:11:48,3.313s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 14:11:48,21-05-2025 14:12:01,12.339s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 14:12:01,21-05-2025 14:12:03,1.968s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 14:12:03,21-05-2025 14:12:12,9.830s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 14:12:12,21-05-2025 14:12:14,1.784s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 14:12:14,21-05-2025 14:12:22,7.824s,PASSED
+pdfSignScreen.performAction(SEND_WITH_COMENT),,,,21-05-2025 14:12:22,21-05-2025 14:12:25,3.271s,PASSED
+pdfSignScreen.fillInOpinion(USER_CREATE_COMMENT),,,,21-05-2025 14:12:25,21-05-2025 14:12:28,2.323s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 14:12:28,21-05-2025 14:12:36,8.134s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:12:36,21-05-2025 14:12:36,0.416s,PASSED
+homeScreen.logout(),,,,21-05-2025 14:12:36,21-05-2025 14:12:45,8.909s,PASSED
+document.setStatus(WAIT_GET_COMMENT),,,,21-05-2025 14:12:45,21-05-2025 14:12:45,0.000s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 14:12:45,21-05-2025 14:12:45,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 14:12:45,21-05-2025 14:12:55,10.274s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 14:12:55,21-05-2025 14:12:56,0.296s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 14:12:56,21-05-2025 14:13:12,15.975s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:13:12,21-05-2025 14:13:13,1.013s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:13:13,21-05-2025 14:13:13,0.375s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:13:13,21-05-2025 14:13:13,0.373s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:13:13,21-05-2025 14:13:14,0.354s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:13:14,21-05-2025 14:13:14,0.377s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:13:14,21-05-2025 14:13:14,0.402s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:13:14,21-05-2025 14:13:15,0.387s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 14:13:15,21-05-2025 14:13:18,3.429s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:13:18,21-05-2025 14:13:20,2.063s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:13:20,21-05-2025 14:13:23,2.761s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:13:23,21-05-2025 14:13:32,9.303s,PASSED
+"inComingDocument.performAction(document, SEND_COMMENT, ASSIGNER_COMMENT)",,,,21-05-2025 14:13:32,21-05-2025 14:14:08,35.725s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:14:08,21-05-2025 14:14:09,1.251s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/039 LAY Y KIEN CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:14:09,21-05-2025 14:16:59,2m - 50.093s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:14:09,21-05-2025 14:14:11,1.541s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:14:11,21-05-2025 14:14:11,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:14:11,21-05-2025 14:14:22,11.488s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:14:22,21-05-2025 14:14:23,0.549s,PASSED
+homeScreen.createRequest(REQUEST_NAME),,,,21-05-2025 14:14:23,21-05-2025 14:14:25,2.165s,PASSED
+pdfSignScreen.fillInTitle(document.getTitle()),,,,21-05-2025 14:14:25,21-05-2025 14:15:01,35.526s,PASSED
+pdfSignScreen.selectPriority(document.getPriority()),,,,21-05-2025 14:15:01,21-05-2025 14:15:04,3.393s,PASSED
+pdfSignScreen.selectTime(document.getTime()),,,,21-05-2025 14:15:04,21-05-2025 14:15:13,9.209s,PASSED
+pdfSignScreen.fillInDescription(document.getDescription()),,,,21-05-2025 14:15:13,21-05-2025 14:15:17,3.403s,PASSED
+pdfSignScreen.selectAssigner(getAssigner().getEmail()),,,,21-05-2025 14:15:17,21-05-2025 14:15:29,12.195s,PASSED
+pdfSignScreen.openMainFileBrowser(),,,,21-05-2025 14:15:29,21-05-2025 14:15:31,1.966s,PASSED
+fileBrowserScreen.attachFile(document.getMainFileName()),,,,21-05-2025 14:15:31,21-05-2025 14:15:41,9.701s,PASSED
+pdfSignScreen.openSubFileBrowser(),,,,21-05-2025 14:15:41,21-05-2025 14:15:42,1.909s,PASSED
+fileBrowserScreen.attachFile(document.getSubFileName()),,,,21-05-2025 14:15:42,21-05-2025 14:15:50,7.858s,PASSED
+pdfSignScreen.performAction(SEND_WITH_COMENT),,,,21-05-2025 14:15:50,21-05-2025 14:15:54,3.361s,PASSED
+pdfSignScreen.fillInOpinion(USER_CREATE_COMMENT),,,,21-05-2025 14:15:54,21-05-2025 14:15:56,2.382s,PASSED
+pdfSignScreen.submitRequest(),,,,21-05-2025 14:15:56,21-05-2025 14:16:07,11.112s,PASSED
+documentInformationScreen.backToHome(),,,,21-05-2025 14:16:07,21-05-2025 14:16:08,0.383s,PASSED
+homeScreen.logout(),,,,21-05-2025 14:16:08,21-05-2025 14:16:16,8.895s,PASSED
+document.setStatus(WAIT_GET_COMMENT),,,,21-05-2025 14:16:16,21-05-2025 14:16:16,0.001s,PASSED
+document.setAssigner(auto5),,,,21-05-2025 14:16:16,21-05-2025 14:16:16,0.001s,PASSED
+loginScreen.login(auto6),,,,21-05-2025 14:16:16,21-05-2025 14:16:27,10.071s,PASSED
+homeScreen.goToIncomingDocument(),,,,21-05-2025 14:16:27,21-05-2025 14:16:27,0.210s,PASSED
+inComingDocument.viewInformationDocument(document),,,,21-05-2025 14:16:27,21-05-2025 14:16:42,15.293s,PASSED
+documentInformationScreen.checkDocumentTitle(document),,,,21-05-2025 14:16:42,21-05-2025 14:16:43,1.032s,PASSED
+documentInformationScreen.checkSender(document),,,,21-05-2025 14:16:43,21-05-2025 14:16:43,0.403s,PASSED
+documentInformationScreen.checkStatus(document),,,,21-05-2025 14:16:43,21-05-2025 14:16:44,0.395s,PASSED
+documentInformationScreen.checkCreateDate(),,,,21-05-2025 14:16:44,21-05-2025 14:16:44,0.407s,PASSED
+documentInformationScreen.checkFinishDate(document),,,,21-05-2025 14:16:44,21-05-2025 14:16:45,0.406s,PASSED
+documentInformationScreen.checkPriority(document),,,,21-05-2025 14:16:45,21-05-2025 14:16:45,0.392s,PASSED
+documentInformationScreen.checkDescription(document),,,,21-05-2025 14:16:45,21-05-2025 14:16:46,0.428s,PASSED
+documentInformationScreen.checkAssigner(document),,,,21-05-2025 14:16:46,21-05-2025 14:16:49,3.299s,PASSED
+documentInformationScreen.checkPresentFileName(document),,,,21-05-2025 14:16:49,21-05-2025 14:16:51,2.026s,PASSED
+documentInformationScreen.checkAttachFileName(document),,,,21-05-2025 14:16:51,21-05-2025 14:16:53,2.602s,PASSED
+"documentInformationScreen.performAction(document, COMMENT, ASSIGNER_COMMENT)",,,,21-05-2025 14:16:53,21-05-2025 14:16:58,4.778s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:16:58,21-05-2025 14:16:59,1.261s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/043 TAI FILE TAI CHI TIET HO SO_HO SO DEN,,,,21-05-2025 14:16:59,21-05-2025 14:17:17,17.854s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:16:59,21-05-2025 14:17:01,1.556s,PASSED
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:17:01,21-05-2025 14:17:01,0.000s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:17:01,21-05-2025 14:17:01,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:17:01,21-05-2025 14:17:01,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:17:01,21-05-2025 14:17:01,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:17:01,21-05-2025 14:17:01,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:17:01,21-05-2025 14:17:13,11.748s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:17:13,21-05-2025 14:17:16,3.165s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:17:16,21-05-2025 14:17:17,1.332s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/040 LAY Y KIEN CHI TIET_KHONG NHAP Y KIEN,,,,21-05-2025 14:17:17,21-05-2025 14:17:35,17.696s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:17:17,21-05-2025 14:17:19,1.514s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:17:19,21-05-2025 14:17:19,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:17:19,21-05-2025 14:17:31,11.722s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:17:31,21-05-2025 14:17:34,3.144s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:17:34,21-05-2025 14:17:35,1.254s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/044 TAI FILE TAI MAIN FILE_HO SO DEN,,,,21-05-2025 14:17:35,21-05-2025 14:17:53,17.741s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:17:35,21-05-2025 14:17:37,1.531s,PASSED
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:17:37,21-05-2025 14:17:37,0.000s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:17:37,21-05-2025 14:17:37,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:17:37,21-05-2025 14:17:37,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:17:37,21-05-2025 14:17:37,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:17:37,21-05-2025 14:17:37,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:17:37,21-05-2025 14:17:48,11.731s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:17:48,21-05-2025 14:17:51,3.143s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:17:51,21-05-2025 14:17:53,1.302s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/045 TAI FILE TAI CHI TIET HO SO_HO SO DI,,,,21-05-2025 14:17:53,21-05-2025 14:18:11,17.717s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:17:53,21-05-2025 14:17:54,1.528s,PASSED
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:17:54,21-05-2025 14:17:54,0.000s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:17:54,21-05-2025 14:17:54,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:17:54,21-05-2025 14:17:54,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:17:54,21-05-2025 14:17:54,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:17:54,21-05-2025 14:17:54,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:17:54,21-05-2025 14:18:06,11.755s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:18:06,21-05-2025 14:18:09,3.137s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:18:09,21-05-2025 14:18:11,1.262s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/046 TAI FILE TAI MAIN FILE_HO SO DI,,,,21-05-2025 14:18:11,21-05-2025 14:18:28,17.969s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:18:11,21-05-2025 14:18:12,1.509s,PASSED
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:18:12,21-05-2025 14:18:12,0.001s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:18:12,21-05-2025 14:18:12,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:18:12,21-05-2025 14:18:12,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:18:12,21-05-2025 14:18:12,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:18:12,21-05-2025 14:18:12,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:18:12,21-05-2025 14:18:24,11.944s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:18:24,21-05-2025 14:18:27,3.143s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:18:27,21-05-2025 14:18:28,1.303s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/059 TẠO QUY TRINH_2 BUOC,,,,21-05-2025 14:18:28,21-05-2025 14:18:46,17.811s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:18:29,21-05-2025 14:18:30,1.540s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.000s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.001s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:18:30,21-05-2025 14:18:30,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:18:30,21-05-2025 14:18:42,11.769s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:18:42,21-05-2025 14:18:45,3.137s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:18:45,21-05-2025 14:18:46,1.272s,PASSED
+,,,,,,,
+Test Cases/IPAPER APP/037 LAY Y KIEN NHANH_KHONG NHAP Y KIEN,,,,21-05-2025 14:18:46,21-05-2025 14:19:07,20.648s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:18:46,21-05-2025 14:18:48,1.523s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+"ASSIGNER_COMMENT = ""Không có bình luận""",,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:18:48,21-05-2025 14:18:48,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:18:48,21-05-2025 14:19:02,14.507s,PASSED
+homeScreen.openRequestList(),,,,21-05-2025 14:19:02,21-05-2025 14:19:06,3.221s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:19:06,21-05-2025 14:19:07,1.350s,PASSED

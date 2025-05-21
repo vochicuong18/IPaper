@@ -13,7 +13,7 @@ public class PDFSignLocator extends TestObjectFactory{
 	TestObject screenTitle, acceptErrorButton, errorMessagePopup, relatedTxt, actionBtn, getOpinionAction, saveFormAction, assignerEmailSearch, loadingMask,
 	sendFormAction, assignerItem, mainFile, subFile, assignerTxt, opinionNoteTxt, submitDatePickerBtn, backBtn, priorityItem,
 	submitFormBtn, descriptionTxt, priorityValue, titleTxt, doneBtn, relatedEmailSearch, doneTime, relatedMemberItem, iosOpenDatePicker, listUserLoadingMask, priorityTitle, emptyListCC,
-	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess, listDefineProcess, submitProcess, bellIcon
+	getCommentDocument, ignoreButton, addDefineProcess, userItemDefineProcess, submitUseSelection, searchEmailDefineProcess, listDefineProcess, submitProcess, bellIcon, submitWarningPopup, rejectWarningPopup
 	PDFSignLocator () {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -48,6 +48,10 @@ public class PDFSignLocator extends TestObjectFactory{
 				searchEmailDefineProcess = createTestObject(ID, "com.hdbank.ipaper:id/search_src_text")
 			//				processType = createTestObject(ID, "com.hdbank.ipaper:id/spinner_type")
 				listDefineProcess = createTestObject(ID, "com.hdbank.ipaper:id/lvDefineNewTitle")
+				
+				
+				submitWarningPopup = createTestObject(LocatorType.XPATH, "")
+				rejectWarningPopup = createTestObject(LocatorType.XPATH, "")
 				break
 			case "iOS":
 				screenTitle = createTestObject(LocatorType.XPATH, "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
@@ -61,7 +65,7 @@ public class PDFSignLocator extends TestObjectFactory{
 				assignerTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Email']")
 				mainFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Tải lên tài liệu PDF']//ancestor::XCUIElementTypeCell")
 				sendFormAction = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Gửi duyệt']/parent::*")
-				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Xong']")
+				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
 				opinionNoteTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Ý kiến']//parent::XCUIElementTypeOther//XCUIElementTypeTextView")
 				subFile = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Tải lên file đính kèm liên quan']")
 				descriptionTxt = createTestObject(LocatorType.XPATH, "(//XCUIElementTypeStaticText[@name='Mô tả:'])[1]//following-sibling::XCUIElementTypeTextView")
@@ -81,6 +85,10 @@ public class PDFSignLocator extends TestObjectFactory{
 				listDefineProcess = createTestObject(XPATH, "//XCUIElementTypeStaticText[@name='quy trình đã được định nghĩa']")
 				submitProcess = createTestObject(XPATH, "//XCUIElementTypeButton[@name='Xác nhận']")
 				bellIcon = createTestObject(XPATH, "//XCUIElementTypeButton[@name='ic bell']")
+				
+				submitWarningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đồng ý']")
+				rejectWarningPopup = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Thoát']")
+				
 				break
 		}
 	}

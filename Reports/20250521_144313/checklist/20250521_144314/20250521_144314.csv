@@ -1,0 +1,286 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+checklist,,,,21-05-2025 14:43:16,21-05-2025 14:43:25,9.567s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/002 TAO YEU CAU,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.571s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.062s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.018s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.008s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.004s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.095s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.125s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.124s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/003 TAO YEU CAU KHONG CO ASSIGNER,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.145s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.009s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+"STATUS = ""Đang đợi xử lý""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"ERROR_MESSAGE = ""Vui lòng nhập Email người nhận""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.004s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.003s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.006s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/004 TAO YEU CAU LAY Y KIEN_1 NGUOI,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.122s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.009s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.004s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.010s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/005 TAO YEU CAU LAY Y KIEN_NHIEU NGUOI,,,,21-05-2025 14:43:17,21-05-2025 14:43:18,0.115s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.011s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.000s,PASSED
+"AUTO6_COMMENT = ""Commented by auto6""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"AUTO7_COMMENT = ""Commented by auto7""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.000s,PASSED
+"AUTO8_COMMENT = ""Commented by auto8""",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:17,21-05-2025 14:43:17,0.003s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:17,21-05-2025 14:43:18,0.005s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/006 TAO YEU CAU LAY Y KIEN_KHONG NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.099s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.011s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/010 DUYET CO DIEU KIEN_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.081s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.007s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"QUICK_APPROVE_OPINION = ""Duyệt nhanh có điều kiện""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/012 DUYET CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.079s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.008s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"COMMENT = ""Automation approve""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/014 DUYET TAI MAIN FILE_KHÔNG NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.071s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.007s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.006s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/016 DUYET CO CC_KHONG NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.086s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.010s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+"COMMENT = ""Không có bình luận""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.005s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/017 DUYET CO CC_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.091s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.020s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+"COMMENT = ""Commented by automation team in case 17""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.005s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/018 TU CHOI NHANH,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.073s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.010s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"COMMENT = ""Commented by automation team in case 18""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.003s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/019 TU CHOI CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.066s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.007s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+"COMMENT = ""Commented by automaton test in case 19""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/021 TU CHOI TẠI MAIN FILE_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.069s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.007s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+"COMMENT = ""Commented by automation team in case 21""",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:18,0.005s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/024 TRA VE CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:43:18,21-05-2025 14:43:20,1.572s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:18,21-05-2025 14:43:20,1.521s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+"COMMENT = ""Commented by automaton test in case 19""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.003s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/025 TRA VE TAI MAIN FILE_NHAP Y KIEN,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.057s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.011s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+"COMMENT = ""Commented by automaton test in case 25""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.003s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/029 CHUYEN THUC THI,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.057s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.006s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.002s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.004s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/031 HOAN TAT HO SO,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.052s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.004s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/032 RUT LAI HO SO,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.047s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.004s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:20,0.003s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/033 TAO HO SO NHAP,,,,21-05-2025 14:43:20,21-05-2025 14:43:23,2.570s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:20,21-05-2025 14:43:23,2.534s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"COMMENT = ""Commented by automation team""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/039 LAY Y KIEN CHI TIET_NHAP Y KIEN,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.055s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.006s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"USER_CREATE_COMMENT = ""Commented by user create document""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"ASSIGNER_COMMENT = ""Comment by assigner""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"documentTitle = ""Trình ký "" + System.currentTimeMillis()",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/043 TAI FILE TAI CHI TIET HO SO_HO SO DEN,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.045s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.004s,ERROR
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/044 TAI FILE TAI MAIN FILE_HO SO DEN,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.037s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.004s,ERROR
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/045 TAI FILE TAI CHI TIET HO SO_HO SO DI,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.040s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.004s,ERROR
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.002s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.000s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/046 TAI FILE TAI MAIN FILE_HO SO DI,,,,21-05-2025 14:43:23,21-05-2025 14:43:25,2.566s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:23,21-05-2025 14:43:23,0.005s,ERROR
+"FOLDER_NAME = ""IPaperDownloads""",,,,21-05-2025 14:43:23,21-05-2025 14:43:25,2.523s,PASSED
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, null, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.003s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/058 TẠO QUY TRINH_1 BUOC,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.060s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.005s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.002s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.002s,ERROR
+,,,,,,,
+Test Cases/IPAPER APP/059 TẠO QUY TRINH_2 BUOC,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.051s,ERROR
+Start listener action : beforeTest,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.006s,ERROR
+"REQUEST_NAME = ""Trình ký PDF có sẵn""",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+TO_DAY = SimpleDateFormat(dd/MM/yyyy).format(new java.util.Date()),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+auto5 = DataTest.getUserTest5(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto6 = DataTest.getUserTest6(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto7 = DataTest.getUserTest7(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+auto8 = DataTest.getUserTest8(),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,PASSED
+"document = DataTest.createDocumentTest(auto5, auto6, auto7, ""dummy.pdf"", ""dummy.pdf"")",,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.000s,PASSED
+loginScreen.login(auto5),,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.001s,ERROR
+Start listener action : afterTest,,,,21-05-2025 14:43:25,21-05-2025 14:43:25,0.003s,ERROR

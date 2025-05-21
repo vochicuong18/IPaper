@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalVariableEntities>
    <description></description>
-   <name>IOS</name>
+   <name>PILOT_AND</name>
    <tag></tag>
    <defaultProfile>false</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'iOS'</initValue>
-      <name>PLATFORM</name>
+      <initValue>'PILOT'</initValue>
+      <name>ENV</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>''</initValue>
-      <name>DEVICENAME</name>
+      <initValue>'Android'</initValue>
+      <name>PLATFORM</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

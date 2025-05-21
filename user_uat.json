@@ -54,7 +54,7 @@
     "department": "Phòng Quản lý chất lượng bảo mật và tuân thủ"
   },
   "auto2": {
-    "name": "Auto Test User 2 - Chuyên viên",
+    "name": "Auto Test User 2",
     "userName": "auto2",
     "password": "Auto@12345",
     "email": "auto2@hdbank.com.vn",

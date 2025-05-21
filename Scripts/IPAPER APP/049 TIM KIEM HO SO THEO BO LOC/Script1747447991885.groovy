@@ -1,13 +1,13 @@
-import entities.Document as Document
-import entities.DocumentStatus as DocumentStatus
-import entities.User as User
-import ipaper.IPaper as IPaper
+import entities.Document
+import entities.DocumentStatus
+import entities.User
+import ipaper.IPaper
 import utilities.DataTest as DataTest
 int index = 0
 
-User auto6 = DataTest.getUserTest('auto6')
+User auto5 = DataTest.getUserTest5()
 
-User auto5 = DataTest.getUserTest('auto5')
+User auto6 = DataTest.getUserTest6()
 
 List<String> documentTitles
 String waitApproveStatus = 'Chưa duyệt'

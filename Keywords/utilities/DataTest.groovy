@@ -6,11 +6,11 @@ import java.text.SimpleDateFormat
 import org.apache.commons.io.FileUtils
 import org.json.JSONObject
 
-import com.kms.katalon.core.configuration.RunConfiguration
 import com.kms.katalon.core.util.KeywordUtil
 
 import entities.Document
 import entities.User
+import internal.GlobalVariable
 import screens.PDFSignScreen
 
 public class DataTest {
@@ -20,7 +20,20 @@ public class DataTest {
 		iOS    : "com.hdbank.ipaper"
 	]
 
-	private static final String USER_JSON_PATH = System.getProperty("user.dir") + "/user.json"
+	private static String getUserJsonPath() {
+		String basePath = System.getProperty("user.dir")
+
+		switch (GlobalVariable.ENV) {
+			case "UAT":
+				return basePath + "/user_uat.json"
+			case "PILOT":
+				return basePath + "/user_uat.json"
+			default:
+				return "please define"
+		}
+	}
+
+
 	private static final String DOCUMENT_JSON_PATH = System.getProperty("user.dir") + "/document.json"
 
 	// Cached JSON objects
@@ -34,7 +47,7 @@ public class DataTest {
 	static boolean init() {
 		try {
 			// Read user data
-			File userFile = new File(USER_JSON_PATH)
+			File userFile = new File(getUserJsonPath())
 			String userContent = FileUtils.readFileToString(userFile, StandardCharsets.UTF_8)
 			userData = new JSONObject(userContent)
 
@@ -162,6 +175,22 @@ public class DataTest {
 	 */
 	static User getUserTest1() {
 		return getUserFromKey("user1")
+	}
+
+	static User getUserTest5() {
+		return getUserFromKey("auto1")
+	}
+
+	static User getUserTest6() {
+		return getUserFromKey("auto2")
+	}
+
+	static User getUserTest7() {
+		return getUserFromKey("auto3")
+	}
+
+	static User getUserTest8() {
+		return getUserFromKey("auto4")
 	}
 
 	/**

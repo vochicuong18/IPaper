@@ -19,6 +19,7 @@ class LoginLocator extends TestObjectFactory {
 				break
 
 			case "iOS":
+				ignoreUpdate = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Bỏ qua']")
 				userNameTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeTextField")
 				passwordTxt = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_arrow_for_company_list']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeSecureTextField")
 				loginButton = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đăng nhập']")

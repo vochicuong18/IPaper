@@ -14,12 +14,9 @@ public class HomeScreenLocator extends TestObjectFactory {
 	TestObject requestItem(String requestName) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
-				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='$requestName']",
-				[('requestName'): requestName])
-
+				return createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='$requestName']")
 			case 'iOS':
-				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${requestName}']/parent::XCUIElementTypeCell",
-				[('requestName'): requestName])
+				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${requestName}']/parent::XCUIElementTypeCell")
 		}
 	}
 
@@ -45,7 +42,7 @@ public class HomeScreenLocator extends TestObjectFactory {
 				listFormSample = createTestObject(LocatorType.XPATH, "//android.widget.ExpandableListView[@resource-id='com.hdbank.ipaper:id/expandible_listview']//android.widget.RelativeLayout")
 				break
 			case "iOS":
-				loadingItem = createTestObject(LocatorType.ID, "")
+				loadingItem = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='placeholder_loading_list_doc']")
 				logo = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đăng nhập']")
 				avatar = createTestObject(LocatorType.XPATH, "")
 			//				requestItem = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${requestName}']/parent::XCUIElementTypeCell")
@@ -65,9 +62,7 @@ public class HomeScreenLocator extends TestObjectFactory {
 				addDocumentIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic_add']")
 				fillterBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic filter']")
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Hồ sơ liên quan']/parent::XCUIElementTypeCell")
-				loadingListDocument = createTestObject(XPATH, "//XCUIElementTypeImage[@name='placeholder_loading_list_doc']")
-				listFormSample = createTestObject(LocatorType.XPATH, "")
-
+				listFormSample = createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell")
 				break
 		}
 	}

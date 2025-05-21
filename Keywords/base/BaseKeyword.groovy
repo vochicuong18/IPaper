@@ -29,7 +29,11 @@ trait BaseKeyword{
 	 * Hides the keyboard on the mobile device.
 	 */
 	def hideKeyboard() {
-		Mobile.hideKeyboard()
+		if (GlobalVariable.PLATFORM == 'Android') {
+			Mobile.hideKeyboard()
+		} else {
+//			Driver.driver.findElementByAccessibilityId("Hide keyboard").click();
+		}
 	}
 
 	/**

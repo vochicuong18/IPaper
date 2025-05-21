@@ -12,9 +12,9 @@ String ASSIGNER_COMMENT = 'Comment by assigner'
 
 String documentTitle = 'Trình ký ' + System.currentTimeMillis()
 
-def auto5 = DataTest.getUserTest('auto5') // user create document
+def auto5 = DataTest.getUserTest5()
 
-def auto6 = DataTest.getUserTest('auto6') // assigner
+def auto6 = DataTest.getUserTest6()
 
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 

@@ -16,11 +16,11 @@ String ERROR_MESSAGE = "Vui lòng nhập Email người nhận"
 
 String documentTitle = 'Trình ký ' + System.currentTimeMillis()
 
-def auto5 = DataTest.getUserTest("auto5")
+def auto5 = DataTest.getUserTest5()
 
-def auto6 = DataTest.getUserTest("auto6")
+def auto6 = DataTest.getUserTest6()
 
-def auto7 = DataTest.getUserTest("auto7")
+def auto7 = DataTest.getUserTest7()
 
 def document = DataTest.createDocumentTest(auto5, auto6, auto7, 'dummy.pdf', 'dummy.pdf')
 

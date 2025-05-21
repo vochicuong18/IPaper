@@ -1,5 +1,6 @@
 package screens
 
+import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
@@ -63,6 +64,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 	def selectPriority (Priority priority) {
 		swipeToElement(priorityValue)
 		clickToElement(priorityValue)
+		Thread.sleep(300) //wait animation
 		clickToElement(priorityItem(priority.toString()))
 	}
 
@@ -162,6 +164,7 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 
 	def fillInOpinion(String guest) {
+		waitForPresentOf(opinionNoteTxt)
 		inputText(opinionNoteTxt, guest)
 	}
 
@@ -220,5 +223,18 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 			clickToElement(userItemDefineProcess(user))
 		}
 		clickToElement(submitUseSelection)
+	}
+
+	def clickOnBackBtn() {
+		clickToElement(backBtn)
+	}
+
+	def submitSaveDocument() {
+		clickToElement(submitWarningPopup)
+	}
+
+	def rejectSaveDocument() {
+		clickToElement(rejectWarningPopup)
+		
 	}
 }

@@ -5,7 +5,7 @@ import utilities.DataTest
 
 User a8nv = DataTest.getUserTest("userA8NV")
 
-User auto6 = DataTest.getUserTest('auto6') // assigner
+User auto6 = DataTest.getUserTest6() 
 
 Document document = DataTest.createDocumentTest(a8nv, auto6, null, 'dummy.pdf', 'dummy.pdf')
 

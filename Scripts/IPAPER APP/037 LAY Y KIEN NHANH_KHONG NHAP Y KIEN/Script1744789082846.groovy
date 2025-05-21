@@ -1,4 +1,5 @@
 import entities.DocumentStatus
+import entities.User
 import ipaper.IPaper
 import screens.IncomingDocumentScreen.ActionType
 import screens.PDFSignScreen.PerformAction
@@ -12,9 +13,9 @@ String ASSIGNER_COMMENT = 'Không có bình luận'
 
 String documentTitle = 'Trình ký ' + System.currentTimeMillis()
 
-def auto5 = DataTest.getUserTest('auto5') // user create document
+User auto5 = DataTest.getUserTest5()
 
-def auto6 = DataTest.getUserTest('auto6') // assigner
+User auto6 = DataTest.getUserTest6()
 
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 

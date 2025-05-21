@@ -40,7 +40,7 @@ public class DraftDocumentLocator extends TestObjectFactory {
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']/parent::XCUIElementTypeCell")
 		}
 	}
-	
+
 	List<TestObject> titleItems() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":

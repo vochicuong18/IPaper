@@ -1,5 +1,7 @@
 package screens
 
+import org.openqa.selenium.StaleElementReferenceException
+
 import base.BaseKeyword
 import internal.GlobalVariable
 import locator.HomeScreenLocator
@@ -37,7 +39,7 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 	def goToRelatedDocument() {
 		clickOnFillter()
 		clickOnRelatedDocument()
-		waitForNotPresentOf(loadingListDocument)
+		waitForNotPresentOf(loadingItem)
 	}
 
 
@@ -89,10 +91,14 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 	}
 
 	def createRequest(String requestName) {
-		waitForPresentOf(listFormSample)
-		waitForPresentOf(requestItem(requestName))
-		Thread.sleep(300)
-		clickToElement(requestItem(requestName))
+		try {
+			waitForPresentOf(listFormSample)
+			waitForPresentOf(requestItem(requestName))
+			waitForVisibilityOf(requestItem(requestName))
+			clickToElement(requestItem(requestName))
+		} catch(StaleElementReferenceException ex) {
+			clickToElement(requestItem(requestName))
+		}
 	}
 
 	//--------------------------

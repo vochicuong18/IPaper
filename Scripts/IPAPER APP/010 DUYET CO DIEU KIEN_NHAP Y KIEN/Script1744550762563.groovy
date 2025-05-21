@@ -1,16 +1,17 @@
-import entities.DocumentStatus as DocumentStatus
-import ipaper.IPaper as IPaper
-import screens.IncomingDocumentScreen.ActionType as ActionType
-import screens.PDFSignScreen.PerformAction as PerformAction
+import entities.DocumentStatus
+import entities.User
+import ipaper.IPaper
+import screens.IncomingDocumentScreen.ActionType
+import screens.PDFSignScreen.PerformAction
 import utilities.DataTest as DataTest
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
 String QUICK_APPROVE_OPINION = 'Duyệt nhanh có điều kiện'
 
-def auto5 = DataTest.getUserTest('auto5')
+User auto5 = DataTest.getUserTest5()
 
-def auto6 = DataTest.getUserTest('auto6')
+User auto6 = DataTest.getUserTest6()
 
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 

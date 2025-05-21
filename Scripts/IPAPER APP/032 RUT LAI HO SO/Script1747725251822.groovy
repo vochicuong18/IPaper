@@ -9,10 +9,9 @@ String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
 String COMMENT = 'Commented by automation team'
 
-User auto5 = DataTest.getUserTest('auto5')
+User auto5 = DataTest.getUserTest5()
 
-User auto6 = DataTest.getUserTest('auto6')
-
+User auto6 = DataTest.getUserTest6()
 
 def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
 

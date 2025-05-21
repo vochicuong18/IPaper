@@ -3,11 +3,11 @@ import entities.DocumentStatus
 import entities.User
 import ipaper.IPaper
 import screens.PDFSignScreen.PerformAction
-import utilities.DataTest
+import utilities.DataTest as DataTest
 
-User auto5 = DataTest.getUserTest("auto5")
+User auto5 = DataTest.getUserTest5()
 
-User auto6 = DataTest.getUserTest('auto6') // assigner
+User auto6 = DataTest.getUserTest6()
 
 String REQUEST_NAME = 'Trình ký PDF có sẵn'
 
@@ -37,8 +37,6 @@ IPaper.pdfSignScreen.openSubFileBrowser()
 
 IPaper.fileBrowserScreen.attachFile(document.subFileName)
 
-IPaper.pdfSignScreen.selectRelatedMember(document.getCc().getEmail())
-
 IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 
 IPaper.pdfSignScreen.fillInOpinion(document.getComment())
@@ -49,7 +47,10 @@ document.setStatus(DocumentStatus.WAIT_APPROVE)
 
 IPaper.documentInformationScreen.backToHome()
 
+IPaper.homeScreen.logout()
+
 // ======================== CHECK ENABLED ========================
+IPaper.loginScreen.login(auto6)
 
 IPaper.homeScreen.goToSetting()
 

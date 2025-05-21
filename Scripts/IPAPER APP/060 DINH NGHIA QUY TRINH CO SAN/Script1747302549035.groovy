@@ -11,13 +11,13 @@ String PROCESS_NAME = 'Automation Test'
 
 String TO_DAY = new SimpleDateFormat('dd/MM/yyyy').format(new Date())
 
-def auto5 = DataTest.getUserTest('auto5')
+User auto5 = DataTest.getUserTest5()
 
-User auto6 = DataTest.getUserTest('auto6')
+User auto6 = DataTest.getUserTest6()
 
-User auto7 = DataTest.getUserTest('auto7')
+User auto7 = DataTest.getUserTest7()
 
-User auto8 = DataTest.getUserTest('auto8')
+User auto8 = DataTest.getUserTest8()
 
 def document = DataTest.createDocumentTest(auto5, auto6, auto7, 'dummy.pdf', 'dummy.pdf')
 
@@ -47,7 +47,6 @@ IPaper.fileBrowserScreen.attachFile(document.subFileName)
 //IPaper.pdfSignScreen.processDefinition(auto6)
 //
 //IPaper.pdfSignScreen.processDefinition(auto7, auto8)
-
 IPaper.pdfSignScreen.selectProcessDefined(PROCESS_NAME)
 
 IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)

@@ -7,6 +7,10 @@ import locator.LoginLocator
 
 public class LoginScreen extends LoginLocator implements BaseKeyword {
 	def login(User user) {
+		if(isUpdated()) {
+			clickToElement(ignoreUpdate)
+		}
+		
 		if (isGuest()) {
 			fillInUserName(user.getUserName())
 			fillInPassword(user.getPassword())
@@ -27,7 +31,7 @@ public class LoginScreen extends LoginLocator implements BaseKeyword {
 	def clickOnLogin() {
 		clickToElement(title)
 		clickToElement(loginButton)
-		waitForNotPresentOf(loadingMask)
+		waitForNotPresentOf(loginButton)
 	}
 
 	boolean isGuest() {
@@ -35,6 +39,6 @@ public class LoginScreen extends LoginLocator implements BaseKeyword {
 	}
 
 	boolean isUpdated() {
-		return isDisplayed(ignoreUpdate, 3)
+		return isDisplayed(ignoreUpdate, 5)
 	}
 }
