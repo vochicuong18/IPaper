@@ -1,7 +1,5 @@
 package locator
 
-import static entities.LocatorType.XPATH
-
 import com.kms.katalon.core.testobject.TestObject
 
 import entities.LocatorType
@@ -9,7 +7,7 @@ import internal.GlobalVariable
 
 public class HomeScreenLocator extends TestObjectFactory {
 	TestObject avatar, createRequestItems, inComingDocument, loadingMask, logoutButton, menuIcon, menuTab, draftDocument, outComingDocument, requestItem, screenTitle,
-	closeMenuTab, closeTabBtn, setting, logo, loadingItem, addDocumentIcon, fillterBtn, relatedDocumentBtn, loadingListDocument, listFormSample
+	closeMenuTab, closeTabBtn, setting, logo, loadingItem, addDocumentIcon, fillterBtn, relatedDocumentBtn, loadingListDocument, listFormSample, bellIcon, notiList, loadingImage
 
 	TestObject requestItem(String requestName) {
 		switch (GlobalVariable.PLATFORM) {
@@ -23,8 +21,11 @@ public class HomeScreenLocator extends TestObjectFactory {
 	HomeScreenLocator() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
+				loadingImage = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/loading_image")
 				loadingItem = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_item")
 				logo = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_logo")
+				bellIcon = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_menu")
+				notiList = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/lv_notification")
 				avatar = createTestObject(LocatorType.XPATH, "//android.widget.ImageView[@resource-id='com.hdbank.ipaper:id/img_menu_profile']")
 				createRequestItems = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Tạo yêu cầu theo mẫu']")
 				inComingDocument = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Hồ sơ đến']/parent::androidx.appcompat.widget.LinearLayoutCompat")
@@ -38,14 +39,12 @@ public class HomeScreenLocator extends TestObjectFactory {
 				setting = createTestObject(LocatorType.XPATH, "//android.widget.CheckedTextView[@resource-id='com.hdbank.ipaper:id/design_menu_item_text' and @text='Cài đặt']")
 				fillterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				relatedDocumentBtn = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_filter' and @text='Hồ sơ liên quan']")
-			//				loadingListDocument = createTestObject(XPATH, "")
 				listFormSample = createTestObject(LocatorType.XPATH, "//android.widget.ExpandableListView[@resource-id='com.hdbank.ipaper:id/expandible_listview']//android.widget.RelativeLayout")
 				break
 			case "iOS":
 				loadingItem = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='placeholder_loading_list_doc']")
 				logo = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='Đăng nhập']")
 				avatar = createTestObject(LocatorType.XPATH, "")
-			//				requestItem = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${requestName}']/parent::XCUIElementTypeCell")
 				createRequestItems = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='menu_template']")
 				inComingDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='menu_tasks']/parent::XCUIElementTypeCell")
 				outComingDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='menu_outcomingdocs']/parent::XCUIElementTypeCell")

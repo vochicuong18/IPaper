@@ -8,6 +8,8 @@ import screens.FileManager_HomeScreen
 import screens.HomeScreen
 import screens.IncomingDocumentScreen
 import screens.LoginScreen
+import screens.MisFormScreen
+import screens.NotificationScreen
 import screens.OutComingDocumentScreen
 import screens.OutLook_HomeScreen
 import screens.OutLook_MailScreen
@@ -33,4 +35,6 @@ public class IPaper {
 	public static FileManager_HomeScreen fileManager_HomeScreen = new FileManager_HomeScreen()
 	public static FileManager_FolderScreen fileManager_FolderScreen = new FileManager_FolderScreen()
 	public static DraftDocumentScreen draftDocumentScreen = new DraftDocumentScreen()
+	public static NotificationScreen notificationScreen	= new NotificationScreen()
+	public static MisFormScreen misFormScreen = new MisFormScreen()
 }

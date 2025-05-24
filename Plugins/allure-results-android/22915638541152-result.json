@@ -1,0 +1,144 @@
+{
+    "name": "063 KIEM TRA SO LUONG DINH NGHIA QUY TRINH",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/../ErrorScreen/android/Test Cases/IPAPER APP/063 KIEM TRA SO LUONG DINH NGHIA QUY TRINH.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1748027703743,
+    "stop": 1748027813480,
+    "uuid": "22915638541152",
+    "historyId": "22915638541152",
+    "testCaseId": "22915638541152",
+    "fullName": "Test Cases/IPAPER APP/063 KIEM TRA SO LUONG DINH NGHIA QUY TRINH",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748027703747,
+            "stop": 1748027703749,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748027705791,
+            "stop": 1748027714518,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748027714518,
+            "stop": 1748027719764,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748027719764,
+            "stop": 1748027725962,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.checkProcessDefineNumber(5)",
+            "status": "passed",
+            "start": 1748027725962,
+            "stop": 1748027735431,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: 5 - DATA: 5",
+                    "status": "passed",
+                    "start": 1748027735429,
+                    "stop": 1748027735430
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.isEyeIconEnabled()",
+            "status": "passed",
+            "start": 1748027735431,
+            "stop": 1748027737384,
+            "steps": [
+                {
+                    "name": "Check eye icon in process define is enabled",
+                    "status": "passed",
+                    "start": 1748027737384,
+                    "stop": 1748027737385
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.isAttachIconDisplayed()",
+            "status": "passed",
+            "start": 1748027737384,
+            "stop": 1748027738122,
+            "steps": [
+                {
+                    "name": "Check attach icon is displayed",
+                    "status": "passed",
+                    "start": 1748027738120,
+                    "stop": 1748027738121
+                }
+            ]
+        },
+        {
+            "name": "pdfSignScreen.backToHome()",
+            "status": "passed",
+            "start": 1748027738122,
+            "stop": 1748027738954,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748027738954,
+            "stop": 1748027743217,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.logout()",
+            "status": "passed",
+            "start": 1748027743217,
+            "stop": 1748027751498,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto1)",
+            "status": "passed",
+            "start": 1748027751499,
+            "stop": 1748027760949,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748027760949,
+            "stop": 1748027766081,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748027766082,
+            "stop": 1748027772684,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.checkProcessDefineNumber(0)",
+            "status": "passed",
+            "start": 1748027772684,
+            "stop": 1748027810226,
+            "steps": []
+        }
+    ]
+}

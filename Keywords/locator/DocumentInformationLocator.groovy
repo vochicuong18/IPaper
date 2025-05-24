@@ -12,7 +12,7 @@ public class DocumentInformationLocator extends TestObjectFactory {
 	TestObject assigner, backBtn, createDate, description, requestType, documentActionBtn, documentTitle, finishDate, getOpinoionTxt,
 	menuIcon, mainFile, priority, processComment, rePresentTxt, sendApprovalTxt, senderName, status, submitTxt, approveDocument, getOpinionTxt, submitApproveBtn,fillterBtn,
 	ccOnPopupTxt, rejectDocument, withdrawDocument, getComment, completeDocument, warningPopup, ignoreBtn, returnDocument, downloadSubFile, useFolder, acceptUseFolder, loadingImage,
-	mainFileAttachIcon, btnUploadFile, acceptNotifiDownloadSuccess,	defindeProcessTitle, expandDefineProcess, defindeProcessComponent, okBtn, showMoreComment, assignTransfer, transferExcution,
+	mainFileAttachIcon, btnUploadFile, acceptNotifiDownloadSuccess,	defindeProcessTitle, expandDefineProcess, defindeProcessComponent, okBtn, showMoreComment, assignTransfer, transferExcution, issueMis,
 	transferEmailSearch, listUserLoadingMask, doneBtn, bellIcon, editFileAttachIcon, imageViewLoading
 	DocumentInformationLocator () {
 		switch (GlobalVariable.PLATFORM) {
@@ -58,9 +58,10 @@ public class DocumentInformationLocator extends TestObjectFactory {
 				showMoreComment = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_show_more_approval")
 				assignTransfer = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_text_transfer")
 				transferExcution = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Chuyển thực thi']/following-sibling::android.widget.ImageButton[1]")
+				issueMis = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text='Ban hành lên MIS']/following-sibling::android.widget.ImageButton[1]")
 				transferEmailSearch = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_search_email")
 				doneBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_menu")
-				
+
 				editFileAttachIcon = createTestObject(LocatorType.ID,"com.hdbank.ipaper:id/btn_change_edit_mode")
 				imageViewLoading = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_view_loading")
 				break

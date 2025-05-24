@@ -93,4 +93,12 @@ public class Utilities extends BaseApp{
 		process.waitFor() // Wait for the process to finish
 		return output.toString()
 	}
+
+
+	def static back() {
+		if (GlobalVariable.PLATFORM == "Android") {
+			Utilities.runCommand("adb shell input keyevent 4")
+		} else {
+		}
+	}
 }

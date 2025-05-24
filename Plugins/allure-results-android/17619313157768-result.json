@@ -1,0 +1,60 @@
+{
+    "name": "020 TU CHOI CHI TIET_KHONG NHAP Y KIEN",
+    "status": "broken",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/../ErrorScreen/android/Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1748019256002,
+    "stop": 1748019304393,
+    "uuid": "17619313157768",
+    "historyId": "17619313157768",
+    "testCaseId": "17619313157768",
+    "fullName": "Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748019256010,
+            "stop": 1748019256011,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748019258605,
+            "stop": 1748019265857,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748019265857,
+            "stop": 1748019271249,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "broken",
+            "start": 1748019271249,
+            "stop": 1748019301325,
+            "steps": [
+                {
+                    "name": "Test Cases/IPAPER APP/020 TU CHOI CHI TIET_KHONG NHAP Y KIEN FAILED.\nReason:\norg.openqa.selenium.TimeoutException: Expected condition failed: waiting for base.BaseKeyword$Trait$Helper$_waitForNotPresentOf_closure2@128cfade (tried for 30 second(s) with 500 milliseconds interval)\nBuild info: version: '3.141.59', revision: 'unknown', time: 'unknown'\nSystem info: host: '192.168.30.108', ip: 'fe80:0:0:0:857:c3df:d699:1dc0%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.5', java.version: '17.0.7'\nDriver info: com.kms.katalon.core.appium.driver.SwipeableAndroidDriver\nCapabilities {automationName: UiAutomator2, databaseEnabled: false, desired: {automationName: UiAutomator2, deviceName: af0c5cf7, noReset: true, platformName: android, waitForIdleTimeout: 3000}, deviceApiLevel: 35, deviceManufacturer: OPPO, deviceModel: CPH2699, deviceName: af0c5cf7, deviceScreenDensity: 480, deviceScreenSize: 1080x2400, deviceUDID: af0c5cf7, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 15, statBarHeight: 120, takesScreenshot: true, viewportRect: {height: 2280, left: 0, top: 120, width: 1080}, waitForIdleTimeout: 3000, warnings: {}, webStorageEnabled: false}\nSession ID: 62e5b862-d2c0-4dcf-ad05-c0bce164dcf0\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)\n\tat base.BaseKeyword$Trait$Helper.waitForNotPresentOf(BaseKeyword.groovy:359)\n\tat screens.HomeScreen.waitForNotPresentOf(HomeScreen.groovy)\n\tat screens.HomeScreen.createRequest(HomeScreen.groovy:101)\n\tat 020 TU CHOI CHI TIET_KHONG NHAP Y KIEN.run(020 TU CHOI CHI TIET_KHONG NHAP Y KIEN:22)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:439)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:418)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:410)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:285)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:65)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:150)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:106)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:180)\n\tat TempTestSuite1748015363748.run(TempTestSuite1748015363748.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+                    "status": "broken",
+                    "start": 1748019301323,
+                    "stop": 1748019301324
+                }
+            ]
+        }
+    ]
+}

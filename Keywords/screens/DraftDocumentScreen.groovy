@@ -2,10 +2,6 @@ package screens
 
 import java.text.SimpleDateFormat
 
-import org.openqa.selenium.By
-import org.openqa.selenium.WebElement
-
-import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.testobject.TestObject
 
 import base.BaseKeyword
@@ -13,6 +9,7 @@ import entities.Document
 import internal.GlobalVariable
 import locator.DraftDocumentLocator
 import utilities.AIUtilities
+import utilities.AssertUtilities
 import utilities.Utilities
 
 public class DraftDocumentScreen extends DraftDocumentLocator implements BaseKeyword{
@@ -58,7 +55,7 @@ public class DraftDocumentScreen extends DraftDocumentLocator implements BaseKey
 			boolean isTitleUnique = true
 			boolean isTimeSorted = true
 			Date prevTime = null
-			
+
 			for (int i = 0; i < data.size(); i++) {
 				String title = data[i].title
 				String timeStr = data[i].time
@@ -95,7 +92,7 @@ public class DraftDocumentScreen extends DraftDocumentLocator implements BaseKey
 
 
 	//    [title: "Trình ký 1684937123", time: "19/05/2025 - 09:15"]
-	
+
 	List<Map<String, String>> getAllItemDataAndroid() {
 		List<Map<String, String>> itemList = []
 		for (int i = 0; i <= 1; i ++) {
@@ -111,13 +108,13 @@ public class DraftDocumentScreen extends DraftDocumentLocator implements BaseKey
 
 	def getAllItemDataIOS() {
 		AIUtilities.analyzeImage("", "")
-//		List<Map<String, String>> itemList = []
-//		List<WebElement> titles = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'Trình ký')"))
-//		Utilities.logInfo(titles.size())
-//		for(WebElement title : titles) {
-//			Utilities.logInfo(title.getText())
-//		}
-//		return itemList
+		//		List<Map<String, String>> itemList = []
+		//		List<WebElement> titles = MobileDriverFactory.getDriver().findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'Trình ký')"))
+		//		Utilities.logInfo(titles.size())
+		//		for(WebElement title : titles) {
+		//			Utilities.logInfo(title.getText())
+		//		}
+		//		return itemList
 	}
 
 	List<String> getListDocumentTitle() {
@@ -126,5 +123,19 @@ public class DraftDocumentScreen extends DraftDocumentLocator implements BaseKey
 			titles.add(getText(item))
 		}
 		return titles
+	}
+
+	def isDocumentDisplayed(Document doc) {
+		searchDocument(doc.getTitle())
+		waitForNotPresentOf(loadingMask)
+		boolean status = isDisplayed(documentItem(doc.getTitle()))
+		AssertUtilities.assertTrue(status)
+	}
+	
+	def isDocumentNotDisplayed(Document doc) {
+		searchDocument(doc.getTitle())
+		waitForNotPresentOf(loadingMask)
+		boolean status = isDisplayed(documentItem(doc.getTitle()))
+		AssertUtilities.assertFalse(status)
 	}
 }

@@ -55,6 +55,7 @@ public class FileManager_FolderScreen extends FileManager_FolderLocator implemen
 			}
 			clickToElement(deleteBtn)
 			clickToElement(confirmDelete)
+			Utilities.back()
 		} else {
 			int fileSize =  files().size()
 			for(int i = 0; i < fileSize; i++) {

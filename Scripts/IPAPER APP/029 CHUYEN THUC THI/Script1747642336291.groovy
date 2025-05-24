@@ -149,6 +149,8 @@ IPaper.documentInformationScreen.performAction(document, ActionType.TRANSFER_EXC
 
 //===================== CHECK DOCUMENT INFORMATION IN AUTO7 ================
 
+IPaper.homeScreen.logout()
+
 IPaper.loginScreen.login(auto7)
 
 IPaper.homeScreen.goToRelatedDocument()

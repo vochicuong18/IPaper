@@ -26,6 +26,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 		RETURN,
 		COMPLETE,
 		TRANSFER_EXCUTION,
+		ISSUE_MIS
 	}
 
 	def performAction(Document document, ActionType actionType, String comment = "", User user = null) {
@@ -78,24 +79,21 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 			case ActionType.COMPLETE:
 				clickToElement(completeDocument)
 				clickToElement(okBtn)
-				if (GlobalVariable.PLATFORM == 'Android') {
-					waitForNotPresentOf(loadingImage)
-				} else {
-					backToHome()
-					waitForPresentOf(bellIcon)
-				}
 				document.setStatus(DocumentStatus.COMPLETE)
 				break
 
 			case ActionType.TRANSFER_EXCUTION:
 				clickToElement(transferExcution)
-				if (GlobalVariable.PLATFORM == 'Android') {
-					waitForNotPresentOf(loadingImage)
-				} else {
-					backToHome()
-					waitForPresentOf(bellIcon)
-				}
 				break
+			case ActionType.ISSUE_MIS:
+				clickToElement(issueMis)
+				return
+		}
+		if (GlobalVariable.PLATFORM == 'Android') {
+			waitForNotPresentOf(loadingImage)
+		} else {
+			backToHome()
+			waitForPresentOf(bellIcon)
 		}
 	}
 
@@ -183,7 +181,7 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 	def checkAttachFileName(Document doc) {
-		String data = doc.getSubFileName().replace(".pdf", "")
+		String data = doc.getSubFileName().replace(".pdf", "").replace(".docx", "").replace(".doc", "")
 		swipe('down')
 		boolean status = subFiles().any {
 			getText(it).contains(data)
@@ -328,12 +326,13 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 	}
 
 
-	def downloadFileAtmainFile() {
+	def downloadFileAtMainFile() {
 		waitForPresentOf(mainFileAttachIcon)
 		clickToElement(mainFileAttachIcon)
 		downLoadFileFromDocument()
 		submitDownload()
-		waitForPresentOf(mainFileAttachIcon)
+		//		waitForPresentOf(mainFileAttachIcon)
+		waitForPresentOf(downloadSubFile) //android
 	}
 
 	def downloadFile() {
@@ -408,12 +407,12 @@ public class DocumentInformationScreen extends DocumentInformationLocator implem
 			clickToElement(ccUserItemOnPopup(user.getEmail()))
 		}
 	}
-	
+
 	def isEditFileIconDisplayed() {
 		boolean status = isDisplayed(editFileAttachIcon, 20)
 		AssertUtilities.assertTrue(status, "Check edit file icon is displayed")
 	}
-	
+
 	def isEditFileIconNotDisplayed() {
 		boolean status = isDisplayed(editFileAttachIcon, 20)
 		AssertUtilities.assertFalse(status, "Check edit file icon is not displayed")

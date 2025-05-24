@@ -1,13 +1,14 @@
 package screens
 
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
 import com.kms.katalon.core.util.KeywordUtil
 
 import base.BaseKeyword
 import entities.User
 import internal.GlobalVariable
 import locator.PDFSignLocator
+import utilities.AssertUtilities
 import utilities.CalendarUtilities
+import utilities.Utilities
 public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	public enum Priority {
@@ -225,6 +226,16 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 		clickToElement(submitUseSelection)
 	}
 
+	def addUserIntoProcess (int stepProcess, User user) {
+		clickToElement(addUserProcessDefine(stepProcess))
+		searchSelectUser(user)
+	}
+
+	def deleteUserInProcess(User user) {
+		swipe('down', 0.5)
+		clickToElement(deleteUserInProcessDefine(user))
+	}
+
 	def clickOnBackBtn() {
 		clickToElement(backBtn)
 	}
@@ -235,6 +246,35 @@ public class PDFSignScreen extends PDFSignLocator implements BaseKeyword{
 
 	def rejectSaveDocument() {
 		clickToElement(rejectWarningPopup)
-		
+	}
+
+	def isEyeIconEnabled() {
+		clickToElement(eyeIcon)
+		boolean status = isDisplayed(listDefineProcessPopup, 2)
+		status ? Utilities.back() : println()
+		AssertUtilities.assertTrue(status, "Check eye icon in process define is enabled")
+	}
+
+	def isEyeIconDisabled() {
+		clickToElement(eyeIcon)
+		boolean status = isDisplayed(listDefineProcessPopup, 2)
+		AssertUtilities.assertFalse(status, "Check eye icon in process define is enabled")
+	}
+
+	def checkProcessDefineNumber(int number) {
+		swipeToElement(listDefineProcess)
+		swipe('down', 0.3)
+		String gui = getText(defineProcessNumber)
+		AssertUtilities.checkContains(gui, number.toString())
+	}
+
+	def isAttachIconDisplayed() {
+		boolean status = isDisplayed(addDefineProcess)
+		AssertUtilities.assertTrue(status, "Check attach icon is displayed")
+	}
+
+	def backToHome() {
+		clickToElement(backBtn)
+		clickToElement(submitWarningPopup)
 	}
 }

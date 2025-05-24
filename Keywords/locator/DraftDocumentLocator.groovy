@@ -6,11 +6,13 @@ import entities.LocatorType
 import internal.GlobalVariable
 
 public class DraftDocumentLocator extends TestObjectFactory {
-	TestObject searchDocument, requestType, loadingSwipeIcon, filterBtn, backBtn, firstDocumentTitle, firstDocumentDate, secondItem, headerBar
+	TestObject searchDocument, requestType, loadingSwipeIcon, filterBtn, backBtn, firstDocumentTitle, firstDocumentDate, secondItem, headerBar, loadingMask
 
 	DraftDocumentLocator() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
+				searchDocument = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_search_view")
+
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				filterBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/layout_filter")
 				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
@@ -19,6 +21,7 @@ public class DraftDocumentLocator extends TestObjectFactory {
 				headerBar = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
 				firstDocumentDate = createTestObject(LocatorType.XPATH, "(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[1]//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_date_approve']")
 				firstDocumentTitle = createTestObject(LocatorType.XPATH, "(//android.widget.LinearLayout[@resource-id='com.hdbank.ipaper:id/view_infor'])[1]//android.widget.TextView[@resource-id='com.hdbank.ipaper:id/tv_title_item']")
+				loadingMask = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_loading_image")
 				break
 			case "iOS":
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")

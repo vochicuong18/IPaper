@@ -40,7 +40,7 @@ IPaper.pdfSignScreen.selectTime(document.time)
 
 IPaper.pdfSignScreen.fillInDescription(document.description)
 
-IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
+//IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
 
 IPaper.pdfSignScreen.openMainFileBrowser()
 
@@ -51,6 +51,12 @@ IPaper.pdfSignScreen.openSubFileBrowser()
 IPaper.fileBrowserScreen.attachFile(document.subFileName)
 
 IPaper.pdfSignScreen.selectRelatedMember(document.getCc().getEmail())
+
+IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
+
+IPaper.pdfSignScreen.submitErrorPopup()
+
+IPaper.pdfSignScreen.selectAssigner(document.getAssigner().getEmail())
 
 IPaper.pdfSignScreen.performAction(PerformAction.SEND_APPROVE)
 
@@ -157,11 +163,3 @@ IPaper.documentInformationScreen.checkAttachFileName(document)
 IPaper.documentInformationScreen.checkUserCannotEditDocument()
 
 IPaper.documentInformationScreen.backToHome()
-
-
-
-
-
-
-
-

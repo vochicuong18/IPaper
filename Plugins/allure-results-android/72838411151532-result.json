@@ -1,0 +1,232 @@
+{
+    "name": "045 TAI FILE TAI CHI TIET HO SO_HO SO DI",
+    "status": "passed",
+    "attachments": [],
+    "start": 1748025019371,
+    "stop": 1748025155716,
+    "uuid": "72838411151532",
+    "historyId": "72838411151532",
+    "testCaseId": "72838411151532",
+    "fullName": "Test Cases/IPAPER APP/045 TAI FILE TAI CHI TIET HO SO_HO SO DI",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748025019376,
+            "stop": 1748025019377,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748025022072,
+            "stop": 1748025029569,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748025029569,
+            "stop": 1748025034509,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748025034509,
+            "stop": 1748025042633,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(title)",
+            "status": "passed",
+            "start": 1748025042633,
+            "stop": 1748025044689,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(priority)",
+            "status": "passed",
+            "start": 1748025044690,
+            "stop": 1748025047197,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(time)",
+            "status": "passed",
+            "start": 1748025047198,
+            "stop": 1748025049757,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(description)",
+            "status": "passed",
+            "start": 1748025049757,
+            "stop": 1748025051523,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1748025051524,
+            "stop": 1748025057455,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1748025057455,
+            "stop": 1748025062699,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(mainFileName)",
+            "status": "passed",
+            "start": 1748025062699,
+            "stop": 1748025071881,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1748025071881,
+            "stop": 1748025073055,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(subFileName)",
+            "status": "passed",
+            "start": 1748025073055,
+            "stop": 1748025084243,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.performAction(SEND_APPROVE)",
+            "status": "passed",
+            "start": 1748025084243,
+            "stop": 1748025086934,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInOpinion(document.getComment())",
+            "status": "passed",
+            "start": 1748025086935,
+            "stop": 1748025087735,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitRequest()",
+            "status": "passed",
+            "start": 1748025087736,
+            "stop": 1748025098363,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748025098363,
+            "stop": 1748025098583,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToOutComingDocument()",
+            "status": "passed",
+            "start": 1748025098583,
+            "stop": 1748025110888,
+            "steps": []
+        },
+        {
+            "name": "outComingDocument.viewInformationDocument(document)",
+            "status": "passed",
+            "start": 1748025110889,
+            "stop": 1748025112044,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.downloadFile()",
+            "status": "passed",
+            "start": 1748025112044,
+            "stop": 1748025139780,
+            "steps": []
+        },
+        {
+            "name": "Utilities.closeCurentApp()",
+            "status": "passed",
+            "start": 1748025139780,
+            "stop": 1748025139781,
+            "steps": []
+        },
+        {
+            "name": "Utilities.openFileManagerApp()",
+            "status": "passed",
+            "start": 1748025139781,
+            "stop": 1748025139974,
+            "steps": []
+        },
+        {
+            "name": "fileManager_HomeScreen.goToIPaperFolder(FOLDER_NAME)",
+            "status": "passed",
+            "start": 1748025139974,
+            "stop": 1748025142650,
+            "steps": []
+        },
+        {
+            "name": "fileManager_FolderScreen.checkPDFFiles()",
+            "status": "passed",
+            "start": 1748025142651,
+            "stop": 1748025147679,
+            "steps": [
+                {
+                    "name": "HAR: /Users/cuongvo/hdb_katalon/IPaper/Reports/20250523_224922/fullcase/20250523_224923/requests/main/2.har",
+                    "status": "passed",
+                    "start": 1748025147491,
+                    "stop": 1748025147492
+                },
+                {
+                    "name": "Send request successfully",
+                    "status": "passed",
+                    "start": 1748025147506,
+                    "stop": 1748025147507
+                },
+                {
+                    "name": "\ud83e\udd16 Gemini response: True",
+                    "status": "passed",
+                    "start": 1748025147506,
+                    "stop": 1748025147507
+                },
+                {
+                    "name": "Token usage \u2192 Prompt: 2339 | Response: 1 | Total: 2340",
+                    "status": "passed",
+                    "start": 1748025147506,
+                    "stop": 1748025147507
+                },
+                {
+                    "name": "Check image content",
+                    "status": "passed",
+                    "start": 1748025147678,
+                    "stop": 1748025147679
+                }
+            ]
+        },
+        {
+            "name": "fileManager_FolderScreen.deleteAllFiles()",
+            "status": "passed",
+            "start": 1748025147679,
+            "stop": 1748025155288,
+            "steps": []
+        },
+        {
+            "name": "Utilities.closeCurentApp()",
+            "status": "passed",
+            "start": 1748025155288,
+            "stop": 1748025155288,
+            "steps": []
+        }
+    ]
+}

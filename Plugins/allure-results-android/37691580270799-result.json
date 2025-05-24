@@ -1,0 +1,47 @@
+{
+    "name": "008 HIEN THI HO SO DI",
+    "status": "passed",
+    "attachments": [],
+    "start": 1748016513617,
+    "stop": 1748016534419,
+    "uuid": "37691580270799",
+    "historyId": "37691580270799",
+    "testCaseId": "37691580270799",
+    "fullName": "Test Cases/IPAPER APP/008 HIEN THI HO SO DI",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748016513622,
+            "stop": 1748016513623,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto1)",
+            "status": "passed",
+            "start": 1748016516199,
+            "stop": 1748016523295,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToOutComingDocument()",
+            "status": "passed",
+            "start": 1748016523295,
+            "stop": 1748016533991,
+            "steps": []
+        },
+        {
+            "name": "outComingDocument.checkItemInDocument()",
+            "status": "passed",
+            "start": 1748016533992,
+            "stop": 1748016533992,
+            "steps": []
+        }
+    ]
+}

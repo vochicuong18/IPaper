@@ -1,0 +1,165 @@
+{
+    "name": "053 TIM KIEM HO SO CU",
+    "status": "failed",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/../ErrorScreen/android/Test Cases/IPAPER APP/053 TIM KIEM HO SO CU.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1748026716380,
+    "stop": 1748026779019,
+    "uuid": "18034041788066",
+    "historyId": "18034041788066",
+    "testCaseId": "18034041788066",
+    "fullName": "Test Cases/IPAPER APP/053 TIM KIEM HO SO CU",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748026716384,
+            "stop": 1748026716384,
+            "steps": []
+        },
+        {
+            "name": "document.setTitle(\"T\u1edd tr\u00ecnh ngo\u1ea1i l\u1ec7 s\u1ea3n ph\u1ea9m KHDN. CONG TY ABD:-s\u1eaft th\u00e9p-TT22011400030\")",
+            "status": "passed",
+            "start": 1748026718928,
+            "stop": 1748026718928,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(a8nv)",
+            "status": "passed",
+            "start": 1748026718928,
+            "stop": 1748026728020,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToSetting()",
+            "status": "passed",
+            "start": 1748026728021,
+            "stop": 1748026733109,
+            "steps": []
+        },
+        {
+            "name": "settingScreen.enableShowDocumentOlder(true)",
+            "status": "passed",
+            "start": 1748026733109,
+            "stop": 1748026734871,
+            "steps": []
+        },
+        {
+            "name": "settingScreen.backToHome()",
+            "status": "passed",
+            "start": 1748026734871,
+            "stop": 1748026735000,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToIncomingDocument()",
+            "status": "passed",
+            "start": 1748026735000,
+            "stop": 1748026736216,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.loadDataResult()",
+            "status": "passed",
+            "start": 1748026736216,
+            "stop": 1748026743190,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.searchDocument(document.getTitle())",
+            "status": "passed",
+            "start": 1748026743191,
+            "stop": 1748026746119,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.isDocumentDisplayed(document)",
+            "status": "failed",
+            "start": 1748026746119,
+            "stop": 1748026749573,
+            "steps": [
+                {
+                    "name": "Check T\u1edd tr\u00ecnh ngo\u1ea1i l\u1ec7 s\u1ea3n ph\u1ea9m KHDN. CONG TY ABD:-s\u1eaft th\u00e9p-TT22011400030 is displayed",
+                    "status": "failed",
+                    "start": 1748026749572,
+                    "stop": 1748026749573
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748026749573,
+            "stop": 1748026754027,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToSetting()",
+            "status": "passed",
+            "start": 1748026754028,
+            "stop": 1748026759109,
+            "steps": []
+        },
+        {
+            "name": "settingScreen.enableShowDocumentOlder(false)",
+            "status": "passed",
+            "start": 1748026759110,
+            "stop": 1748026760875,
+            "steps": []
+        },
+        {
+            "name": "settingScreen.backToHome()",
+            "status": "passed",
+            "start": 1748026760876,
+            "stop": 1748026761033,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToIncomingDocument()",
+            "status": "passed",
+            "start": 1748026761033,
+            "stop": 1748026762456,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.loadDataResult()",
+            "status": "passed",
+            "start": 1748026762457,
+            "stop": 1748026769490,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.searchDocument(document.getTitle())",
+            "status": "passed",
+            "start": 1748026769490,
+            "stop": 1748026772407,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.isDocumentDisplayed(document)",
+            "status": "failed",
+            "start": 1748026772407,
+            "stop": 1748026775902,
+            "steps": [
+                {
+                    "name": "Check T\u1edd tr\u00ecnh ngo\u1ea1i l\u1ec7 s\u1ea3n ph\u1ea9m KHDN. CONG TY ABD:-s\u1eaft th\u00e9p-TT22011400030 is displayed",
+                    "status": "failed",
+                    "start": 1748026775901,
+                    "stop": 1748026775902
+                }
+            ]
+        }
+    ]
+}

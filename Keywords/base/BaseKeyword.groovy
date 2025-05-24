@@ -77,7 +77,6 @@ trait BaseKeyword{
 	def enterText(TestObject to) {
 		if (GlobalVariable.PLATFORM == "Android") {
 			Utilities.runCommand("adb shell input keyevent 66")
-			println("A")
 		} else {
 			WebElement element = Driver.driver.findElement(convertToBy(to))
 			element.sendKeys(Keys.RETURN)

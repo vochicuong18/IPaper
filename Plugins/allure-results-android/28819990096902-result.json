@@ -1,0 +1,178 @@
+{
+    "name": "034 TAO HO SO NHAP_DONG Y LUU HO SO",
+    "status": "broken",
+    "attachments": [
+        {
+            "name": "L\u1ed7i",
+            "source": "/Users/cuongvo/hdb_katalon/IPaper/Plugins/../ErrorScreen/android/Test Cases/IPAPER APP/034 TAO HO SO NHAP_DONG Y LUU HO SO.png",
+            "type": "image/png"
+        }
+    ],
+    "start": 1748022278043,
+    "stop": 1748022394428,
+    "uuid": "28819990096902",
+    "historyId": "28819990096902",
+    "testCaseId": "28819990096902",
+    "fullName": "Test Cases/IPAPER APP/034 TAO HO SO NHAP_DONG Y LUU HO SO",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748022278049,
+            "stop": 1748022278050,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748022280649,
+            "stop": 1748022287841,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748022287841,
+            "stop": 1748022293160,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748022293160,
+            "stop": 1748022299264,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1748022299264,
+            "stop": 1748022302049,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1748022302050,
+            "stop": 1748022303949,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1748022303950,
+            "stop": 1748022306876,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1748022306876,
+            "stop": 1748022308625,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1748022308626,
+            "stop": 1748022314887,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1748022314888,
+            "stop": 1748022319898,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getMainFileName())",
+            "status": "passed",
+            "start": 1748022319899,
+            "stop": 1748022329407,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1748022329407,
+            "stop": 1748022330026,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getSubFileName())",
+            "status": "passed",
+            "start": 1748022330026,
+            "stop": 1748022339999,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.clickOnBackBtn()",
+            "status": "passed",
+            "start": 1748022339999,
+            "stop": 1748022340139,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitSaveDocument()",
+            "status": "passed",
+            "start": 1748022340140,
+            "stop": 1748022341579,
+            "steps": []
+        },
+        {
+            "name": "document.setStatus(DRAFTED)",
+            "status": "passed",
+            "start": 1748022341580,
+            "stop": 1748022341580,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748022341581,
+            "stop": 1748022345907,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToDraftDocument()",
+            "status": "passed",
+            "start": 1748022345908,
+            "stop": 1748022355365,
+            "steps": []
+        },
+        {
+            "name": "draftDocumentScreen.loadDataResult()",
+            "status": "passed",
+            "start": 1748022355365,
+            "stop": 1748022358983,
+            "steps": []
+        },
+        {
+            "name": "draftDocumentScreen.viewInformationDocument(document)",
+            "status": "broken",
+            "start": 1748022358983,
+            "stop": 1748022391277,
+            "steps": [
+                {
+                    "name": "View document Tr\u00ecnh k\u00fd 1748022280649",
+                    "status": "passed",
+                    "start": 1748022358983,
+                    "stop": 1748022358984
+                },
+                {
+                    "name": "Test Cases/IPAPER APP/034 TAO HO SO NHAP_DONG Y LUU HO SO FAILED.\nReason:\norg.openqa.selenium.TimeoutException: Expected condition failed: waiting for base.BaseKeyword$Trait$Helper$_waitForPresentOf_closure1@51d00702 (tried for 30 second(s) with 500 milliseconds interval)\nBuild info: version: '3.141.59', revision: 'unknown', time: 'unknown'\nSystem info: host: '192.168.30.108', ip: 'fe80:0:0:0:857:c3df:d699:1dc0%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '15.5', java.version: '17.0.7'\nDriver info: com.kms.katalon.core.appium.driver.SwipeableAndroidDriver\nCapabilities {automationName: UiAutomator2, databaseEnabled: false, desired: {automationName: UiAutomator2, deviceName: af0c5cf7, noReset: true, platformName: android, waitForIdleTimeout: 3000}, deviceApiLevel: 35, deviceManufacturer: OPPO, deviceModel: CPH2699, deviceName: af0c5cf7, deviceScreenDensity: 480, deviceScreenSize: 1080x2400, deviceUDID: af0c5cf7, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: true, pixelRatio: 3, platform: LINUX, platformName: Android, platformVersion: 15, statBarHeight: 120, takesScreenshot: true, viewportRect: {height: 2280, left: 0, top: 120, width: 1080}, waitForIdleTimeout: 3000, warnings: {}, webStorageEnabled: false}\nSession ID: 62e5b862-d2c0-4dcf-ad05-c0bce164dcf0\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)\n\tat base.BaseKeyword$Trait$Helper.waitForPresentOf(BaseKeyword.groovy:344)\n\tat screens.DraftDocumentScreen.waitForPresentOf(DraftDocumentScreen.groovy)\n\tat screens.DraftDocumentScreen.viewInformationDocument(DraftDocumentScreen.groovy:23)\n\tat 034 TAO HO SO NHAP_DONG Y LUU HO SO.run(034 TAO HO SO NHAP_DONG Y LUU HO SO:56)\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:448)\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:439)\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:418)\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:410)\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:285)\n\tat com.kms.katalon.core.common.CommonExecutor.accessTestCaseMainPhase(CommonExecutor.java:65)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:150)\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:106)\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:180)\n\tat TempTestSuite1748015363748.run(TempTestSuite1748015363748.groovy:35)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+                    "status": "broken",
+                    "start": 1748022391275,
+                    "stop": 1748022391276
+                }
+            ]
+        }
+    ]
+}

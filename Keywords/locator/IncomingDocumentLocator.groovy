@@ -25,7 +25,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				sendOpinionApprove = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok_user")
 				toastMessage = createTestObject(LocatorType.XPATH, "//android.widget.Toast[@text=Thành công']")
 				backBtn = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_home_bar")
-				
+
 				filterDocumentStatusTab = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tab_status")
 				requestType = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/tv_value_process_type")
 				submitWarningPopup = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_ok")
@@ -49,13 +49,13 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				toastMessage = createTestObject(LocatorType.XPATH, "")
 				searchDocument = createTestObject(LocatorType.XPATH, "//XCUIElementTypeImage[@name='ic-search']/parent::XCUIElementTypeOther/XCUIElementTypeTextField")
 				backBtn = createTestObject(LocatorType.XPATH, "//XCUIElementTypeButton[@name='ic back']")
-				
+
 				requestType = createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='Loại yêu cầu:']/following-sibling::XCUIElementTypeStaticText[contains(@name, 'Quy trình PDF')]")
-				
+
 				submitWarningPopup = createTestObject(LocatorType.XPATH, "")
 				loadingSwipeIcon = createTestObject(LocatorType.XPATH, "//XCUIElementTypeActivityIndicator[@name='Progress halted']")
 				imageViewLoading = createTestObject(LocatorType.XPATH, "")
-				
+
 				break
 		}
 	}
@@ -87,7 +87,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeTable/XCUIElementTypeCell[${index}]")
 		}
 	}
-	
+
 	List<TestObject> titleItems() {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":
@@ -132,7 +132,7 @@ public class IncomingDocumentLocator extends TestObjectFactory{
 				return createTestObject(LocatorType.XPATH, "//XCUIElementTypeStaticText[@name='${documentTitle}']")
 		}
 	}
-	
+
 	TestObject documentStatusFilter(String documentStatus) {
 		switch (GlobalVariable.PLATFORM) {
 			case "Android":

@@ -19,7 +19,7 @@ User auto6 = DataTest.getUserTest6()
 
 User auto7 = DataTest.getUserTest7()
 
-def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
+def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.docx')
 
 //create document
 IPaper.loginScreen.login(auto5)
@@ -70,8 +70,6 @@ IPaper.homeScreen.goToIncomingDocument()
 
 IPaper.inComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.isSendCommentDisplayed()
-
 IPaper.documentInformationScreen.checkDocumentTitle(document)
 
 IPaper.documentInformationScreen.checkSender(document)
@@ -96,6 +94,8 @@ IPaper.documentInformationScreen.backToHome()
 
 IPaper.homeScreen.logout()
 
+document.setStatus(DocumentStatus.WAIT_APPROVE)
+
 //========================== CHECK DOCUMENT IN AUTO7 ==========================================
 IPaper.loginScreen.login(auto7)
 
@@ -103,9 +103,9 @@ IPaper.homeScreen.goToIncomingDocument()
 
 IPaper.inComingDocument.viewInformationDocument(document)
 
-IPaper.documentInformationScreen.isSendCommentDisplayed()
-
 IPaper.documentInformationScreen.checkDocumentTitle(document)
+
+IPaper.documentInformationScreen.checkStatus(document)
 
 IPaper.documentInformationScreen.checkSender(document)
 
@@ -119,17 +119,18 @@ IPaper.documentInformationScreen.checkDescription(document)
 
 IPaper.documentInformationScreen.checkAssigner(document)
 
-IPaper.documentInformationScreen.checkPresentFileName(document)
+IPaper.documentInformationScreen.checkPresentFileName(document)														
 
 IPaper.documentInformationScreen.checkAttachFileName(document)
 
 IPaper.documentInformationScreen.performAction(document, ActionType.APPROVE, AUTO7_COMMENT)
 
-IPaper.documentInformationScreen.backToHome()
+IPaper.documentInformationScreen.backToHome()																		
 
 IPaper.homeScreen.logout()
 
 //========================== CHECK DOCUMENT IN AUTO5 AFTER APPROVED ==========================================
+document.setSender(auto7)																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											
 IPaper.loginScreen.login(auto5)
 
 IPaper.homeScreen.goToOutComingDocument()
@@ -138,6 +139,8 @@ IPaper.outComingDocument.viewInformationDocument(document)
 
 IPaper.documentInformationScreen.checkDocumentTitle(document)
 
+IPaper.documentInformationScreen.checkStatus(document)
+
 IPaper.documentInformationScreen.checkSender(document)
 
 IPaper.documentInformationScreen.checkCreateDate()
@@ -148,7 +151,7 @@ IPaper.documentInformationScreen.checkPriority(document)
 
 IPaper.documentInformationScreen.checkDescription(document)
 
-IPaper.documentInformationScreen.checkAssigner(document)
+IPaper.documentInformationScreen.isAssignerDisplayed()
 
 IPaper.documentInformationScreen.checkPresentFileName(document)
 

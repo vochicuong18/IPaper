@@ -12,7 +12,7 @@ public class SettingScreen extends SettingLocator implements BaseKeyword {
 		if (GlobalVariable.PLATFORM == 'Android') {
 			currentStatus = getValueAttributeOf(approveByEmailSwitch, "checked") == "true"
 		} else {
-//			currentStatus = getValueAttributeOf(approveByEmaiSwitchStatus, "name") 
+			//			currentStatus = getValueAttributeOf(approveByEmaiSwitchStatus, "name")
 		}
 
 		if (currentStatus != expectedStatus) {
@@ -62,23 +62,23 @@ public class SettingScreen extends SettingLocator implements BaseKeyword {
 	def backToHome () {
 		clickToElement(back)
 	}
-	
-	
-//	private boolean getSwitchStatus(TestObject switchObject) {
-//		if(GlobalVariable.PLATFORM == 'Android') {
-//			return getValueAttributeOf(switchObject, "checked") == "true"
-//		} else {
-//			return getValueAttributeOf(switchObject, "value") == "1"
-//		}
-//	}
-//	
-//	// Generic toggle method
-//	private void toggleSwitch(TestObject switchObject, boolean expectedStatus) {
-//		boolean currentStatus = getSwitchStatus(switchObject)
-//		
-//		if (currentStatus != expectedStatus) {
-//			clickToElement(switchObject)
-//			Thread.sleep(500) // wait for switch animation
-//		}
-//	}
+
+
+	//	private boolean getSwitchStatus(TestObject switchObject) {
+	//		if(GlobalVariable.PLATFORM == 'Android') {
+	//			return getValueAttributeOf(switchObject, "checked") == "true"
+	//		} else {
+	//			return getValueAttributeOf(switchObject, "value") == "1"
+	//		}
+	//	}
+	//
+	//	// Generic toggle method
+	//	private void toggleSwitch(TestObject switchObject, boolean expectedStatus) {
+	//		boolean currentStatus = getSwitchStatus(switchObject)
+	//
+	//		if (currentStatus != expectedStatus) {
+	//			clickToElement(switchObject)
+	//			Thread.sleep(500) // wait for switch animation
+	//		}
+	//	}
 }

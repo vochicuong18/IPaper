@@ -15,7 +15,7 @@ class LoginLocator extends TestObjectFactory {
 				ignoreUpdate = createTestObject(LocatorType.XPATH, "//android.widget.TextView[@text = 'Bỏ qua']")
 				loginButton = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/btn_sign_in")
 				title = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/img_logo")
-				loadingMask = createTestObject(LocatorType.XPATH, "//android.widget.ImageView[@resource-id='com.hdbank.ipaper:id/loading_image']")
+				loadingMask = createTestObject(LocatorType.ID, "com.hdbank.ipaper:id/loading_image")
 				break
 
 			case "iOS":

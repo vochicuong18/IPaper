@@ -17,6 +17,7 @@ public class FileBrowserScreen extends FileBrowserLocator implements BaseKeyword
 		if (GlobalVariable.PLATFORM == "iOS" && isDisplayed(submitSelectedFile)) {
 			clickToElement(submitSelectedFile)
 		}
+		waitForNotPresentOf(uploadProcessBar)
 	}
 
 	def clickToSearch() {

@@ -1,0 +1,523 @@
+{
+    "name": "009 DUYET NHANH",
+    "status": "passed",
+    "attachments": [],
+    "start": 1748016534423,
+    "stop": 1748016674528,
+    "uuid": "66117089121188",
+    "historyId": "66117089121188",
+    "testCaseId": "66117089121188",
+    "fullName": "Test Cases/IPAPER APP/009 DUYET NHANH",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748016534433,
+            "stop": 1748016534434,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748016537063,
+            "stop": 1748016544602,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748016544603,
+            "stop": 1748016549966,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748016549966,
+            "stop": 1748016556647,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1748016556647,
+            "stop": 1748016559506,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1748016559506,
+            "stop": 1748016561492,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1748016561493,
+            "stop": 1748016564352,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1748016564352,
+            "stop": 1748016566110,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1748016566111,
+            "stop": 1748016572139,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1748016572140,
+            "stop": 1748016577126,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getMainFileName())",
+            "status": "passed",
+            "start": 1748016577127,
+            "stop": 1748016586075,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1748016586076,
+            "stop": 1748016587072,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getSubFileName())",
+            "status": "passed",
+            "start": 1748016587073,
+            "stop": 1748016597776,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.performAction(SEND_APPROVE)",
+            "status": "passed",
+            "start": 1748016597776,
+            "stop": 1748016599309,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInOpinion(document.getComment())",
+            "status": "passed",
+            "start": 1748016599309,
+            "stop": 1748016601595,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitRequest()",
+            "status": "passed",
+            "start": 1748016601595,
+            "stop": 1748016609159,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748016609159,
+            "stop": 1748016609372,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.logout()",
+            "status": "passed",
+            "start": 1748016609372,
+            "stop": 1748016617758,
+            "steps": []
+        },
+        {
+            "name": "document.setStatus(WAIT_APPROVE)",
+            "status": "passed",
+            "start": 1748016617759,
+            "stop": 1748016617759,
+            "steps": []
+        },
+        {
+            "name": "document.setAssigner(auto5)",
+            "status": "passed",
+            "start": 1748016617760,
+            "stop": 1748016617760,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto6)",
+            "status": "passed",
+            "start": 1748016617761,
+            "stop": 1748016626476,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToIncomingDocument()",
+            "status": "passed",
+            "start": 1748016626476,
+            "stop": 1748016626574,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.viewInformationDocument(document)",
+            "status": "passed",
+            "start": 1748016626574,
+            "stop": 1748016632446,
+            "steps": [
+                {
+                    "name": "View document Tr\u00ecnh k\u00fd 1748016537062",
+                    "status": "passed",
+                    "start": 1748016626574,
+                    "stop": 1748016626575
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkDocumentTitle(document)",
+            "status": "passed",
+            "start": 1748016632446,
+            "stop": 1748016632818,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Tr\u00ecnh k\u00fd 1748016537062 - DATA: Tr\u00ecnh k\u00fd 1748016537062",
+                    "status": "passed",
+                    "start": 1748016632817,
+                    "stop": 1748016632818
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkSender(document)",
+            "status": "passed",
+            "start": 1748016632818,
+            "stop": 1748016632921,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Auto Test User 1 - DATA: Auto Test User 1",
+                    "status": "passed",
+                    "start": 1748016632921,
+                    "stop": 1748016632922
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkStatus(document)",
+            "status": "passed",
+            "start": 1748016632921,
+            "stop": 1748016633030,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Ch\u1edd gi\u00e1m s\u00e1t ph\u00ea duy\u1ec7t - DATA: Ch\u1edd gi\u00e1m s\u00e1t ph\u00ea duy\u1ec7t",
+                    "status": "passed",
+                    "start": 1748016633030,
+                    "stop": 1748016633031
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkCreateDate()",
+            "status": "passed",
+            "start": 1748016633030,
+            "stop": 1748016633152,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 23/05/2025 - DATA: 23/05/2025",
+                    "status": "passed",
+                    "start": 1748016633151,
+                    "stop": 1748016633152
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkFinishDate(document)",
+            "status": "passed",
+            "start": 1748016633152,
+            "stop": 1748016633274,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 24/05/2025 - DATA: 24/05/2025",
+                    "status": "passed",
+                    "start": 1748016633273,
+                    "stop": 1748016633274
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPriority(document)",
+            "status": "passed",
+            "start": 1748016633274,
+            "stop": 1748016633405,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: B\u00ecnh th\u01b0\u1eddng - DATA: B\u00ecnh th\u01b0\u1eddng",
+                    "status": "passed",
+                    "start": 1748016633404,
+                    "stop": 1748016633405
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkDescription(document)",
+            "status": "passed",
+            "start": 1748016633406,
+            "stop": 1748016633546,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 009 DUYET NHANH - DATA: 009 DUYET NHANH",
+                    "status": "passed",
+                    "start": 1748016633546,
+                    "stop": 1748016633547
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAssigner(document)",
+            "status": "passed",
+            "start": 1748016633547,
+            "stop": 1748016634977,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: auto1@hdbank.com.vn - DATA: auto1@hdbank.com.vn",
+                    "status": "passed",
+                    "start": 1748016634976,
+                    "stop": 1748016634977
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPresentFileName(document)",
+            "status": "passed",
+            "start": 1748016634977,
+            "stop": 1748016636587,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: dummy_20250523230946.ozd - DATA: dummy",
+                    "status": "passed",
+                    "start": 1748016636586,
+                    "stop": 1748016636587
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAttachFileName(document)",
+            "status": "passed",
+            "start": 1748016636588,
+            "stop": 1748016638261,
+            "steps": [
+                {
+                    "name": "Expected true condition",
+                    "status": "passed",
+                    "start": 1748016638260,
+                    "stop": 1748016638261
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748016638261,
+            "stop": 1748016642777,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.performAction(document, QUICK_APPROVE)",
+            "status": "passed",
+            "start": 1748016642778,
+            "stop": 1748016647509,
+            "steps": []
+        },
+        {
+            "name": "document.setSender(auto6)",
+            "status": "passed",
+            "start": 1748016647510,
+            "stop": 1748016647511,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.checkItemInDocument()",
+            "status": "passed",
+            "start": 1748016647511,
+            "stop": 1748016647511,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToOutComingDocument()",
+            "status": "passed",
+            "start": 1748016647512,
+            "stop": 1748016657599,
+            "steps": []
+        },
+        {
+            "name": "outComingDocument.viewInformationDocument(document)",
+            "status": "passed",
+            "start": 1748016657600,
+            "stop": 1748016658717,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.checkDocumentTitle(document)",
+            "status": "passed",
+            "start": 1748016658717,
+            "stop": 1748016664458,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Tr\u00ecnh k\u00fd 1748016537062 - DATA: Tr\u00ecnh k\u00fd 1748016537062",
+                    "status": "passed",
+                    "start": 1748016664457,
+                    "stop": 1748016664458
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkSender(document)",
+            "status": "passed",
+            "start": 1748016664458,
+            "stop": 1748016664555,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: Auto Test User 2 - DATA: Auto Test User 2",
+                    "status": "passed",
+                    "start": 1748016664554,
+                    "stop": 1748016664555
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkStatus(document)",
+            "status": "passed",
+            "start": 1748016664555,
+            "stop": 1748016664687,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: \u0110\u00e3 duy\u1ec7t - DATA: \u0110\u00e3 duy\u1ec7t",
+                    "status": "passed",
+                    "start": 1748016664686,
+                    "stop": 1748016664687
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkCreateDate()",
+            "status": "passed",
+            "start": 1748016664687,
+            "stop": 1748016664808,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 23/05/2025 - DATA: 23/05/2025",
+                    "status": "passed",
+                    "start": 1748016664807,
+                    "stop": 1748016664808
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkFinishDate(document)",
+            "status": "passed",
+            "start": 1748016664808,
+            "stop": 1748016664926,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 24/05/2025 - DATA: 24/05/2025",
+                    "status": "passed",
+                    "start": 1748016664925,
+                    "stop": 1748016664926
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPriority(document)",
+            "status": "passed",
+            "start": 1748016664926,
+            "stop": 1748016665055,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: B\u00ecnh th\u01b0\u1eddng - DATA: B\u00ecnh th\u01b0\u1eddng",
+                    "status": "passed",
+                    "start": 1748016665054,
+                    "stop": 1748016665055
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkDescription(document)",
+            "status": "passed",
+            "start": 1748016665055,
+            "stop": 1748016665208,
+            "steps": [
+                {
+                    "name": "Verify equals GUI: 009 DUYET NHANH - DATA: 009 DUYET NHANH",
+                    "status": "passed",
+                    "start": 1748016665207,
+                    "stop": 1748016665208
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAssigner(document)",
+            "status": "passed",
+            "start": 1748016665208,
+            "stop": 1748016666650,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: auto1@hdbank.com.vn - DATA: auto1@hdbank.com.vn",
+                    "status": "passed",
+                    "start": 1748016666649,
+                    "stop": 1748016666650
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkPresentFileName(document)",
+            "status": "passed",
+            "start": 1748016666651,
+            "stop": 1748016667735,
+            "steps": [
+                {
+                    "name": "Verify contains GUI: dummy_20250523230946.ozd - DATA: dummy",
+                    "status": "passed",
+                    "start": 1748016667734,
+                    "stop": 1748016667735
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.checkAttachFileName(document)",
+            "status": "passed",
+            "start": 1748016667735,
+            "stop": 1748016669514,
+            "steps": [
+                {
+                    "name": "Expected true condition",
+                    "status": "passed",
+                    "start": 1748016669513,
+                    "stop": 1748016669514
+                }
+            ]
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748016669515,
+            "stop": 1748016674013,
+            "steps": []
+        },
+        {
+            "name": "inComingDocument.checkItemInDocument()",
+            "status": "passed",
+            "start": 1748016674013,
+            "stop": 1748016674014,
+            "steps": []
+        }
+    ]
+}

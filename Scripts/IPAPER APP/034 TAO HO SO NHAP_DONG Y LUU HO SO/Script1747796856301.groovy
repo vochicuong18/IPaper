@@ -41,14 +41,11 @@ IPaper.pdfSignScreen.openSubFileBrowser()
 
 IPaper.fileBrowserScreen.attachFile(document.getSubFileName())
 
-//IPaper.pdfSignScreen.performAction(PerformAction.SAVE_DRAFT)
-
 IPaper.pdfSignScreen.clickOnBackBtn()
 
 IPaper.pdfSignScreen.submitSaveDocument()
 
 document.setStatus(DocumentStatus.DRAFTED)
-
 
 IPaper.documentInformationScreen.backToHome()
 

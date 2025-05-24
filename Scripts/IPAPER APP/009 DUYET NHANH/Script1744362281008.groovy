@@ -11,7 +11,7 @@ User auto5 = DataTest.getUserTest5()
 
 User auto6 = DataTest.getUserTest6()
 
-def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.pdf')
+def document = DataTest.createDocumentTest(auto5, auto6, null, 'dummy.pdf', 'dummy.docx')
 
 //create document 009
 IPaper.loginScreen.login(auto5)

@@ -3,6 +3,7 @@ package screens
 import org.openqa.selenium.StaleElementReferenceException
 
 import base.BaseKeyword
+import drivers.Driver
 import internal.GlobalVariable
 import locator.HomeScreenLocator
 public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
@@ -40,6 +41,11 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 		clickOnFillter()
 		clickOnRelatedDocument()
 		waitForNotPresentOf(loadingItem)
+	}
+	
+	def goToNotificationScreen() {
+		clickToElement(bellIcon)
+		waitForAttributeValueOf(notiList, "scrollable", "true")
 	}
 
 
@@ -92,12 +98,13 @@ public class HomeScreen extends HomeScreenLocator implements BaseKeyword {
 
 	def createRequest(String requestName) {
 		try {
+			waitForNotPresentOf(loadingImage)
 			waitForPresentOf(listFormSample)
 			waitForPresentOf(requestItem(requestName))
 			waitForVisibilityOf(requestItem(requestName))
 			clickToElement(requestItem(requestName))
 		} catch(StaleElementReferenceException ex) {
-			clickToElement(requestItem(requestName))
+			clickToElement(requestItem(requestName)) // workaround flaky loading in this function
 		}
 	}
 

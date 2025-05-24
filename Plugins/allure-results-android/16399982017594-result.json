@@ -1,0 +1,166 @@
+{
+    "name": "035 TAO HO SO NHAP_HUY TAO HO SO",
+    "status": "passed",
+    "attachments": [],
+    "start": 1748022744365,
+    "stop": 1748022835279,
+    "uuid": "16399982017594",
+    "historyId": "16399982017594",
+    "testCaseId": "16399982017594",
+    "fullName": "Test Cases/IPAPER APP/035 TAO HO SO NHAP_HUY TAO HO SO",
+    "labels": [
+        {
+            "name": "parentSuite",
+            "value": "Checklist: 23-05-2025 22:49:33"
+        }
+    ],
+    "steps": [
+        {
+            "name": "DataTest.init()",
+            "status": "passed",
+            "start": 1748022744371,
+            "stop": 1748022744372,
+            "steps": []
+        },
+        {
+            "name": "loginScreen.login(auto5)",
+            "status": "passed",
+            "start": 1748022747020,
+            "stop": 1748022754149,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.openRequestList()",
+            "status": "passed",
+            "start": 1748022754150,
+            "stop": 1748022759475,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.createRequest(REQUEST_NAME)",
+            "status": "passed",
+            "start": 1748022759475,
+            "stop": 1748022765502,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInTitle(document.getTitle())",
+            "status": "passed",
+            "start": 1748022765502,
+            "stop": 1748022768029,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectPriority(document.getPriority())",
+            "status": "passed",
+            "start": 1748022768030,
+            "stop": 1748022769985,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectTime(document.getTime())",
+            "status": "passed",
+            "start": 1748022769986,
+            "stop": 1748022772914,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.fillInDescription(document.getDescription())",
+            "status": "passed",
+            "start": 1748022772914,
+            "stop": 1748022774658,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.selectAssigner(getAssigner().getEmail())",
+            "status": "passed",
+            "start": 1748022774659,
+            "stop": 1748022780731,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openMainFileBrowser()",
+            "status": "passed",
+            "start": 1748022780731,
+            "stop": 1748022786781,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getMainFileName())",
+            "status": "passed",
+            "start": 1748022786781,
+            "stop": 1748022795454,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.openSubFileBrowser()",
+            "status": "passed",
+            "start": 1748022795454,
+            "stop": 1748022796009,
+            "steps": []
+        },
+        {
+            "name": "fileBrowserScreen.attachFile(document.getSubFileName())",
+            "status": "passed",
+            "start": 1748022796010,
+            "stop": 1748022805278,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.clickOnBackBtn()",
+            "status": "passed",
+            "start": 1748022805278,
+            "stop": 1748022805408,
+            "steps": []
+        },
+        {
+            "name": "pdfSignScreen.submitSaveDocument()",
+            "status": "passed",
+            "start": 1748022805408,
+            "stop": 1748022806170,
+            "steps": []
+        },
+        {
+            "name": "document.setStatus(DRAFTED)",
+            "status": "passed",
+            "start": 1748022806170,
+            "stop": 1748022806171,
+            "steps": []
+        },
+        {
+            "name": "documentInformationScreen.backToHome()",
+            "status": "passed",
+            "start": 1748022806171,
+            "stop": 1748022810439,
+            "steps": []
+        },
+        {
+            "name": "homeScreen.goToDraftDocument()",
+            "status": "passed",
+            "start": 1748022810439,
+            "stop": 1748022819853,
+            "steps": []
+        },
+        {
+            "name": "draftDocumentScreen.loadDataResult()",
+            "status": "passed",
+            "start": 1748022819853,
+            "stop": 1748022823465,
+            "steps": []
+        },
+        {
+            "name": "draftDocumentScreen.isDocumentNotDisplayed(document)",
+            "status": "passed",
+            "start": 1748022823466,
+            "stop": 1748022834734,
+            "steps": [
+                {
+                    "name": "Expected false condition",
+                    "status": "passed",
+                    "start": 1748022834734,
+                    "stop": 1748022834735
+                }
+            ]
+        }
+    ]
+}
